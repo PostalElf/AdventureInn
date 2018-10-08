@@ -8,7 +8,7 @@
         RoomColours.Add(Color.Beige)
         RoomColours.Add(Color.BlueViolet)
         RoomColours.Add(Color.DarkRed)
-        RoomColours.Add(Color.BlanchedAlmond)
+        RoomColours.Add(Color.AliceBlue)
         RoomColours.Add(Color.Tomato)
         RoomColours.Add(Color.SlateBlue)
         RoomColours.Add(Color.Olive)

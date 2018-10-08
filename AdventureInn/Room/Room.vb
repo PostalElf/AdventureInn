@@ -26,6 +26,15 @@
 
     Public Name As String
     Public Color As Color
+
+    Private RoomItems As New List(Of RoomItem)
+    Overloads Function Add(ByVal item As RoomItem, ByVal x As Integer, ByVal y As Integer) As String
+        Dim errorString As String = MyBase.Add(item, x, y)
+        If errorString <> "" Then Return errorString
+
+        RoomItems.Add(item)
+        Return Nothing
+    End Function
 End Class
 
 Public Enum RoomSize

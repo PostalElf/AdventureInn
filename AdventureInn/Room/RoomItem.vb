@@ -45,4 +45,7 @@
     End Property
     Private Property InitialX As Integer Implements xy.InitialX
     Private Property InitialY As Integer Implements xy.InitialY
+
+    Private Opulence As Integer
+    Private Restfulness As Integer
 End Class
