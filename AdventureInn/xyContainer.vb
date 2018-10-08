@@ -25,8 +25,8 @@
         End Set
     End Property
     Public Function Add(ByVal item As xy, ByVal x As Integer, ByVal y As Integer) As String
-        If item.Width > x + Width - 1 Then Return "Item too wide."
-        If item.Height > y + Height - 1 Then Return "Item too tall."
+        If x + item.Width > Width + 1 Then Return "Item too wide."
+        If y + item.Height > Height + 1 Then Return "Item too tall."
 
         For px = x To x + item.Width - 1
             For py = y To y + item.Height - 1

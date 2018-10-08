@@ -75,6 +75,7 @@
             Else
                 'no item; prompt to add item
                 Dim dri As New DialogRoomItem
+                dri.UseCase = "RoomItem"
                 dri.Inventory = CurrentInn.Inventory
                 If dri.ShowDialog = Windows.Forms.DialogResult.OK Then
                     Dim newItem As RoomItem = dri.RoomItem

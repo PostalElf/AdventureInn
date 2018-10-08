@@ -9,11 +9,14 @@
                 _Height = 2
             Case RoomSize.Small
                 _Width = 4
-                _Height = 4
-            Case RoomSize.Medium
-                _Width = 8
+                _Height = 2
+            Case RoomSize.Standard
+                _Width = 4
                 _Height = 4
             Case RoomSize.Large
+                _Width = 8
+                _Height = 4
+            Case RoomSize.Deluxe
                 _Width = 8
                 _Height = 8
         End Select
@@ -32,6 +35,7 @@ End Class
 Public Enum RoomSize
     Tiny
     Small
-    Medium
+    Standard
     Large
+    Deluxe
 End Enum

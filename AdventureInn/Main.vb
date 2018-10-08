@@ -11,7 +11,7 @@
     Private Sub SetupInn()
         Dim floor1 As New Floor
         CurrentInn.Add(floor1)
-        CurrentInn(0).Add(New Room(RoomSize.Medium), 1, 1)
+        CurrentInn(0).Add(New Room(RoomSize.Large), 1, 1)
 
         Dim floor2 As New Floor
         CurrentInn.Add(floor2)
@@ -88,7 +88,14 @@
             'right-click to modify
             If CurrentRoom Is Nothing Then
                 'empty, right-click to add
-
+                Dim dri As New DialogRoomItem
+                dri.UseCase = "Room"
+                If dri.ShowDialog = Windows.Forms.DialogResult.OK Then
+                    Dim roomSize As RoomSize = dri.RoomSize
+                    dri.Close()
+                    If CurrentFloor.Add(New Room(roomSize), x, y) <> "" Then Exit Sub
+                    FloorRefresh()
+                End If
             Else
                 'occupied, right-click to remove
                 If MsgBox("Are you sure you want to destroy " & CurrentRoom.Name & " and everything inside it?" & vbCrLf & vbCrLf & _
