@@ -12,3 +12,17 @@ D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.
 D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.DialogRoomItem.en-SG.resources
 D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\en-SG\AdventureInn.resources.dll
 D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.DialogRoom.resources
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventureInn.exe
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventureInn.xml
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventureInn.pdb
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\bin\Debug\AdventureInn.exe
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\bin\Debug\AdventureInn.pdb
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\bin\Debug\AdventureInn.xml
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\bin\Debug\en-SG\AdventureInn.resources.dll
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.DialogRoom.resources
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.DialogRoomItem.resources
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.Main.resources
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.Resources.resources
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.DialogRoomItem.en-SG.resources
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventureInn.vbproj.GenerateResource.Cache
+C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\en-SG\AdventureInn.resources.dll

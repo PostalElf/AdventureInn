@@ -12,6 +12,8 @@
             Return _Height
         End Get
     End Property
+    Private Property InitialX As Integer Implements xy.InitialX
+    Private Property InitialY As Integer Implements xy.InitialY
 
     Protected Contents(,) As xy
     Default Public Property Index(ByVal x As Integer, ByVal y As Integer) As xy
@@ -37,9 +39,14 @@
                 Contents(px, py) = item
             Next
         Next
+        item.InitialX = x
+        item.InitialY = y
         Return Nothing
     End Function
-    Public Function Remove(ByVal item As xy, ByVal x As Integer, ByVal y As Integer) As String
+    Public Function Remove(ByVal item As xy) As String
+        Dim x As Integer = item.initialX
+        Dim y As Integer = item.initialY
+
         For px = x To x + item.Width - 1
             For py = y To y + item.Height - 1
                 If Contents(px, py) Is Nothing Then Return "Tile " & px & "," & py & " is empty."

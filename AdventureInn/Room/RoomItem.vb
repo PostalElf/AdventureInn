@@ -43,4 +43,6 @@
             Return _Height
         End Get
     End Property
+    Private Property InitialX As Integer Implements xy.InitialX
+    Private Property InitialY As Integer Implements xy.InitialY
 End Class

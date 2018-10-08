@@ -83,14 +83,30 @@
         Dim x As Integer = tagSplit(0)
         Dim y As Integer = tagSplit(1)
         Dim CurrentRoom As Room = CurrentFloor(x, y)
-        If CurrentRoom Is Nothing Then Exit Sub
 
-        Dim dr As New DialogRoom
-        With dr
-            .CurrentInn = CurrentInn
-            .CurrentFloor = CurrentFloor
-            .CurrentRoom = CurrentRoom
-        End With
-        dr.ShowDialog()
+        If e.Button = Windows.Forms.MouseButtons.Right Then
+            'right-click to modify
+            If CurrentRoom Is Nothing Then
+                'empty, right-click to add
+
+            Else
+                'occupied, right-click to remove
+                If MsgBox("Are you sure you want to destroy " & CurrentRoom.Name & " and everything inside it?" & vbCrLf & vbCrLf & _
+                          "This cannot be undone.", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, "Destroy Room") = MsgBoxResult.Yes Then
+                    CurrentFloor.Remove(CurrentRoom)
+                    FloorRefresh()
+                End If
+            End If
+        ElseIf e.Button = Windows.Forms.MouseButtons.Left Then
+            'left click to enter room
+            If CurrentRoom Is Nothing Then Exit Sub
+            Dim dr As New DialogRoom
+            With dr
+                .CurrentInn = CurrentInn
+                .CurrentFloor = CurrentFloor
+                .CurrentRoom = CurrentRoom
+            End With
+            dr.ShowDialog()
+        End If
     End Sub
 End Class

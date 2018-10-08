@@ -22,7 +22,9 @@ Partial Class DialogRoom
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.lblTitle = New System.Windows.Forms.Label()
+        Me.tt = New System.Windows.Forms.ToolTip(Me.components)
         Me.SuspendLayout()
         '
         'lblTitle
@@ -34,6 +36,16 @@ Partial Class DialogRoom
         Me.lblTitle.TabIndex = 0
         Me.lblTitle.Text = "lblTitle"
         Me.lblTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter
+        '
+        'tt
+        '
+        Me.tt.AutomaticDelay = 10
+        Me.tt.AutoPopDelay = 10000
+        Me.tt.InitialDelay = 1
+        Me.tt.IsBalloon = True
+        Me.tt.ReshowDelay = 2
+        Me.tt.UseAnimation = False
+        Me.tt.UseFading = False
         '
         'DialogRoom
         '
@@ -51,4 +63,5 @@ Partial Class DialogRoom
 
     End Sub
     Friend WithEvents lblTitle As System.Windows.Forms.Label
+    Friend WithEvents tt As System.Windows.Forms.ToolTip
 End Class

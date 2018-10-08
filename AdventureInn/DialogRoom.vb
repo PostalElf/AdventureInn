@@ -47,6 +47,7 @@
                         .BackColor = Color.Gray
                     Else
                         .BackColor = Color.AliceBlue
+                        tt.SetToolTip(panels(x, y), roomItem.Name)
                     End If
                 End With
             Next
@@ -67,7 +68,7 @@
             If roomItem Is Nothing = False Then
                 'item present; prompt to remove item
                 If MsgBox("Remove " & roomItem.Name & "?", MsgBoxStyle.YesNo, "Remove Item?") = MsgBoxResult.Yes Then
-                    CurrentRoom.Remove(roomItem, x, y)
+                    CurrentRoom.Remove(roomItem)
                     CurrentInn.Inventory.Add(roomItem)
                     RoomRefresh()
                 End If
