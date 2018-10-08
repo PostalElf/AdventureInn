@@ -32,11 +32,11 @@
         With room
             For x = .InitialX To .InitialX + .Width
                 PopulateRoomList(RoomList, x, .InitialY - 1)
-                PopulateRoomList(RoomList, x, .InitialY + Height + 1)
+                PopulateRoomList(RoomList, x, .InitialY + .Height + 1)
             Next
             For y = .InitialY To .InitialY + .Height
                 PopulateRoomList(RoomList, .InitialX - 1, y)
-                PopulateRoomList(RoomList, .InitialX + Width + 1, y)
+                PopulateRoomList(RoomList, .InitialX + .Width + 1, y)
             Next
         End With
         Return RoomList
