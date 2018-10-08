@@ -1,0 +1,14 @@
+[Straw Bed]
+Width: 1
+Height: 2
+Description: A bed filled with straw, dust mites, and bed bugs.
+
+[Study Table]
+Width: 2
+Height: 1
+Description: Convenient for writing letters, scribing scrolls, and drawing maps.
+
+[Four-Poster Bed]
+Width: 2
+Height: 2
+Description: The gold standard in fantasy bedding.

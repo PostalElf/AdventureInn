@@ -1,0 +1,14 @@
+D:\Visual Studio Projects\AdventureInn\AdventureInn\bin\Debug\AdventureInn.exe
+D:\Visual Studio Projects\AdventureInn\AdventureInn\bin\Debug\AdventureInn.pdb
+D:\Visual Studio Projects\AdventureInn\AdventureInn\bin\Debug\AdventureInn.xml
+D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.Resources.resources
+D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventureInn.vbproj.GenerateResource.Cache
+D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventureInn.exe
+D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventureInn.xml
+D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventureInn.pdb
+D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.Main.resources
+D:\Visual Studio Projects\AdventureInn\AdventureInn\bin\Debug\en-SG\AdventureInn.resources.dll
+D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.DialogRoomItem.resources
+D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.DialogRoomItem.en-SG.resources
+D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\en-SG\AdventureInn.resources.dll
+D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.DialogRoom.resources
