@@ -116,6 +116,10 @@
             End With
             dr.ShowDialog()
             FloorRefresh()
+        ElseIf e.Button = Windows.Forms.MouseButtons.Middle Then
+            'middle click for dev tools
+            If CurrentRoom Is Nothing Then Exit Sub
+            Dim adjlist As List(Of Room) = CurrentFloor.GetAdjacentRooms(CurrentRoom)
         End If
     End Sub
 End Class

@@ -26,4 +26,29 @@
         If RoomCount > RoomColours.Count - 1 Then RoomCount = 0
         Return Nothing
     End Function
+
+    Public Function GetAdjacentRooms(ByVal room As Room) As List(Of Room)
+        Dim RoomList As New List(Of Room)
+        With room
+            For x = .InitialX To .InitialX + .Width
+                PopulateRoomList(RoomList, x, .InitialY - 1)
+                PopulateRoomList(RoomList, x, .InitialY + Height + 1)
+            Next
+            For y = .InitialY To .InitialY + .Height
+                PopulateRoomList(RoomList, .InitialX - 1, y)
+                PopulateRoomList(RoomList, .InitialX + Width + 1, y)
+            Next
+        End With
+        Return RoomList
+    End Function
+    Private Sub PopulateRoomList(ByRef roomList As List(Of Room), ByVal x As Integer, ByVal y As Integer)
+        If x < 1 Then Exit Sub
+        If y < 1 Then Exit Sub
+        If x > Width Then Exit Sub
+        If y > Height Then Exit Sub
+
+        Dim room As Room = Contents(x, y)
+        If room Is Nothing Then Exit Sub
+        If roomList.Contains(room) = False Then roomList.Add(room)
+    End Sub
 End Class

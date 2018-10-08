@@ -12,8 +12,18 @@
             Return _Height
         End Get
     End Property
-    Private Property InitialX As Integer Implements xy.InitialX
-    Private Property InitialY As Integer Implements xy.InitialY
+    Protected Property _InitialX As Integer Implements xy.InitialX
+    Public ReadOnly Property InitialX As Integer
+        Get
+            Return _InitialX
+        End Get
+    End Property
+    Protected Property _InitialY As Integer Implements xy.InitialY
+    Public ReadOnly Property InitialY As Integer
+        Get
+            Return _InitialY
+        End Get
+    End Property
 
     Protected Contents(,) As xy
     Default Public Property Index(ByVal x As Integer, ByVal y As Integer) As xy
