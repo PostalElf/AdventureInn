@@ -74,24 +74,24 @@
   <ItemGroup>
     <Compile Include="Adventurer\Adventurer.vb" />
     <Compile Include="Adventurer\Budget.vb" />
-    <Compile Include="DialogRoom.Designer.vb">
+    <Compile Include="Forms\DialogRoom.Designer.vb">
       <DependentUpon>DialogRoom.vb</DependentUpon>
     </Compile>
-    <Compile Include="DialogRoom.vb">
+    <Compile Include="Forms\DialogRoom.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="DialogRoomItem.Designer.vb">
+    <Compile Include="Forms\DialogRoomItem.Designer.vb">
       <DependentUpon>DialogRoomItem.vb</DependentUpon>
     </Compile>
-    <Compile Include="DialogRoomItem.vb">
+    <Compile Include="Forms\DialogRoomItem.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Room\Floor.vb" />
     <Compile Include="Room\Inn.vb" />
-    <Compile Include="Main.vb">
+    <Compile Include="Forms\Main.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.vb">
+    <Compile Include="Forms\Main.Designer.vb">
       <DependentUpon>Main.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
@@ -119,16 +119,16 @@
     <Compile Include="xyContainer.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DialogRoom.resx">
+    <EmbeddedResource Include="Forms\DialogRoom.resx">
       <DependentUpon>DialogRoom.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DialogRoomItem.en-SG.resx">
+    <EmbeddedResource Include="Forms\DialogRoomItem.en-SG.resx">
       <DependentUpon>DialogRoomItem.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DialogRoomItem.resx">
+    <EmbeddedResource Include="Forms\DialogRoomItem.resx">
       <DependentUpon>DialogRoomItem.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Main.resx">
+    <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
