@@ -115,6 +115,7 @@
                 .CurrentRoom = CurrentRoom
             End With
             dr.ShowDialog()
+            FloorRefresh()
         End If
     End Sub
 End Class

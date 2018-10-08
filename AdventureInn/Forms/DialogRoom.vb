@@ -15,7 +15,6 @@
         Const pWidth As Integer = 20
 
         ReDim panels(CurrentRoom.Width, CurrentRoom.Height)
-        lblTitle.Text = CurrentRoom.Name
         For x = 1 To CurrentRoom.Width
             For y = 1 To CurrentRoom.Height
                 Dim panel As New Panel
@@ -39,6 +38,8 @@
         lblTitle.Width = maxWidth
     End Sub
     Private Sub RoomRefresh()
+        lblTitle.Text = CurrentRoom.Name
+
         For x = 1 To CurrentRoom.Width
             For y = 1 To CurrentRoom.Height
                 Dim roomItem As RoomItem = CurrentRoom(x, y)
@@ -91,6 +92,18 @@
             'left-click for info
             If roomItem Is Nothing Then Exit Sub
             MsgBox(roomItem.Name & vbCrLf & "Size: " & roomItem.Width & "x" & roomItem.Height & vbCrLf & vbCrLf & roomItem.Description, MsgBoxStyle.OkOnly, "Room Item")
+        End If
+    End Sub
+    Private Sub lblTitle_Click(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lblTitle.MouseDown
+        If e.Button = Windows.Forms.MouseButtons.Left Then
+            Dim newName As String = InputBox("Enter new name:", "Name", CurrentRoom.Name)
+            CurrentRoom.Name = newName
+            RoomRefresh()
+        ElseIf e.Button = Windows.Forms.MouseButtons.Right Then
+            ColorDialog1.Color = CurrentRoom.Color
+            If ColorDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
+                CurrentRoom.Color = ColorDialog1.Color
+            End If
         End If
     End Sub
 End Class

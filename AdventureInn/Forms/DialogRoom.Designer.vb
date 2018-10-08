@@ -25,6 +25,7 @@ Partial Class DialogRoom
         Me.components = New System.ComponentModel.Container()
         Me.lblTitle = New System.Windows.Forms.Label()
         Me.tt = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ColorDialog1 = New System.Windows.Forms.ColorDialog()
         Me.SuspendLayout()
         '
         'lblTitle
@@ -47,6 +48,10 @@ Partial Class DialogRoom
         Me.tt.UseAnimation = False
         Me.tt.UseFading = False
         '
+        'ColorDialog1
+        '
+        Me.ColorDialog1.FullOpen = True
+        '
         'DialogRoom
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -64,4 +69,5 @@ Partial Class DialogRoom
     End Sub
     Friend WithEvents lblTitle As System.Windows.Forms.Label
     Friend WithEvents tt As System.Windows.Forms.ToolTip
+    Friend WithEvents ColorDialog1 As System.Windows.Forms.ColorDialog
 End Class
