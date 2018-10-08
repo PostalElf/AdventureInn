@@ -35,6 +35,13 @@
         RoomItems.Add(item)
         Return Nothing
     End Function
+    Overloads Function Remove(ByVal item As RoomItem) As String
+        Dim errorstring As String = MyBase.Remove(item)
+        If errorstring <> "" Then Return errorstring
+
+        RoomItems.Remove(item)
+        Return Nothing
+    End Function
 End Class
 
 Public Enum RoomSize
