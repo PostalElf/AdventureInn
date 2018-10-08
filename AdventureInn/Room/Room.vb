@@ -20,16 +20,12 @@
                 _Width = 8
                 _Height = 8
         End Select
-        _Name = Size.ToString & " Room"
+        Name = Size.ToString & " Room"
         ReDim Contents(Width, Height)
     End Sub
 
-    Private _Name As String
-    Public ReadOnly Property Name As String
-        Get
-            Return _Name
-        End Get
-    End Property
+    Public Name As String
+    Public Color As Color
 End Class
 
 Public Enum RoomSize
