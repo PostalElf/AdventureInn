@@ -52,7 +52,7 @@
 
             Select Case Furnishing
                 Case Is <= 0 : Return "Unfurnished"
-                Case 1 To 4 : Return "Barely Furnished"
+                Case 1 To 4 : Return "Furnished"
                 Case Is >= 5 : Return "Well Furnished"
                 Case Else : Throw New Exception
             End Select
@@ -105,12 +105,12 @@
     End Property
     Public ReadOnly Property TotalNiche As String
         Get
-            Dim faith, strength, focus, tinkering As Integer
+            Dim faith, strength, focus, Curiosity As Integer
             For Each ri In RoomItems
                 faith += ri.Faith
                 strength += ri.Strength
                 focus += ri.Focus
-                tinkering += ri.Tinkering
+                Curiosity += ri.Curiosity
             Next
 
             Dim highestNiche As String = ""
@@ -118,9 +118,9 @@
             If Faith > highestValue Then highestNiche = "Faith" : highestValue = Faith
             If Strength > highestValue Then highestNiche = "Strength" : highestValue = Strength
             If Focus > highestValue Then highestNiche = "Focus" : highestValue = Focus
-            If Tinkering > highestValue Then highestNiche = "Tinkering" : highestValue = Tinkering
+            If Curiosity > highestValue Then highestNiche = "Curiosity" : highestValue = Curiosity
 
-            Return highestNiche
+            If highestValue <= 0 Then Return "Bland" Else Return highestNiche
         End Get
     End Property
 End Class

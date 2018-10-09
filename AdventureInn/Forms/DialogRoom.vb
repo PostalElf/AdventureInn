@@ -33,9 +33,13 @@
         Next
 
         Dim maxWidth As Integer = xMargin * 2 + (pWidth * CurrentRoom.Width) + 10
-        Dim maxHeight As Integer = yMargin * 2 + (pHeight * CurrentRoom.Height) + 10
+        If maxWidth < 100 Then maxWidth = 200
+        Dim maxHeight As Integer = yMargin * 2 + (pHeight * CurrentRoom.Height) + 110
         Me.Size = New Size(maxWidth, maxheight)
         lblTitle.Width = maxWidth
+        lblTitle.Location = New Point(0, 0)
+        lblDescription.Width = maxWidth
+        lblDescription.Location = New Point(0, yMargin + (pHeight * CurrentRoom.Height) + 10)
     End Sub
     Private Sub RoomRefresh()
         lblTitle.Text = CurrentRoom.Name
@@ -53,7 +57,39 @@
                 End With
             Next
         Next
+
+        With CurrentRoom
+            lblDescription.Text = "Reviews:" & vbCrLf
+            lblDescription.Text &= "- " & TotalDescribe(.TotalFurnishing) & vbCrLf
+            lblDescription.Text &= "- " & TotalDescribe(.TotalOpulence) & vbCrLf
+            lblDescription.Text &= "- " & TotalDescribe(.TotalRestfulness) & vbCrLf
+            lblDescription.Text &= "- " & TotalDescribe(.TotalNiche) & vbCrLf
+            lblDescription.Text &= "- " & TotalDescribe(.TotalAlignment)
+        End With
     End Sub
+    Private Function TotalDescribe(ByVal desc As String) As String
+        Return """" & desc & "."""
+        'Select Case desc
+        '    Case "Unfurnished"
+        '    Case "Furnished"
+        '    Case "Well Furnished"
+        '    Case "Boring"
+        '    Case "Opulent"
+        '    Case "Tasteful"
+        '    Case "Middling"
+        '    Case "Restful"
+        '    Case "Exciting"
+        '    Case "Neutral"
+        '    Case "Lawful"
+        '    Case "Chaotic"
+        '    Case "Bland"
+        '    Case "Faith"
+        '    Case "Focus"
+        '    Case "Strength"
+        '    Case "Curiosity"
+        '    Case Else : Throw New Exception
+        'End Select
+    End Function
 
     Private Sub PanelClick(ByVal sender As Panel, ByVal e As System.Windows.Forms.MouseEventArgs)
         Dim tagSplit As String() = sender.Tag.ToString.Split(",")

@@ -23,7 +23,7 @@
                 Case "Faith" : _Faith = Convert.ToInt32(entry)
                 Case "Strength" : _Strength = Convert.ToInt32(entry)
                 Case "Focus" : _Focus = Convert.ToInt32(entry)
-                Case "Tinkering" : _Tinkering = Convert.ToInt32(entry)
+                Case "Curiosity" : _Tinkering = Convert.ToInt32(entry)
             End Select
         Next
     End Sub
@@ -101,7 +101,7 @@
         End Get
     End Property
     Private _Tinkering As Integer
-    Public ReadOnly Property Tinkering As Integer
+    Public ReadOnly Property Curiosity As Integer
         Get
             Return _Tinkering
         End Get
