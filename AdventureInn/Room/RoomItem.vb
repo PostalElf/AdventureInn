@@ -13,17 +13,17 @@
                 Case "Height" : _Height = Convert.ToInt32(entry)
                 Case "Description" : _Description = entry
 
-                Case "Furnishing" : Furnishing = Convert.ToInt32(entry)
-                Case "Opulence" : Opulence = Convert.ToInt32(entry)
-                Case "Tastefulness" : Opulence = Convert.ToInt32(-entry)
-                Case "Restfulness" : Restfulness = Convert.ToInt32(entry)
-                Case "Excitement" : Restfulness = Convert.ToInt32(-entry)
-                Case "Law", "Lawfulness" : Lawfulness = Convert.ToInt32(entry)
-                Case "Chaos" : Lawfulness = Convert.ToInt32(-entry)
-                Case "Faith" : Faith = Convert.ToInt32(entry)
-                Case "Strength" : Strength = Convert.ToInt32(entry)
-                Case "Focus" : Focus = Convert.ToInt32(entry)
-                Case "Tinkering" : Tinkering = Convert.ToInt32(entry)
+                Case "Furnishing" : _Furnishing = Convert.ToInt32(entry)
+                Case "Opulence" : _Opulence = Convert.ToInt32(entry)
+                Case "Tastefulness" : _Opulence = Convert.ToInt32(-entry)
+                Case "Restfulness" : _Restfulness = Convert.ToInt32(entry)
+                Case "Excitement" : _Restfulness = Convert.ToInt32(-entry)
+                Case "Law", "Lawfulness" : _Lawfulness = Convert.ToInt32(entry)
+                Case "Chaos" : _Lawfulness = Convert.ToInt32(-entry)
+                Case "Faith" : _Faith = Convert.ToInt32(entry)
+                Case "Strength" : _Strength = Convert.ToInt32(entry)
+                Case "Focus" : _Focus = Convert.ToInt32(entry)
+                Case "Tinkering" : _Tinkering = Convert.ToInt32(entry)
             End Select
         Next
     End Sub
@@ -58,64 +58,52 @@
     Private Property InitialX As Integer Implements xy.InitialX
     Private Property InitialY As Integer Implements xy.InitialY
 
-    Private Furnishing As Integer
-    Private Opulence As Integer
-    Private Restfulness As Integer
-    Private Lawfulness As Integer
-    Private Faith As Integer
-    Private Strength As Integer
-    Private Focus As Integer
-    Private Tinkering As Integer
-    Public ReadOnly Property TotalFurnishing As String
+    Private _Furnishing As Integer
+    Public ReadOnly Property Furnishing As Integer
         Get
-            Select Case Furnishing
-                Case Is <= 0 : Return "Unfurnished"
-                Case 1 To 4 : Return "Barely Furnished"
-                Case Is >= 5 : Return "Well Furnished"
-                Case Else : Throw New Exception
-            End Select
+            Return _Furnishing
         End Get
     End Property
-    Public ReadOnly Property TotalOpulence As String
+    Private _Opulence As Integer
+    Public ReadOnly Property Opulence As Integer
         Get
-            Select Case Opulence
-                Case 0 : Return "Boring"
-                Case Is < 0 : Return "Tasteful"
-                Case Is > 0 : Return "Opulent"
-                Case Else : Throw New Exception
-            End Select
+            Return _Opulence
         End Get
     End Property
-    Public ReadOnly Property TotalRestfulness As String
+    Private _Restfulness As Integer
+    Public ReadOnly Property Restfulness As Integer
         Get
-            Select Case Restfulness
-                Case 0 : Return "Middling"
-                Case Is < 0 : Return "Exciting"
-                Case Is > 0 : Return "Restful"
-                Case Else : Throw New Exception
-            End Select
+            Return _Restfulness
         End Get
     End Property
-    Public ReadOnly Property TotalAlignment As String
+    Private _Lawfulness As Integer
+    Public ReadOnly Property Lawfulness As Integer
         Get
-            Select Case Lawfulness
-                Case 0 : Return "Neutral"
-                Case Is < 0 : Return "Chaotic"
-                Case Is > 0 : Return "Lawful"
-                Case Else : Throw New Exception
-            End Select
+            Return _Lawfulness
         End Get
     End Property
-    Public ReadOnly Property TotalNiche As String
+    Private _Faith As Integer
+    Public ReadOnly Property Faith As Integer
         Get
-            Dim highestNiche As String = ""
-            Dim highestValue As Integer = -1
-            If Faith > highestValue Then highestNiche = "Faith" : highestValue = Faith
-            If Strength > highestValue Then highestNiche = "Strength" : highestValue = Strength
-            If Focus > highestValue Then highestNiche = "Focus" : highestValue = Focus
-            If Tinkering > highestValue Then highestNiche = "Tinkering" : highestValue = Tinkering
-
-            Return highestNiche
+            Return _Faith
+        End Get
+    End Property
+    Private _Strength As Integer
+    Public ReadOnly Property Strength As Integer
+        Get
+            Return _Strength
+        End Get
+    End Property
+    Private _Focus As Integer
+    Public ReadOnly Property Focus As Integer
+        Get
+            Return _Focus
+        End Get
+    End Property
+    Private _Tinkering As Integer
+    Public ReadOnly Property Tinkering As Integer
+        Get
+            Return _Tinkering
         End Get
     End Property
 End Class
