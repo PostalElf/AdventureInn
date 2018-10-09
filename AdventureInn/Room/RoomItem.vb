@@ -11,6 +11,7 @@
             Select Case header
                 Case "Width" : _Width = Convert.ToInt32(entry)
                 Case "Height" : _Height = Convert.ToInt32(entry)
+                Case "Type" : _FurnitureType = entry
                 Case "Description" : _Description = entry
 
                 Case "Furnishing" : _Furnishing = Convert.ToInt32(entry)
@@ -58,6 +59,12 @@
     Private Property InitialX As Integer Implements xy.InitialX
     Private Property InitialY As Integer Implements xy.InitialY
 
+    Private _FurnitureType As String
+    Public ReadOnly Property FurnitureType As String
+        Get
+            Return _FurnitureType
+        End Get
+    End Property
     Private _Furnishing As Integer
     Public ReadOnly Property Furnishing As Integer
         Get

@@ -19,6 +19,7 @@
         CurrentInn.Inventory.Add(New RoomItem("Straw Bed"))
         CurrentInn.Inventory.Add(New RoomItem("Study Table"))
         CurrentInn.Inventory.Add(New RoomItem("Study Table"))
+        CurrentInn.Inventory.Add(New RoomItem("Four-Poster Bed"))
     End Sub
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         numFloor.Minimum = 0
