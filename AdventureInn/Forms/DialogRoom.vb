@@ -67,8 +67,8 @@
             lblDescription.Text &= "- " & TotalDescribe(.TotalAlignment)
         End With
     End Sub
-    Private Function TotalDescribe(ByVal desc As String) As String
-        Return """" & desc & "."""
+    Private Function TotalDescribe(ByVal desc As Pair(Of String, Integer)) As String
+        Return """" & desc.Key & "."""
         'Select Case desc
         '    Case "Unfurnished"
         '    Case "Furnished"

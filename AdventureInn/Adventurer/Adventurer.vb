@@ -2,7 +2,8 @@
     Private Name As String
     Private Race As Race
     Private Job As Job
-    Private Budget As Budget
+
+    Private RoomPreferences
 End Class
 
 Public Enum Race

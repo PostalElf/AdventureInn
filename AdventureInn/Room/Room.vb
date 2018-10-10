@@ -43,67 +43,67 @@
         Return Nothing
     End Function
 
-    Public ReadOnly Property TotalFurnishing As String
+    Public ReadOnly Property TotalFurnishing As Pair(Of String, Integer)
         Get
             Dim furnishing As Integer = 0
             For Each ri In RoomItems
                 furnishing += ri.Furnishing
             Next
 
-            Select Case Furnishing
-                Case Is <= 0 : Return "Unfurnished"
-                Case 1 To 4 : Return "Furnished"
-                Case Is >= 5 : Return "Well Furnished"
+            Select Case furnishing
+                Case Is <= 0 : Return New Pair(Of String, Integer)("Unfurnished", furnishing)
+                Case 1 To 4 : Return New Pair(Of String, Integer)("Furnished", furnishing)
+                Case Is >= 5 : Return New Pair(Of String, Integer)("Well Furnished", furnishing)
                 Case Else : Throw New Exception
             End Select
         End Get
     End Property
-    Public ReadOnly Property TotalOpulence As String
+    Public ReadOnly Property TotalOpulence As Pair(Of String, Integer)
         Get
             Dim opulence As Integer = 0
             For Each ri In RoomItems
                 opulence += ri.Opulence
             Next
 
-            Select Case Opulence
-                Case 0 : Return "Boring"
-                Case Is < 0 : Return "Tasteful"
-                Case Is > 0 : Return "Opulent"
+            Select Case opulence
+                Case 0 : Return New Pair(Of String, Integer)("Boring", opulence)
+                Case Is < 0 : Return New Pair(Of String, Integer)("Tasteful", opulence)
+                Case Is > 0 : Return New Pair(Of String, Integer)("Opulent", opulence)
                 Case Else : Throw New Exception
             End Select
         End Get
     End Property
-    Public ReadOnly Property TotalRestfulness As String
+    Public ReadOnly Property TotalRestfulness As Pair(Of String, Integer)
         Get
             Dim restfulness As Integer = 0
             For Each ri In RoomItems
                 restfulness += ri.Restfulness
             Next
 
-            Select Case Restfulness
-                Case 0 : Return "Middling"
-                Case Is < 0 : Return "Exciting"
-                Case Is > 0 : Return "Restful"
+            Select Case restfulness
+                Case 0 : Return New Pair(Of String, Integer)("Middling", restfulness)
+                Case Is < 0 : Return New Pair(Of String, Integer)("Exciting", restfulness)
+                Case Is > 0 : Return New Pair(Of String, Integer)("Restful", restfulness)
                 Case Else : Throw New Exception
             End Select
         End Get
     End Property
-    Public ReadOnly Property TotalAlignment As String
+    Public ReadOnly Property TotalAlignment As Pair(Of String, Integer)
         Get
             Dim lawfulness As Integer = 0
             For Each ri In RoomItems
                 lawfulness += ri.Lawfulness
             Next
 
-            Select Case Lawfulness
-                Case 0 : Return "Neutral"
-                Case Is < 0 : Return "Chaotic"
-                Case Is > 0 : Return "Lawful"
+            Select Case lawfulness
+                Case 0 : Return New Pair(Of String, Integer)("Neutral", lawfulness)
+                Case Is < 0 : Return New Pair(Of String, Integer)("Chaotic", lawfulness)
+                Case Is > 0 : Return New Pair(Of String, Integer)("Lawful", lawfulness)
                 Case Else : Throw New Exception
             End Select
         End Get
     End Property
-    Public ReadOnly Property TotalNiche As String
+    Public ReadOnly Property TotalNiche As Pair(Of String, Integer)
         Get
             Dim faith, strength, focus, Curiosity As Integer
             For Each ri In RoomItems
@@ -115,12 +115,12 @@
 
             Dim highestNiche As String = ""
             Dim highestValue As Integer = -1
-            If Faith > highestValue Then highestNiche = "Faith" : highestValue = Faith
-            If Strength > highestValue Then highestNiche = "Strength" : highestValue = Strength
-            If Focus > highestValue Then highestNiche = "Focus" : highestValue = Focus
+            If faith > highestValue Then highestNiche = "Faith" : highestValue = faith
+            If strength > highestValue Then highestNiche = "Strength" : highestValue = strength
+            If focus > highestValue Then highestNiche = "Focus" : highestValue = focus
             If Curiosity > highestValue Then highestNiche = "Curiosity" : highestValue = Curiosity
 
-            If highestValue <= 0 Then Return "Bland" Else Return highestNiche
+            If highestValue <= 0 Then Return New Pair(Of String, Integer)("Bland", 0) Else Return New Pair(Of String, Integer)(highestNiche, highestValue)
         End Get
     End Property
 End Class
