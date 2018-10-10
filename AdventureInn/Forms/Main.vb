@@ -30,7 +30,6 @@
         FloorRefresh()
     End Sub
 
-    Private Panels(,) As Panel
     Private Sub numFloor_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles numFloor.ValueChanged
         CurrentFloor = CurrentInn(numFloor.Value)
         FloorRefresh()
@@ -79,6 +78,7 @@
         Next
     End Sub
 
+    Private Panels(,) As Panel
     Private Sub PanelClick(ByVal sender As Panel, ByVal e As System.Windows.Forms.MouseEventArgs)
         Dim tagSplit As String() = sender.Tag.ToString.Split(",")
         Dim x As Integer = tagSplit(0)
