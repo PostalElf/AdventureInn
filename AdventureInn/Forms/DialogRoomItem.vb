@@ -29,7 +29,7 @@
         If UseCase = "RoomItem" Then
             Dim i As Integer = ListBox1.SelectedIndex
             RoomItem = Inventory(i)
-            lblDescription.Text = RoomItem.Description
+            lblDescription.Text = RoomItem.AttributesDescription
             lblSize.Text = RoomItem.Width & "x" & RoomItem.Height
         ElseIf UseCase = "Room" Then
             Dim i As Integer = ListBox1.SelectedIndex

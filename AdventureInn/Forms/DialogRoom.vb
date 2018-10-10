@@ -103,32 +103,39 @@
         If e.Button = Windows.Forms.MouseButtons.Right Then
             'right-click to manipulate
             If roomItem Is Nothing = False Then
-                'item present; prompt to remove item
-                If MsgBox("Remove " & roomItem.Name & "?", MsgBoxStyle.YesNo, "Remove Item?") = MsgBoxResult.Yes Then
-                    CurrentRoom.Remove(roomItem)
-                    CurrentInn.Inventory.Add(roomItem)
-                    RoomRefresh()
-                End If
+                RemoveItem(roomItem)            'item present; prompt to remove item
             Else
-                'no item; prompt to add item
-                Dim dri As New DialogRoomItem
-                dri.UseCase = "RoomItem"
-                dri.Inventory = CurrentInn.Inventory
-                If dri.ShowDialog = Windows.Forms.DialogResult.OK Then
-                    Dim newItem As RoomItem = dri.RoomItem
-                    dri.Close()
-                    If newItem Is Nothing Then Exit Sub
-                    If CurrentRoom.Add(newItem, x, y) = "" Then
-                        CurrentInn.Inventory.Remove(newItem)
-                        RoomRefresh()
-                    End If
-                End If
+                AddItem(x, y)                   'no item; prompt to add item
             End If
         ElseIf e.Button = Windows.Forms.MouseButtons.Left Then
-            'left-click for info
-            If roomItem Is Nothing Then Exit Sub
-            MsgBox(roomItem.Name & vbCrLf & "Size: " & roomItem.Width & "x" & roomItem.Height & vbCrLf & vbCrLf & roomItem.Description, MsgBoxStyle.OkOnly, "Room Item")
+            DescribeItem(roomItem)              'left-click for info
         End If
+    End Sub
+    Private Sub RemoveItem(ByVal roomitem As RoomItem)
+        If MsgBox("Remove " & RoomItem.Name & "?", MsgBoxStyle.YesNo, "Remove Item?") = MsgBoxResult.Yes Then
+            CurrentRoom.Remove(RoomItem)
+            CurrentInn.Inventory.Add(RoomItem)
+            RoomRefresh()
+        End If
+    End Sub
+    Private Sub AddItem(ByVal x As Integer, ByVal y As Integer)
+        Dim dri As New DialogRoomItem
+        dri.UseCase = "RoomItem"
+        dri.Inventory = CurrentInn.Inventory
+        If dri.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Dim newItem As RoomItem = dri.RoomItem
+            dri.Close()
+            If newItem Is Nothing Then Exit Sub
+            If CurrentRoom.Add(newItem, x, y) = "" Then
+                CurrentInn.Inventory.Remove(newItem)
+                RoomRefresh()
+            End If
+        End If
+    End Sub
+    Private Sub DescribeItem(ByVal roomItem As RoomItem)
+        If roomItem Is Nothing Then Exit Sub
+        MsgBox(roomItem.Name & vbCrLf & "Size: " & roomItem.Width & "x" & roomItem.Height & vbCrLf & roomItem.AttributesDescription & _
+               vbCrLf & roomItem.Description, MsgBoxStyle.OkOnly, "Room Item")
     End Sub
     Private Sub lblTitle_Click(ByVal sender As System.Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lblTitle.MouseDown
         If e.Button = Windows.Forms.MouseButtons.Left Then

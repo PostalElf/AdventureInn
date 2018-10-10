@@ -24,7 +24,7 @@
                 Case "Faith" : _Faith = Convert.ToInt32(entry)
                 Case "Strength" : _Strength = Convert.ToInt32(entry)
                 Case "Focus" : _Focus = Convert.ToInt32(entry)
-                Case "Curiosity" : _Tinkering = Convert.ToInt32(entry)
+                Case "Curiosity" : _Curiosity = Convert.ToInt32(entry)
             End Select
         Next
     End Sub
@@ -107,10 +107,39 @@
             Return _Focus
         End Get
     End Property
-    Private _Tinkering As Integer
+    Private _Curiosity As Integer
     Public ReadOnly Property Curiosity As Integer
         Get
-            Return _Tinkering
+            Return _Curiosity
         End Get
     End Property
+
+    Public ReadOnly Property AttributesDescription As String
+        Get
+            Dim total As String = ""
+            ParseDescription(total, "Furnishing", Furnishing)
+            ParseDescription(total, "Opulence", Opulence)
+            ParseDescription(total, "Restfulness", Restfulness)
+            ParseDescription(total, "Lawfulness", Lawfulness)
+            ParseDescription(total, "Faith", Faith)
+            ParseDescription(total, "Strength", Strength)
+            ParseDescription(total, "Focus", Focus)
+            ParseDescription(total, "Curiosity", Curiosity)
+            Return total
+        End Get
+    End Property
+    Private Sub ParseDescription(ByRef total As String, ByVal prefix As String, ByVal value As Integer)
+        If value = 0 Then Exit Sub
+
+        Dim truePrefix As String = prefix
+        Select Case prefix
+            Case "Opulence" : If value < 0 Then truePrefix = "Tastefulness"
+            Case "Restfulness" : If value < 0 Then truePrefix = "Excitement"
+            Case "Lawfulness" : If value < 0 Then truePrefix = "Chaos"
+        End Select
+
+        total &= truePrefix & ": "
+        If value > 0 Then total &= "+"
+        total &= value & vbCrLf
+    End Sub
 End Class
