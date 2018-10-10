@@ -43,6 +43,16 @@
         Return Nothing
     End Function
 
+    Public ReadOnly Property TotalPrivacy As Pair(Of String, Integer)
+        Get
+            Dim bedCount As Integer = 0
+            For Each ri In RoomItems
+                If ri.FurnitureType = "Bed" Then bedCount += 1
+            Next
+
+            If bedCount <= 1 Then Return New Pair(Of String, Integer)("Private", bedCount) Else Return New Pair(Of String, Integer)("Communal", bedCount)
+        End Get
+    End Property
     Public ReadOnly Property TotalFurnishing As Pair(Of String, Integer)
         Get
             Dim furnishing As Integer = 0
