@@ -1,31 +1,45 @@
 ﻿Public Class Adventurer
-    Private Race As Race
-    Private Job As Job
-
-    Private Name As String
-    Private Shared GeneratedNames As New List(Of String)
-    Private Shared Function GenerateName() As String
-        Dim syllables As New List(Of String) From {"mon", "fay", "shi", "zag", "arg", "rash", "izen", "don", "ill", _
-                                                   "mal", "zak", "abo"}
-        Dim suffixes As New List(Of String) From {"son", "li", "ssen", "kor"}
-        Dim numSyllables As Integer = Rng.Next(2, 4)
-
-        Dim name As String = ""
-        For n = 1 To numSyllables
-            Dim p As Integer = Rng.Next(syllables.Count)
-            name &= syllables(p)
-            syllables.RemoveAt(p)
-        Next
-        If Rng.Next(1, 3) = 1 Then
-            Dim p As Integer = Rng.Next(suffixes.Count)
-            name &= suffixes(p)
-        End If
-
-        Dim arr() As Char = name.ToCharArray
-        arr(0) = Char.ToUpper(arr(0))
-        Return arr.ToString
+    Public Shared Function Generate() As Adventurer
+        Dim adventurer As New Adventurer
+        With adventurer
+            .Race = Rng.Next(0, 4)
+            .Job = Rng.Next(0, 4)
+            ._Name = GenerateName(.Race)
+        End With
+        Return adventurer
+    End Function
+    Public Overrides Function ToString() As String
+        Return Name & " the " & Race.ToString & " " & Job.ToString
     End Function
 
+    Private _Name As String
+    Public ReadOnly Property Name As String
+        Get
+            Return _Name
+        End Get
+    End Property
+    Private Shared GeneratedNames As New List(Of String)
+    Private Shared Function GenerateName(ByVal race As Race) As String
+        Dim sourceList As List(Of String) = Nothing
+        Select Case race
+            Case AdventurerInn.Race.Human : sourceList = IO.ImportTextList(IO.txHumanNames)
+            Case AdventurerInn.Race.Dwarf : sourceList = IO.ImportTextList(IO.txDwarfNames)
+            Case AdventurerInn.Race.Elf : sourceList = IO.ImportTextList(IO.txElfNames)
+            Case AdventurerInn.Race.Halfling : sourceList = IO.ImportTextList(IO.txHalflingNames)
+            Case Else : Throw New Exception
+        End Select
+
+        Dim name As String = ""
+        While name = ""
+            name = GetRandom(sourceList)
+            If GeneratedNames.Contains(name) Then name = ""
+        End While
+        GeneratedNames.Add(name)
+        Return name
+    End Function
+
+    Private Race As Race
+    Private Job As Job
     Private ReadOnly Property PreferencesRoom As String()
         Get
             Dim privacy, opulence, restfulness, alignment, niche As String

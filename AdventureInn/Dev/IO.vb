@@ -2,6 +2,10 @@
 Public Class IO
 #Region "Constants"
     Public Const sbRooms As String = "data/roomitems.txt"
+    Public Const txElfNames As String = "data/elfnames.txt"
+    Public Const txDwarfNames As String = "data/dwarfnames.txt"
+    Public Const txHumanNames As String = "data/humannames.txt"
+    Public Const txHalflingNames As String = "data/halflingnames.txt"
 #End Region
 
     Public Shared Function ImportTextList(ByVal pathname As String) As List(Of String)
