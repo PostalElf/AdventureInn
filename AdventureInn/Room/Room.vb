@@ -26,6 +26,9 @@
 
     Public Name As String
     Public Color As Color
+    Public Overrides Function ToString() As String
+        Return Name
+    End Function
 
     Private RoomItems As New List(Of RoomItem)
     Overloads Function Add(ByVal item As RoomItem, ByVal x As Integer, ByVal y As Integer) As String

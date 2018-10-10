@@ -1,8 +1,8 @@
 ﻿Public Class Floor
     Inherits xyContainer
     Public Sub New()
-        _Width = 10
-        _Height = 10
+        _Width = 8
+        _Height = 8
         ReDim Contents(Width, Height)
 
         RoomColours.Add(Color.Beige)
@@ -17,6 +17,12 @@
 
     Private RoomColours As New List(Of Color)
     Private RoomCount As Integer = 0
+    Private _Rooms As New List(Of Room)
+    Public ReadOnly Property Rooms As List(Of Room)
+        Get
+            Return _Rooms
+        End Get
+    End Property
     Overloads Function Add(ByVal item As Room, ByVal x As Integer, ByVal y As Integer) As String
         Dim errorString As String = MyBase.Add(item, x, y)
         If errorString <> "" Then Return errorString
@@ -24,6 +30,15 @@
         item.Color = RoomColours(RoomCount)
         RoomCount += 1
         If RoomCount > RoomColours.Count - 1 Then RoomCount = 0
+
+        _Rooms.Add(item)
+        Return Nothing
+    End Function
+    Overloads Function Remove(ByVal item As Room) As String
+        Dim errorString As String = MyBase.Remove(item)
+        If errorString <> "" Then Return errorString
+
+        _Rooms.Remove(item)
         Return Nothing
     End Function
 

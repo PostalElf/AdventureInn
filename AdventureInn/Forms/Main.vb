@@ -76,6 +76,11 @@
                 End With
             Next
         Next
+
+        lstRooms.Items.Clear()
+        For Each rm In CurrentFloor.Rooms
+            lstRooms.Items.Add(rm)
+        Next
     End Sub
 
     Private Panels(,) As Panel
@@ -88,39 +93,51 @@
         If e.Button = Windows.Forms.MouseButtons.Right Then
             'right-click to modify
             If CurrentRoom Is Nothing Then
-                'empty, right-click to add
-                Dim dri As New DialogRoomItem
-                dri.UseCase = "Room"
-                If dri.ShowDialog = Windows.Forms.DialogResult.OK Then
-                    Dim roomSize As RoomSize = dri.RoomSize
-                    dri.Close()
-                    Dim errorString As String = CurrentFloor.Add(New Room(roomSize), x, y)
-                    If errorString <> "" Then MsgBox(errorString, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error") : Exit Sub
-                    FloorRefresh()
-                End If
+                AddRoom(x, y)               'empty, right-click to add
             Else
-                'occupied, right-click to remove
-                If MsgBox("Are you sure you want to destroy " & CurrentRoom.Name & " and everything inside it?" & vbCrLf & vbCrLf & _
-                          "This cannot be undone.", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, "Destroy Room") = MsgBoxResult.Yes Then
-                    CurrentFloor.Remove(CurrentRoom)
-                    FloorRefresh()
-                End If
+                RemoveRoom(CurrentRoom)     'occupied, right-click to remove
             End If
         ElseIf e.Button = Windows.Forms.MouseButtons.Left Then
-            'left click to enter room
-            If CurrentRoom Is Nothing Then Exit Sub
-            Dim dr As New DialogRoom
-            With dr
-                .CurrentInn = CurrentInn
-                .CurrentFloor = CurrentFloor
-                .CurrentRoom = CurrentRoom
-            End With
-            dr.ShowDialog()
-            FloorRefresh()
+            EnterRoom(CurrentRoom)          'left click to enter room
         ElseIf e.Button = Windows.Forms.MouseButtons.Middle Then
-            'middle click for dev tools
-            If CurrentRoom Is Nothing Then Exit Sub
-            Dim adjlist As List(Of Room) = CurrentFloor.GetAdjacentRooms(CurrentRoom)
+            DevTools(CurrentRoom)           'middle click for dev tools
         End If
+    End Sub
+    Private Sub AddRoom(ByVal x As Integer, ByVal y As Integer)
+        Dim dri As New DialogRoomItem
+        dri.UseCase = "Room"
+        If dri.ShowDialog = Windows.Forms.DialogResult.OK Then
+            Dim roomSize As RoomSize = dri.RoomSize
+            dri.Close()
+            Dim errorString As String = CurrentFloor.Add(New Room(roomSize), x, y)
+            If errorString <> "" Then MsgBox(errorString, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error") : Exit Sub
+            FloorRefresh()
+        End If
+    End Sub
+    Private Sub RemoveRoom(ByVal currentRoom As Room)
+        If MsgBox("Are you sure you want to destroy " & CurrentRoom.Name & " and everything inside it?" & vbCrLf & vbCrLf & _
+                          "This cannot be undone.", MsgBoxStyle.Exclamation + MsgBoxStyle.YesNo, "Destroy Room") = MsgBoxResult.Yes Then
+            CurrentFloor.Remove(CurrentRoom)
+            FloorRefresh()
+        End If
+    End Sub
+    Private Sub EnterRoom(ByVal currentRoom As Room)
+        If currentRoom Is Nothing Then Exit Sub
+        Dim dr As New DialogRoom
+        With dr
+            .CurrentInn = CurrentInn
+            .CurrentFloor = CurrentFloor
+            .CurrentRoom = currentRoom
+        End With
+        dr.ShowDialog()
+        FloorRefresh()
+    End Sub
+    Private Sub DevTools(ByVal currentRoom As Room)
+        If currentRoom Is Nothing Then Exit Sub
+        Dim adjlist As List(Of Room) = CurrentFloor.GetAdjacentRooms(currentRoom)
+    End Sub
+    Private Sub lstRooms_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstRooms.DoubleClick
+        If lstRooms.SelectedIndex = -1 Then Exit Sub
+        EnterRoom(lstRooms.SelectedItem)
     End Sub
 End Class
