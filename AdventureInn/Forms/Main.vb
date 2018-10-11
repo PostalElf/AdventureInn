@@ -99,7 +99,7 @@
         ElseIf e.Button = Windows.Forms.MouseButtons.Left Then
             EnterRoom(CurrentRoom)          'left click to enter room
         ElseIf e.Button = Windows.Forms.MouseButtons.Middle Then
-            DevTools(CurrentRoom)           'middle click for dev tools
+            DevToolsFloor(CurrentRoom)           'middle click for dev tools
         End If
     End Sub
     Private Sub AddRoom(ByVal x As Integer, ByVal y As Integer)
@@ -127,7 +127,7 @@
         RoomBuild()
         RoomRefresh()
     End Sub
-    Private Sub DevTools(ByVal room As Room)
+    Private Sub DevToolsFloor(ByVal room As Room)
         If room Is Nothing Then Exit Sub
         Dim adjlist As List(Of Room) = CurrentFloor.GetAdjacentRooms(currentRoom)
     End Sub
@@ -161,6 +161,11 @@
                 pnlRoom.Controls.Add(panel)
                 RoomPanels(x, y) = panel
             Next
+
+            lstGuests.Items.Clear()
+            For Each g In CurrentRoom.Guests
+                lstGuests.Items.Add(g)
+            Next
         Next
     End Sub
     Private Sub RoomRefresh()
@@ -180,8 +185,9 @@
             Next
         Next
 
+        lblReview.Text = ""
         With CurrentRoom
-            lblDescription.Text = "Reviews:" & vbCrLf
+            lblDescription.Text = "Reviews: " & vbCrLf
             lblDescription.Text &= "- " & .TotalFurnishing.Key & vbCrLf
             lblDescription.Text &= "- " & .TotalOpulence.Key & vbCrLf
             lblDescription.Text &= "- " & .TotalRestfulness.Key & vbCrLf
@@ -189,13 +195,16 @@
             lblDescription.Text &= "- " & .TotalAlignment.Key
         End With
     End Sub
+    Private Sub lstGuests_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstGuests.SelectedIndexChanged
+        Dim g As Adventurer = lstGuests.SelectedItem
+        If g Is Nothing Then Exit Sub
+
+        lblReview.Text = g.ToString
+    End Sub
     Private Sub RoomPanelClick(ByVal sender As Panel, ByVal e As MouseEventArgs)
         Dim tagSplit As String() = sender.Tag.ToString.Split(",")
         Dim x As Integer = tagSplit(0)
         Dim y As Integer = tagSplit(1)
-        RoomItemClick(x, y, e)
-    End Sub
-    Private Sub RoomItemClick(ByVal x As Integer, ByVal y As Integer, ByVal e As MouseEventArgs)
         Dim roomItem As RoomItem = CurrentRoom(x, y)
 
         If e.Button = Windows.Forms.MouseButtons.Right Then
@@ -207,6 +216,8 @@
             End If
         ElseIf e.Button = Windows.Forms.MouseButtons.Left Then
             DescribeItem(roomItem)              'left-click for info
+        ElseIf e.Button = Windows.Forms.MouseButtons.Middle Then
+            DevToolsRoom()                      'middle-click for dev tools
         End If
     End Sub
     Private Sub AddItem(ByVal x As Integer, ByVal y As Integer)
@@ -232,7 +243,15 @@
     End Sub
     Private Sub DescribeItem(ByVal roomItem As RoomItem)
         If roomItem Is Nothing Then Exit Sub
-        MsgBox(roomItem.Name & vbCrLf & "Size: " & roomItem.Width & "x" & roomItem.Height & vbCrLf & roomItem.AttributesDescription & _
-               vbCrLf & roomItem.Description, MsgBoxStyle.OkOnly, "Room Item")
+
+        lblDescription.Text = roomItem.Name & vbCrLf
+        lblDescription.Text &= "Size: " & roomItem.Width & "x" & roomItem.Height & vbCrLf
+        lblDescription.Text &= roomItem.AttributesDescription & vbCrLf
+        lblDescription.Text &= roomItem.Description
+    End Sub
+    Private Sub DevToolsRoom()
+        CurrentRoom.Guests.Add(Adventurer.Generate)
+        RoomBuild()
+        RoomRefresh()
     End Sub
 End Class

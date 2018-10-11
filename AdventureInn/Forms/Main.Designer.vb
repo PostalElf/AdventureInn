@@ -30,14 +30,16 @@ Partial Class Main
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tabFloor = New System.Windows.Forms.TabPage()
         Me.grpRoom = New System.Windows.Forms.GroupBox()
+        Me.lblDescription = New System.Windows.Forms.Label()
+        Me.pnlRoom = New System.Windows.Forms.Panel()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.pnlFloor = New System.Windows.Forms.Panel()
         Me.numFloor = New System.Windows.Forms.NumericUpDown()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.lstRooms = New System.Windows.Forms.ListBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.pnlRoom = New System.Windows.Forms.Panel()
-        Me.lblDescription = New System.Windows.Forms.Label()
+        Me.lstGuests = New System.Windows.Forms.ListBox()
+        Me.lblReview = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -110,14 +112,30 @@ Partial Class Main
         '
         'grpRoom
         '
+        Me.grpRoom.Controls.Add(Me.lblReview)
+        Me.grpRoom.Controls.Add(Me.lstGuests)
         Me.grpRoom.Controls.Add(Me.lblDescription)
         Me.grpRoom.Controls.Add(Me.pnlRoom)
-        Me.grpRoom.Location = New System.Drawing.Point(11, 244)
+        Me.grpRoom.Location = New System.Drawing.Point(11, 229)
         Me.grpRoom.Name = "grpRoom"
-        Me.grpRoom.Size = New System.Drawing.Size(174, 236)
+        Me.grpRoom.Size = New System.Drawing.Size(361, 267)
         Me.grpRoom.TabIndex = 11
         Me.grpRoom.TabStop = False
         Me.grpRoom.Text = "Room Plan"
+        '
+        'lblDescription
+        '
+        Me.lblDescription.Location = New System.Drawing.Point(2, 115)
+        Me.lblDescription.Name = "lblDescription"
+        Me.lblDescription.Size = New System.Drawing.Size(167, 149)
+        Me.lblDescription.TabIndex = 12
+        '
+        'pnlRoom
+        '
+        Me.pnlRoom.Location = New System.Drawing.Point(5, 19)
+        Me.pnlRoom.Name = "pnlRoom"
+        Me.pnlRoom.Size = New System.Drawing.Size(164, 84)
+        Me.pnlRoom.TabIndex = 12
         '
         'GroupBox2
         '
@@ -175,19 +193,20 @@ Partial Class Main
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'pnlRoom
+        'lstGuests
         '
-        Me.pnlRoom.Location = New System.Drawing.Point(5, 19)
-        Me.pnlRoom.Name = "pnlRoom"
-        Me.pnlRoom.Size = New System.Drawing.Size(164, 84)
-        Me.pnlRoom.TabIndex = 12
+        Me.lstGuests.FormattingEnabled = True
+        Me.lstGuests.Location = New System.Drawing.Point(175, 20)
+        Me.lstGuests.Name = "lstGuests"
+        Me.lstGuests.Size = New System.Drawing.Size(180, 82)
+        Me.lstGuests.TabIndex = 13
         '
-        'lblDescription
+        'lblReview
         '
-        Me.lblDescription.Location = New System.Drawing.Point(5, 108)
-        Me.lblDescription.Name = "lblDescription"
-        Me.lblDescription.Size = New System.Drawing.Size(164, 118)
-        Me.lblDescription.TabIndex = 12
+        Me.lblReview.Location = New System.Drawing.Point(172, 115)
+        Me.lblReview.Name = "lblReview"
+        Me.lblReview.Size = New System.Drawing.Size(183, 149)
+        Me.lblReview.TabIndex = 14
         '
         'Main
         '
@@ -229,5 +248,7 @@ Partial Class Main
     Friend WithEvents grpRoom As System.Windows.Forms.GroupBox
     Friend WithEvents pnlRoom As System.Windows.Forms.Panel
     Friend WithEvents lblDescription As System.Windows.Forms.Label
+    Friend WithEvents lstGuests As System.Windows.Forms.ListBox
+    Friend WithEvents lblReview As System.Windows.Forms.Label
 
 End Class
