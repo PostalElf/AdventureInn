@@ -29,18 +29,22 @@ Partial Class Main
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tabFloor = New System.Windows.Forms.TabPage()
-        Me.numFloor = New System.Windows.Forms.NumericUpDown()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.lstRooms = New System.Windows.Forms.ListBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.grpRoom = New System.Windows.Forms.GroupBox()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.pnlFloor = New System.Windows.Forms.Panel()
+        Me.numFloor = New System.Windows.Forms.NumericUpDown()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lstRooms = New System.Windows.Forms.ListBox()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.pnlRoom = New System.Windows.Forms.Panel()
+        Me.lblDescription = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.tabFloor.SuspendLayout()
+        Me.grpRoom.SuspendLayout()
+        Me.GroupBox2.SuspendLayout()
         CType(Me.numFloor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -94,6 +98,7 @@ Partial Class Main
         'tabFloor
         '
         Me.tabFloor.BackColor = System.Drawing.SystemColors.Window
+        Me.tabFloor.Controls.Add(Me.grpRoom)
         Me.tabFloor.Controls.Add(Me.GroupBox2)
         Me.tabFloor.Controls.Add(Me.GroupBox1)
         Me.tabFloor.Location = New System.Drawing.Point(4, 4)
@@ -103,42 +108,16 @@ Partial Class Main
         Me.tabFloor.TabIndex = 0
         Me.tabFloor.Text = "Floor"
         '
-        'numFloor
+        'grpRoom
         '
-        Me.numFloor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.numFloor.Location = New System.Drawing.Point(124, 189)
-        Me.numFloor.Name = "numFloor"
-        Me.numFloor.Size = New System.Drawing.Size(46, 20)
-        Me.numFloor.TabIndex = 7
-        '
-        'TabPage2
-        '
-        Me.TabPage2.Location = New System.Drawing.Point(4, 4)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(528, 502)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "TabPage2"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'lstRooms
-        '
-        Me.lstRooms.BackColor = System.Drawing.Color.White
-        Me.lstRooms.FormattingEnabled = True
-        Me.lstRooms.Location = New System.Drawing.Point(6, 19)
-        Me.lstRooms.Name = "lstRooms"
-        Me.lstRooms.Size = New System.Drawing.Size(235, 160)
-        Me.lstRooms.TabIndex = 8
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.lstRooms)
-        Me.GroupBox1.Location = New System.Drawing.Point(210, 6)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(247, 185)
-        Me.GroupBox1.TabIndex = 9
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Rooms"
+        Me.grpRoom.Controls.Add(Me.lblDescription)
+        Me.grpRoom.Controls.Add(Me.pnlRoom)
+        Me.grpRoom.Location = New System.Drawing.Point(11, 244)
+        Me.grpRoom.Name = "grpRoom"
+        Me.grpRoom.Size = New System.Drawing.Size(174, 236)
+        Me.grpRoom.TabIndex = 11
+        Me.grpRoom.TabStop = False
+        Me.grpRoom.Text = "Room Plan"
         '
         'GroupBox2
         '
@@ -159,6 +138,57 @@ Partial Class Main
         Me.pnlFloor.Size = New System.Drawing.Size(164, 164)
         Me.pnlFloor.TabIndex = 6
         '
+        'numFloor
+        '
+        Me.numFloor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.numFloor.Location = New System.Drawing.Point(124, 189)
+        Me.numFloor.Name = "numFloor"
+        Me.numFloor.Size = New System.Drawing.Size(46, 20)
+        Me.numFloor.TabIndex = 7
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.lstRooms)
+        Me.GroupBox1.Location = New System.Drawing.Point(210, 6)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(247, 185)
+        Me.GroupBox1.TabIndex = 9
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Rooms"
+        '
+        'lstRooms
+        '
+        Me.lstRooms.BackColor = System.Drawing.Color.White
+        Me.lstRooms.FormattingEnabled = True
+        Me.lstRooms.Location = New System.Drawing.Point(6, 19)
+        Me.lstRooms.Name = "lstRooms"
+        Me.lstRooms.Size = New System.Drawing.Size(235, 160)
+        Me.lstRooms.TabIndex = 8
+        '
+        'TabPage2
+        '
+        Me.TabPage2.Location = New System.Drawing.Point(4, 4)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(528, 502)
+        Me.TabPage2.TabIndex = 1
+        Me.TabPage2.Text = "TabPage2"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'pnlRoom
+        '
+        Me.pnlRoom.Location = New System.Drawing.Point(5, 19)
+        Me.pnlRoom.Name = "pnlRoom"
+        Me.pnlRoom.Size = New System.Drawing.Size(164, 84)
+        Me.pnlRoom.TabIndex = 12
+        '
+        'lblDescription
+        '
+        Me.lblDescription.Location = New System.Drawing.Point(5, 108)
+        Me.lblDescription.Name = "lblDescription"
+        Me.lblDescription.Size = New System.Drawing.Size(164, 118)
+        Me.lblDescription.TabIndex = 12
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -175,10 +205,11 @@ Partial Class Main
         Me.MenuStrip1.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
         Me.tabFloor.ResumeLayout(False)
-        CType(Me.numFloor, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox1.ResumeLayout(False)
+        Me.grpRoom.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
         Me.GroupBox2.PerformLayout()
+        CType(Me.numFloor, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -195,5 +226,8 @@ Partial Class Main
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents lstRooms As System.Windows.Forms.ListBox
     Friend WithEvents pnlFloor As System.Windows.Forms.Panel
+    Friend WithEvents grpRoom As System.Windows.Forms.GroupBox
+    Friend WithEvents pnlRoom As System.Windows.Forms.Panel
+    Friend WithEvents lblDescription As System.Windows.Forms.Label
 
 End Class

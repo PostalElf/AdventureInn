@@ -74,12 +74,6 @@
   <ItemGroup>
     <Compile Include="Adventurer\Adventurer.vb" />
     <Compile Include="Dev\Pair.vb" />
-    <Compile Include="Forms\DialogRoom.Designer.vb">
-      <DependentUpon>DialogRoom.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\DialogRoom.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Forms\DialogRoomItem.Designer.vb">
       <DependentUpon>DialogRoomItem.vb</DependentUpon>
     </Compile>
@@ -119,9 +113,6 @@
     <Compile Include="xyContainer.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Forms\DialogRoom.resx">
-      <DependentUpon>DialogRoom.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DialogRoomItem.en-SG.resx">
       <DependentUpon>DialogRoomItem.vb</DependentUpon>
     </EmbeddedResource>

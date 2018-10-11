@@ -132,13 +132,15 @@
         If value = 0 Then Exit Sub
 
         Dim truePrefix As String = prefix
+        Dim invertValue As Integer = 1
         Select Case prefix
-            Case "Opulence" : If value < 0 Then truePrefix = "Tastefulness"
-            Case "Restfulness" : If value < 0 Then truePrefix = "Excitement"
-            Case "Lawfulness" : If value < 0 Then truePrefix = "Chaos"
+            Case "Opulence" : If value < 0 Then truePrefix = "Tastefulness" : invertValue = -1
+            Case "Restfulness" : If value < 0 Then truePrefix = "Excitement" : invertValue = -1
+            Case "Lawfulness" : If value < 0 Then truePrefix = "Chaos" : invertValue = -1
         End Select
 
         total &= truePrefix & ": "
+        value *= invertValue
         If value > 0 Then total &= "+"
         total &= value & vbCrLf
     End Sub
