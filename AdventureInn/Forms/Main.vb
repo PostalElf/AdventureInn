@@ -186,13 +186,17 @@
         Next
 
         lblReview.Text = ""
+        lblDescription.Text = ""
         With CurrentRoom
-            lblDescription.Text = "Reviews: " & vbCrLf
-            lblDescription.Text &= "- " & .TotalFurnishing.Key & vbCrLf
-            lblDescription.Text &= "- " & .TotalOpulence.Key & vbCrLf
-            lblDescription.Text &= "- " & .TotalRestfulness.Key & vbCrLf
-            lblDescription.Text &= "- " & .TotalNiche.Key & vbCrLf
-            lblDescription.Text &= "- " & .TotalAlignment.Key
+            lblDescription.Text &= "Privacy: " & .TotalPrivacy.Key & vbCrLf
+            lblDescription.Text &= "Furnishing: " & .TotalFurnishing.Key & vbCrLf
+            lblDescription.Text &= "Aesthetics: " & .TotalOpulence.Key & vbCrLf
+            lblDescription.Text &= "Quietness: " & .TotalRestfulness.Key & vbCrLf
+            lblDescription.Text &= "Niche: " & .TotalNiche.Key & vbCrLf
+            lblDescription.Text &= "Alignment: " & .TotalAlignment.Key & vbCrLf
+            If .GuestCapacity <= 0 Then
+                lblDescription.Text &= vbCrLf & "WARNING: A room must have at least one bed to receive guests. Guests are something you want."
+            End If
         End With
     End Sub
     Private Sub lstGuests_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstGuests.SelectedIndexChanged

@@ -138,11 +138,11 @@
             Return _Guests
         End Get
     End Property
-    Private ReadOnly Property GuestCapacity As Integer
+    Public ReadOnly Property GuestCapacity As Integer
         Get
             Dim bedCount As Integer = 0
             For Each ri In RoomItems
-                If ri.FurnitureType = "Bed" Then bedCount += 1
+                bedCount += ri.Capacity
             Next
             Return bedCount
         End Get
