@@ -128,8 +128,8 @@
         RoomRefresh()
     End Sub
     Private Sub DevToolsFloor(ByVal room As Room)
-        If room Is Nothing Then Exit Sub
-        Dim adjlist As List(Of Room) = CurrentFloor.GetAdjacentRooms(currentRoom)
+        If Room Is Nothing Then Exit Sub
+        Dim adjlist As List(Of Room) = CurrentFloor.GetAdjacentRooms(room)
     End Sub
     Private Sub lstRooms_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstRooms.DoubleClick
         If lstRooms.SelectedIndex = -1 Then Exit Sub
@@ -199,7 +199,7 @@
         Dim g As Adventurer = lstGuests.SelectedItem
         If g Is Nothing Then Exit Sub
 
-        lblReview.Text = g.ToString
+        lblReview.Text = g.RoomSatisfaction(CurrentRoom).Key
     End Sub
     Private Sub RoomPanelClick(ByVal sender As Panel, ByVal e As MouseEventArgs)
         Dim tagSplit As String() = sender.Tag.ToString.Split(",")

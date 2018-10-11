@@ -18,7 +18,6 @@ C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\b
 C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\bin\Debug\AdventureInn.pdb
 C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\bin\Debug\AdventureInn.xml
 C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\bin\Debug\en-SG\AdventureInn.resources.dll
-C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.DialogRoom.resources
 C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.DialogRoomItem.resources
 C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.Main.resources
 C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.Resources.resources
