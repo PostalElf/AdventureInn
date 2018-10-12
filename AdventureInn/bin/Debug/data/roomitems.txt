@@ -2,20 +2,103 @@
 Width: 1
 Height: 2
 Furnishing: -1
-Type: Bed
+Capacity: 1
 Description: A bed filled with straw, dust mites, and bed bugs.
 
-[Study Table]
+[Double Bed]
+Width: 1
+Height: 2
+Capacity: 1
+Description: Why aren't double beds double the size of normal beds?
+
+[Bunk Bed]
 Width: 2
 Height: 1
-Type: Table
-Tastefulness: 1
-Description: Convenient for writing letters, scribing scrolls, and drawing maps.
+Capacity: 2
+Furnishing: -1
+Description: Comes complete with a little pull-down ladder. It's adorable.
+
+[King-Sized Bed]
+Width: 2
+Height: 2
+Capacity: 1
+Furnishing: 3
+Tastefulness: 3
+Description: Fit for a king. Well, kinda. Close enough anyway.
 
 [Four-Poster Bed]
 Width: 2
 Height: 2
-Type: Bed
+Capacity: 1
 Furnishing: 3
 Opulence: 3
 Description: The gold standard in fantasy bedding.
+
+[Study Table]
+Width: 1
+Height: 1
+Furnishing: 1
+Focus: 1
+Description: Convenient for writing letters, scribing scrolls, and drawing maps.
+
+[Bookshelf]
+Width: 1
+Height: 2
+Furnishing: 1
+Focus: 2
+Tastefulness: 1
+Description: 'How to train your dragon'? Huh.
+
+[Library]
+Width: 2
+Height: 2
+Furnishing: 1
+Focus: 3
+Tastefulness: 1
+Description: A personal research paradise. It even has a thesaurus.
+
+[Chest]
+Width: 1
+Height: 1
+Furnishing: 1
+Curiosity: 1
+Description: For keeping your loot in. If you had any, that is.
+
+[Hidden Door]
+Width: 1
+Height: 2
+Furnishing: 1
+Tastefulness: 1
+Curiosity: 2
+Description: It's always a bookshelf. Why is it always a bookshelf?
+
+[Secret Subfloor]
+Width: 2
+Height: 2
+Furnishing: 1
+Tastefulness: 1
+Curiosity: 3
+Description: Hmm, I wonder where this leads...?
+
+[Altar]
+Width: 1
+Height: 1
+Furnishing: 1
+Faith: 1
+Description: A small altar to the unnamed gods.
+
+[Shrine]
+Width: 2
+Height: 1
+Furnishing: 1
+Opulence: 1
+Faith: 2
+Description: The eyes of the statue watch you while you sleep.
+
+[Sacrificial Shrine]
+Width: 2
+Height: 2
+Furnishing: 1
+Opulence: 2
+Faith: 3
+Description: And I say unto you, blood shall flow! Red shall the rivers run with the...

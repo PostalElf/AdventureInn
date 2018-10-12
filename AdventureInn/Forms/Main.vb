@@ -195,7 +195,7 @@
             lblDescription.Text &= "Niche: " & .TotalNiche.Key & vbCrLf
             lblDescription.Text &= "Alignment: " & .TotalAlignment.Key & vbCrLf
             If .GuestCapacity <= 0 Then
-                lblDescription.Text &= vbCrLf & "WARNING: A room must have at least one bed to receive guests. Guests are something you want."
+                lblDescription.Text &= vbCrLf & "WARNING! A room must have at least one bed to receive guests. You want guests. Fix this."
             End If
         End With
     End Sub
@@ -254,7 +254,7 @@
         lblDescription.Text &= roomItem.Description
     End Sub
     Private Sub DevToolsRoom()
-        CurrentRoom.Guests.Add(Adventurer.Generate)
+        CurrentRoom.Add(Adventurer.Generate)
         RoomBuild()
         RoomRefresh()
     End Sub
