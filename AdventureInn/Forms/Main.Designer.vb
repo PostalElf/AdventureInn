@@ -44,12 +44,11 @@ Partial Class Main
         Me.lblGold = New System.Windows.Forms.Label()
         Me.grpWorkbench = New System.Windows.Forms.GroupBox()
         Me.btnBuild = New System.Windows.Forms.Button()
-        Me.lblWorkbenchDescription = New System.Windows.Forms.Label()
         Me.cmbWorkbench = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lblWorkbenchDescription = New System.Windows.Forms.Label()
         Me.grpInventory = New System.Windows.Forms.GroupBox()
         Me.lblInventoryDescription = New System.Windows.Forms.Label()
-        Me.butInventorySort = New System.Windows.Forms.Button()
+        Me.btnInventorySort = New System.Windows.Forms.Button()
         Me.lstInventory = New System.Windows.Forms.ListBox()
         Me.MenuStrip1.SuspendLayout()
         Me.tabControl1.SuspendLayout()
@@ -229,9 +228,9 @@ Partial Class Main
         'grpGold
         '
         Me.grpGold.Controls.Add(Me.lblGold)
-        Me.grpGold.Location = New System.Drawing.Point(426, 6)
+        Me.grpGold.Location = New System.Drawing.Point(400, 6)
         Me.grpGold.Name = "grpGold"
-        Me.grpGold.Size = New System.Drawing.Size(92, 85)
+        Me.grpGold.Size = New System.Drawing.Size(118, 71)
         Me.grpGold.TabIndex = 3
         Me.grpGold.TabStop = False
         Me.grpGold.Text = "Gold"
@@ -240,9 +239,9 @@ Partial Class Main
         '
         Me.lblGold.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblGold.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblGold.Location = New System.Drawing.Point(12, 28)
+        Me.lblGold.Location = New System.Drawing.Point(8, 23)
         Me.lblGold.Name = "lblGold"
-        Me.lblGold.Size = New System.Drawing.Size(66, 33)
+        Me.lblGold.Size = New System.Drawing.Size(99, 33)
         Me.lblGold.TabIndex = 4
         Me.lblGold.Text = "0"
         Me.lblGold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -250,59 +249,49 @@ Partial Class Main
         'grpWorkbench
         '
         Me.grpWorkbench.Controls.Add(Me.btnBuild)
-        Me.grpWorkbench.Controls.Add(Me.lblWorkbenchDescription)
         Me.grpWorkbench.Controls.Add(Me.cmbWorkbench)
-        Me.grpWorkbench.Controls.Add(Me.Label2)
-        Me.grpWorkbench.Location = New System.Drawing.Point(247, 97)
+        Me.grpWorkbench.Controls.Add(Me.lblWorkbenchDescription)
+        Me.grpWorkbench.Location = New System.Drawing.Point(247, 120)
         Me.grpWorkbench.Name = "grpWorkbench"
-        Me.grpWorkbench.Size = New System.Drawing.Size(271, 190)
+        Me.grpWorkbench.Size = New System.Drawing.Size(224, 207)
         Me.grpWorkbench.TabIndex = 2
         Me.grpWorkbench.TabStop = False
         Me.grpWorkbench.Text = "Workbench"
         '
         'btnBuild
         '
-        Me.btnBuild.Location = New System.Drawing.Point(210, 22)
+        Me.btnBuild.Location = New System.Drawing.Point(166, 17)
         Me.btnBuild.Name = "btnBuild"
         Me.btnBuild.Size = New System.Drawing.Size(47, 23)
         Me.btnBuild.TabIndex = 3
         Me.btnBuild.Text = "Build"
         Me.btnBuild.UseVisualStyleBackColor = True
         '
-        'lblWorkbenchDescription
-        '
-        Me.lblWorkbenchDescription.Location = New System.Drawing.Point(7, 52)
-        Me.lblWorkbenchDescription.Name = "lblWorkbenchDescription"
-        Me.lblWorkbenchDescription.Size = New System.Drawing.Size(258, 128)
-        Me.lblWorkbenchDescription.TabIndex = 13
-        '
         'cmbWorkbench
         '
         Me.cmbWorkbench.BackColor = System.Drawing.Color.White
         Me.cmbWorkbench.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbWorkbench.FormattingEnabled = True
-        Me.cmbWorkbench.Location = New System.Drawing.Point(37, 23)
+        Me.cmbWorkbench.Location = New System.Drawing.Point(6, 19)
         Me.cmbWorkbench.Name = "cmbWorkbench"
-        Me.cmbWorkbench.Size = New System.Drawing.Size(167, 21)
+        Me.cmbWorkbench.Size = New System.Drawing.Size(154, 21)
         Me.cmbWorkbench.TabIndex = 1
         '
-        'Label2
+        'lblWorkbenchDescription
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(9, 27)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(30, 13)
-        Me.Label2.TabIndex = 0
-        Me.Label2.Text = "Item:"
+        Me.lblWorkbenchDescription.Location = New System.Drawing.Point(6, 47)
+        Me.lblWorkbenchDescription.Name = "lblWorkbenchDescription"
+        Me.lblWorkbenchDescription.Size = New System.Drawing.Size(210, 149)
+        Me.lblWorkbenchDescription.TabIndex = 13
         '
         'grpInventory
         '
         Me.grpInventory.Controls.Add(Me.lblInventoryDescription)
-        Me.grpInventory.Controls.Add(Me.butInventorySort)
+        Me.grpInventory.Controls.Add(Me.btnInventorySort)
         Me.grpInventory.Controls.Add(Me.lstInventory)
         Me.grpInventory.Location = New System.Drawing.Point(8, 6)
         Me.grpInventory.Name = "grpInventory"
-        Me.grpInventory.Size = New System.Drawing.Size(223, 281)
+        Me.grpInventory.Size = New System.Drawing.Size(223, 321)
         Me.grpInventory.TabIndex = 1
         Me.grpInventory.TabStop = False
         Me.grpInventory.Text = "Inventory"
@@ -311,17 +300,17 @@ Partial Class Main
         '
         Me.lblInventoryDescription.Location = New System.Drawing.Point(6, 161)
         Me.lblInventoryDescription.Name = "lblInventoryDescription"
-        Me.lblInventoryDescription.Size = New System.Drawing.Size(210, 112)
+        Me.lblInventoryDescription.Size = New System.Drawing.Size(210, 149)
         Me.lblInventoryDescription.TabIndex = 13
         '
-        'butInventorySort
+        'btnInventorySort
         '
-        Me.butInventorySort.Location = New System.Drawing.Point(6, 133)
-        Me.butInventorySort.Name = "butInventorySort"
-        Me.butInventorySort.Size = New System.Drawing.Size(54, 23)
-        Me.butInventorySort.TabIndex = 3
-        Me.butInventorySort.Text = "Sort"
-        Me.butInventorySort.UseVisualStyleBackColor = True
+        Me.btnInventorySort.Location = New System.Drawing.Point(162, 131)
+        Me.btnInventorySort.Name = "btnInventorySort"
+        Me.btnInventorySort.Size = New System.Drawing.Size(54, 23)
+        Me.btnInventorySort.TabIndex = 3
+        Me.btnInventorySort.Text = "Sort"
+        Me.btnInventorySort.UseVisualStyleBackColor = True
         '
         'lstInventory
         '
@@ -335,7 +324,7 @@ Partial Class Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(534, 576)
+        Me.ClientSize = New System.Drawing.Size(534, 580)
         Me.Controls.Add(Me.tabControl1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -355,7 +344,6 @@ Partial Class Main
         Me.tabInventory.ResumeLayout(False)
         Me.grpGold.ResumeLayout(False)
         Me.grpWorkbench.ResumeLayout(False)
-        Me.grpWorkbench.PerformLayout()
         Me.grpInventory.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -382,12 +370,11 @@ Partial Class Main
     Friend WithEvents lstInventory As System.Windows.Forms.ListBox
     Friend WithEvents grpWorkbench As System.Windows.Forms.GroupBox
     Friend WithEvents btnBuild As System.Windows.Forms.Button
-    Friend WithEvents lblWorkbenchDescription As System.Windows.Forms.Label
     Friend WithEvents cmbWorkbench As System.Windows.Forms.ComboBox
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents butInventorySort As System.Windows.Forms.Button
+    Friend WithEvents btnInventorySort As System.Windows.Forms.Button
     Friend WithEvents grpGold As System.Windows.Forms.GroupBox
     Friend WithEvents lblGold As System.Windows.Forms.Label
     Friend WithEvents lblInventoryDescription As System.Windows.Forms.Label
+    Friend WithEvents lblWorkbenchDescription As System.Windows.Forms.Label
 
 End Class

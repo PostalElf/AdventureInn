@@ -1,5 +1,5 @@
 ﻿Public Class RoomItem
-    Implements xy
+    Implements xy, IComparable
     Public Sub New(ByVal targetname As String)
         Dim rawdata As List(Of String) = IO.ImportSquareBracketSelect(IO.sbRooms, targetname)
         For Each line In rawdata
@@ -31,6 +31,10 @@
     End Sub
     Public Overrides Function ToString() As String
         Return Name
+    End Function
+    Public Function CompareTo(ByVal obj As Object) As Integer Implements IComparable.CompareTo
+        Dim ri As RoomItem = CType(obj, RoomItem)
+        Return String.Compare(Me.Name, ri.Name)
     End Function
 
     Private _Name As String

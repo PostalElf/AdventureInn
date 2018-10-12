@@ -286,10 +286,13 @@
         If lstInventory.SelectedItem Is Nothing Then Exit Sub
         DescribeItem(lstInventory.SelectedItem, lblInventoryDescription)
     End Sub
+    Private Sub btnInventorySort_Click(ByVal sender As Button, ByVal e As System.EventArgs) Handles btnInventorySort.Click
+        CurrentInn.Inventory.Sort()
+        WorkbenchRefresh()
+    End Sub
     Private Sub cmbWorkbench_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbWorkbench.SelectedIndexChanged
         Dim roomItem As RoomItem = AllRoomItems(cmbWorkbench.SelectedItem.ToString)
-        lblWorkbenchDescription.Text = roomItem.AttributesDescription
-        lblWorkbenchDescription.Text &= vbCrLf & roomItem.Description
+        DescribeItem(roomItem, lblWorkbenchDescription)
     End Sub
     Private Sub btnBuild_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBuild.Click
         If cmbWorkbench.SelectedItem Is Nothing Then Exit Sub
