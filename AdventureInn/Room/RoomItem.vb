@@ -117,6 +117,7 @@
     Public ReadOnly Property AttributesDescription As String
         Get
             Dim total As String = ""
+            total &= "Capacity: " & Capacity & vbCrLf
             ParseDescription(total, "Furnishing", Furnishing)
             ParseDescription(total, "Opulence", Opulence)
             ParseDescription(total, "Restfulness", Restfulness)

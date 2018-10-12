@@ -1,5 +1,5 @@
 ﻿Public Class Main
-    Dim CurrentInn As New Inn
+    Private CurrentInn As New Inn
     Public Sub New()
         ' This call is required by the designer.
         InitializeComponent()
@@ -27,9 +27,10 @@
         CurrentFloor = CurrentInn(0)
         FloorBuild()
         FloorRefresh()
+        WorkbenchBuild()
     End Sub
 
-    Dim CurrentFloor As Floor
+    Private CurrentFloor As Floor
     Private FloorPanels(,) As Panel
     Private Sub FloorBuild()
         Const xMargin As Integer = 2
@@ -184,7 +185,9 @@
                 End With
             Next
         Next
-
+        RoomLabelRefresh()
+    End Sub
+    Private Sub RoomLabelRefresh()
         lblReview.Text = ""
         lblDescription.Text = ""
         With CurrentRoom
@@ -257,5 +260,30 @@
         CurrentRoom.Add(Adventurer.Generate)
         RoomBuild()
         RoomRefresh()
+    End Sub
+    Private Sub lblDescription_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblDescription.Click
+        RoomLabelRefresh()
+    End Sub
+
+    Private AllRoomItems As New Dictionary(Of String, RoomItem)
+    Private Sub WorkbenchBuild()
+        Dim rawData As List(Of String) = IO.ImportSquareBracketHeaders(IO.sbRooms)
+        For Each l In rawData
+            AllRoomItems.Add(l, New RoomItem(l))
+            cmbWorkbench.Items.Add(l)
+        Next
+    End Sub
+    Private Sub cmbWorkbench_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbWorkbench.SelectedIndexChanged
+        Dim roomItem As RoomItem = AllRoomItems(cmbWorkbench.SelectedItem.ToString)
+        lblWorkbenchDescription.Text = roomItem.AttributesDescription
+        lblWorkbenchDescription.Text &= vbCrLf & roomItem.Description
+    End Sub
+    Private Sub btnBuild_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBuild.Click
+        If cmbWorkbench.SelectedItem Is Nothing Then Exit Sub
+        BuildItem(cmbWorkbench.Text)
+    End Sub
+    Private Sub BuildItem(ByVal itemName As String)
+        Dim item As New RoomItem(itemName)
+        CurrentInn.Inventory.Add(item)
     End Sub
 End Class
