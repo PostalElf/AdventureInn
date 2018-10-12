@@ -11,6 +11,7 @@
             Select Case header
                 Case "Width" : _Width = Convert.ToInt32(entry)
                 Case "Height" : _Height = Convert.ToInt32(entry)
+                Case "Cost" : _Cost = Convert.ToInt32(entry)
                 Case "Description" : _Description = entry
 
                 Case "Capacity" : _Capacity = Convert.ToInt32(entry)
@@ -42,6 +43,12 @@
     Public ReadOnly Property Description As String
         Get
             Return _Description
+        End Get
+    End Property
+    Private _Cost As Integer
+    Public ReadOnly Property Cost As Integer
+        Get
+            Return _Cost
         End Get
     End Property
     Private _Width As Integer

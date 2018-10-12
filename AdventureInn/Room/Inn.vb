@@ -20,4 +20,5 @@
     End Sub
 
     Public Inventory As New List(Of RoomItem)
+    Public Gold As Integer
 End Class

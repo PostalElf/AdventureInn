@@ -19,6 +19,7 @@
         CurrentInn.Inventory.Add(New RoomItem("Study Table"))
         CurrentInn.Inventory.Add(New RoomItem("Study Table"))
         CurrentInn.Inventory.Add(New RoomItem("Four-Poster Bed"))
+        CurrentInn.Gold = 20000
     End Sub
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         numFloor.Minimum = 0
@@ -28,6 +29,7 @@
         FloorBuild()
         FloorRefresh()
         WorkbenchBuild()
+        WorkbenchRefresh()
     End Sub
 
     Private CurrentFloor As Floor
@@ -217,14 +219,14 @@
         If e.Button = Windows.Forms.MouseButtons.Right Then
             'right-click to manipulate
             If roomItem Is Nothing = False Then
-                RemoveItem(roomItem)            'item present; prompt to remove item
+                RemoveItem(roomItem)                            'item present; prompt to remove item
             Else
-                AddItem(x, y)                   'no item; prompt to add item
+                AddItem(x, y)                                   'no item; prompt to add item
             End If
         ElseIf e.Button = Windows.Forms.MouseButtons.Left Then
-            DescribeItem(roomItem)              'left-click for info
+            DescribeItem(roomItem, lblDescription)              'left-click for info
         ElseIf e.Button = Windows.Forms.MouseButtons.Middle Then
-            DevToolsRoom()                      'middle-click for dev tools
+            DevToolsRoom()                                      'middle-click for dev tools
         End If
     End Sub
     Private Sub AddItem(ByVal x As Integer, ByVal y As Integer)
@@ -248,13 +250,13 @@
             RoomRefresh()
         End If
     End Sub
-    Private Sub DescribeItem(ByVal roomItem As RoomItem)
+    Private Sub DescribeItem(ByVal roomItem As RoomItem, ByVal control As Label)
         If roomItem Is Nothing Then Exit Sub
 
-        lblDescription.Text = roomItem.Name & vbCrLf
-        lblDescription.Text &= "Size: " & roomItem.Width & "x" & roomItem.Height & vbCrLf
-        lblDescription.Text &= roomItem.AttributesDescription & vbCrLf
-        lblDescription.Text &= roomItem.Description
+        control.Text = roomItem.Name & vbCrLf
+        control.Text &= "Size: " & roomItem.Width & "x" & roomItem.Height & vbCrLf
+        control.Text &= roomItem.AttributesDescription & vbCrLf
+        control.Text &= roomItem.Description
     End Sub
     Private Sub DevToolsRoom()
         CurrentRoom.Add(Adventurer.Generate)
@@ -273,6 +275,17 @@
             cmbWorkbench.Items.Add(l)
         Next
     End Sub
+    Private Sub WorkbenchRefresh()
+        lstInventory.Items.Clear()
+        For Each i In CurrentInn.Inventory
+            lstInventory.Items.Add(i)
+        Next
+        lblGold.Text = CurrentInn.Gold.ToString("N")
+    End Sub
+    Private Sub lstInventory_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstInventory.SelectedIndexChanged
+        If lstInventory.SelectedItem Is Nothing Then Exit Sub
+        DescribeItem(lstInventory.SelectedItem, lblInventoryDescription)
+    End Sub
     Private Sub cmbWorkbench_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbWorkbench.SelectedIndexChanged
         Dim roomItem As RoomItem = AllRoomItems(cmbWorkbench.SelectedItem.ToString)
         lblWorkbenchDescription.Text = roomItem.AttributesDescription
@@ -280,10 +293,16 @@
     End Sub
     Private Sub btnBuild_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBuild.Click
         If cmbWorkbench.SelectedItem Is Nothing Then Exit Sub
-        BuildItem(cmbWorkbench.Text)
+        Dim errorString As String = BuildItem(cmbWorkbench.Text)
+        If errorString <> "" Then MsgBox(errorString)
     End Sub
-    Private Sub BuildItem(ByVal itemName As String)
+    Private Function BuildItem(ByVal itemName As String) As String
         Dim item As New RoomItem(itemName)
+        If CurrentInn.Gold < item.Cost Then Return "Insufficient gold."
+
+        CurrentInn.Gold -= item.Cost
         CurrentInn.Inventory.Add(item)
-    End Sub
+        WorkbenchRefresh()
+        Return Nothing
+    End Function
 End Class
