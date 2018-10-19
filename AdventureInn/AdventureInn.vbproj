@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adventurer\Adventurer.vb" />
+    <Compile Include="Adventurer\Food.vb" />
     <Compile Include="Dev\Pair.vb" />
     <Compile Include="Forms\DialogRoomItem.Designer.vb">
       <DependentUpon>DialogRoomItem.vb</DependentUpon>

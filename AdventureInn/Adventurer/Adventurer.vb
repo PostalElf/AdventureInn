@@ -40,6 +40,18 @@
 
     Private Race As Race
     Private Job As Job
+    Private Function GetStarRating(ByRef stars As Integer) As String
+        Dim total As String = ""
+        If stars < 0 Then stars = 0
+        If stars > 5 Then stars = 5
+        For n = 1 To stars
+            total &= "★"
+        Next
+        For n = 1 To 5 - stars
+            total &= "✰"
+        Next
+        Return total
+    End Function
     Private ReadOnly Property RoomPreferences As String()
         Get
             Dim privacy, opulence, restfulness, alignment, niche As String
@@ -200,15 +212,132 @@
             End With
 
             total &= """" & vbCrLf & vbCrLf
-            total &= "Rating: "
-            If stars < 0 Then stars = 0
-            If stars > 5 Then stars = 5
-            For n = 1 To stars
-                total &= "★"
-            Next
-            For n = 1 To 5 - stars
-                total &= "✰"
-            Next
+            total &= "Rating: " & GetStarRating(stars)
+            Return New Pair(Of String, Integer)(total, stars)
+        End Get
+    End Property
+    Private ReadOnly Property FoodPreferences As String()
+        Get
+            Dim richness, meatiness, exoticness As String
+            Select Case Race
+                Case AdventurerInn.Race.Human : richness = "Plain"
+                Case AdventurerInn.Race.Dwarf : richness = "Rich"
+                Case AdventurerInn.Race.Elf : richness = "Plain"
+                Case AdventurerInn.Race.Halfling : richness = "Rich"
+                Case Else : Throw New Exception
+            End Select
+            Select Case Job
+                Case AdventurerInn.Job.Cleric
+                    meatiness = "Vegetarian"
+                    exoticness = "Common"
+                Case AdventurerInn.Job.Fighter
+                    meatiness = "Meat"
+                    exoticness = "Exotic"
+                Case AdventurerInn.Job.Mage
+                    meatiness = "Meat"
+                    exoticness = "Common"
+                Case AdventurerInn.Job.Rogue
+                    meatiness = "Vegetarian"
+                    exoticness = "Exotic"
+                Case Else : Throw New Exception
+            End Select
+            Return {richness, meatiness, exoticness}
+        End Get
+    End Property
+    Public ReadOnly Property FoodSatisfaction(ByVal food As Food) As Pair(Of String, Integer)
+        Get
+            Dim stars As Integer = 0
+            Dim likedLast As Boolean
+            Dim total As String = """"
+
+            Dim pref As String() = FoodPreferences
+            Select Case food.TotalQuality.Key
+                Case "Poor"
+                    likedLast = False
+                    stars -= 1
+                    total &= "Dish was poorly presented. "
+                Case "Good"
+                    likedLast = False
+                    total &= "Ate at the dining hall. "
+                Case "Extraordinary"
+                    likedLast = True
+                    stars += 1
+                    total &= "Dish was delightfully plated. "
+            End Select
+
+            Dim prefix As String = ""
+            If food.TotalRichness.Key = pref(0) Then
+                Select Case food.TotalRichness.Key
+                    Case "Rich" : total &= "The flavours were " & prefix & "surprisingly rich and complex, "
+                    Case "Plain" : total &= "Its subtle, subdued flavours " & prefix & "reminded me of home, "
+                End Select
+                stars += 1
+                likedLast = True
+            Else
+                Select Case food.TotalRichness.Key
+                    Case "Rich" : total &= "It was " & prefix & "cloying and overwhelmingly rich, "
+                    Case "Plain" : total &= "It was " & prefix & "bland and flavourless, "
+                End Select
+                likedLast = False
+            End If
+
+            Dim cont As String = ""
+            If food.TotalMeatiness.Key = pref(1) Then
+                If likedLast = True Then total &= "and " Else total &= "but "
+                total &= "I particularly enjoyed the "
+                Select Case food.TotalMeatiness.Key
+                    Case "Vegetarian" : cont = "vegetables"
+                    Case "Meat" : cont = "meat"
+                End Select
+                stars += 1
+                likedLast = True
+            Else
+                If likedLast = False Then total &= "and " Else total &= "but "
+                likedLast = False
+                total &= "I would have liked less "
+                Select Case food.TotalMeatiness.Key
+                    Case "Vegetarian" : cont = "vegetables in my food"
+                    Case "Meat" : cont = "meat in the dish"
+                End Select
+            End If
+
+            If food.TotalExoticness.Key = pref(2) Then
+                Select Case food.TotalExoticness.Key
+                    Case "Exotic"
+                        If likedLast = True Then
+                            total &= "unpredictable textures of the exotic " & cont & "."
+                        Else
+                            total &= cont & ". The strangeness was however quite refreshing."
+                        End If
+                    Case "Common"
+                        If likedLast = True Then
+                            total &= "fresh taste of common " & cont & "."
+                        Else
+                            total &= cont & ". I must admit though that the straightforward freshness was rather pleasant."
+                        End If
+                End Select
+                stars += 1
+                likedLast = True
+            Else
+                Select Case food.TotalExoticness.Key
+                    Case "Exotic"
+                        If likedLast = True Then
+                            total &= cont & ", though they were a little foreign."
+                        Else
+                            total &= "weird " & cont & "."
+                        End If
+                    Case "Common"
+                        If likedLast = True Then
+                            total &= cont & ". Would have liked it more if it were less run-of-the-mill though."
+                        Else
+                            total &= "ordinary " & cont & "."
+                        End If
+                End Select
+                likedLast = False
+            End If
+
+            total &= """" & vbCrLf & vbCrLf
+            total &= "Rating: " & GetStarRating(stars)
             Return New Pair(Of String, Integer)(total, stars)
         End Get
     End Property
