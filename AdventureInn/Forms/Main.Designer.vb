@@ -27,7 +27,7 @@ Partial Class Main
         Me.tt = New System.Windows.Forms.ToolTip(Me.components)
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.tabControl1 = New System.Windows.Forms.TabControl()
+        Me.tbc = New System.Windows.Forms.TabControl()
         Me.tabFloor = New System.Windows.Forms.TabPage()
         Me.grpRoom = New System.Windows.Forms.GroupBox()
         Me.lblReview = New System.Windows.Forms.Label()
@@ -50,8 +50,14 @@ Partial Class Main
         Me.lblInventoryDescription = New System.Windows.Forms.Label()
         Me.btnInventorySort = New System.Windows.Forms.Button()
         Me.lstInventory = New System.Windows.Forms.ListBox()
+        Me.tabFood = New System.Windows.Forms.TabPage()
+        Me.grpMenu = New System.Windows.Forms.GroupBox()
+        Me.grpKitchen = New System.Windows.Forms.GroupBox()
+        Me.cmbKitchen = New System.Windows.Forms.ComboBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.lblKitchen = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
-        Me.tabControl1.SuspendLayout()
+        Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
         Me.grpRoom.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -61,6 +67,8 @@ Partial Class Main
         Me.grpGold.SuspendLayout()
         Me.grpWorkbench.SuspendLayout()
         Me.grpInventory.SuspendLayout()
+        Me.tabFood.SuspendLayout()
+        Me.grpKitchen.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -97,19 +105,19 @@ Partial Class Main
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "&File"
         '
-        'tabControl1
+        'tbc
         '
-        Me.tabControl1.Alignment = System.Windows.Forms.TabAlignment.Bottom
-        Me.tabControl1.Controls.Add(Me.tabFloor)
-        Me.tabControl1.Controls.Add(Me.tabInventory)
-        Me.tabControl1.Location = New System.Drawing.Point(0, 27)
-        Me.tabControl1.Multiline = True
-        Me.tabControl1.Name = "tabControl1"
-        Me.tabControl1.SelectedIndex = 0
-        Me.tabControl1.Size = New System.Drawing.Size(536, 544)
-        Me.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
-        Me.tabControl1.TabIndex = 5
-        Me.tabControl1.TabStop = False
+        Me.tbc.Controls.Add(Me.tabFloor)
+        Me.tbc.Controls.Add(Me.tabInventory)
+        Me.tbc.Controls.Add(Me.tabFood)
+        Me.tbc.Location = New System.Drawing.Point(0, 29)
+        Me.tbc.Multiline = True
+        Me.tbc.Name = "tbc"
+        Me.tbc.SelectedIndex = 0
+        Me.tbc.Size = New System.Drawing.Size(536, 544)
+        Me.tbc.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
+        Me.tbc.TabIndex = 5
+        Me.tbc.TabStop = False
         '
         'tabFloor
         '
@@ -117,7 +125,7 @@ Partial Class Main
         Me.tabFloor.Controls.Add(Me.grpRoom)
         Me.tabFloor.Controls.Add(Me.GroupBox2)
         Me.tabFloor.Controls.Add(Me.GroupBox1)
-        Me.tabFloor.Location = New System.Drawing.Point(4, 4)
+        Me.tabFloor.Location = New System.Drawing.Point(4, 22)
         Me.tabFloor.Name = "tabFloor"
         Me.tabFloor.Padding = New System.Windows.Forms.Padding(3)
         Me.tabFloor.Size = New System.Drawing.Size(528, 518)
@@ -218,7 +226,7 @@ Partial Class Main
         Me.tabInventory.Controls.Add(Me.grpGold)
         Me.tabInventory.Controls.Add(Me.grpWorkbench)
         Me.tabInventory.Controls.Add(Me.grpInventory)
-        Me.tabInventory.Location = New System.Drawing.Point(4, 4)
+        Me.tabInventory.Location = New System.Drawing.Point(4, 22)
         Me.tabInventory.Name = "tabInventory"
         Me.tabInventory.Padding = New System.Windows.Forms.Padding(3)
         Me.tabInventory.Size = New System.Drawing.Size(528, 518)
@@ -320,12 +328,70 @@ Partial Class Main
         Me.lstInventory.Size = New System.Drawing.Size(210, 108)
         Me.lstInventory.TabIndex = 0
         '
+        'tabFood
+        '
+        Me.tabFood.Controls.Add(Me.grpKitchen)
+        Me.tabFood.Controls.Add(Me.grpMenu)
+        Me.tabFood.Location = New System.Drawing.Point(4, 22)
+        Me.tabFood.Name = "tabFood"
+        Me.tabFood.Size = New System.Drawing.Size(528, 518)
+        Me.tabFood.TabIndex = 2
+        Me.tabFood.Text = "Food"
+        Me.tabFood.UseVisualStyleBackColor = True
+        '
+        'grpMenu
+        '
+        Me.grpMenu.Location = New System.Drawing.Point(8, 3)
+        Me.grpMenu.Name = "grpMenu"
+        Me.grpMenu.Size = New System.Drawing.Size(510, 283)
+        Me.grpMenu.TabIndex = 0
+        Me.grpMenu.TabStop = False
+        Me.grpMenu.Text = "Today's Menu"
+        '
+        'grpKitchen
+        '
+        Me.grpKitchen.Controls.Add(Me.lblKitchen)
+        Me.grpKitchen.Controls.Add(Me.Button1)
+        Me.grpKitchen.Controls.Add(Me.cmbKitchen)
+        Me.grpKitchen.Location = New System.Drawing.Point(8, 292)
+        Me.grpKitchen.Name = "grpKitchen"
+        Me.grpKitchen.Size = New System.Drawing.Size(234, 210)
+        Me.grpKitchen.TabIndex = 1
+        Me.grpKitchen.TabStop = False
+        Me.grpKitchen.Text = "Kitchen"
+        '
+        'cmbKitchen
+        '
+        Me.cmbKitchen.BackColor = System.Drawing.Color.White
+        Me.cmbKitchen.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbKitchen.FormattingEnabled = True
+        Me.cmbKitchen.Location = New System.Drawing.Point(6, 19)
+        Me.cmbKitchen.Name = "cmbKitchen"
+        Me.cmbKitchen.Size = New System.Drawing.Size(169, 21)
+        Me.cmbKitchen.TabIndex = 2
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(181, 19)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(47, 23)
+        Me.Button1.TabIndex = 4
+        Me.Button1.Text = "Build"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'lblKitchen
+        '
+        Me.lblKitchen.Location = New System.Drawing.Point(11, 51)
+        Me.lblKitchen.Name = "lblKitchen"
+        Me.lblKitchen.Size = New System.Drawing.Size(210, 149)
+        Me.lblKitchen.TabIndex = 14
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(534, 580)
-        Me.Controls.Add(Me.tabControl1)
+        Me.Controls.Add(Me.tbc)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MainMenuStrip = Me.MenuStrip1
@@ -334,7 +400,7 @@ Partial Class Main
         Me.Text = "Room"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        Me.tabControl1.ResumeLayout(False)
+        Me.tbc.ResumeLayout(False)
         Me.tabFloor.ResumeLayout(False)
         Me.grpRoom.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
@@ -345,6 +411,8 @@ Partial Class Main
         Me.grpGold.ResumeLayout(False)
         Me.grpWorkbench.ResumeLayout(False)
         Me.grpInventory.ResumeLayout(False)
+        Me.tabFood.ResumeLayout(False)
+        Me.grpKitchen.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -353,7 +421,7 @@ Partial Class Main
     Friend WithEvents tt As System.Windows.Forms.ToolTip
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents tabControl1 As System.Windows.Forms.TabControl
+    Friend WithEvents tbc As System.Windows.Forms.TabControl
     Friend WithEvents tabFloor As System.Windows.Forms.TabPage
     Friend WithEvents numFloor As System.Windows.Forms.NumericUpDown
     Friend WithEvents tabInventory As System.Windows.Forms.TabPage
@@ -376,5 +444,11 @@ Partial Class Main
     Friend WithEvents lblGold As System.Windows.Forms.Label
     Friend WithEvents lblInventoryDescription As System.Windows.Forms.Label
     Friend WithEvents lblWorkbenchDescription As System.Windows.Forms.Label
+    Friend WithEvents tabFood As System.Windows.Forms.TabPage
+    Friend WithEvents grpMenu As System.Windows.Forms.GroupBox
+    Friend WithEvents grpKitchen As System.Windows.Forms.GroupBox
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents cmbKitchen As System.Windows.Forms.ComboBox
+    Friend WithEvents lblKitchen As System.Windows.Forms.Label
 
 End Class
