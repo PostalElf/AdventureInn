@@ -47,4 +47,12 @@
             Return New Pair(Of String, Integer)(total, _Quality)
         End Get
     End Property
+
+    Public Sub New(ByVal pName As String, _
+                   ByVal pRichness As Integer, _
+                   ByVal pMeatiness As Integer, _
+                   ByVal pExoticness As Integer, _
+                   ByVal pQuality As Integer)
+
+    End Sub
 End Class
