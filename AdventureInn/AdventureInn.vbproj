@@ -77,6 +77,12 @@
     <Compile Include="Adventurer\FoodIngredient.vb" />
     <Compile Include="Adventurer\FoodRecipe.vb" />
     <Compile Include="Dev\Pair.vb" />
+    <Compile Include="Forms\DialogPicker.Designer.vb">
+      <DependentUpon>DialogPicker.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogPicker.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\DialogRoomItem.Designer.vb">
       <DependentUpon>DialogRoomItem.vb</DependentUpon>
     </Compile>
@@ -116,6 +122,9 @@
     <Compile Include="xyContainer.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\DialogPicker.resx">
+      <DependentUpon>DialogPicker.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DialogRoomItem.en-SG.resx">
       <DependentUpon>DialogRoomItem.vb</DependentUpon>
     </EmbeddedResource>

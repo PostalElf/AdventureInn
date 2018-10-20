@@ -24,3 +24,4 @@ C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\o
 C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.DialogRoomItem.en-SG.resources
 C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventureInn.vbproj.GenerateResource.Cache
 C:\Users\Owner\Documents\Visual Studio 2010\Projects\AdventureInn\AdventureInn\obj\x86\Debug\en-SG\AdventureInn.resources.dll
+D:\Visual Studio Projects\AdventureInn\AdventureInn\obj\x86\Debug\AdventurerInn.DialogPicker.resources

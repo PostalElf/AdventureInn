@@ -8,18 +8,24 @@
         SetupInn()
     End Sub
     Private Sub SetupInn()
-        Dim floor1 As New Floor
-        CurrentInn.Add(floor1)
-        CurrentInn(0).Add(New Room(RoomSize.Large), 1, 1)
+        With CurrentInn
+            Dim floor1 As New Floor
+            floor1.Add(New Room(RoomSize.Large), 1, 1)
+            .Add(floor1)
 
-        Dim floor2 As New Floor
-        CurrentInn.Add(floor2)
+            Dim floor2 As New Floor
+            .Add(floor2)
 
-        CurrentInn.InventoryRoomItems.Add(RoomItem.Generate("Straw Bed"))
-        CurrentInn.InventoryRoomItems.Add(RoomItem.Generate("Study Table"))
-        CurrentInn.InventoryRoomItems.Add(RoomItem.Generate("Study Table"))
-        CurrentInn.InventoryRoomItems.Add(RoomItem.Generate("Four-Poster Bed"))
-        CurrentInn.Gold = 20000
+            .InventoryRoomItems.Add(RoomItem.Generate("Straw Bed"))
+            .InventoryRoomItems.Add(RoomItem.Generate("Study Table"))
+            .InventoryRoomItems.Add(RoomItem.Generate("Study Table"))
+            .InventoryRoomItems.Add(RoomItem.Generate("Four-Poster Bed"))
+            .Gold = 20000
+
+            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Dragon's Egg"))
+            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Manticore's Egg"))
+            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Gorgon's Milk"))
+        End With
     End Sub
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         numFloor.Minimum = 0
@@ -31,7 +37,6 @@
         WorkbenchBuild()
         WorkbenchRefresh()
         KitchenBuild()
-        KitchenRefresh()
     End Sub
 
     Private CurrentFloor As Floor
@@ -312,34 +317,107 @@
     End Function
 
     Private AllKitchenRecipes As New Dictionary(Of String, FoodRecipe)
-    Private KitchenLabels(5) As Label
-    Private KitchenCombos(5) As ComboBox
+    Private ActiveRecipe As FoodRecipe = Nothing
+    Private KitchenLbls(4) As Label
+    Private KitchenTxts(4) As TextBox
+    Private KitchenIngredient(4) As FoodIngredient
     Private Sub KitchenBuild()
-        KitchenLabels(0) = Nothing
-        KitchenLabels(1) = lblIngredient1
-        KitchenLabels(2) = lblIngredient2
-        KitchenLabels(3) = lblIngredient3
-        KitchenLabels(4) = lblIngredient4
-        KitchenLabels(5) = lblIngredient5
-        KitchenCombos(0) = Nothing
-        KitchenCombos(1) = cmbIngredient1
-        KitchenCombos(2) = cmbIngredient2
-        KitchenCombos(3) = cmbIngredient3
-        KitchenCombos(4) = cmbIngredient4
-        KitchenCombos(5) = cmbIngredient5
-        For n = 1 To 5
-            KitchenLabels(n).Visible = False
-            KitchenCombos(n).Visible = False
-            btnCook.Visible = False
-        Next
-
+        'populate AllKitchenRecipes
         Dim rawData As List(Of String) = IO.ImportSquareBracketHeaders(IO.sbRecipes)
         For Each l In rawData
             AllKitchenRecipes.Add(l, FoodRecipe.Generate(l))
             cmbKitchen.Items.Add(l)
         Next
-    End Sub
-    Private Sub KitchenRefresh()
 
+        'setup KitchenLbls and KitchenTxts
+        KitchenLbls(0) = lblIngredient1
+        KitchenLbls(1) = lblIngredient2
+        KitchenLbls(2) = lblIngredient3
+        KitchenLbls(3) = lblIngredient4
+        KitchenLbls(4) = lblIngredient5
+        KitchenTxts(0) = txtIngredient1
+        KitchenTxts(1) = txtIngredient2
+        KitchenTxts(2) = txtIngredient3
+        KitchenTxts(3) = txtIngredient4
+        KitchenTxts(4) = txtIngredient5
+
+        'hide controls
+        For n = 0 To 4
+            KitchenLbls(n).Visible = False
+            KitchenTxts(n).Visible = False
+            AddHandler KitchenTxts(n).Click, AddressOf txtIngredient_Click
+        Next
+        btnCook.Visible = False
+        btnCookReset.Visible = False
+    End Sub
+    Private Sub cmbKitchen_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbKitchen.SelectedIndexChanged
+        Dim fr As FoodRecipe = AllKitchenRecipes(cmbKitchen.SelectedItem.ToString)
+        ActiveRecipe = fr.Clone
+        RecipeShow
+    End Sub
+    Private Sub RecipeShow()
+        If ActiveRecipe Is Nothing Then Exit Sub
+
+        For i = 0 To 4
+            KitchenIngredient(i) = Nothing
+        Next
+
+        For n = 0 To ActiveRecipe.Requirements.Count - 1
+            KitchenLbls(n).Visible = True
+            KitchenLbls(n).Text = ActiveRecipe.Requirements(n) & ":"
+            KitchenTxts(n).Visible = True
+            KitchenTxts(n).Enabled = True
+            KitchenTxts(n).Tag = ActiveRecipe.Requirements(n)
+        Next
+        btnCook.Visible = True
+        btnCook.Enabled = False
+        btnCookReset.Visible = True
+
+        RecipeUpdate()
+    End Sub
+    Private Sub RecipeUpdate()
+        If ActiveRecipe Is Nothing Then Exit Sub
+
+        With ActiveRecipe
+            lblKitchen.Text = ""
+            lblKitchen.Text &= "Quality: " & .TotalQuality.Key & vbCrLf
+            lblKitchen.Text &= "Richness: " & .TotalRichness.Key & vbCrLf
+            lblKitchen.Text &= "Meatiness: " & .TotalMeatiness.Key & vbCrLf
+            lblKitchen.Text &= "Exoticness: " & .TotalExoticness.Key
+
+            Dim completed As Boolean = True
+            For n = 1 To .Requirements.Count
+                If KitchenIngredient(n) Is Nothing Then completed = False : Exit For
+            Next
+            btnCook.Enabled = completed
+        End With
+    End Sub
+    Private Sub txtIngredient_Click(ByVal sender As TextBox, ByVal e As System.EventArgs)
+        Dim ingredientType As String = sender.Tag
+        Dim ingredients As New List(Of FoodIngredient)
+        For Each i In CurrentInn.InventoryFoodIngredients
+            If i.IngredientType = ingredientType Then ingredients.Add(i)
+        Next
+
+        If ingredients.Count = 0 Then
+            MsgBox("You have no valid ingredients!", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "No valid ingredients")
+            Exit Sub
+        End If
+
+        Dim fi As FoodIngredient
+        If ingredients.Count = 1 Then
+            fi = ingredients(0)
+        Else
+            Dim dp As New DialogPicker
+            dp.MainList = ingredients
+            If dp.ShowDialog = Windows.Forms.DialogResult.OK Then fi = dp.Result Else Exit Sub
+        End If
+
+        CurrentInn.InventoryFoodIngredients.Remove(fi)
+        ActiveRecipe.Add(fi)
+        sender.Text = fi.Name
+        sender.Tag = fi
+        sender.Enabled = False
+        RecipeUpdate()
     End Sub
 End Class

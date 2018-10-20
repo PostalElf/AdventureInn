@@ -1,0 +1,18 @@
+[Omelette]
+Egg
+Egg
+Milk
+Butter
+
+[Goblin Salad]
+Vegetable
+Vegetable
+Egg
+Oil
+
+[Kobold Salad]
+Vegetable
+Vegetable
+Meat
+Oil
+

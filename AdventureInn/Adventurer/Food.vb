@@ -1,68 +1,63 @@
 ﻿Public Class Food
-    Private _Name As String
-    Public ReadOnly Property Name As String
-        Get
-            Return _Name
-        End Get
-    End Property
-    Private _Richness As Integer
+    Protected Name As String
+    Protected Richness As Integer
     Public ReadOnly Property TotalRichness As Pair(Of String, Integer)
         Get
             Dim total As String = ""
-            Select Case _Richness
+            Select Case Richness
                 Case 0 : total = "Confused"
                 Case Is < 0 : total = "Plain"
                 Case Is > 0 : total = "Rich"
             End Select
-            Return New Pair(Of String, Integer)(total, _Richness)
+            Return New Pair(Of String, Integer)(total, Richness)
         End Get
     End Property
-    Private _Meatiness As Integer
+    Protected Meatiness As Integer
     Public ReadOnly Property TotalMeatiness As Pair(Of String, Integer)
         Get
             Dim total As String = ""
-            Select Case _Meatiness
+            Select Case Meatiness
                 Case 0 : total = "Mashed"
                 Case Is < 0 : total = "Vegetarian"
                 Case Is > 0 : total = "Meat"
             End Select
-            Return New Pair(Of String, Integer)(total, _Meatiness)
+            Return New Pair(Of String, Integer)(total, Meatiness)
         End Get
     End Property
-    Private _Exoticness As Integer
+    Protected Exoticness As Integer
     Public ReadOnly Property TotalExoticness As Pair(Of String, Integer)
         Get
             Dim total As String = ""
-            Select Case _Exoticness
+            Select Case Exoticness
                 Case 0 : total = "Ugh"
                 Case Is < 0 : total = "Common"
                 Case Is > 0 : total = "Exotic"
             End Select
-            Return New Pair(Of String, Integer)(total, _Exoticness)
+            Return New Pair(Of String, Integer)(total, Exoticness)
         End Get
     End Property
-    Private _Quality As Integer
+    Protected Quality As Integer
     Public ReadOnly Property TotalQuality As Pair(Of String, Integer)
         Get
             Dim total As String = ""
-            Select Case _Quality
+            Select Case Quality
                 Case Is <= 0 : total = "Poor"
                 Case 1 To 4 : total = "Good"
                 Case Is >= 5 : total = "Extraordinary"
             End Select
-            Return New Pair(Of String, Integer)(total, _Quality)
+            Return New Pair(Of String, Integer)(total, Quality)
         End Get
     End Property
 
-    Public Sub New(ByVal pName As String, _
-                   ByVal pRichness As Integer, _
-                   ByVal pMeatiness As Integer, _
-                   ByVal pExoticness As Integer, _
-                   ByVal pQuality As Integer)
-        _Name = pName
-        _Richness = pRichness
-        _Meatiness = pMeatiness
-        _Exoticness = pExoticness
-        _Quality = pQuality
-    End Sub
+    Public Shared Function Generate(ByVal recipe As FoodRecipe) As Food
+        Dim f As New Food
+        With f
+            .Name = recipe.Name
+            .Richness = recipe.Richness
+            .Meatiness = recipe.Meatiness
+            .Exoticness = recipe.Exoticness
+            .Quality = recipe.Quality
+        End With
+        Return f
+    End Function
 End Class

@@ -32,4 +32,7 @@
         End With
         Return fi
     End Function
+    Public Overrides Function ToString() As String
+        Return Name
+    End Function
 End Class

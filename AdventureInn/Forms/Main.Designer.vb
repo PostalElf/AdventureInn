@@ -56,16 +56,18 @@ Partial Class Main
         Me.btnCook = New System.Windows.Forms.Button()
         Me.cmbKitchen = New System.Windows.Forms.ComboBox()
         Me.grpMenu = New System.Windows.Forms.GroupBox()
-        Me.cmbIngredient1 = New System.Windows.Forms.ComboBox()
+        Me.btnCookReset = New System.Windows.Forms.Button()
+        Me.txtIngredient1 = New System.Windows.Forms.TextBox()
         Me.lblIngredient1 = New System.Windows.Forms.Label()
         Me.lblIngredient2 = New System.Windows.Forms.Label()
-        Me.cmbIngredient2 = New System.Windows.Forms.ComboBox()
+        Me.txtIngredient2 = New System.Windows.Forms.TextBox()
         Me.lblIngredient3 = New System.Windows.Forms.Label()
-        Me.cmbIngredient3 = New System.Windows.Forms.ComboBox()
+        Me.txtIngredient3 = New System.Windows.Forms.TextBox()
         Me.lblIngredient4 = New System.Windows.Forms.Label()
-        Me.cmbIngredient4 = New System.Windows.Forms.ComboBox()
+        Me.txtIngredient4 = New System.Windows.Forms.TextBox()
         Me.lblIngredient5 = New System.Windows.Forms.Label()
-        Me.cmbIngredient5 = New System.Windows.Forms.ComboBox()
+        Me.txtIngredient5 = New System.Windows.Forms.TextBox()
+        Me.pnlIngredients = New System.Windows.Forms.Panel()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -79,6 +81,7 @@ Partial Class Main
         Me.grpInventory.SuspendLayout()
         Me.tabFood.SuspendLayout()
         Me.grpKitchen.SuspendLayout()
+        Me.pnlIngredients.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -351,16 +354,8 @@ Partial Class Main
         '
         'grpKitchen
         '
-        Me.grpKitchen.Controls.Add(Me.lblIngredient5)
-        Me.grpKitchen.Controls.Add(Me.cmbIngredient5)
-        Me.grpKitchen.Controls.Add(Me.lblIngredient4)
-        Me.grpKitchen.Controls.Add(Me.cmbIngredient4)
-        Me.grpKitchen.Controls.Add(Me.lblIngredient3)
-        Me.grpKitchen.Controls.Add(Me.cmbIngredient3)
-        Me.grpKitchen.Controls.Add(Me.lblIngredient2)
-        Me.grpKitchen.Controls.Add(Me.cmbIngredient2)
-        Me.grpKitchen.Controls.Add(Me.lblIngredient1)
-        Me.grpKitchen.Controls.Add(Me.cmbIngredient1)
+        Me.grpKitchen.Controls.Add(Me.pnlIngredients)
+        Me.grpKitchen.Controls.Add(Me.btnCookReset)
         Me.grpKitchen.Controls.Add(Me.lblKitchen)
         Me.grpKitchen.Controls.Add(Me.btnCook)
         Me.grpKitchen.Controls.Add(Me.cmbKitchen)
@@ -380,7 +375,7 @@ Partial Class Main
         '
         'btnCook
         '
-        Me.btnCook.Location = New System.Drawing.Point(447, 168)
+        Me.btnCook.Location = New System.Drawing.Point(447, 173)
         Me.btnCook.Name = "btnCook"
         Me.btnCook.Size = New System.Drawing.Size(47, 23)
         Me.btnCook.TabIndex = 4
@@ -406,100 +401,116 @@ Partial Class Main
         Me.grpMenu.TabStop = False
         Me.grpMenu.Text = "Today's Menu"
         '
-        'cmbIngredient1
+        'btnCookReset
         '
-        Me.cmbIngredient1.BackColor = System.Drawing.Color.White
-        Me.cmbIngredient1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbIngredient1.FormattingEnabled = True
-        Me.cmbIngredient1.Location = New System.Drawing.Point(335, 21)
-        Me.cmbIngredient1.Name = "cmbIngredient1"
-        Me.cmbIngredient1.Size = New System.Drawing.Size(159, 21)
-        Me.cmbIngredient1.TabIndex = 15
+        Me.btnCookReset.Location = New System.Drawing.Point(394, 173)
+        Me.btnCookReset.Name = "btnCookReset"
+        Me.btnCookReset.Size = New System.Drawing.Size(47, 23)
+        Me.btnCookReset.TabIndex = 15
+        Me.btnCookReset.Text = "Reset"
+        Me.btnCookReset.UseVisualStyleBackColor = True
+        '
+        'txtIngredient1
+        '
+        Me.txtIngredient1.Enabled = False
+        Me.txtIngredient1.Location = New System.Drawing.Point(113, 7)
+        Me.txtIngredient1.Name = "txtIngredient1"
+        Me.txtIngredient1.Size = New System.Drawing.Size(146, 20)
+        Me.txtIngredient1.TabIndex = 16
         '
         'lblIngredient1
         '
-        Me.lblIngredient1.Location = New System.Drawing.Point(234, 24)
+        Me.lblIngredient1.Location = New System.Drawing.Point(19, 9)
         Me.lblIngredient1.Name = "lblIngredient1"
-        Me.lblIngredient1.Size = New System.Drawing.Size(95, 16)
-        Me.lblIngredient1.TabIndex = 16
+        Me.lblIngredient1.Size = New System.Drawing.Size(88, 16)
+        Me.lblIngredient1.TabIndex = 17
         Me.lblIngredient1.Text = "Ingredient:"
         Me.lblIngredient1.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
         'lblIngredient2
         '
-        Me.lblIngredient2.Location = New System.Drawing.Point(234, 54)
+        Me.lblIngredient2.Location = New System.Drawing.Point(19, 35)
         Me.lblIngredient2.Name = "lblIngredient2"
-        Me.lblIngredient2.Size = New System.Drawing.Size(95, 16)
-        Me.lblIngredient2.TabIndex = 18
+        Me.lblIngredient2.Size = New System.Drawing.Size(88, 16)
+        Me.lblIngredient2.TabIndex = 19
         Me.lblIngredient2.Text = "Ingredient:"
         Me.lblIngredient2.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'cmbIngredient2
+        'txtIngredient2
         '
-        Me.cmbIngredient2.BackColor = System.Drawing.Color.White
-        Me.cmbIngredient2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbIngredient2.FormattingEnabled = True
-        Me.cmbIngredient2.Location = New System.Drawing.Point(335, 51)
-        Me.cmbIngredient2.Name = "cmbIngredient2"
-        Me.cmbIngredient2.Size = New System.Drawing.Size(159, 21)
-        Me.cmbIngredient2.TabIndex = 17
+        Me.txtIngredient2.Enabled = False
+        Me.txtIngredient2.Location = New System.Drawing.Point(113, 33)
+        Me.txtIngredient2.Name = "txtIngredient2"
+        Me.txtIngredient2.Size = New System.Drawing.Size(146, 20)
+        Me.txtIngredient2.TabIndex = 18
         '
         'lblIngredient3
         '
-        Me.lblIngredient3.Location = New System.Drawing.Point(234, 81)
+        Me.lblIngredient3.Location = New System.Drawing.Point(19, 61)
         Me.lblIngredient3.Name = "lblIngredient3"
-        Me.lblIngredient3.Size = New System.Drawing.Size(95, 16)
-        Me.lblIngredient3.TabIndex = 20
+        Me.lblIngredient3.Size = New System.Drawing.Size(88, 16)
+        Me.lblIngredient3.TabIndex = 21
         Me.lblIngredient3.Text = "Ingredient:"
         Me.lblIngredient3.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'cmbIngredient3
+        'txtIngredient3
         '
-        Me.cmbIngredient3.BackColor = System.Drawing.Color.White
-        Me.cmbIngredient3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbIngredient3.FormattingEnabled = True
-        Me.cmbIngredient3.Location = New System.Drawing.Point(335, 78)
-        Me.cmbIngredient3.Name = "cmbIngredient3"
-        Me.cmbIngredient3.Size = New System.Drawing.Size(159, 21)
-        Me.cmbIngredient3.TabIndex = 19
+        Me.txtIngredient3.Enabled = False
+        Me.txtIngredient3.Location = New System.Drawing.Point(113, 59)
+        Me.txtIngredient3.Name = "txtIngredient3"
+        Me.txtIngredient3.Size = New System.Drawing.Size(146, 20)
+        Me.txtIngredient3.TabIndex = 20
         '
         'lblIngredient4
         '
-        Me.lblIngredient4.Location = New System.Drawing.Point(234, 108)
+        Me.lblIngredient4.Location = New System.Drawing.Point(19, 87)
         Me.lblIngredient4.Name = "lblIngredient4"
-        Me.lblIngredient4.Size = New System.Drawing.Size(95, 16)
-        Me.lblIngredient4.TabIndex = 22
+        Me.lblIngredient4.Size = New System.Drawing.Size(88, 16)
+        Me.lblIngredient4.TabIndex = 23
         Me.lblIngredient4.Text = "Ingredient:"
         Me.lblIngredient4.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'cmbIngredient4
+        'txtIngredient4
         '
-        Me.cmbIngredient4.BackColor = System.Drawing.Color.White
-        Me.cmbIngredient4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbIngredient4.FormattingEnabled = True
-        Me.cmbIngredient4.Location = New System.Drawing.Point(335, 105)
-        Me.cmbIngredient4.Name = "cmbIngredient4"
-        Me.cmbIngredient4.Size = New System.Drawing.Size(159, 21)
-        Me.cmbIngredient4.TabIndex = 21
+        Me.txtIngredient4.Enabled = False
+        Me.txtIngredient4.Location = New System.Drawing.Point(113, 85)
+        Me.txtIngredient4.Name = "txtIngredient4"
+        Me.txtIngredient4.Size = New System.Drawing.Size(146, 20)
+        Me.txtIngredient4.TabIndex = 22
         '
         'lblIngredient5
         '
-        Me.lblIngredient5.Location = New System.Drawing.Point(234, 135)
+        Me.lblIngredient5.Location = New System.Drawing.Point(19, 113)
         Me.lblIngredient5.Name = "lblIngredient5"
-        Me.lblIngredient5.Size = New System.Drawing.Size(95, 16)
-        Me.lblIngredient5.TabIndex = 24
+        Me.lblIngredient5.Size = New System.Drawing.Size(88, 16)
+        Me.lblIngredient5.TabIndex = 25
         Me.lblIngredient5.Text = "Ingredient:"
         Me.lblIngredient5.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'cmbIngredient5
+        'txtIngredient5
         '
-        Me.cmbIngredient5.BackColor = System.Drawing.Color.White
-        Me.cmbIngredient5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbIngredient5.FormattingEnabled = True
-        Me.cmbIngredient5.Location = New System.Drawing.Point(335, 132)
-        Me.cmbIngredient5.Name = "cmbIngredient5"
-        Me.cmbIngredient5.Size = New System.Drawing.Size(159, 21)
-        Me.cmbIngredient5.TabIndex = 23
+        Me.txtIngredient5.Enabled = False
+        Me.txtIngredient5.Location = New System.Drawing.Point(113, 111)
+        Me.txtIngredient5.Name = "txtIngredient5"
+        Me.txtIngredient5.Size = New System.Drawing.Size(146, 20)
+        Me.txtIngredient5.TabIndex = 24
+        '
+        'pnlIngredients
+        '
+        Me.pnlIngredients.Controls.Add(Me.lblIngredient5)
+        Me.pnlIngredients.Controls.Add(Me.txtIngredient5)
+        Me.pnlIngredients.Controls.Add(Me.lblIngredient4)
+        Me.pnlIngredients.Controls.Add(Me.txtIngredient4)
+        Me.pnlIngredients.Controls.Add(Me.lblIngredient3)
+        Me.pnlIngredients.Controls.Add(Me.txtIngredient3)
+        Me.pnlIngredients.Controls.Add(Me.lblIngredient2)
+        Me.pnlIngredients.Controls.Add(Me.txtIngredient2)
+        Me.pnlIngredients.Controls.Add(Me.lblIngredient1)
+        Me.pnlIngredients.Controls.Add(Me.txtIngredient1)
+        Me.pnlIngredients.Location = New System.Drawing.Point(235, 16)
+        Me.pnlIngredients.Name = "pnlIngredients"
+        Me.pnlIngredients.Size = New System.Drawing.Size(266, 139)
+        Me.pnlIngredients.TabIndex = 26
         '
         'Main
         '
@@ -528,6 +539,8 @@ Partial Class Main
         Me.grpInventory.ResumeLayout(False)
         Me.tabFood.ResumeLayout(False)
         Me.grpKitchen.ResumeLayout(False)
+        Me.pnlIngredients.ResumeLayout(False)
+        Me.pnlIngredients.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -565,15 +578,17 @@ Partial Class Main
     Friend WithEvents btnCook As System.Windows.Forms.Button
     Friend WithEvents cmbKitchen As System.Windows.Forms.ComboBox
     Friend WithEvents lblKitchen As System.Windows.Forms.Label
-    Friend WithEvents lblIngredient5 As System.Windows.Forms.Label
-    Friend WithEvents cmbIngredient5 As System.Windows.Forms.ComboBox
-    Friend WithEvents lblIngredient4 As System.Windows.Forms.Label
-    Friend WithEvents cmbIngredient4 As System.Windows.Forms.ComboBox
-    Friend WithEvents lblIngredient3 As System.Windows.Forms.Label
-    Friend WithEvents cmbIngredient3 As System.Windows.Forms.ComboBox
-    Friend WithEvents lblIngredient2 As System.Windows.Forms.Label
-    Friend WithEvents cmbIngredient2 As System.Windows.Forms.ComboBox
+    Friend WithEvents btnCookReset As System.Windows.Forms.Button
     Friend WithEvents lblIngredient1 As System.Windows.Forms.Label
-    Friend WithEvents cmbIngredient1 As System.Windows.Forms.ComboBox
+    Friend WithEvents txtIngredient1 As System.Windows.Forms.TextBox
+    Friend WithEvents lblIngredient5 As System.Windows.Forms.Label
+    Friend WithEvents txtIngredient5 As System.Windows.Forms.TextBox
+    Friend WithEvents lblIngredient4 As System.Windows.Forms.Label
+    Friend WithEvents txtIngredient4 As System.Windows.Forms.TextBox
+    Friend WithEvents lblIngredient3 As System.Windows.Forms.Label
+    Friend WithEvents txtIngredient3 As System.Windows.Forms.TextBox
+    Friend WithEvents lblIngredient2 As System.Windows.Forms.Label
+    Friend WithEvents txtIngredient2 As System.Windows.Forms.TextBox
+    Friend WithEvents pnlIngredients As System.Windows.Forms.Panel
 
 End Class

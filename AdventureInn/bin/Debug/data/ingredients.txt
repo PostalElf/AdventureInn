@@ -1,0 +1,19 @@
+[Dragon's Egg]
+Type: Egg
+Richness: 5
+Meatiness: 1
+Exoticness: 5
+Quality: 5
+
+[Manticore's Egg]
+Type: Egg
+Richness: 4
+Meatiness: 1
+Exoticness: 4
+Quality: 4
+
+[Gorgon's Milk]
+Type: Milk
+Richness: 2
+Exoticness: 2
+Quality: 1
