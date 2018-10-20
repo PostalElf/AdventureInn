@@ -3,6 +3,26 @@
     Private iRequired As New List(Of String)
     Private iFilled As New List(Of String)
     Private Ingredients As New List(Of FoodIngredient)
+
+    Public Shared Function Generate(ByVal targetName As String) As FoodRecipe
+        Dim rawData As List(Of String) = IO.ImportSquareBracketSelect(IO.sbRecipes, targetName)
+        If rawData Is Nothing Then Return Nothing
+
+        Dim fr As New FoodRecipe
+        For Each l In rawData
+            Dim rawsplit As String() = l.Split(":")
+            Dim header As String = rawsplit(0).Trim
+            Dim entry As String = rawsplit(1).Trim
+
+            With fr
+                Select Case header
+                    Case "Name" : .Name = entry
+                    Case "Ingredient" : .iRequired.Add(entry)
+                End Select
+            End With
+        Next
+        Return fr
+    End Function
     Public Function Add(ByVal fi As FoodIngredient) As String
         If iRequired.Contains(fi.IngredientType) = False Then Return "Ingredient type '" & fi.IngredientType & "' not required."
 

@@ -6,26 +6,30 @@
     Public Exoticness As Integer
     Public Quality As Integer
 
-    Public Sub New(ByVal target As String)
-        Dim rawdata As List(Of String) = IO.ImportSquareBracketSelect(IO.sbIngredients, target)
-        If rawdata Is Nothing Then Exit Sub
+    Public Shared Function Generate(ByVal targetName As String)
+        Dim rawdata As List(Of String) = IO.ImportSquareBracketSelect(IO.sbIngredients, targetName)
+        If rawdata Is Nothing Then Return Nothing
 
-        Name = target
-        For Each l In rawdata
-            Dim rawsplit As String() = l.Split(":")
-            Dim header As String = rawsplit(0)
-            Dim entry As String = rawsplit(1)
+        Dim fi As New FoodIngredient
+        With fi
+            .Name = targetName
+            For Each l In rawdata
+                Dim rawsplit As String() = l.Split(":")
+                Dim header As String = rawsplit(0).Trim
+                Dim entry As String = rawsplit(1).Trim
 
-            Select Case header
-                Case "Type" : IngredientType = entry
-                Case "Richness" : Richness = Convert.ToInt32(entry)
-                Case "Plainess" : Richness = -Convert.ToInt32(entry)
-                Case "Meatiness", "Meat" : Meatiness = Convert.ToInt32(entry)
-                Case "Vegetarian", "Veg" : Meatiness = -Convert.ToInt32(entry)
-                Case "Exoticness" : Exoticness = Convert.ToInt32(entry)
-                Case "Commonness", "Common" : Exoticness = -Convert.ToInt32(entry)
-                Case "Quality" : Quality = Convert.ToInt32(entry)
-            End Select
-        Next
-    End Sub
+                Select Case header
+                    Case "Type" : .IngredientType = entry
+                    Case "Richness" : .Richness = Convert.ToInt32(entry)
+                    Case "Plainess" : .Richness = -Convert.ToInt32(entry)
+                    Case "Meatiness", "Meat" : .Meatiness = Convert.ToInt32(entry)
+                    Case "Vegetarian", "Veg" : .Meatiness = -Convert.ToInt32(entry)
+                    Case "Exoticness" : .Exoticness = Convert.ToInt32(entry)
+                    Case "Commonness", "Common" : .Exoticness = -Convert.ToInt32(entry)
+                    Case "Quality" : .Quality = Convert.ToInt32(entry)
+                End Select
+            Next
+        End With
+        Return fi
+    End Function
 End Class

@@ -15,10 +15,10 @@
         Dim floor2 As New Floor
         CurrentInn.Add(floor2)
 
-        CurrentInn.InventoryRoomItems.Add(New RoomItem("Straw Bed"))
-        CurrentInn.InventoryRoomItems.Add(New RoomItem("Study Table"))
-        CurrentInn.InventoryRoomItems.Add(New RoomItem("Study Table"))
-        CurrentInn.InventoryRoomItems.Add(New RoomItem("Four-Poster Bed"))
+        CurrentInn.InventoryRoomItems.Add(RoomItem.Generate("Straw Bed"))
+        CurrentInn.InventoryRoomItems.Add(RoomItem.Generate("Study Table"))
+        CurrentInn.InventoryRoomItems.Add(RoomItem.Generate("Study Table"))
+        CurrentInn.InventoryRoomItems.Add(RoomItem.Generate("Four-Poster Bed"))
         CurrentInn.Gold = 20000
     End Sub
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -30,6 +30,8 @@
         FloorRefresh()
         WorkbenchBuild()
         WorkbenchRefresh()
+        KitchenBuild()
+        KitchenRefresh()
     End Sub
 
     Private CurrentFloor As Floor
@@ -271,7 +273,7 @@
     Private Sub WorkbenchBuild()
         Dim rawData As List(Of String) = IO.ImportSquareBracketHeaders(IO.sbRooms)
         For Each l In rawData
-            AllRoomItems.Add(l, New RoomItem(l))
+            AllRoomItems.Add(l, RoomItem.Generate(l))
             cmbWorkbench.Items.Add(l)
         Next
     End Sub
@@ -300,7 +302,7 @@
         If errorString <> "" Then MsgBox(errorString)
     End Sub
     Private Function BuildItem(ByVal itemName As String) As String
-        Dim item As New RoomItem(itemName)
+        Dim item As RoomItem = RoomItem.Generate(itemName)
         If CurrentInn.Gold < item.Cost Then Return "Insufficient gold."
 
         CurrentInn.Gold -= item.Cost
@@ -308,4 +310,36 @@
         WorkbenchRefresh()
         Return Nothing
     End Function
+
+    Private AllKitchenRecipes As New Dictionary(Of String, FoodRecipe)
+    Private KitchenLabels(5) As Label
+    Private KitchenCombos(5) As ComboBox
+    Private Sub KitchenBuild()
+        KitchenLabels(0) = Nothing
+        KitchenLabels(1) = lblIngredient1
+        KitchenLabels(2) = lblIngredient2
+        KitchenLabels(3) = lblIngredient3
+        KitchenLabels(4) = lblIngredient4
+        KitchenLabels(5) = lblIngredient5
+        KitchenCombos(0) = Nothing
+        KitchenCombos(1) = cmbIngredient1
+        KitchenCombos(2) = cmbIngredient2
+        KitchenCombos(3) = cmbIngredient3
+        KitchenCombos(4) = cmbIngredient4
+        KitchenCombos(5) = cmbIngredient5
+        For n = 1 To 5
+            KitchenLabels(n).Visible = False
+            KitchenCombos(n).Visible = False
+            btnCook.Visible = False
+        Next
+
+        Dim rawData As List(Of String) = IO.ImportSquareBracketHeaders(IO.sbRecipes)
+        For Each l In rawData
+            AllKitchenRecipes.Add(l, FoodRecipe.Generate(l))
+            cmbKitchen.Items.Add(l)
+        Next
+    End Sub
+    Private Sub KitchenRefresh()
+
+    End Sub
 End Class

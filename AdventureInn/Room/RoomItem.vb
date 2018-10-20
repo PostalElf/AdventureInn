@@ -1,34 +1,40 @@
 ﻿Public Class RoomItem
     Implements xy, IComparable
-    Public Sub New(ByVal targetname As String)
-        Dim rawdata As List(Of String) = IO.ImportSquareBracketSelect(IO.sbRooms, targetname)
+    Public Shared Function Generate(ByVal targetName As String) As RoomItem
+        Dim rawdata As List(Of String) = IO.ImportSquareBracketSelect(IO.sbRooms, targetName)
+        If rawdata Is Nothing Then Return Nothing
+
+        Dim ri As New RoomItem
         For Each line In rawdata
             Dim linesplit As String() = line.Split(":")
             Dim header As String = linesplit(0).Trim
             Dim entry As String = linesplit(1).Trim
 
-            _Name = targetname
-            Select Case header
-                Case "Width" : _Width = Convert.ToInt32(entry)
-                Case "Height" : _Height = Convert.ToInt32(entry)
-                Case "Cost" : _Cost = Convert.ToInt32(entry)
-                Case "Description" : _Description = entry
+            With ri
+                ._Name = targetName
+                Select Case header
+                    Case "Width" : ._Width = Convert.ToInt32(entry)
+                    Case "Height" : ._Height = Convert.ToInt32(entry)
+                    Case "Cost" : ._Cost = Convert.ToInt32(entry)
+                    Case "Description" : ._Description = entry
 
-                Case "Capacity" : _Capacity = Convert.ToInt32(entry)
-                Case "Furnishing" : _Furnishing = Convert.ToInt32(entry)
-                Case "Opulence" : _Opulence = Convert.ToInt32(entry)
-                Case "Tastefulness" : _Opulence = Convert.ToInt32(-entry)
-                Case "Restfulness" : _Restfulness = Convert.ToInt32(entry)
-                Case "Excitement" : _Restfulness = Convert.ToInt32(-entry)
-                Case "Law", "Lawfulness" : _Lawfulness = Convert.ToInt32(entry)
-                Case "Chaos" : _Lawfulness = Convert.ToInt32(-entry)
-                Case "Faith" : _Faith = Convert.ToInt32(entry)
-                Case "Strength" : _Strength = Convert.ToInt32(entry)
-                Case "Focus" : _Focus = Convert.ToInt32(entry)
-                Case "Curiosity" : _Curiosity = Convert.ToInt32(entry)
-            End Select
+                    Case "Capacity" : ._Capacity = Convert.ToInt32(entry)
+                    Case "Furnishing" : ._Furnishing = Convert.ToInt32(entry)
+                    Case "Opulence" : ._Opulence = Convert.ToInt32(entry)
+                    Case "Tastefulness" : ._Opulence = Convert.ToInt32(-entry)
+                    Case "Restfulness" : ._Restfulness = Convert.ToInt32(entry)
+                    Case "Excitement" : ._Restfulness = Convert.ToInt32(-entry)
+                    Case "Law", "Lawfulness" : ._Lawfulness = Convert.ToInt32(entry)
+                    Case "Chaos" : ._Lawfulness = Convert.ToInt32(-entry)
+                    Case "Faith" : ._Faith = Convert.ToInt32(entry)
+                    Case "Strength" : ._Strength = Convert.ToInt32(entry)
+                    Case "Focus" : ._Focus = Convert.ToInt32(entry)
+                    Case "Curiosity" : ._Curiosity = Convert.ToInt32(entry)
+                End Select
+            End With
         Next
-    End Sub
+        Return ri
+    End Function
     Public Overrides Function ToString() As String
         Return Name
     End Function
