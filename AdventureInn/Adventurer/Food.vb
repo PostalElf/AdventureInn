@@ -1,4 +1,10 @@
 ﻿Public Class Food
+    Private _Name As String
+    Public ReadOnly Property Name As String
+        Get
+            Return _Name
+        End Get
+    End Property
     Private _Richness As Integer
     Public ReadOnly Property TotalRichness As Pair(Of String, Integer)
         Get
@@ -53,6 +59,10 @@
                    ByVal pMeatiness As Integer, _
                    ByVal pExoticness As Integer, _
                    ByVal pQuality As Integer)
-
+        _Name = pName
+        _Richness = pRichness
+        _Meatiness = pMeatiness
+        _Exoticness = pExoticness
+        _Quality = pQuality
     End Sub
 End Class

@@ -19,6 +19,7 @@
         Floors.Add(floor)
     End Sub
 
-    Public Inventory As New List(Of RoomItem)
+    Public InventoryRoomItems As New List(Of RoomItem)
+    Public InventoryFoodIngredients As New List(Of FoodIngredient)
     Public Gold As Integer
 End Class

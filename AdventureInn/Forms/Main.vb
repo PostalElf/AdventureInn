@@ -15,10 +15,10 @@
         Dim floor2 As New Floor
         CurrentInn.Add(floor2)
 
-        CurrentInn.Inventory.Add(New RoomItem("Straw Bed"))
-        CurrentInn.Inventory.Add(New RoomItem("Study Table"))
-        CurrentInn.Inventory.Add(New RoomItem("Study Table"))
-        CurrentInn.Inventory.Add(New RoomItem("Four-Poster Bed"))
+        CurrentInn.InventoryRoomItems.Add(New RoomItem("Straw Bed"))
+        CurrentInn.InventoryRoomItems.Add(New RoomItem("Study Table"))
+        CurrentInn.InventoryRoomItems.Add(New RoomItem("Study Table"))
+        CurrentInn.InventoryRoomItems.Add(New RoomItem("Four-Poster Bed"))
         CurrentInn.Gold = 20000
     End Sub
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -232,13 +232,13 @@
     Private Sub AddItem(ByVal x As Integer, ByVal y As Integer)
         Dim dri As New DialogRoomItem
         dri.UseCase = "RoomItem"
-        dri.Inventory = CurrentInn.Inventory
+        dri.Inventory = CurrentInn.InventoryRoomItems
         If dri.ShowDialog = Windows.Forms.DialogResult.OK Then
             Dim newItem As RoomItem = dri.RoomItem
             dri.Close()
             If newItem Is Nothing Then Exit Sub
             If CurrentRoom.Add(newItem, x, y) = "" Then
-                CurrentInn.Inventory.Remove(newItem)
+                CurrentInn.InventoryRoomItems.Remove(newItem)
                 RoomRefresh()
             End If
         End If
@@ -246,7 +246,7 @@
     Private Sub RemoveItem(ByVal roomitem As RoomItem)
         If MsgBox("Remove " & roomitem.Name & "?", MsgBoxStyle.YesNo, "Remove Item?") = MsgBoxResult.Yes Then
             CurrentRoom.Remove(roomitem)
-            CurrentInn.Inventory.Add(roomitem)
+            CurrentInn.InventoryRoomItems.Add(roomitem)
             RoomRefresh()
         End If
     End Sub
@@ -277,7 +277,7 @@
     End Sub
     Private Sub WorkbenchRefresh()
         lstInventory.Items.Clear()
-        For Each i In CurrentInn.Inventory
+        For Each i In CurrentInn.InventoryRoomItems
             lstInventory.Items.Add(i)
         Next
         lblGold.Text = CurrentInn.Gold.ToString("N")
@@ -287,7 +287,7 @@
         DescribeItem(lstInventory.SelectedItem, lblInventoryDescription)
     End Sub
     Private Sub btnInventorySort_Click(ByVal sender As Button, ByVal e As System.EventArgs) Handles btnInventorySort.Click
-        CurrentInn.Inventory.Sort()
+        CurrentInn.InventoryRoomItems.Sort()
         WorkbenchRefresh()
     End Sub
     Private Sub cmbWorkbench_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbWorkbench.SelectedIndexChanged
@@ -304,7 +304,7 @@
         If CurrentInn.Gold < item.Cost Then Return "Insufficient gold."
 
         CurrentInn.Gold -= item.Cost
-        CurrentInn.Inventory.Add(item)
+        CurrentInn.InventoryRoomItems.Add(item)
         WorkbenchRefresh()
         Return Nothing
     End Function
