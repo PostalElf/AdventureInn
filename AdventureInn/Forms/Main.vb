@@ -379,11 +379,7 @@
         If ActiveRecipe Is Nothing Then Exit Sub
 
         With ActiveRecipe
-            lblKitchen.Text = ""
-            lblKitchen.Text &= "Quality: " & .TotalQuality.Key & vbCrLf
-            lblKitchen.Text &= "Richness: " & .TotalRichness.Key & vbCrLf
-            lblKitchen.Text &= "Meatiness: " & .TotalMeatiness.Key & vbCrLf
-            lblKitchen.Text &= "Exoticness: " & .TotalExoticness.Key
+            lblKitchen.Text = .attributesdescription
 
             Dim completed As Boolean = True
             For n = 1 To .Requirements.Count
@@ -419,5 +415,16 @@
         sender.Tag = fi
         sender.Enabled = False
         RecipeUpdate()
+    End Sub
+    Private Sub btnCookReset_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCookReset.Click
+        For Each fi In ActiveRecipe.Clear
+            CurrentInn.InventoryFoodIngredients.Add(fi)
+        Next
+
+        For n = 0 To 4
+            KitchenTxts(n).Tag = Nothing
+            KitchenTxts(n).Text = Nothing
+            KitchenTxts(n).Enabled = True
+        Next
     End Sub
 End Class

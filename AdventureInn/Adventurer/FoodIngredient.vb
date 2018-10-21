@@ -35,4 +35,14 @@
     Public Overrides Function ToString() As String
         Return Name
     End Function
+    Public ReadOnly Property AttributesDescription As String
+        Get
+            Dim total As String = ""
+            total &= "Quality: " & Quality & vbCrLf
+            total &= "Richness: " & Richness & vbCrLf
+            total &= "Meatiness: " & Meatiness & vbCrLf
+            total &= "Exoticness: " & Exoticness
+            Return total
+        End Get
+    End Property
 End Class

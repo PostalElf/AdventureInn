@@ -64,6 +64,7 @@ Partial Class DialogPicker
         Me.Controls.Add(Me.lblDescription)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "DialogPicker"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Select"
         Me.ResumeLayout(False)
 

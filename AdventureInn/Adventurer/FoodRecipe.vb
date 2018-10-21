@@ -47,6 +47,11 @@
 
         Return Nothing
     End Function
+    Public Function Clear() As List(Of FoodIngredient)
+        Dim total As New List(Of FoodIngredient)(Ingredients)
+        Ingredients.Clear()
+        Return total
+    End Function
     Public Function Clone() As FoodRecipe
         Dim fr As New FoodRecipe
         With fr

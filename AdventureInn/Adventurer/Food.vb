@@ -48,6 +48,16 @@
             Return New Pair(Of String, Integer)(total, Quality)
         End Get
     End Property
+    Public ReadOnly Property AttributesDescription As String
+        Get
+            Dim total As String = ""
+            total &= "Quality: " & TotalQuality.Key & vbCrLf
+            total &= "Richness: " & TotalRichness.Key & vbCrLf
+            total &= "Meatiness: " & TotalMeatiness.Key & vbCrLf
+            total &= "Exoticness: " & TotalExoticness.Key
+            Return total
+        End Get
+    End Property
 
     Public Shared Function Generate(ByVal recipe As FoodRecipe) As Food
         Dim f As New Food
