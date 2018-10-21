@@ -7,12 +7,11 @@
 
     'Room
     Public RoomSize As RoomSize
-    Private RoomSizes As String() = {"2x2", "4x2", "4x4", "8x4", "8x8"}
+    Private RoomSizes As String() = {"2x2", "4x2", "4x4", "8x4"}
     Private RoomSizeDescriptions As String() = {"Slightly larger than a broom closet.", _
                                               "Snug and cosy, for a gnome.", _
                                               "The copper standard size for an inn room.", _
-                                              "Enough room to swing a cat around in.", _
-                                              "Even a half-giant wouldn't find these quarters cramped."}
+                                              "Enough room to swing a cat around in."}
 
     Private Sub DialogRoomItem_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If UseCase = "RoomItem" Then

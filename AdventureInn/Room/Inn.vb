@@ -23,4 +23,6 @@
     Public InventoryFoodIngredients As New List(Of FoodIngredient)
     Public InventoryFood As New List(Of Food)
     Public Gold As Integer
+
+    Public WaitingGuests As New List(Of Adventurer)
 End Class

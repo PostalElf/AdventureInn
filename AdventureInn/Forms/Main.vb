@@ -12,9 +12,12 @@
             Dim floor1 As New Floor
             floor1.Add(New Room(RoomSize.Large), 1, 1)
             .Add(floor1)
-
             Dim floor2 As New Floor
             .Add(floor2)
+
+            For n = 1 To 10
+                .WaitingGuests.Add(Adventurer.Generate)
+            Next
 
             .InventoryRoomItems.Add(RoomItem.Generate("Straw Bed"))
             .InventoryRoomItems.Add(RoomItem.Generate("Study Table"))
@@ -35,6 +38,7 @@
         CurrentFloor = CurrentInn(0)
         FloorBuild()
         FloorRefresh()
+        GuestsRefresh()
         WorkbenchBuild()
         WorkbenchRefresh()
         KitchenBuild()
@@ -153,8 +157,8 @@
     Private Sub RoomBuild()
         Const xMargin As Integer = 2
         Const yMargin As Integer = 2
-        Const pHeight As Integer = 20
-        Const pWidth As Integer = 20
+        Const pHeight As Integer = 15
+        Const pWidth As Integer = 15
 
         ReDim RoomPanels(CurrentRoom.Width, CurrentRoom.Height)
         pnlRoom.Controls.Clear()
@@ -172,11 +176,6 @@
                 AddHandler panel.MouseDown, AddressOf RoomPanelClick
                 pnlRoom.Controls.Add(panel)
                 RoomPanels(x, y) = panel
-            Next
-
-            lstGuests.Items.Clear()
-            For Each g In CurrentRoom.Guests
-                lstGuests.Items.Add(g)
             Next
         Next
     End Sub
@@ -197,6 +196,7 @@
             Next
         Next
         RoomLabelRefresh()
+        GuestsRefresh()
     End Sub
     Private Sub RoomLabelRefresh()
         lblReview.Text = ""
@@ -213,8 +213,21 @@
             End If
         End With
     End Sub
-    Private Sub lstGuests_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstGuests.SelectedIndexChanged
-        Dim g As Adventurer = lstGuests.SelectedItem
+    Private Sub GuestsRefresh()
+        lstGuestsRoomed.Items.Clear()
+        If CurrentRoom Is Nothing = False Then
+            For Each g In CurrentRoom.Guests
+                lstGuestsRoomed.Items.Add(g)
+            Next
+        End If
+
+        lstGuestsWaiting.Items.Clear()
+        For Each g In CurrentInn.WaitingGuests
+            lstGuestsWaiting.Items.Add(g)
+        Next
+    End Sub
+    Private Sub lstGuests_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstGuestsRoomed.SelectedIndexChanged
+        Dim g As Adventurer = lstGuestsRoomed.SelectedItem
         If g Is Nothing Then Exit Sub
 
         lblReview.Text = g.RoomSatisfaction(CurrentRoom).Key
@@ -274,6 +287,28 @@
     End Sub
     Private Sub lblDescription_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblDescription.Click
         RoomLabelRefresh()
+    End Sub
+    Private Sub btnWaitingToRoom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnWaitingToRoom.Click
+        If CurrentRoom Is Nothing Then Exit Sub
+        If lstGuestsWaiting.SelectedIndex = -1 Then Exit Sub
+
+        Dim guest As Adventurer = lstGuestsWaiting.SelectedItem
+        Dim errorstring As String = CurrentRoom.Add(guest)
+        If errorstring <> "" Then MsgBox(errorstring, MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Error") : Exit Sub
+        lstGuestsRoomed.Items.Add(guest)
+        CurrentInn.WaitingGuests.Remove(guest)
+        lstGuestsWaiting.Items.Remove(guest)
+    End Sub
+    Private Sub btnRoomToWaiting_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRoomToWaiting.Click
+        If CurrentRoom Is Nothing Then Exit Sub
+        If lstGuestsRoomed.SelectedIndex = -1 Then Exit Sub
+
+        Dim guest As Adventurer = lstGuestsRoomed.SelectedItem
+        Dim errorstring As String = CurrentRoom.Remove(guest)
+        If errorstring <> "" Then MsgBox(errorstring, MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Error") : Exit Sub
+        lstGuestsRoomed.Items.Remove(guest)
+        CurrentInn.WaitingGuests.Add(guest)
+        lstGuestsWaiting.Items.Add(guest)
     End Sub
 
     Private AllRoomItems As New Dictionary(Of String, RoomItem)

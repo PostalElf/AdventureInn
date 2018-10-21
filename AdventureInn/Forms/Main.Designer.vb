@@ -31,7 +31,7 @@ Partial Class Main
         Me.tabFloor = New System.Windows.Forms.TabPage()
         Me.grpRoom = New System.Windows.Forms.GroupBox()
         Me.lblReview = New System.Windows.Forms.Label()
-        Me.lstGuests = New System.Windows.Forms.ListBox()
+        Me.lstGuestsRoomed = New System.Windows.Forms.ListBox()
         Me.lblDescription = New System.Windows.Forms.Label()
         Me.pnlRoom = New System.Windows.Forms.Panel()
         Me.grpFloorplan = New System.Windows.Forms.GroupBox()
@@ -45,6 +45,11 @@ Partial Class Main
         Me.lstFoodIngredients = New System.Windows.Forms.ListBox()
         Me.grpKitchen = New System.Windows.Forms.GroupBox()
         Me.pnlIngredients = New System.Windows.Forms.Panel()
+        Me.txtIngredient5 = New System.Windows.Forms.Label()
+        Me.txtIngredient4 = New System.Windows.Forms.Label()
+        Me.txtIngredient3 = New System.Windows.Forms.Label()
+        Me.txtIngredient2 = New System.Windows.Forms.Label()
+        Me.txtIngredient1 = New System.Windows.Forms.Label()
         Me.lblIngredient5 = New System.Windows.Forms.Label()
         Me.lblIngredient4 = New System.Windows.Forms.Label()
         Me.lblIngredient3 = New System.Windows.Forms.Label()
@@ -66,11 +71,10 @@ Partial Class Main
         Me.lblInventoryDescription = New System.Windows.Forms.Label()
         Me.btnInventorySort = New System.Windows.Forms.Button()
         Me.lstInventory = New System.Windows.Forms.ListBox()
-        Me.txtIngredient1 = New System.Windows.Forms.Label()
-        Me.txtIngredient2 = New System.Windows.Forms.Label()
-        Me.txtIngredient3 = New System.Windows.Forms.Label()
-        Me.txtIngredient4 = New System.Windows.Forms.Label()
-        Me.txtIngredient5 = New System.Windows.Forms.Label()
+        Me.tabGuests = New System.Windows.Forms.TabPage()
+        Me.lstGuestsWaiting = New System.Windows.Forms.ListBox()
+        Me.btnWaitingToRoom = New System.Windows.Forms.Button()
+        Me.btnRoomToWaiting = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -124,6 +128,7 @@ Partial Class Main
         '
         'tbc
         '
+        Me.tbc.Controls.Add(Me.tabGuests)
         Me.tbc.Controls.Add(Me.tabFloor)
         Me.tbc.Controls.Add(Me.tabFood)
         Me.tbc.Controls.Add(Me.tabInventory)
@@ -139,8 +144,11 @@ Partial Class Main
         'tabFloor
         '
         Me.tabFloor.BackColor = System.Drawing.SystemColors.Window
+        Me.tabFloor.Controls.Add(Me.btnRoomToWaiting)
         Me.tabFloor.Controls.Add(Me.grpRoom)
+        Me.tabFloor.Controls.Add(Me.btnWaitingToRoom)
         Me.tabFloor.Controls.Add(Me.grpFloorplan)
+        Me.tabFloor.Controls.Add(Me.lstGuestsWaiting)
         Me.tabFloor.Controls.Add(Me.grpRooms)
         Me.tabFloor.Location = New System.Drawing.Point(4, 22)
         Me.tabFloor.Name = "tabFloor"
@@ -152,43 +160,43 @@ Partial Class Main
         'grpRoom
         '
         Me.grpRoom.Controls.Add(Me.lblReview)
-        Me.grpRoom.Controls.Add(Me.lstGuests)
+        Me.grpRoom.Controls.Add(Me.lstGuestsRoomed)
         Me.grpRoom.Controls.Add(Me.lblDescription)
         Me.grpRoom.Controls.Add(Me.pnlRoom)
         Me.grpRoom.Location = New System.Drawing.Point(11, 229)
         Me.grpRoom.Name = "grpRoom"
-        Me.grpRoom.Size = New System.Drawing.Size(361, 267)
+        Me.grpRoom.Size = New System.Drawing.Size(298, 267)
         Me.grpRoom.TabIndex = 11
         Me.grpRoom.TabStop = False
         Me.grpRoom.Text = "Room Plan"
         '
         'lblReview
         '
-        Me.lblReview.Location = New System.Drawing.Point(172, 115)
+        Me.lblReview.Location = New System.Drawing.Point(143, 146)
         Me.lblReview.Name = "lblReview"
-        Me.lblReview.Size = New System.Drawing.Size(183, 149)
+        Me.lblReview.Size = New System.Drawing.Size(148, 112)
         Me.lblReview.TabIndex = 14
         '
-        'lstGuests
+        'lstGuestsRoomed
         '
-        Me.lstGuests.FormattingEnabled = True
-        Me.lstGuests.Location = New System.Drawing.Point(175, 20)
-        Me.lstGuests.Name = "lstGuests"
-        Me.lstGuests.Size = New System.Drawing.Size(180, 82)
-        Me.lstGuests.TabIndex = 13
+        Me.lstGuestsRoomed.FormattingEnabled = True
+        Me.lstGuestsRoomed.Location = New System.Drawing.Point(143, 19)
+        Me.lstGuestsRoomed.Name = "lstGuestsRoomed"
+        Me.lstGuestsRoomed.Size = New System.Drawing.Size(148, 121)
+        Me.lstGuestsRoomed.TabIndex = 13
         '
         'lblDescription
         '
-        Me.lblDescription.Location = New System.Drawing.Point(2, 115)
+        Me.lblDescription.Location = New System.Drawing.Point(6, 94)
         Me.lblDescription.Name = "lblDescription"
-        Me.lblDescription.Size = New System.Drawing.Size(167, 149)
+        Me.lblDescription.Size = New System.Drawing.Size(123, 160)
         Me.lblDescription.TabIndex = 12
         '
         'pnlRoom
         '
         Me.pnlRoom.Location = New System.Drawing.Point(5, 19)
         Me.pnlRoom.Name = "pnlRoom"
-        Me.pnlRoom.Size = New System.Drawing.Size(164, 84)
+        Me.pnlRoom.Size = New System.Drawing.Size(124, 64)
         Me.pnlRoom.TabIndex = 12
         '
         'grpFloorplan
@@ -221,7 +229,7 @@ Partial Class Main
         'grpRooms
         '
         Me.grpRooms.Controls.Add(Me.lstRooms)
-        Me.grpRooms.Location = New System.Drawing.Point(210, 6)
+        Me.grpRooms.Location = New System.Drawing.Point(197, 6)
         Me.grpRooms.Name = "grpRooms"
         Me.grpRooms.Size = New System.Drawing.Size(247, 185)
         Me.grpRooms.TabIndex = 9
@@ -306,6 +314,51 @@ Partial Class Main
         Me.pnlIngredients.Name = "pnlIngredients"
         Me.pnlIngredients.Size = New System.Drawing.Size(266, 139)
         Me.pnlIngredients.TabIndex = 26
+        '
+        'txtIngredient5
+        '
+        Me.txtIngredient5.BackColor = System.Drawing.Color.Silver
+        Me.txtIngredient5.Location = New System.Drawing.Point(113, 113)
+        Me.txtIngredient5.Name = "txtIngredient5"
+        Me.txtIngredient5.Size = New System.Drawing.Size(146, 16)
+        Me.txtIngredient5.TabIndex = 30
+        Me.txtIngredient5.Text = "-"
+        '
+        'txtIngredient4
+        '
+        Me.txtIngredient4.BackColor = System.Drawing.Color.Silver
+        Me.txtIngredient4.Location = New System.Drawing.Point(113, 87)
+        Me.txtIngredient4.Name = "txtIngredient4"
+        Me.txtIngredient4.Size = New System.Drawing.Size(146, 16)
+        Me.txtIngredient4.TabIndex = 29
+        Me.txtIngredient4.Text = "-"
+        '
+        'txtIngredient3
+        '
+        Me.txtIngredient3.BackColor = System.Drawing.Color.Silver
+        Me.txtIngredient3.Location = New System.Drawing.Point(113, 61)
+        Me.txtIngredient3.Name = "txtIngredient3"
+        Me.txtIngredient3.Size = New System.Drawing.Size(146, 16)
+        Me.txtIngredient3.TabIndex = 28
+        Me.txtIngredient3.Text = "-"
+        '
+        'txtIngredient2
+        '
+        Me.txtIngredient2.BackColor = System.Drawing.Color.Silver
+        Me.txtIngredient2.Location = New System.Drawing.Point(113, 35)
+        Me.txtIngredient2.Name = "txtIngredient2"
+        Me.txtIngredient2.Size = New System.Drawing.Size(146, 16)
+        Me.txtIngredient2.TabIndex = 27
+        Me.txtIngredient2.Text = "-"
+        '
+        'txtIngredient1
+        '
+        Me.txtIngredient1.BackColor = System.Drawing.Color.Silver
+        Me.txtIngredient1.Location = New System.Drawing.Point(113, 9)
+        Me.txtIngredient1.Name = "txtIngredient1"
+        Me.txtIngredient1.Size = New System.Drawing.Size(146, 16)
+        Me.txtIngredient1.TabIndex = 26
+        Me.txtIngredient1.Text = "-"
         '
         'lblIngredient5
         '
@@ -504,50 +557,40 @@ Partial Class Main
         Me.lstInventory.Size = New System.Drawing.Size(210, 108)
         Me.lstInventory.TabIndex = 0
         '
-        'txtIngredient1
+        'tabGuests
         '
-        Me.txtIngredient1.BackColor = System.Drawing.Color.Silver
-        Me.txtIngredient1.Location = New System.Drawing.Point(113, 9)
-        Me.txtIngredient1.Name = "txtIngredient1"
-        Me.txtIngredient1.Size = New System.Drawing.Size(146, 16)
-        Me.txtIngredient1.TabIndex = 26
-        Me.txtIngredient1.Text = "-"
+        Me.tabGuests.Location = New System.Drawing.Point(4, 22)
+        Me.tabGuests.Name = "tabGuests"
+        Me.tabGuests.Size = New System.Drawing.Size(528, 518)
+        Me.tabGuests.TabIndex = 3
+        Me.tabGuests.Text = "Guests"
+        Me.tabGuests.UseVisualStyleBackColor = True
         '
-        'txtIngredient2
+        'lstGuestsWaiting
         '
-        Me.txtIngredient2.BackColor = System.Drawing.Color.Silver
-        Me.txtIngredient2.Location = New System.Drawing.Point(113, 35)
-        Me.txtIngredient2.Name = "txtIngredient2"
-        Me.txtIngredient2.Size = New System.Drawing.Size(146, 16)
-        Me.txtIngredient2.TabIndex = 27
-        Me.txtIngredient2.Text = "-"
+        Me.lstGuestsWaiting.FormattingEnabled = True
+        Me.lstGuestsWaiting.Location = New System.Drawing.Point(344, 248)
+        Me.lstGuestsWaiting.Name = "lstGuestsWaiting"
+        Me.lstGuestsWaiting.Size = New System.Drawing.Size(172, 251)
+        Me.lstGuestsWaiting.TabIndex = 15
         '
-        'txtIngredient3
+        'btnWaitingToRoom
         '
-        Me.txtIngredient3.BackColor = System.Drawing.Color.Silver
-        Me.txtIngredient3.Location = New System.Drawing.Point(113, 61)
-        Me.txtIngredient3.Name = "txtIngredient3"
-        Me.txtIngredient3.Size = New System.Drawing.Size(146, 16)
-        Me.txtIngredient3.TabIndex = 28
-        Me.txtIngredient3.Text = "-"
+        Me.btnWaitingToRoom.Location = New System.Drawing.Point(312, 262)
+        Me.btnWaitingToRoom.Name = "btnWaitingToRoom"
+        Me.btnWaitingToRoom.Size = New System.Drawing.Size(26, 23)
+        Me.btnWaitingToRoom.TabIndex = 16
+        Me.btnWaitingToRoom.Text = "<-"
+        Me.btnWaitingToRoom.UseVisualStyleBackColor = True
         '
-        'txtIngredient4
+        'btnRoomToWaiting
         '
-        Me.txtIngredient4.BackColor = System.Drawing.Color.Silver
-        Me.txtIngredient4.Location = New System.Drawing.Point(113, 87)
-        Me.txtIngredient4.Name = "txtIngredient4"
-        Me.txtIngredient4.Size = New System.Drawing.Size(146, 16)
-        Me.txtIngredient4.TabIndex = 29
-        Me.txtIngredient4.Text = "-"
-        '
-        'txtIngredient5
-        '
-        Me.txtIngredient5.BackColor = System.Drawing.Color.Silver
-        Me.txtIngredient5.Location = New System.Drawing.Point(113, 113)
-        Me.txtIngredient5.Name = "txtIngredient5"
-        Me.txtIngredient5.Size = New System.Drawing.Size(146, 16)
-        Me.txtIngredient5.TabIndex = 30
-        Me.txtIngredient5.Text = "-"
+        Me.btnRoomToWaiting.Location = New System.Drawing.Point(312, 291)
+        Me.btnRoomToWaiting.Name = "btnRoomToWaiting"
+        Me.btnRoomToWaiting.Size = New System.Drawing.Size(26, 23)
+        Me.btnRoomToWaiting.TabIndex = 17
+        Me.btnRoomToWaiting.Text = "->"
+        Me.btnRoomToWaiting.UseVisualStyleBackColor = True
         '
         'Main
         '
@@ -597,7 +640,7 @@ Partial Class Main
     Friend WithEvents grpRoom As System.Windows.Forms.GroupBox
     Friend WithEvents pnlRoom As System.Windows.Forms.Panel
     Friend WithEvents lblDescription As System.Windows.Forms.Label
-    Friend WithEvents lstGuests As System.Windows.Forms.ListBox
+    Friend WithEvents lstGuestsRoomed As System.Windows.Forms.ListBox
     Friend WithEvents lblReview As System.Windows.Forms.Label
     Friend WithEvents grpInventory As System.Windows.Forms.GroupBox
     Friend WithEvents lstInventory As System.Windows.Forms.ListBox
@@ -630,5 +673,9 @@ Partial Class Main
     Friend WithEvents txtIngredient3 As System.Windows.Forms.Label
     Friend WithEvents txtIngredient2 As System.Windows.Forms.Label
     Friend WithEvents txtIngredient1 As System.Windows.Forms.Label
+    Friend WithEvents tabGuests As System.Windows.Forms.TabPage
+    Friend WithEvents btnRoomToWaiting As System.Windows.Forms.Button
+    Friend WithEvents btnWaitingToRoom As System.Windows.Forms.Button
+    Friend WithEvents lstGuestsWaiting As System.Windows.Forms.ListBox
 
 End Class

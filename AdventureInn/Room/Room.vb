@@ -16,9 +16,6 @@
             Case RoomSize.Large
                 _Width = 8
                 _Height = 4
-            Case RoomSize.Deluxe
-                _Width = 8
-                _Height = 8
         End Select
         Name = Size.ToString & " Room"
         ReDim Contents(Width, Height)
@@ -166,5 +163,4 @@ Public Enum RoomSize
     Small
     Standard
     Large
-    Deluxe
 End Enum
