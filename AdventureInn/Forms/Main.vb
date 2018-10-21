@@ -37,6 +37,7 @@
         WorkbenchBuild()
         WorkbenchRefresh()
         KitchenBuild()
+        KitchenRefresh()
     End Sub
 
     Private CurrentFloor As Floor
@@ -350,6 +351,16 @@
         btnCook.Visible = False
         btnCookReset.Visible = False
     End Sub
+    Private Sub KitchenRefresh()
+        lstFoodIngredients.Items.Clear()
+        For Each fi In CurrentInn.InventoryFoodIngredients
+            lstFoodIngredients.Items.Add(fi)
+        Next
+        lstFood.Items.Clear()
+        For Each f In CurrentInn.InventoryFood
+            lstFood.Items.Add(f)
+        Next
+    End Sub
     Private Sub cmbKitchen_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbKitchen.SelectedIndexChanged
         Dim fr As FoodRecipe = AllKitchenRecipes(cmbKitchen.SelectedItem.ToString)
         ActiveRecipe = fr.Clone
@@ -408,6 +419,7 @@
             dp.MainList = ingredients
             If dp.ShowDialog = Windows.Forms.DialogResult.OK Then fi = dp.Result Else Exit Sub
         End If
+        lstFoodIngredients.Items.Remove(fi)
 
         CurrentInn.InventoryFoodIngredients.Remove(fi)
         ActiveRecipe.Add(fi)
@@ -426,5 +438,16 @@
             KitchenTxts(n).Text = Nothing
             KitchenTxts(n).Enabled = True
         Next
+
+        KitchenRefresh()
+    End Sub
+    Private Sub btnCook_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCook.Click
+        Dim f As Food = Food.Generate(ActiveRecipe)
+        CurrentInn.InventoryFood.Add(f)
+
+        ActiveRecipe = Nothing
+        cmbKitchen.SelectedIndex = -1
+
+        KitchenRefresh()
     End Sub
 End Class

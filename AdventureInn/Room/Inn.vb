@@ -21,5 +21,6 @@
 
     Public InventoryRoomItems As New List(Of RoomItem)
     Public InventoryFoodIngredients As New List(Of FoodIngredient)
+    Public InventoryFood As New List(Of Food)
     Public Gold As Integer
 End Class

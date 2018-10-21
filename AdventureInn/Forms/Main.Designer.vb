@@ -34,22 +34,11 @@ Partial Class Main
         Me.lstGuests = New System.Windows.Forms.ListBox()
         Me.lblDescription = New System.Windows.Forms.Label()
         Me.pnlRoom = New System.Windows.Forms.Panel()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.grpFloorplan = New System.Windows.Forms.GroupBox()
         Me.pnlFloor = New System.Windows.Forms.Panel()
         Me.numFloor = New System.Windows.Forms.NumericUpDown()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.grpRooms = New System.Windows.Forms.GroupBox()
         Me.lstRooms = New System.Windows.Forms.ListBox()
-        Me.tabInventory = New System.Windows.Forms.TabPage()
-        Me.grpGold = New System.Windows.Forms.GroupBox()
-        Me.lblGold = New System.Windows.Forms.Label()
-        Me.grpWorkbench = New System.Windows.Forms.GroupBox()
-        Me.btnBuild = New System.Windows.Forms.Button()
-        Me.cmbWorkbench = New System.Windows.Forms.ComboBox()
-        Me.lblWorkbenchDescription = New System.Windows.Forms.Label()
-        Me.grpInventory = New System.Windows.Forms.GroupBox()
-        Me.lblInventoryDescription = New System.Windows.Forms.Label()
-        Me.btnInventorySort = New System.Windows.Forms.Button()
-        Me.lstInventory = New System.Windows.Forms.ListBox()
         Me.tabFood = New System.Windows.Forms.TabPage()
         Me.grpKitchen = New System.Windows.Forms.GroupBox()
         Me.pnlIngredients = New System.Windows.Forms.Panel()
@@ -68,20 +57,35 @@ Partial Class Main
         Me.btnCook = New System.Windows.Forms.Button()
         Me.cmbKitchen = New System.Windows.Forms.ComboBox()
         Me.grpMenu = New System.Windows.Forms.GroupBox()
+        Me.tabInventory = New System.Windows.Forms.TabPage()
+        Me.grpGold = New System.Windows.Forms.GroupBox()
+        Me.lblGold = New System.Windows.Forms.Label()
+        Me.grpWorkbench = New System.Windows.Forms.GroupBox()
+        Me.btnBuild = New System.Windows.Forms.Button()
+        Me.cmbWorkbench = New System.Windows.Forms.ComboBox()
+        Me.lblWorkbenchDescription = New System.Windows.Forms.Label()
+        Me.grpInventory = New System.Windows.Forms.GroupBox()
+        Me.lblInventoryDescription = New System.Windows.Forms.Label()
+        Me.btnInventorySort = New System.Windows.Forms.Button()
+        Me.lstInventory = New System.Windows.Forms.ListBox()
+        Me.grpFood = New System.Windows.Forms.GroupBox()
+        Me.lstFoodIngredients = New System.Windows.Forms.ListBox()
+        Me.lstFood = New System.Windows.Forms.ListBox()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
         Me.grpRoom.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
+        Me.grpFloorplan.SuspendLayout()
         CType(Me.numFloor, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox1.SuspendLayout()
+        Me.grpRooms.SuspendLayout()
+        Me.tabFood.SuspendLayout()
+        Me.grpKitchen.SuspendLayout()
+        Me.pnlIngredients.SuspendLayout()
         Me.tabInventory.SuspendLayout()
         Me.grpGold.SuspendLayout()
         Me.grpWorkbench.SuspendLayout()
         Me.grpInventory.SuspendLayout()
-        Me.tabFood.SuspendLayout()
-        Me.grpKitchen.SuspendLayout()
-        Me.pnlIngredients.SuspendLayout()
+        Me.grpFood.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -136,8 +140,8 @@ Partial Class Main
         '
         Me.tabFloor.BackColor = System.Drawing.SystemColors.Window
         Me.tabFloor.Controls.Add(Me.grpRoom)
-        Me.tabFloor.Controls.Add(Me.GroupBox2)
-        Me.tabFloor.Controls.Add(Me.GroupBox1)
+        Me.tabFloor.Controls.Add(Me.grpFloorplan)
+        Me.tabFloor.Controls.Add(Me.grpRooms)
         Me.tabFloor.Location = New System.Drawing.Point(4, 22)
         Me.tabFloor.Name = "tabFloor"
         Me.tabFloor.Padding = New System.Windows.Forms.Padding(3)
@@ -187,17 +191,17 @@ Partial Class Main
         Me.pnlRoom.Size = New System.Drawing.Size(164, 84)
         Me.pnlRoom.TabIndex = 12
         '
-        'GroupBox2
+        'grpFloorplan
         '
-        Me.GroupBox2.Controls.Add(Me.pnlFloor)
-        Me.GroupBox2.Controls.Add(Me.Label1)
-        Me.GroupBox2.Controls.Add(Me.numFloor)
-        Me.GroupBox2.Location = New System.Drawing.Point(8, 6)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(177, 218)
-        Me.GroupBox2.TabIndex = 10
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Floorplan"
+        Me.grpFloorplan.Controls.Add(Me.pnlFloor)
+        Me.grpFloorplan.Controls.Add(Me.Label1)
+        Me.grpFloorplan.Controls.Add(Me.numFloor)
+        Me.grpFloorplan.Location = New System.Drawing.Point(8, 6)
+        Me.grpFloorplan.Name = "grpFloorplan"
+        Me.grpFloorplan.Size = New System.Drawing.Size(177, 218)
+        Me.grpFloorplan.TabIndex = 10
+        Me.grpFloorplan.TabStop = False
+        Me.grpFloorplan.Text = "Floorplan"
         '
         'pnlFloor
         '
@@ -214,15 +218,15 @@ Partial Class Main
         Me.numFloor.Size = New System.Drawing.Size(46, 20)
         Me.numFloor.TabIndex = 7
         '
-        'GroupBox1
+        'grpRooms
         '
-        Me.GroupBox1.Controls.Add(Me.lstRooms)
-        Me.GroupBox1.Location = New System.Drawing.Point(210, 6)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(247, 185)
-        Me.GroupBox1.TabIndex = 9
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Rooms"
+        Me.grpRooms.Controls.Add(Me.lstRooms)
+        Me.grpRooms.Location = New System.Drawing.Point(210, 6)
+        Me.grpRooms.Name = "grpRooms"
+        Me.grpRooms.Size = New System.Drawing.Size(247, 185)
+        Me.grpRooms.TabIndex = 9
+        Me.grpRooms.TabStop = False
+        Me.grpRooms.Text = "Rooms"
         '
         'lstRooms
         '
@@ -233,116 +237,9 @@ Partial Class Main
         Me.lstRooms.Size = New System.Drawing.Size(235, 160)
         Me.lstRooms.TabIndex = 8
         '
-        'tabInventory
-        '
-        Me.tabInventory.BackColor = System.Drawing.SystemColors.Window
-        Me.tabInventory.Controls.Add(Me.grpGold)
-        Me.tabInventory.Controls.Add(Me.grpWorkbench)
-        Me.tabInventory.Controls.Add(Me.grpInventory)
-        Me.tabInventory.Location = New System.Drawing.Point(4, 22)
-        Me.tabInventory.Name = "tabInventory"
-        Me.tabInventory.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabInventory.Size = New System.Drawing.Size(528, 518)
-        Me.tabInventory.TabIndex = 1
-        Me.tabInventory.Text = "Inventory"
-        '
-        'grpGold
-        '
-        Me.grpGold.Controls.Add(Me.lblGold)
-        Me.grpGold.Location = New System.Drawing.Point(400, 6)
-        Me.grpGold.Name = "grpGold"
-        Me.grpGold.Size = New System.Drawing.Size(118, 71)
-        Me.grpGold.TabIndex = 3
-        Me.grpGold.TabStop = False
-        Me.grpGold.Text = "Gold"
-        '
-        'lblGold
-        '
-        Me.lblGold.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.lblGold.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblGold.Location = New System.Drawing.Point(8, 23)
-        Me.lblGold.Name = "lblGold"
-        Me.lblGold.Size = New System.Drawing.Size(99, 33)
-        Me.lblGold.TabIndex = 4
-        Me.lblGold.Text = "0"
-        Me.lblGold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'grpWorkbench
-        '
-        Me.grpWorkbench.Controls.Add(Me.btnBuild)
-        Me.grpWorkbench.Controls.Add(Me.cmbWorkbench)
-        Me.grpWorkbench.Controls.Add(Me.lblWorkbenchDescription)
-        Me.grpWorkbench.Location = New System.Drawing.Point(247, 120)
-        Me.grpWorkbench.Name = "grpWorkbench"
-        Me.grpWorkbench.Size = New System.Drawing.Size(224, 207)
-        Me.grpWorkbench.TabIndex = 2
-        Me.grpWorkbench.TabStop = False
-        Me.grpWorkbench.Text = "Workbench"
-        '
-        'btnBuild
-        '
-        Me.btnBuild.Location = New System.Drawing.Point(166, 17)
-        Me.btnBuild.Name = "btnBuild"
-        Me.btnBuild.Size = New System.Drawing.Size(47, 23)
-        Me.btnBuild.TabIndex = 3
-        Me.btnBuild.Text = "Build"
-        Me.btnBuild.UseVisualStyleBackColor = True
-        '
-        'cmbWorkbench
-        '
-        Me.cmbWorkbench.BackColor = System.Drawing.Color.White
-        Me.cmbWorkbench.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbWorkbench.FormattingEnabled = True
-        Me.cmbWorkbench.Location = New System.Drawing.Point(6, 19)
-        Me.cmbWorkbench.Name = "cmbWorkbench"
-        Me.cmbWorkbench.Size = New System.Drawing.Size(154, 21)
-        Me.cmbWorkbench.TabIndex = 1
-        '
-        'lblWorkbenchDescription
-        '
-        Me.lblWorkbenchDescription.Location = New System.Drawing.Point(6, 47)
-        Me.lblWorkbenchDescription.Name = "lblWorkbenchDescription"
-        Me.lblWorkbenchDescription.Size = New System.Drawing.Size(210, 149)
-        Me.lblWorkbenchDescription.TabIndex = 13
-        '
-        'grpInventory
-        '
-        Me.grpInventory.Controls.Add(Me.lblInventoryDescription)
-        Me.grpInventory.Controls.Add(Me.btnInventorySort)
-        Me.grpInventory.Controls.Add(Me.lstInventory)
-        Me.grpInventory.Location = New System.Drawing.Point(8, 6)
-        Me.grpInventory.Name = "grpInventory"
-        Me.grpInventory.Size = New System.Drawing.Size(223, 321)
-        Me.grpInventory.TabIndex = 1
-        Me.grpInventory.TabStop = False
-        Me.grpInventory.Text = "Inventory"
-        '
-        'lblInventoryDescription
-        '
-        Me.lblInventoryDescription.Location = New System.Drawing.Point(6, 161)
-        Me.lblInventoryDescription.Name = "lblInventoryDescription"
-        Me.lblInventoryDescription.Size = New System.Drawing.Size(210, 149)
-        Me.lblInventoryDescription.TabIndex = 13
-        '
-        'btnInventorySort
-        '
-        Me.btnInventorySort.Location = New System.Drawing.Point(162, 131)
-        Me.btnInventorySort.Name = "btnInventorySort"
-        Me.btnInventorySort.Size = New System.Drawing.Size(54, 23)
-        Me.btnInventorySort.TabIndex = 3
-        Me.btnInventorySort.Text = "Sort"
-        Me.btnInventorySort.UseVisualStyleBackColor = True
-        '
-        'lstInventory
-        '
-        Me.lstInventory.FormattingEnabled = True
-        Me.lstInventory.Location = New System.Drawing.Point(6, 19)
-        Me.lstInventory.Name = "lstInventory"
-        Me.lstInventory.Size = New System.Drawing.Size(210, 108)
-        Me.lstInventory.TabIndex = 0
-        '
         'tabFood
         '
+        Me.tabFood.Controls.Add(Me.grpFood)
         Me.tabFood.Controls.Add(Me.grpKitchen)
         Me.tabFood.Controls.Add(Me.grpMenu)
         Me.tabFood.Location = New System.Drawing.Point(4, 22)
@@ -507,10 +404,145 @@ Partial Class Main
         '
         Me.grpMenu.Location = New System.Drawing.Point(8, 14)
         Me.grpMenu.Name = "grpMenu"
-        Me.grpMenu.Size = New System.Drawing.Size(510, 272)
+        Me.grpMenu.Size = New System.Drawing.Size(247, 272)
         Me.grpMenu.TabIndex = 0
         Me.grpMenu.TabStop = False
         Me.grpMenu.Text = "Today's Menu"
+        '
+        'tabInventory
+        '
+        Me.tabInventory.BackColor = System.Drawing.SystemColors.Window
+        Me.tabInventory.Controls.Add(Me.grpGold)
+        Me.tabInventory.Controls.Add(Me.grpWorkbench)
+        Me.tabInventory.Controls.Add(Me.grpInventory)
+        Me.tabInventory.Location = New System.Drawing.Point(4, 22)
+        Me.tabInventory.Name = "tabInventory"
+        Me.tabInventory.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabInventory.Size = New System.Drawing.Size(528, 518)
+        Me.tabInventory.TabIndex = 1
+        Me.tabInventory.Text = "Inventory"
+        '
+        'grpGold
+        '
+        Me.grpGold.Controls.Add(Me.lblGold)
+        Me.grpGold.Location = New System.Drawing.Point(400, 6)
+        Me.grpGold.Name = "grpGold"
+        Me.grpGold.Size = New System.Drawing.Size(118, 71)
+        Me.grpGold.TabIndex = 3
+        Me.grpGold.TabStop = False
+        Me.grpGold.Text = "Gold"
+        '
+        'lblGold
+        '
+        Me.lblGold.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.lblGold.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblGold.Location = New System.Drawing.Point(8, 23)
+        Me.lblGold.Name = "lblGold"
+        Me.lblGold.Size = New System.Drawing.Size(99, 33)
+        Me.lblGold.TabIndex = 4
+        Me.lblGold.Text = "0"
+        Me.lblGold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'grpWorkbench
+        '
+        Me.grpWorkbench.Controls.Add(Me.btnBuild)
+        Me.grpWorkbench.Controls.Add(Me.cmbWorkbench)
+        Me.grpWorkbench.Controls.Add(Me.lblWorkbenchDescription)
+        Me.grpWorkbench.Location = New System.Drawing.Point(247, 120)
+        Me.grpWorkbench.Name = "grpWorkbench"
+        Me.grpWorkbench.Size = New System.Drawing.Size(224, 207)
+        Me.grpWorkbench.TabIndex = 2
+        Me.grpWorkbench.TabStop = False
+        Me.grpWorkbench.Text = "Workbench"
+        '
+        'btnBuild
+        '
+        Me.btnBuild.Location = New System.Drawing.Point(166, 17)
+        Me.btnBuild.Name = "btnBuild"
+        Me.btnBuild.Size = New System.Drawing.Size(47, 23)
+        Me.btnBuild.TabIndex = 3
+        Me.btnBuild.Text = "Build"
+        Me.btnBuild.UseVisualStyleBackColor = True
+        '
+        'cmbWorkbench
+        '
+        Me.cmbWorkbench.BackColor = System.Drawing.Color.White
+        Me.cmbWorkbench.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbWorkbench.FormattingEnabled = True
+        Me.cmbWorkbench.Location = New System.Drawing.Point(6, 19)
+        Me.cmbWorkbench.Name = "cmbWorkbench"
+        Me.cmbWorkbench.Size = New System.Drawing.Size(154, 21)
+        Me.cmbWorkbench.TabIndex = 1
+        '
+        'lblWorkbenchDescription
+        '
+        Me.lblWorkbenchDescription.Location = New System.Drawing.Point(6, 47)
+        Me.lblWorkbenchDescription.Name = "lblWorkbenchDescription"
+        Me.lblWorkbenchDescription.Size = New System.Drawing.Size(210, 149)
+        Me.lblWorkbenchDescription.TabIndex = 13
+        '
+        'grpInventory
+        '
+        Me.grpInventory.Controls.Add(Me.lblInventoryDescription)
+        Me.grpInventory.Controls.Add(Me.btnInventorySort)
+        Me.grpInventory.Controls.Add(Me.lstInventory)
+        Me.grpInventory.Location = New System.Drawing.Point(8, 6)
+        Me.grpInventory.Name = "grpInventory"
+        Me.grpInventory.Size = New System.Drawing.Size(223, 321)
+        Me.grpInventory.TabIndex = 1
+        Me.grpInventory.TabStop = False
+        Me.grpInventory.Text = "Inventory"
+        '
+        'lblInventoryDescription
+        '
+        Me.lblInventoryDescription.Location = New System.Drawing.Point(6, 161)
+        Me.lblInventoryDescription.Name = "lblInventoryDescription"
+        Me.lblInventoryDescription.Size = New System.Drawing.Size(210, 149)
+        Me.lblInventoryDescription.TabIndex = 13
+        '
+        'btnInventorySort
+        '
+        Me.btnInventorySort.Location = New System.Drawing.Point(162, 131)
+        Me.btnInventorySort.Name = "btnInventorySort"
+        Me.btnInventorySort.Size = New System.Drawing.Size(54, 23)
+        Me.btnInventorySort.TabIndex = 3
+        Me.btnInventorySort.Text = "Sort"
+        Me.btnInventorySort.UseVisualStyleBackColor = True
+        '
+        'lstInventory
+        '
+        Me.lstInventory.FormattingEnabled = True
+        Me.lstInventory.Location = New System.Drawing.Point(6, 19)
+        Me.lstInventory.Name = "lstInventory"
+        Me.lstInventory.Size = New System.Drawing.Size(210, 108)
+        Me.lstInventory.TabIndex = 0
+        '
+        'grpFood
+        '
+        Me.grpFood.Controls.Add(Me.lstFood)
+        Me.grpFood.Controls.Add(Me.lstFoodIngredients)
+        Me.grpFood.Location = New System.Drawing.Point(265, 14)
+        Me.grpFood.Name = "grpFood"
+        Me.grpFood.Size = New System.Drawing.Size(253, 272)
+        Me.grpFood.TabIndex = 2
+        Me.grpFood.TabStop = False
+        Me.grpFood.Text = "Inventory"
+        '
+        'lstFoodIngredients
+        '
+        Me.lstFoodIngredients.FormattingEnabled = True
+        Me.lstFoodIngredients.Location = New System.Drawing.Point(6, 19)
+        Me.lstFoodIngredients.Name = "lstFoodIngredients"
+        Me.lstFoodIngredients.Size = New System.Drawing.Size(241, 121)
+        Me.lstFoodIngredients.TabIndex = 1
+        '
+        'lstFood
+        '
+        Me.lstFood.FormattingEnabled = True
+        Me.lstFood.Location = New System.Drawing.Point(6, 145)
+        Me.lstFood.Name = "lstFood"
+        Me.lstFood.Size = New System.Drawing.Size(241, 121)
+        Me.lstFood.TabIndex = 2
         '
         'Main
         '
@@ -529,18 +561,19 @@ Partial Class Main
         Me.tbc.ResumeLayout(False)
         Me.tabFloor.ResumeLayout(False)
         Me.grpRoom.ResumeLayout(False)
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
+        Me.grpFloorplan.ResumeLayout(False)
+        Me.grpFloorplan.PerformLayout()
         CType(Me.numFloor, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox1.ResumeLayout(False)
-        Me.tabInventory.ResumeLayout(False)
-        Me.grpGold.ResumeLayout(False)
-        Me.grpWorkbench.ResumeLayout(False)
-        Me.grpInventory.ResumeLayout(False)
+        Me.grpRooms.ResumeLayout(False)
         Me.tabFood.ResumeLayout(False)
         Me.grpKitchen.ResumeLayout(False)
         Me.pnlIngredients.ResumeLayout(False)
         Me.pnlIngredients.PerformLayout()
+        Me.tabInventory.ResumeLayout(False)
+        Me.grpGold.ResumeLayout(False)
+        Me.grpWorkbench.ResumeLayout(False)
+        Me.grpInventory.ResumeLayout(False)
+        Me.grpFood.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -553,8 +586,8 @@ Partial Class Main
     Friend WithEvents tabFloor As System.Windows.Forms.TabPage
     Friend WithEvents numFloor As System.Windows.Forms.NumericUpDown
     Friend WithEvents tabInventory As System.Windows.Forms.TabPage
-    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents grpFloorplan As System.Windows.Forms.GroupBox
+    Friend WithEvents grpRooms As System.Windows.Forms.GroupBox
     Friend WithEvents lstRooms As System.Windows.Forms.ListBox
     Friend WithEvents pnlFloor As System.Windows.Forms.Panel
     Friend WithEvents grpRoom As System.Windows.Forms.GroupBox
@@ -590,5 +623,8 @@ Partial Class Main
     Friend WithEvents lblIngredient2 As System.Windows.Forms.Label
     Friend WithEvents txtIngredient2 As System.Windows.Forms.TextBox
     Friend WithEvents pnlIngredients As System.Windows.Forms.Panel
+    Friend WithEvents grpFood As System.Windows.Forms.GroupBox
+    Friend WithEvents lstFood As System.Windows.Forms.ListBox
+    Friend WithEvents lstFoodIngredients As System.Windows.Forms.ListBox
 
 End Class
