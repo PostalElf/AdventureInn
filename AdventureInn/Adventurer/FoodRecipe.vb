@@ -4,6 +4,11 @@
     Private iRequired As New List(Of String)
     Private iFilled As New List(Of String)
     Private Ingredients As New List(Of FoodIngredient)
+    Public ReadOnly Property Completed As Boolean
+        Get
+            If iRequired.Count = 0 Then Return True Else Return False
+        End Get
+    End Property
 
     Public Overloads Shared Function Generate(ByVal targetName As String) As FoodRecipe
         Dim rawData As List(Of String) = IO.ImportSquareBracketSelect(IO.sbRecipes, targetName)

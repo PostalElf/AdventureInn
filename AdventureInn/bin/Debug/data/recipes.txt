@@ -16,3 +16,7 @@ Vegetable
 Meat
 Oil
 
+[Fried Fish]
+Fish
+Vegetable
+Oil

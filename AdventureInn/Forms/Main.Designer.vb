@@ -40,18 +40,16 @@ Partial Class Main
         Me.grpRooms = New System.Windows.Forms.GroupBox()
         Me.lstRooms = New System.Windows.Forms.ListBox()
         Me.tabFood = New System.Windows.Forms.TabPage()
+        Me.grpFood = New System.Windows.Forms.GroupBox()
+        Me.lstFood = New System.Windows.Forms.ListBox()
+        Me.lstFoodIngredients = New System.Windows.Forms.ListBox()
         Me.grpKitchen = New System.Windows.Forms.GroupBox()
         Me.pnlIngredients = New System.Windows.Forms.Panel()
         Me.lblIngredient5 = New System.Windows.Forms.Label()
-        Me.txtIngredient5 = New System.Windows.Forms.TextBox()
         Me.lblIngredient4 = New System.Windows.Forms.Label()
-        Me.txtIngredient4 = New System.Windows.Forms.TextBox()
         Me.lblIngredient3 = New System.Windows.Forms.Label()
-        Me.txtIngredient3 = New System.Windows.Forms.TextBox()
         Me.lblIngredient2 = New System.Windows.Forms.Label()
-        Me.txtIngredient2 = New System.Windows.Forms.TextBox()
         Me.lblIngredient1 = New System.Windows.Forms.Label()
-        Me.txtIngredient1 = New System.Windows.Forms.TextBox()
         Me.btnCookReset = New System.Windows.Forms.Button()
         Me.lblKitchen = New System.Windows.Forms.Label()
         Me.btnCook = New System.Windows.Forms.Button()
@@ -68,9 +66,11 @@ Partial Class Main
         Me.lblInventoryDescription = New System.Windows.Forms.Label()
         Me.btnInventorySort = New System.Windows.Forms.Button()
         Me.lstInventory = New System.Windows.Forms.ListBox()
-        Me.grpFood = New System.Windows.Forms.GroupBox()
-        Me.lstFoodIngredients = New System.Windows.Forms.ListBox()
-        Me.lstFood = New System.Windows.Forms.ListBox()
+        Me.txtIngredient1 = New System.Windows.Forms.Label()
+        Me.txtIngredient2 = New System.Windows.Forms.Label()
+        Me.txtIngredient3 = New System.Windows.Forms.Label()
+        Me.txtIngredient4 = New System.Windows.Forms.Label()
+        Me.txtIngredient5 = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -79,13 +79,13 @@ Partial Class Main
         CType(Me.numFloor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpRooms.SuspendLayout()
         Me.tabFood.SuspendLayout()
+        Me.grpFood.SuspendLayout()
         Me.grpKitchen.SuspendLayout()
         Me.pnlIngredients.SuspendLayout()
         Me.tabInventory.SuspendLayout()
         Me.grpGold.SuspendLayout()
         Me.grpWorkbench.SuspendLayout()
         Me.grpInventory.SuspendLayout()
-        Me.grpFood.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -249,6 +249,33 @@ Partial Class Main
         Me.tabFood.Text = "Food"
         Me.tabFood.UseVisualStyleBackColor = True
         '
+        'grpFood
+        '
+        Me.grpFood.Controls.Add(Me.lstFood)
+        Me.grpFood.Controls.Add(Me.lstFoodIngredients)
+        Me.grpFood.Location = New System.Drawing.Point(265, 14)
+        Me.grpFood.Name = "grpFood"
+        Me.grpFood.Size = New System.Drawing.Size(253, 272)
+        Me.grpFood.TabIndex = 2
+        Me.grpFood.TabStop = False
+        Me.grpFood.Text = "Inventory"
+        '
+        'lstFood
+        '
+        Me.lstFood.FormattingEnabled = True
+        Me.lstFood.Location = New System.Drawing.Point(6, 145)
+        Me.lstFood.Name = "lstFood"
+        Me.lstFood.Size = New System.Drawing.Size(241, 121)
+        Me.lstFood.TabIndex = 2
+        '
+        'lstFoodIngredients
+        '
+        Me.lstFoodIngredients.FormattingEnabled = True
+        Me.lstFoodIngredients.Location = New System.Drawing.Point(6, 19)
+        Me.lstFoodIngredients.Name = "lstFoodIngredients"
+        Me.lstFoodIngredients.Size = New System.Drawing.Size(241, 121)
+        Me.lstFoodIngredients.TabIndex = 1
+        '
         'grpKitchen
         '
         Me.grpKitchen.Controls.Add(Me.pnlIngredients)
@@ -265,16 +292,16 @@ Partial Class Main
         '
         'pnlIngredients
         '
-        Me.pnlIngredients.Controls.Add(Me.lblIngredient5)
         Me.pnlIngredients.Controls.Add(Me.txtIngredient5)
-        Me.pnlIngredients.Controls.Add(Me.lblIngredient4)
         Me.pnlIngredients.Controls.Add(Me.txtIngredient4)
-        Me.pnlIngredients.Controls.Add(Me.lblIngredient3)
         Me.pnlIngredients.Controls.Add(Me.txtIngredient3)
-        Me.pnlIngredients.Controls.Add(Me.lblIngredient2)
         Me.pnlIngredients.Controls.Add(Me.txtIngredient2)
-        Me.pnlIngredients.Controls.Add(Me.lblIngredient1)
         Me.pnlIngredients.Controls.Add(Me.txtIngredient1)
+        Me.pnlIngredients.Controls.Add(Me.lblIngredient5)
+        Me.pnlIngredients.Controls.Add(Me.lblIngredient4)
+        Me.pnlIngredients.Controls.Add(Me.lblIngredient3)
+        Me.pnlIngredients.Controls.Add(Me.lblIngredient2)
+        Me.pnlIngredients.Controls.Add(Me.lblIngredient1)
         Me.pnlIngredients.Location = New System.Drawing.Point(235, 16)
         Me.pnlIngredients.Name = "pnlIngredients"
         Me.pnlIngredients.Size = New System.Drawing.Size(266, 139)
@@ -289,14 +316,6 @@ Partial Class Main
         Me.lblIngredient5.Text = "Ingredient:"
         Me.lblIngredient5.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'txtIngredient5
-        '
-        Me.txtIngredient5.Enabled = False
-        Me.txtIngredient5.Location = New System.Drawing.Point(113, 111)
-        Me.txtIngredient5.Name = "txtIngredient5"
-        Me.txtIngredient5.Size = New System.Drawing.Size(146, 20)
-        Me.txtIngredient5.TabIndex = 24
-        '
         'lblIngredient4
         '
         Me.lblIngredient4.Location = New System.Drawing.Point(19, 87)
@@ -305,14 +324,6 @@ Partial Class Main
         Me.lblIngredient4.TabIndex = 23
         Me.lblIngredient4.Text = "Ingredient:"
         Me.lblIngredient4.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'txtIngredient4
-        '
-        Me.txtIngredient4.Enabled = False
-        Me.txtIngredient4.Location = New System.Drawing.Point(113, 85)
-        Me.txtIngredient4.Name = "txtIngredient4"
-        Me.txtIngredient4.Size = New System.Drawing.Size(146, 20)
-        Me.txtIngredient4.TabIndex = 22
         '
         'lblIngredient3
         '
@@ -323,14 +334,6 @@ Partial Class Main
         Me.lblIngredient3.Text = "Ingredient:"
         Me.lblIngredient3.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'txtIngredient3
-        '
-        Me.txtIngredient3.Enabled = False
-        Me.txtIngredient3.Location = New System.Drawing.Point(113, 59)
-        Me.txtIngredient3.Name = "txtIngredient3"
-        Me.txtIngredient3.Size = New System.Drawing.Size(146, 20)
-        Me.txtIngredient3.TabIndex = 20
-        '
         'lblIngredient2
         '
         Me.lblIngredient2.Location = New System.Drawing.Point(19, 35)
@@ -340,14 +343,6 @@ Partial Class Main
         Me.lblIngredient2.Text = "Ingredient:"
         Me.lblIngredient2.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'txtIngredient2
-        '
-        Me.txtIngredient2.Enabled = False
-        Me.txtIngredient2.Location = New System.Drawing.Point(113, 33)
-        Me.txtIngredient2.Name = "txtIngredient2"
-        Me.txtIngredient2.Size = New System.Drawing.Size(146, 20)
-        Me.txtIngredient2.TabIndex = 18
-        '
         'lblIngredient1
         '
         Me.lblIngredient1.Location = New System.Drawing.Point(19, 9)
@@ -356,14 +351,6 @@ Partial Class Main
         Me.lblIngredient1.TabIndex = 17
         Me.lblIngredient1.Text = "Ingredient:"
         Me.lblIngredient1.TextAlign = System.Drawing.ContentAlignment.TopRight
-        '
-        'txtIngredient1
-        '
-        Me.txtIngredient1.Enabled = False
-        Me.txtIngredient1.Location = New System.Drawing.Point(113, 7)
-        Me.txtIngredient1.Name = "txtIngredient1"
-        Me.txtIngredient1.Size = New System.Drawing.Size(146, 20)
-        Me.txtIngredient1.TabIndex = 16
         '
         'btnCookReset
         '
@@ -517,32 +504,50 @@ Partial Class Main
         Me.lstInventory.Size = New System.Drawing.Size(210, 108)
         Me.lstInventory.TabIndex = 0
         '
-        'grpFood
+        'txtIngredient1
         '
-        Me.grpFood.Controls.Add(Me.lstFood)
-        Me.grpFood.Controls.Add(Me.lstFoodIngredients)
-        Me.grpFood.Location = New System.Drawing.Point(265, 14)
-        Me.grpFood.Name = "grpFood"
-        Me.grpFood.Size = New System.Drawing.Size(253, 272)
-        Me.grpFood.TabIndex = 2
-        Me.grpFood.TabStop = False
-        Me.grpFood.Text = "Inventory"
+        Me.txtIngredient1.BackColor = System.Drawing.Color.Silver
+        Me.txtIngredient1.Location = New System.Drawing.Point(113, 9)
+        Me.txtIngredient1.Name = "txtIngredient1"
+        Me.txtIngredient1.Size = New System.Drawing.Size(146, 16)
+        Me.txtIngredient1.TabIndex = 26
+        Me.txtIngredient1.Text = "-"
         '
-        'lstFoodIngredients
+        'txtIngredient2
         '
-        Me.lstFoodIngredients.FormattingEnabled = True
-        Me.lstFoodIngredients.Location = New System.Drawing.Point(6, 19)
-        Me.lstFoodIngredients.Name = "lstFoodIngredients"
-        Me.lstFoodIngredients.Size = New System.Drawing.Size(241, 121)
-        Me.lstFoodIngredients.TabIndex = 1
+        Me.txtIngredient2.BackColor = System.Drawing.Color.Silver
+        Me.txtIngredient2.Location = New System.Drawing.Point(113, 35)
+        Me.txtIngredient2.Name = "txtIngredient2"
+        Me.txtIngredient2.Size = New System.Drawing.Size(146, 16)
+        Me.txtIngredient2.TabIndex = 27
+        Me.txtIngredient2.Text = "-"
         '
-        'lstFood
+        'txtIngredient3
         '
-        Me.lstFood.FormattingEnabled = True
-        Me.lstFood.Location = New System.Drawing.Point(6, 145)
-        Me.lstFood.Name = "lstFood"
-        Me.lstFood.Size = New System.Drawing.Size(241, 121)
-        Me.lstFood.TabIndex = 2
+        Me.txtIngredient3.BackColor = System.Drawing.Color.Silver
+        Me.txtIngredient3.Location = New System.Drawing.Point(113, 61)
+        Me.txtIngredient3.Name = "txtIngredient3"
+        Me.txtIngredient3.Size = New System.Drawing.Size(146, 16)
+        Me.txtIngredient3.TabIndex = 28
+        Me.txtIngredient3.Text = "-"
+        '
+        'txtIngredient4
+        '
+        Me.txtIngredient4.BackColor = System.Drawing.Color.Silver
+        Me.txtIngredient4.Location = New System.Drawing.Point(113, 87)
+        Me.txtIngredient4.Name = "txtIngredient4"
+        Me.txtIngredient4.Size = New System.Drawing.Size(146, 16)
+        Me.txtIngredient4.TabIndex = 29
+        Me.txtIngredient4.Text = "-"
+        '
+        'txtIngredient5
+        '
+        Me.txtIngredient5.BackColor = System.Drawing.Color.Silver
+        Me.txtIngredient5.Location = New System.Drawing.Point(113, 113)
+        Me.txtIngredient5.Name = "txtIngredient5"
+        Me.txtIngredient5.Size = New System.Drawing.Size(146, 16)
+        Me.txtIngredient5.TabIndex = 30
+        Me.txtIngredient5.Text = "-"
         '
         'Main
         '
@@ -566,14 +571,13 @@ Partial Class Main
         CType(Me.numFloor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpRooms.ResumeLayout(False)
         Me.tabFood.ResumeLayout(False)
+        Me.grpFood.ResumeLayout(False)
         Me.grpKitchen.ResumeLayout(False)
         Me.pnlIngredients.ResumeLayout(False)
-        Me.pnlIngredients.PerformLayout()
         Me.tabInventory.ResumeLayout(False)
         Me.grpGold.ResumeLayout(False)
         Me.grpWorkbench.ResumeLayout(False)
         Me.grpInventory.ResumeLayout(False)
-        Me.grpFood.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -613,18 +617,18 @@ Partial Class Main
     Friend WithEvents lblKitchen As System.Windows.Forms.Label
     Friend WithEvents btnCookReset As System.Windows.Forms.Button
     Friend WithEvents lblIngredient1 As System.Windows.Forms.Label
-    Friend WithEvents txtIngredient1 As System.Windows.Forms.TextBox
     Friend WithEvents lblIngredient5 As System.Windows.Forms.Label
-    Friend WithEvents txtIngredient5 As System.Windows.Forms.TextBox
     Friend WithEvents lblIngredient4 As System.Windows.Forms.Label
-    Friend WithEvents txtIngredient4 As System.Windows.Forms.TextBox
     Friend WithEvents lblIngredient3 As System.Windows.Forms.Label
-    Friend WithEvents txtIngredient3 As System.Windows.Forms.TextBox
     Friend WithEvents lblIngredient2 As System.Windows.Forms.Label
-    Friend WithEvents txtIngredient2 As System.Windows.Forms.TextBox
     Friend WithEvents pnlIngredients As System.Windows.Forms.Panel
     Friend WithEvents grpFood As System.Windows.Forms.GroupBox
     Friend WithEvents lstFood As System.Windows.Forms.ListBox
     Friend WithEvents lstFoodIngredients As System.Windows.Forms.ListBox
+    Friend WithEvents txtIngredient5 As System.Windows.Forms.Label
+    Friend WithEvents txtIngredient4 As System.Windows.Forms.Label
+    Friend WithEvents txtIngredient3 As System.Windows.Forms.Label
+    Friend WithEvents txtIngredient2 As System.Windows.Forms.Label
+    Friend WithEvents txtIngredient1 As System.Windows.Forms.Label
 
 End Class

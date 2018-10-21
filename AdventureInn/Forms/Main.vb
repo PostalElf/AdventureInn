@@ -25,6 +25,7 @@
             .InventoryFoodIngredients.Add(FoodIngredient.Generate("Dragon's Egg"))
             .InventoryFoodIngredients.Add(FoodIngredient.Generate("Manticore's Egg"))
             .InventoryFoodIngredients.Add(FoodIngredient.Generate("Gorgon's Milk"))
+            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Gorgon's Butter"))
         End With
     End Sub
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -320,8 +321,7 @@
     Private AllKitchenRecipes As New Dictionary(Of String, FoodRecipe)
     Private ActiveRecipe As FoodRecipe = Nothing
     Private KitchenLbls(4) As Label
-    Private KitchenTxts(4) As TextBox
-    Private KitchenIngredient(4) As FoodIngredient
+    Private KitchenTxts(4) As Label
     Private Sub KitchenBuild()
         'populate AllKitchenRecipes
         Dim rawData As List(Of String) = IO.ImportSquareBracketHeaders(IO.sbRecipes)
@@ -341,15 +341,11 @@
         KitchenTxts(2) = txtIngredient3
         KitchenTxts(3) = txtIngredient4
         KitchenTxts(4) = txtIngredient5
-
-        'hide controls
         For n = 0 To 4
-            KitchenLbls(n).Visible = False
-            KitchenTxts(n).Visible = False
             AddHandler KitchenTxts(n).Click, AddressOf txtIngredient_Click
         Next
-        btnCook.Visible = False
-        btnCookReset.Visible = False
+
+        RecipeReset()
     End Sub
     Private Sub KitchenRefresh()
         lstFoodIngredients.Items.Clear()
@@ -360,19 +356,22 @@
         For Each f In CurrentInn.InventoryFood
             lstFood.Items.Add(f)
         Next
+        lblKitchen.Text = ""
     End Sub
     Private Sub cmbKitchen_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbKitchen.SelectedIndexChanged
-        Dim fr As FoodRecipe = AllKitchenRecipes(cmbKitchen.SelectedItem.ToString)
-        ActiveRecipe = fr.Clone
-        RecipeShow
+        If cmbKitchen.SelectedIndex = -1 Then
+            ActiveRecipe = Nothing
+            KitchenRefresh()
+        Else
+            Dim fr As FoodRecipe = AllKitchenRecipes(cmbKitchen.SelectedItem.ToString)
+            ActiveRecipe = fr.Clone
+            RecipeShow()
+        End If
     End Sub
     Private Sub RecipeShow()
         If ActiveRecipe Is Nothing Then Exit Sub
 
-        For i = 0 To 4
-            KitchenIngredient(i) = Nothing
-        Next
-
+        RecipeReset()
         For n = 0 To ActiveRecipe.Requirements.Count - 1
             KitchenLbls(n).Visible = True
             KitchenLbls(n).Text = ActiveRecipe.Requirements(n) & ":"
@@ -390,16 +389,20 @@
         If ActiveRecipe Is Nothing Then Exit Sub
 
         With ActiveRecipe
-            lblKitchen.Text = .attributesdescription
-
-            Dim completed As Boolean = True
-            For n = 1 To .Requirements.Count
-                If KitchenIngredient(n) Is Nothing Then completed = False : Exit For
-            Next
-            btnCook.Enabled = completed
+            lblKitchen.Text = .AttributesDescription
+            btnCook.Enabled = .Completed
         End With
     End Sub
-    Private Sub txtIngredient_Click(ByVal sender As TextBox, ByVal e As System.EventArgs)
+    Private Sub RecipeReset()
+        For n = 0 To 4
+            KitchenLbls(n).Visible = False
+            KitchenTxts(n).Visible = False
+            KitchenTxts(n).Tag = Nothing
+        Next
+        btnCook.Visible = False
+        btnCookReset.Visible = False
+    End Sub
+    Private Sub txtIngredient_Click(ByVal sender As Label, ByVal e As System.EventArgs)
         Dim ingredientType As String = sender.Tag
         Dim ingredients As New List(Of FoodIngredient)
         For Each i In CurrentInn.InventoryFoodIngredients
@@ -424,7 +427,6 @@
         CurrentInn.InventoryFoodIngredients.Remove(fi)
         ActiveRecipe.Add(fi)
         sender.Text = fi.Name
-        sender.Tag = fi
         sender.Enabled = False
         RecipeUpdate()
     End Sub
@@ -445,9 +447,6 @@
         Dim f As Food = Food.Generate(ActiveRecipe)
         CurrentInn.InventoryFood.Add(f)
 
-        ActiveRecipe = Nothing
         cmbKitchen.SelectedIndex = -1
-
-        KitchenRefresh()
     End Sub
 End Class

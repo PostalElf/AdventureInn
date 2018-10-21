@@ -17,3 +17,9 @@ Type: Milk
 Richness: 2
 Exoticness: 2
 Quality: 1
+
+[Gorgon's Butter]
+Type: Butter
+Richness: 1
+Exoticness: 1
+Quality: 1
