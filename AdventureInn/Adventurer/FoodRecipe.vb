@@ -30,6 +30,7 @@
         iRequired.Remove(fi.IngredientType)
         iFilled.Add(fi.IngredientType)
         Ingredients.Add(fi)
+        IngredientNames.Add(fi.Name)
 
         Richness += fi.Richness
         Meatiness += fi.Meatiness
@@ -44,6 +45,7 @@
         iFilled.Remove(fi.IngredientType)
         iRequired.Add(fi.IngredientType)
         Ingredients.Remove(fi)
+        IngredientNames.Remove(fi.Name)
 
         Richness -= fi.Richness
         Meatiness -= fi.Meatiness

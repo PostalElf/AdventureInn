@@ -309,6 +309,7 @@
         lstGuestsRoomed.Items.Remove(guest)
         CurrentInn.WaitingGuests.Add(guest)
         lstGuestsWaiting.Items.Add(guest)
+        lblReview.Text = ""
     End Sub
 
     Private AllRoomItems As New Dictionary(Of String, RoomItem)
@@ -397,6 +398,7 @@
         If cmbKitchen.SelectedIndex = -1 Then
             ActiveRecipe = Nothing
             KitchenRefresh()
+            RecipeReset()
         Else
             Dim fr As FoodRecipe = AllKitchenRecipes(cmbKitchen.SelectedItem.ToString)
             ActiveRecipe = fr.Clone
@@ -431,6 +433,7 @@
     Private Sub RecipeReset()
         For n = 0 To 4
             KitchenLbls(n).Visible = False
+            KitchenTxts(n).Text = ""
             KitchenTxts(n).Visible = False
             KitchenTxts(n).Tag = Nothing
         Next
@@ -483,5 +486,50 @@
         CurrentInn.InventoryFood.Add(f)
 
         cmbKitchen.SelectedIndex = -1
+    End Sub
+
+    Private MenuLbls(4) As Label
+    Private MenuItems(4) As Food
+    Private MenuIndex As Integer = 0
+    Private Sub btnFoodToMenu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFoodToMenu.Click
+        If MenuIndex = 4 Then Exit Sub
+        Dim f As Food = lstFood.SelectedItem
+        If f Is Nothing Then Exit Sub
+
+        lstFood.Items.Remove(f)
+        AddMenuItem(f)
+    End Sub
+    Private Sub btnMenuToFood_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMenuToFood.Click
+        For n = 0 To 4
+            If MenuItems(n) Is Nothing = False Then
+                grpMenu.Controls.Remove(MenuLbls(n))
+                MenuLbls(n) = Nothing
+                CurrentInn.InventoryFood.Add(MenuItems(n))
+                lstFood.Items.Add(MenuItems(n))
+                MenuItems(n) = Nothing
+            Else
+                Exit For
+            End If
+        Next
+        MenuIndex = 0
+    End Sub
+    Private Sub AddMenuItem(ByVal f As Food)
+        Const lblWidth As Integer = 230
+        Const lblHeight As Integer = 33
+        Const lblStartX As Integer = 8
+        Const lblStartY As Integer = 26
+
+        Dim lbl As New Label
+        With lbl
+            .AutoSize = False
+            .Size = New Size(lblWidth, lblHeight)
+            .Location = New Point(lblStartX, lblStartY + (lblHeight * MenuIndex))
+            .Text = f.FullName
+        End With
+        MenuLbls(MenuIndex) = lbl
+        MenuItems(MenuIndex) = f
+        grpMenu.Controls.Add(lbl)
+
+        MenuIndex += 1
     End Sub
 End Class

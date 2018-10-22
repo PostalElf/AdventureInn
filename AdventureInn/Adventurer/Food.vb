@@ -1,5 +1,9 @@
 ﻿Public Class Food
     Protected Name As String
+    Public Overrides Function ToString() As String
+        Return Name
+    End Function
+
     Protected Richness As Integer
     Public ReadOnly Property TotalRichness As Pair(Of String, Integer)
         Get
@@ -48,6 +52,8 @@
             Return New Pair(Of String, Integer)(total, Quality)
         End Get
     End Property
+
+    Protected IngredientNames As New List(Of String)
     Public ReadOnly Property AttributesDescription As String
         Get
             Dim total As String = ""
@@ -56,6 +62,11 @@
             total &= "Meatiness: " & TotalMeatiness.Key & vbCrLf
             total &= "Exoticness: " & TotalExoticness.Key
             Return total
+        End Get
+    End Property
+    Public ReadOnly Property FullName As String
+        Get
+            Return Name & " with " & ListToCommaString(IngredientNames, "&&")
         End Get
     End Property
 
@@ -67,6 +78,7 @@
             .Meatiness = recipe.Meatiness
             .Exoticness = recipe.Exoticness
             .Quality = recipe.Quality
+            .IngredientNames.AddRange(recipe.IngredientNames)
         End With
         Return f
     End Function
