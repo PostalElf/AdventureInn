@@ -89,11 +89,6 @@
                 End With
             Next
         Next
-
-        lstRooms.Items.Clear()
-        For Each rm In CurrentFloor.Rooms
-            lstRooms.Items.Add(rm)
-        Next
     End Sub
     Private Sub numFloor_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles numFloor.ValueChanged
         CurrentFloor = CurrentInn(numFloor.Value)
@@ -114,8 +109,6 @@
             End If
         ElseIf e.Button = Windows.Forms.MouseButtons.Left Then
             EnterRoom(CurrentRoom)          'left click to enter room
-        ElseIf e.Button = Windows.Forms.MouseButtons.Middle Then
-            DevToolsFloor(CurrentRoom)           'middle click for dev tools
         End If
     End Sub
     Private Sub AddRoom(ByVal x As Integer, ByVal y As Integer)
@@ -142,14 +135,6 @@
         CurrentRoom = room
         RoomBuild()
         RoomRefresh()
-    End Sub
-    Private Sub DevToolsFloor(ByVal room As Room)
-        If Room Is Nothing Then Exit Sub
-        Dim adjlist As List(Of Room) = CurrentFloor.GetAdjacentRooms(room)
-    End Sub
-    Private Sub lstRooms_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstRooms.DoubleClick
-        If lstRooms.SelectedIndex = -1 Then Exit Sub
-        EnterRoom(lstRooms.SelectedItem)
     End Sub
 
     Private CurrentRoom As Room
@@ -199,7 +184,6 @@
         GuestsRefresh()
     End Sub
     Private Sub RoomLabelRefresh()
-        lblReview.Text = ""
         lblDescription.Text = ""
         With CurrentRoom
             lblDescription.Text &= "Privacy: " & .TotalPrivacy.Key & vbCrLf
@@ -225,12 +209,6 @@
         For Each g In CurrentInn.WaitingGuests
             lstGuestsWaiting.Items.Add(g)
         Next
-    End Sub
-    Private Sub lstGuests_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstGuestsRoomed.SelectedIndexChanged
-        Dim g As Adventurer = lstGuestsRoomed.SelectedItem
-        If g Is Nothing Then Exit Sub
-
-        lblReview.Text = g.RoomSatisfaction(CurrentRoom).Key
     End Sub
     Private Sub RoomPanelClick(ByVal sender As Panel, ByVal e As MouseEventArgs)
         Dim tagSplit As String() = sender.Tag.ToString.Split(",")
@@ -309,7 +287,6 @@
         lstGuestsRoomed.Items.Remove(guest)
         CurrentInn.WaitingGuests.Add(guest)
         lstGuestsWaiting.Items.Add(guest)
-        lblReview.Text = ""
     End Sub
 
     Private AllRoomItems As New Dictionary(Of String, RoomItem)

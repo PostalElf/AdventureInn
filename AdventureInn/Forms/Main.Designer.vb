@@ -32,8 +32,6 @@ Partial Class Main
         Me.tabFloor = New System.Windows.Forms.TabPage()
         Me.btnRoomToWaiting = New System.Windows.Forms.Button()
         Me.grpRoom = New System.Windows.Forms.GroupBox()
-        Me.lblReview = New System.Windows.Forms.Label()
-        Me.lstGuestsRoomed = New System.Windows.Forms.ListBox()
         Me.lblDescription = New System.Windows.Forms.Label()
         Me.pnlRoom = New System.Windows.Forms.Panel()
         Me.btnWaitingToRoom = New System.Windows.Forms.Button()
@@ -41,10 +39,10 @@ Partial Class Main
         Me.pnlFloor = New System.Windows.Forms.Panel()
         Me.numFloor = New System.Windows.Forms.NumericUpDown()
         Me.lstGuestsWaiting = New System.Windows.Forms.ListBox()
-        Me.grpRooms = New System.Windows.Forms.GroupBox()
-        Me.lstRooms = New System.Windows.Forms.ListBox()
         Me.tabFood = New System.Windows.Forms.TabPage()
         Me.grpFood = New System.Windows.Forms.GroupBox()
+        Me.btnMenuToFood = New System.Windows.Forms.Button()
+        Me.btnFoodToMenu = New System.Windows.Forms.Button()
         Me.lstFood = New System.Windows.Forms.ListBox()
         Me.lstFoodIngredients = New System.Windows.Forms.ListBox()
         Me.grpKitchen = New System.Windows.Forms.GroupBox()
@@ -75,15 +73,15 @@ Partial Class Main
         Me.lblInventoryDescription = New System.Windows.Forms.Label()
         Me.btnInventorySort = New System.Windows.Forms.Button()
         Me.lstInventory = New System.Windows.Forms.ListBox()
-        Me.btnMenuToFood = New System.Windows.Forms.Button()
-        Me.btnFoodToMenu = New System.Windows.Forms.Button()
+        Me.lstGuestsRoomed = New System.Windows.Forms.ListBox()
+        Me.lblGuests = New System.Windows.Forms.Label()
+        Me.grpGuestsWaiting = New System.Windows.Forms.GroupBox()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
         Me.grpRoom.SuspendLayout()
         Me.grpFloorplan.SuspendLayout()
         CType(Me.numFloor, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.grpRooms.SuspendLayout()
         Me.tabFood.SuspendLayout()
         Me.grpFood.SuspendLayout()
         Me.grpKitchen.SuspendLayout()
@@ -92,6 +90,7 @@ Partial Class Main
         Me.grpGold.SuspendLayout()
         Me.grpWorkbench.SuspendLayout()
         Me.grpInventory.SuspendLayout()
+        Me.grpGuestsWaiting.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblFloor
@@ -130,10 +129,10 @@ Partial Class Main
         '
         'tbc
         '
-        Me.tbc.Controls.Add(Me.tabGuests)
         Me.tbc.Controls.Add(Me.tabFloor)
         Me.tbc.Controls.Add(Me.tabFood)
         Me.tbc.Controls.Add(Me.tabInventory)
+        Me.tbc.Controls.Add(Me.tabGuests)
         Me.tbc.Location = New System.Drawing.Point(0, 29)
         Me.tbc.Multiline = True
         Me.tbc.Name = "tbc"
@@ -155,12 +154,9 @@ Partial Class Main
         'tabFloor
         '
         Me.tabFloor.BackColor = System.Drawing.SystemColors.Window
-        Me.tabFloor.Controls.Add(Me.btnRoomToWaiting)
+        Me.tabFloor.Controls.Add(Me.grpGuestsWaiting)
         Me.tabFloor.Controls.Add(Me.grpRoom)
-        Me.tabFloor.Controls.Add(Me.btnWaitingToRoom)
         Me.tabFloor.Controls.Add(Me.grpFloorplan)
-        Me.tabFloor.Controls.Add(Me.lstGuestsWaiting)
-        Me.tabFloor.Controls.Add(Me.grpRooms)
         Me.tabFloor.Location = New System.Drawing.Point(4, 22)
         Me.tabFloor.Name = "tabFloor"
         Me.tabFloor.Padding = New System.Windows.Forms.Padding(3)
@@ -170,46 +166,32 @@ Partial Class Main
         '
         'btnRoomToWaiting
         '
-        Me.btnRoomToWaiting.Location = New System.Drawing.Point(312, 291)
+        Me.btnRoomToWaiting.Location = New System.Drawing.Point(183, 59)
         Me.btnRoomToWaiting.Name = "btnRoomToWaiting"
-        Me.btnRoomToWaiting.Size = New System.Drawing.Size(26, 23)
+        Me.btnRoomToWaiting.Size = New System.Drawing.Size(23, 23)
         Me.btnRoomToWaiting.TabIndex = 17
-        Me.btnRoomToWaiting.Text = "->"
+        Me.btnRoomToWaiting.Text = "↓"
+        Me.btnRoomToWaiting.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnRoomToWaiting.UseVisualStyleBackColor = True
         '
         'grpRoom
         '
-        Me.grpRoom.Controls.Add(Me.lblReview)
+        Me.grpRoom.Controls.Add(Me.lblGuests)
         Me.grpRoom.Controls.Add(Me.lstGuestsRoomed)
         Me.grpRoom.Controls.Add(Me.lblDescription)
         Me.grpRoom.Controls.Add(Me.pnlRoom)
-        Me.grpRoom.Location = New System.Drawing.Point(11, 229)
+        Me.grpRoom.Location = New System.Drawing.Point(191, 6)
         Me.grpRoom.Name = "grpRoom"
-        Me.grpRoom.Size = New System.Drawing.Size(298, 267)
+        Me.grpRoom.Size = New System.Drawing.Size(315, 218)
         Me.grpRoom.TabIndex = 11
         Me.grpRoom.TabStop = False
         Me.grpRoom.Text = "Room Plan"
         '
-        'lblReview
-        '
-        Me.lblReview.Location = New System.Drawing.Point(143, 117)
-        Me.lblReview.Name = "lblReview"
-        Me.lblReview.Size = New System.Drawing.Size(148, 141)
-        Me.lblReview.TabIndex = 14
-        '
-        'lstGuestsRoomed
-        '
-        Me.lstGuestsRoomed.FormattingEnabled = True
-        Me.lstGuestsRoomed.Location = New System.Drawing.Point(143, 19)
-        Me.lstGuestsRoomed.Name = "lstGuestsRoomed"
-        Me.lstGuestsRoomed.Size = New System.Drawing.Size(148, 95)
-        Me.lstGuestsRoomed.TabIndex = 13
-        '
         'lblDescription
         '
-        Me.lblDescription.Location = New System.Drawing.Point(6, 94)
+        Me.lblDescription.Location = New System.Drawing.Point(184, 16)
         Me.lblDescription.Name = "lblDescription"
-        Me.lblDescription.Size = New System.Drawing.Size(123, 160)
+        Me.lblDescription.Size = New System.Drawing.Size(123, 193)
         Me.lblDescription.TabIndex = 12
         '
         'pnlRoom
@@ -221,11 +203,13 @@ Partial Class Main
         '
         'btnWaitingToRoom
         '
-        Me.btnWaitingToRoom.Location = New System.Drawing.Point(312, 262)
+        Me.btnWaitingToRoom.Location = New System.Drawing.Point(183, 33)
+        Me.btnWaitingToRoom.Margin = New System.Windows.Forms.Padding(0)
         Me.btnWaitingToRoom.Name = "btnWaitingToRoom"
-        Me.btnWaitingToRoom.Size = New System.Drawing.Size(26, 23)
+        Me.btnWaitingToRoom.Size = New System.Drawing.Size(23, 23)
         Me.btnWaitingToRoom.TabIndex = 16
-        Me.btnWaitingToRoom.Text = "<-"
+        Me.btnWaitingToRoom.Text = "↑"
+        Me.btnWaitingToRoom.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnWaitingToRoom.UseVisualStyleBackColor = True
         '
         'grpFloorplan
@@ -258,29 +242,10 @@ Partial Class Main
         'lstGuestsWaiting
         '
         Me.lstGuestsWaiting.FormattingEnabled = True
-        Me.lstGuestsWaiting.Location = New System.Drawing.Point(344, 248)
+        Me.lstGuestsWaiting.Location = New System.Drawing.Point(6, 19)
         Me.lstGuestsWaiting.Name = "lstGuestsWaiting"
-        Me.lstGuestsWaiting.Size = New System.Drawing.Size(172, 251)
+        Me.lstGuestsWaiting.Size = New System.Drawing.Size(172, 238)
         Me.lstGuestsWaiting.TabIndex = 15
-        '
-        'grpRooms
-        '
-        Me.grpRooms.Controls.Add(Me.lstRooms)
-        Me.grpRooms.Location = New System.Drawing.Point(197, 6)
-        Me.grpRooms.Name = "grpRooms"
-        Me.grpRooms.Size = New System.Drawing.Size(247, 185)
-        Me.grpRooms.TabIndex = 9
-        Me.grpRooms.TabStop = False
-        Me.grpRooms.Text = "Rooms"
-        '
-        'lstRooms
-        '
-        Me.lstRooms.BackColor = System.Drawing.Color.White
-        Me.lstRooms.FormattingEnabled = True
-        Me.lstRooms.Location = New System.Drawing.Point(6, 19)
-        Me.lstRooms.Name = "lstRooms"
-        Me.lstRooms.Size = New System.Drawing.Size(235, 160)
-        Me.lstRooms.TabIndex = 8
         '
         'tabFood
         '
@@ -306,6 +271,24 @@ Partial Class Main
         Me.grpFood.TabIndex = 2
         Me.grpFood.TabStop = False
         Me.grpFood.Text = "Inventory"
+        '
+        'btnMenuToFood
+        '
+        Me.btnMenuToFood.Location = New System.Drawing.Point(9, 206)
+        Me.btnMenuToFood.Name = "btnMenuToFood"
+        Me.btnMenuToFood.Size = New System.Drawing.Size(26, 23)
+        Me.btnMenuToFood.TabIndex = 19
+        Me.btnMenuToFood.Text = "->"
+        Me.btnMenuToFood.UseVisualStyleBackColor = True
+        '
+        'btnFoodToMenu
+        '
+        Me.btnFoodToMenu.Location = New System.Drawing.Point(9, 177)
+        Me.btnFoodToMenu.Name = "btnFoodToMenu"
+        Me.btnFoodToMenu.Size = New System.Drawing.Size(26, 23)
+        Me.btnFoodToMenu.TabIndex = 18
+        Me.btnFoodToMenu.Text = "<-"
+        Me.btnFoodToMenu.UseVisualStyleBackColor = True
         '
         'lstFood
         '
@@ -596,23 +579,34 @@ Partial Class Main
         Me.lstInventory.Size = New System.Drawing.Size(210, 108)
         Me.lstInventory.TabIndex = 0
         '
-        'btnMenuToFood
+        'lstGuestsRoomed
         '
-        Me.btnMenuToFood.Location = New System.Drawing.Point(9, 206)
-        Me.btnMenuToFood.Name = "btnMenuToFood"
-        Me.btnMenuToFood.Size = New System.Drawing.Size(26, 23)
-        Me.btnMenuToFood.TabIndex = 19
-        Me.btnMenuToFood.Text = "->"
-        Me.btnMenuToFood.UseVisualStyleBackColor = True
+        Me.lstGuestsRoomed.FormattingEnabled = True
+        Me.lstGuestsRoomed.Location = New System.Drawing.Point(4, 114)
+        Me.lstGuestsRoomed.Name = "lstGuestsRoomed"
+        Me.lstGuestsRoomed.Size = New System.Drawing.Size(172, 95)
+        Me.lstGuestsRoomed.TabIndex = 18
         '
-        'btnFoodToMenu
+        'lblGuests
         '
-        Me.btnFoodToMenu.Location = New System.Drawing.Point(9, 177)
-        Me.btnFoodToMenu.Name = "btnFoodToMenu"
-        Me.btnFoodToMenu.Size = New System.Drawing.Size(26, 23)
-        Me.btnFoodToMenu.TabIndex = 18
-        Me.btnFoodToMenu.Text = "<-"
-        Me.btnFoodToMenu.UseVisualStyleBackColor = True
+        Me.lblGuests.AutoSize = True
+        Me.lblGuests.Location = New System.Drawing.Point(6, 98)
+        Me.lblGuests.Name = "lblGuests"
+        Me.lblGuests.Size = New System.Drawing.Size(43, 13)
+        Me.lblGuests.TabIndex = 18
+        Me.lblGuests.Text = "Guests:"
+        '
+        'grpGuestsWaiting
+        '
+        Me.grpGuestsWaiting.Controls.Add(Me.lstGuestsWaiting)
+        Me.grpGuestsWaiting.Controls.Add(Me.btnRoomToWaiting)
+        Me.grpGuestsWaiting.Controls.Add(Me.btnWaitingToRoom)
+        Me.grpGuestsWaiting.Location = New System.Drawing.Point(8, 230)
+        Me.grpGuestsWaiting.Name = "grpGuestsWaiting"
+        Me.grpGuestsWaiting.Size = New System.Drawing.Size(215, 268)
+        Me.grpGuestsWaiting.TabIndex = 18
+        Me.grpGuestsWaiting.TabStop = False
+        Me.grpGuestsWaiting.Text = "Guests Waiting"
         '
         'Main
         '
@@ -631,10 +625,10 @@ Partial Class Main
         Me.tbc.ResumeLayout(False)
         Me.tabFloor.ResumeLayout(False)
         Me.grpRoom.ResumeLayout(False)
+        Me.grpRoom.PerformLayout()
         Me.grpFloorplan.ResumeLayout(False)
         Me.grpFloorplan.PerformLayout()
         CType(Me.numFloor, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.grpRooms.ResumeLayout(False)
         Me.tabFood.ResumeLayout(False)
         Me.grpFood.ResumeLayout(False)
         Me.grpKitchen.ResumeLayout(False)
@@ -643,6 +637,7 @@ Partial Class Main
         Me.grpGold.ResumeLayout(False)
         Me.grpWorkbench.ResumeLayout(False)
         Me.grpInventory.ResumeLayout(False)
+        Me.grpGuestsWaiting.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -656,14 +651,10 @@ Partial Class Main
     Friend WithEvents numFloor As System.Windows.Forms.NumericUpDown
     Friend WithEvents tabInventory As System.Windows.Forms.TabPage
     Friend WithEvents grpFloorplan As System.Windows.Forms.GroupBox
-    Friend WithEvents grpRooms As System.Windows.Forms.GroupBox
-    Friend WithEvents lstRooms As System.Windows.Forms.ListBox
     Friend WithEvents pnlFloor As System.Windows.Forms.Panel
     Friend WithEvents grpRoom As System.Windows.Forms.GroupBox
     Friend WithEvents pnlRoom As System.Windows.Forms.Panel
     Friend WithEvents lblDescription As System.Windows.Forms.Label
-    Friend WithEvents lstGuestsRoomed As System.Windows.Forms.ListBox
-    Friend WithEvents lblReview As System.Windows.Forms.Label
     Friend WithEvents grpInventory As System.Windows.Forms.GroupBox
     Friend WithEvents lstInventory As System.Windows.Forms.ListBox
     Friend WithEvents grpWorkbench As System.Windows.Forms.GroupBox
@@ -701,5 +692,8 @@ Partial Class Main
     Friend WithEvents lstGuestsWaiting As System.Windows.Forms.ListBox
     Friend WithEvents btnMenuToFood As System.Windows.Forms.Button
     Friend WithEvents btnFoodToMenu As System.Windows.Forms.Button
+    Friend WithEvents lstGuestsRoomed As System.Windows.Forms.ListBox
+    Friend WithEvents lblGuests As System.Windows.Forms.Label
+    Friend WithEvents grpGuestsWaiting As System.Windows.Forms.GroupBox
 
 End Class
