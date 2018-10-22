@@ -225,8 +225,6 @@
             End If
         ElseIf e.Button = Windows.Forms.MouseButtons.Left Then
             DescribeItem(roomItem, lblDescription)              'left-click for info
-        ElseIf e.Button = Windows.Forms.MouseButtons.Middle Then
-            DevToolsRoom()                                      'middle-click for dev tools
         End If
     End Sub
     Private Sub AddItem(ByVal x As Integer, ByVal y As Integer)
@@ -258,11 +256,6 @@
         control.Text &= roomItem.AttributesDescription & vbCrLf
         control.Text &= roomItem.Description
     End Sub
-    Private Sub DevToolsRoom()
-        CurrentRoom.Add(Adventurer.Generate)
-        RoomBuild()
-        RoomRefresh()
-    End Sub
     Private Sub lblDescription_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblDescription.Click
         RoomLabelRefresh()
     End Sub
@@ -287,6 +280,18 @@
         lstGuestsRoomed.Items.Remove(guest)
         CurrentInn.WaitingGuests.Add(guest)
         lstGuestsWaiting.Items.Add(guest)
+    End Sub
+    Private Sub btnGuestSortName_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuestSortName.Click
+        CurrentInn.WaitingGuests.Sort(New Adventurer.AdventurerSort_ByName)
+        GuestsRefresh()
+    End Sub
+    Private Sub btnGuestSortJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuestSortJob.Click
+        CurrentInn.WaitingGuests.Sort(New Adventurer.AdventurerSort_ByJob)
+        GuestsRefresh()
+    End Sub
+    Private Sub btnGuestSortRace_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuestSortRace.Click
+        CurrentInn.WaitingGuests.Sort(New Adventurer.AdventurerSort_ByRace)
+        GuestsRefresh()
     End Sub
 
     Private AllRoomItems As New Dictionary(Of String, RoomItem)
@@ -509,4 +514,5 @@
 
         MenuIndex += 1
     End Sub
+
 End Class
