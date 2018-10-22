@@ -1,0 +1,88 @@
+[Mad Cow]
+Level: 0
+Areas: Farmlands
+Drop1: Beef Flank, 95
+Drop1: Beef Sirloin, 5
+Drop2: Cow Milk, 50
+Drop2: Beef Offals, 50
+Drop3: Beef Flank, 20
+Drop3: Beef Offals, 20
+
+[Enraged Chicken]
+Level: 0
+Areas: Farmlands
+Drop1: Chicken Breast, 50
+Drop1: Chicken Thigh, 50
+Drop2: Chicken Breast, 50
+Drop2: Chicken Thigh, 50
+Drop3: Chicken Egg, 50
+
+[Giant Rat]
+Level: 0
+Areas: Farmlands
+Drop1: Rat Meat, 50
+Drop1: Rat Offals, 50
+Drop2: Rat Meat, 50
+Drop2: Rat Offals, 50
+Drop3: Rat Milk, 20
+
+[Animated Shrub]
+Level: 0
+Areas: Farmlands
+Drop1: Garden Greens, 95
+Drop1: Mint, 5
+Drop2: Garden Greens, 95
+Drop2: Muskgrass, 5
+Drop3: Pine Oil, 10
+
+[Maize Golem]
+Level: 0
+Areas: Farmlands
+Drop1: Corn, 100
+Drop2: Corn, 95
+Drop2: Corn Oil, 5
+
+[Goblin Thief]
+Level: 1
+Areas: Forest
+Drop1: Chicken Egg, 50
+Drop1: Salad Greens, 50
+Drop2: Chicken Egg, 50
+Drop2: Salad Greens, 50
+Drop3: Muskgrass, 20
+
+[Goblin Thug]
+Level: 1
+Areas: Forest
+Drop1: Wolf Flank, 25
+Drop1: Strangleweed, 25
+Drop1: Strangleweed Root, 25
+Drop1: Sunflower Oil, 25
+Drop2: Rotshrub, 10
+Drop2: Corn Oil, 10
+Drop2: Chicken Egg, 50
+
+[Kommon Kobold]
+Level: 1
+Areas: Forest
+Drop1: Cow Milk, 50
+Drop1: Pine Oil, 50
+Drop2: Mint, 25
+Drop2: Buckroot Leaf, 25
+Drop2: Kobold Egg, 10
+
+[Dragon]
+Level: 9
+Areas: Mountains
+Drop1: Dragon's Egg, 15
+Drop1: Dragon's Tail, 45
+Drop2: Dragonscales, 50
+Drop2: Dragonhide, 50
+
+
+[Gorgon]
+
+[Manticore]
+
+[Hydra]
+

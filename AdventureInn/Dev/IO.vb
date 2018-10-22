@@ -2,6 +2,7 @@
 Public Class IO
 #Region "Constants"
     Public Const sbRooms As String = "data/roomitems.txt"
+    Public Const sbMonsters As String = "data/monsters.txt"
     Public Const sbIngredients As String = "data/ingredients.txt"
     Public Const sbRecipes As String = "data/recipes.txt"
     Public Const txElfNames As String = "data/elfnames.txt"

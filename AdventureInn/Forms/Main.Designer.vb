@@ -32,7 +32,7 @@ Partial Class Main
         Me.grpGuestsWaiting = New System.Windows.Forms.GroupBox()
         Me.btnGuestSortRace = New System.Windows.Forms.Button()
         Me.btnGuestSortJob = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblSortBy = New System.Windows.Forms.Label()
         Me.btnGuestSortName = New System.Windows.Forms.Button()
         Me.lstGuestsWaiting = New System.Windows.Forms.ListBox()
         Me.btnWaitingToRoom = New System.Windows.Forms.Button()
@@ -40,7 +40,7 @@ Partial Class Main
         Me.lblGuests = New System.Windows.Forms.Label()
         Me.btnRoomToWaiting = New System.Windows.Forms.Button()
         Me.lstGuestsRoomed = New System.Windows.Forms.ListBox()
-        Me.lblDescription = New System.Windows.Forms.Label()
+        Me.lblGuestRoomedDescription = New System.Windows.Forms.Label()
         Me.pnlRoom = New System.Windows.Forms.Panel()
         Me.grpFloorplan = New System.Windows.Forms.GroupBox()
         Me.pnlFloor = New System.Windows.Forms.Panel()
@@ -75,11 +75,12 @@ Partial Class Main
         Me.btnBuild = New System.Windows.Forms.Button()
         Me.cmbWorkbench = New System.Windows.Forms.ComboBox()
         Me.lblWorkbenchDescription = New System.Windows.Forms.Label()
-        Me.grpInventory = New System.Windows.Forms.GroupBox()
+        Me.grpRoomItems = New System.Windows.Forms.GroupBox()
         Me.lblInventoryDescription = New System.Windows.Forms.Label()
         Me.btnInventorySort = New System.Windows.Forms.Button()
         Me.lstInventory = New System.Windows.Forms.ListBox()
         Me.tabGuests = New System.Windows.Forms.TabPage()
+        Me.lblGuestWaitingDescription = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -94,7 +95,7 @@ Partial Class Main
         Me.tabInventory.SuspendLayout()
         Me.grpGold.SuspendLayout()
         Me.grpWorkbench.SuspendLayout()
-        Me.grpInventory.SuspendLayout()
+        Me.grpRoomItems.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblFloor
@@ -161,15 +162,16 @@ Partial Class Main
         '
         'grpGuestsWaiting
         '
+        Me.grpGuestsWaiting.Controls.Add(Me.lblGuestWaitingDescription)
         Me.grpGuestsWaiting.Controls.Add(Me.btnGuestSortRace)
         Me.grpGuestsWaiting.Controls.Add(Me.btnGuestSortJob)
-        Me.grpGuestsWaiting.Controls.Add(Me.Label1)
+        Me.grpGuestsWaiting.Controls.Add(Me.lblSortBy)
         Me.grpGuestsWaiting.Controls.Add(Me.btnGuestSortName)
         Me.grpGuestsWaiting.Controls.Add(Me.lstGuestsWaiting)
         Me.grpGuestsWaiting.Controls.Add(Me.btnWaitingToRoom)
         Me.grpGuestsWaiting.Location = New System.Drawing.Point(8, 230)
         Me.grpGuestsWaiting.Name = "grpGuestsWaiting"
-        Me.grpGuestsWaiting.Size = New System.Drawing.Size(260, 268)
+        Me.grpGuestsWaiting.Size = New System.Drawing.Size(498, 268)
         Me.grpGuestsWaiting.TabIndex = 18
         Me.grpGuestsWaiting.TabStop = False
         Me.grpGuestsWaiting.Text = "Guests Waiting"
@@ -196,14 +198,14 @@ Partial Class Main
         Me.btnGuestSortJob.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.btnGuestSortJob.UseVisualStyleBackColor = True
         '
-        'Label1
+        'lblSortBy
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(195, 62)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(49, 13)
-        Me.Label1.TabIndex = 19
-        Me.Label1.Text = "Sort by..."
+        Me.lblSortBy.AutoSize = True
+        Me.lblSortBy.Location = New System.Drawing.Point(195, 62)
+        Me.lblSortBy.Name = "lblSortBy"
+        Me.lblSortBy.Size = New System.Drawing.Size(49, 13)
+        Me.lblSortBy.TabIndex = 19
+        Me.lblSortBy.Text = "Sort by..."
         '
         'btnGuestSortName
         '
@@ -240,7 +242,7 @@ Partial Class Main
         Me.grpRoom.Controls.Add(Me.lblGuests)
         Me.grpRoom.Controls.Add(Me.btnRoomToWaiting)
         Me.grpRoom.Controls.Add(Me.lstGuestsRoomed)
-        Me.grpRoom.Controls.Add(Me.lblDescription)
+        Me.grpRoom.Controls.Add(Me.lblGuestRoomedDescription)
         Me.grpRoom.Controls.Add(Me.pnlRoom)
         Me.grpRoom.Location = New System.Drawing.Point(191, 6)
         Me.grpRoom.Name = "grpRoom"
@@ -276,12 +278,12 @@ Partial Class Main
         Me.lstGuestsRoomed.Size = New System.Drawing.Size(172, 82)
         Me.lstGuestsRoomed.TabIndex = 18
         '
-        'lblDescription
+        'lblGuestRoomedDescription
         '
-        Me.lblDescription.Location = New System.Drawing.Point(184, 16)
-        Me.lblDescription.Name = "lblDescription"
-        Me.lblDescription.Size = New System.Drawing.Size(123, 193)
-        Me.lblDescription.TabIndex = 12
+        Me.lblGuestRoomedDescription.Location = New System.Drawing.Point(184, 16)
+        Me.lblGuestRoomedDescription.Name = "lblGuestRoomedDescription"
+        Me.lblGuestRoomedDescription.Size = New System.Drawing.Size(123, 193)
+        Me.lblGuestRoomedDescription.TabIndex = 12
         '
         'pnlRoom
         '
@@ -546,7 +548,7 @@ Partial Class Main
         Me.tabInventory.BackColor = System.Drawing.SystemColors.Window
         Me.tabInventory.Controls.Add(Me.grpGold)
         Me.tabInventory.Controls.Add(Me.grpWorkbench)
-        Me.tabInventory.Controls.Add(Me.grpInventory)
+        Me.tabInventory.Controls.Add(Me.grpRoomItems)
         Me.tabInventory.Location = New System.Drawing.Point(4, 22)
         Me.tabInventory.Name = "tabInventory"
         Me.tabInventory.Padding = New System.Windows.Forms.Padding(3)
@@ -613,17 +615,17 @@ Partial Class Main
         Me.lblWorkbenchDescription.Size = New System.Drawing.Size(210, 149)
         Me.lblWorkbenchDescription.TabIndex = 13
         '
-        'grpInventory
+        'grpRoomItems
         '
-        Me.grpInventory.Controls.Add(Me.lblInventoryDescription)
-        Me.grpInventory.Controls.Add(Me.btnInventorySort)
-        Me.grpInventory.Controls.Add(Me.lstInventory)
-        Me.grpInventory.Location = New System.Drawing.Point(8, 6)
-        Me.grpInventory.Name = "grpInventory"
-        Me.grpInventory.Size = New System.Drawing.Size(223, 321)
-        Me.grpInventory.TabIndex = 1
-        Me.grpInventory.TabStop = False
-        Me.grpInventory.Text = "Inventory"
+        Me.grpRoomItems.Controls.Add(Me.lblInventoryDescription)
+        Me.grpRoomItems.Controls.Add(Me.btnInventorySort)
+        Me.grpRoomItems.Controls.Add(Me.lstInventory)
+        Me.grpRoomItems.Location = New System.Drawing.Point(8, 6)
+        Me.grpRoomItems.Name = "grpRoomItems"
+        Me.grpRoomItems.Size = New System.Drawing.Size(223, 321)
+        Me.grpRoomItems.TabIndex = 1
+        Me.grpRoomItems.TabStop = False
+        Me.grpRoomItems.Text = "Room Items"
         '
         'lblInventoryDescription
         '
@@ -658,6 +660,13 @@ Partial Class Main
         Me.tabGuests.Text = "Guests"
         Me.tabGuests.UseVisualStyleBackColor = True
         '
+        'lblGuestWaitingDescription
+        '
+        Me.lblGuestWaitingDescription.Location = New System.Drawing.Point(266, 19)
+        Me.lblGuestWaitingDescription.Name = "lblGuestWaitingDescription"
+        Me.lblGuestWaitingDescription.Size = New System.Drawing.Size(224, 138)
+        Me.lblGuestWaitingDescription.TabIndex = 22
+        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -688,7 +697,7 @@ Partial Class Main
         Me.tabInventory.ResumeLayout(False)
         Me.grpGold.ResumeLayout(False)
         Me.grpWorkbench.ResumeLayout(False)
-        Me.grpInventory.ResumeLayout(False)
+        Me.grpRoomItems.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -705,8 +714,8 @@ Partial Class Main
     Friend WithEvents pnlFloor As System.Windows.Forms.Panel
     Friend WithEvents grpRoom As System.Windows.Forms.GroupBox
     Friend WithEvents pnlRoom As System.Windows.Forms.Panel
-    Friend WithEvents lblDescription As System.Windows.Forms.Label
-    Friend WithEvents grpInventory As System.Windows.Forms.GroupBox
+    Friend WithEvents lblGuestRoomedDescription As System.Windows.Forms.Label
+    Friend WithEvents grpRoomItems As System.Windows.Forms.GroupBox
     Friend WithEvents lstInventory As System.Windows.Forms.ListBox
     Friend WithEvents grpWorkbench As System.Windows.Forms.GroupBox
     Friend WithEvents btnBuild As System.Windows.Forms.Button
@@ -748,7 +757,8 @@ Partial Class Main
     Friend WithEvents grpGuestsWaiting As System.Windows.Forms.GroupBox
     Friend WithEvents btnGuestSortRace As System.Windows.Forms.Button
     Friend WithEvents btnGuestSortJob As System.Windows.Forms.Button
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lblSortBy As System.Windows.Forms.Label
     Friend WithEvents btnGuestSortName As System.Windows.Forms.Button
+    Friend WithEvents lblGuestWaitingDescription As System.Windows.Forms.Label
 
 End Class

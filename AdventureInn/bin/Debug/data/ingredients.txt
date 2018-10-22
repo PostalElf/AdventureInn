@@ -1,3 +1,168 @@
+[Beef Flank]
+Type: Steak
+Richness: 0
+Meatiness: 2
+Exoticness: -2
+Quality: -1
+
+[Beef Sirloin]
+Type: Steak
+Richness: 0
+Meatiness: 2
+Exoticness: -2
+Quality: +1
+
+[Beef Offals]
+Type: Offals
+Richness: 0
+Meatiness: 2
+Exoticness: -2
+Quality: -1
+
+[Cow Milk]
+Type: Milk
+Meatiness: 0
+Exoticness: -2
+Quality: 0
+
+[Chicken Breast]
+Type: Steak
+Richness: -1
+Meatiness: 1
+Exoticness: -3
+Quality: -1
+
+[Chicken Thigh]
+Type: Steak
+Richness: -1
+Meatiness: 1
+Exoticness: -3
+Quality: 0
+
+[Chicken Egg]
+Type: Egg
+Richness: -1
+Meatiness: 0
+Exoticness: -1
+Quality: -1
+
+[Rat Meat]
+Type: Steak
+Richness: 0
+Meatiness: 1
+Exoticness: 3
+Quality: -1
+
+[Rat Offals]
+Type: Steak
+Richness: 0
+Meatiness: 1
+Exoticness: 3
+Quality: -1
+
+[Rat Milk]
+Type: Milk
+Richness: 0
+Meatiness: 1
+Exoticness: 3
+Quality: -1
+
+[Garden Greens]
+Type: Vegetable
+Meatiness: -3
+Exoticness: -2
+Quality: -1
+
+[Corn Oil]
+Type: Oil
+Meatiness: 0
+Exoticness: -2
+Quality: 0
+
+[Corn]
+Type: Vegetable
+Meatiness: -2
+Exoticness: -2
+Quality: 0
+
+[Salad Greens]
+Type: Vegetable
+Meatiness: -3
+Exoticness: -2
+Quality: 0
+
+[Muskgrass]
+Type: Herb
+Meatiness: -1
+Exoticness: +1
+Quality: 0
+
+[Pine Oil]
+Type: Oil
+Meatiness: 0
+Exoticness: -2
+Quality: 0
+
+[Mint]
+Type: Herb
+Meatiness: 0
+Exoticness: -1
+Quality: 0
+
+[Buckroot Leaf]
+Type: Vegetable
+Meatiness: -2
+Exoticness: 2
+Quality: 0
+
+[Kobold Egg]
+Type: Egg
+Meatiness: 1
+Exoticness: 1
+Quality: 1
+
+[Wolf Flank]
+Type: Steak
+Meatiness: 2
+Exoticness: 2
+Quality: 0
+
+[Wolf Offals]
+Type: Offals
+Meatiness: 2
+Exoticness: 2
+Quality: 0
+
+[Wolf Milk]
+Type: Milk
+Meatiness: 1
+Exoticness: 2
+Quality: 1
+
+[Strangleweed]
+Type: Vegetable
+Meatiness: -2
+Exoticness: 2
+Quality: 1
+
+[Strangleweed Root]
+Type: Herb
+Meatiness: -2
+Exoticness: 2
+Quality: 1
+
+[Sunflower Oil]
+Type: Oil
+Meatiness: 0
+Exoticness: -2
+Quality: 0
+
+[Rotshrub]
+Type: Herb
+Meatiness: -1
+Exoticness: 2
+Quality: 0
+
 [Dragon's Egg]
 Type: Egg
 Richness: 5

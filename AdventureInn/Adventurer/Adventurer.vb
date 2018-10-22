@@ -107,6 +107,15 @@
             Return {privacy, opulence, restfulness, alignment, niche}
         End Get
     End Property
+    Public ReadOnly Property RoomPreferenceDescription As String
+        Get
+            Dim total As String = ""
+            total &= Race.ToString & "s like " & RoomPreferences(0) & " and " & RoomPreferences(1) & " rooms." & vbCrLf
+            total &= Job.ToString & "s like " & RoomPreferences(2) & " rooms with " & RoomPreferences(4) & "." & vbCrLf
+            total &= RoomPreferences(3) & " characters like " & RoomPreferences(3) & " things."
+            Return total
+        End Get
+    End Property
     Public ReadOnly Property RoomSatisfaction(ByVal room As Room) As Pair(Of String, Integer)
         Get
             Dim stars As Integer = 0

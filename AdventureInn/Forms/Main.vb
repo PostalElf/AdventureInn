@@ -184,16 +184,16 @@
         GuestsRefresh()
     End Sub
     Private Sub RoomLabelRefresh()
-        lblDescription.Text = ""
+        lblGuestRoomedDescription.Text = ""
         With CurrentRoom
-            lblDescription.Text &= "Privacy: " & .TotalPrivacy.Key & vbCrLf
-            lblDescription.Text &= "Furnishing: " & .TotalFurnishing.Key & vbCrLf
-            lblDescription.Text &= "Aesthetics: " & .TotalOpulence.Key & vbCrLf
-            lblDescription.Text &= "Quietness: " & .TotalRestfulness.Key & vbCrLf
-            lblDescription.Text &= "Niche: " & .TotalNiche.Key & vbCrLf
-            lblDescription.Text &= "Alignment: " & .TotalAlignment.Key & vbCrLf
+            lblGuestRoomedDescription.Text &= "Privacy: " & .TotalPrivacy.Key & vbCrLf
+            lblGuestRoomedDescription.Text &= "Furnishing: " & .TotalFurnishing.Key & vbCrLf
+            lblGuestRoomedDescription.Text &= "Aesthetics: " & .TotalOpulence.Key & vbCrLf
+            lblGuestRoomedDescription.Text &= "Quietness: " & .TotalRestfulness.Key & vbCrLf
+            lblGuestRoomedDescription.Text &= "Niche: " & .TotalNiche.Key & vbCrLf
+            lblGuestRoomedDescription.Text &= "Alignment: " & .TotalAlignment.Key & vbCrLf
             If .GuestCapacity <= 0 Then
-                lblDescription.Text &= vbCrLf & "WARNING! A room must have at least one bed to receive guests. You want guests. Fix this."
+                lblGuestRoomedDescription.Text &= vbCrLf & "WARNING! A room must have at least one bed to receive guests. You want guests. Fix this."
             End If
         End With
     End Sub
@@ -224,7 +224,7 @@
                 AddItem(x, y)                                   'no item; prompt to add item
             End If
         ElseIf e.Button = Windows.Forms.MouseButtons.Left Then
-            DescribeItem(roomItem, lblDescription)              'left-click for info
+            DescribeItem(roomItem, lblGuestRoomedDescription)              'left-click for info
         End If
     End Sub
     Private Sub AddItem(ByVal x As Integer, ByVal y As Integer)
@@ -256,7 +256,17 @@
         control.Text &= roomItem.AttributesDescription & vbCrLf
         control.Text &= roomItem.Description
     End Sub
-    Private Sub lblDescription_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblDescription.Click
+
+    Private Sub lstGuestsWaiting_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstGuestsWaiting.SelectedIndexChanged
+        Dim guest As Adventurer = lstGuestsWaiting.SelectedItem
+
+        If guest Is Nothing Then
+            lblGuestWaitingDescription.Text = ""
+        Else
+            lblGuestWaitingDescription.Text = guest.roompreferencedescription
+        End If
+    End Sub
+    Private Sub lblDescription_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblGuestRoomedDescription.Click
         RoomLabelRefresh()
     End Sub
     Private Sub btnWaitingToRoom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnWaitingToRoom.Click
@@ -514,5 +524,4 @@
 
         MenuIndex += 1
     End Sub
-
 End Class
