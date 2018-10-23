@@ -54,7 +54,7 @@ Exoticness: 3
 Quality: -1
 
 [Rat Offals]
-Type: Steak
+Type: Offals
 Richness: 0
 Meatiness: 1
 Exoticness: 3

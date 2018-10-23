@@ -71,6 +71,18 @@ Drop2: Mint, 25
 Drop2: Buckroot Leaf, 25
 Drop2: Kobold Egg, 10
 
+[Flour Elemental]
+Level: 1
+Areas: Forest
+Drop1: Flour, 50
+Drop1: Yeast, 25
+Drop1: 
+Drop2: Flour, 100
+Drop3: Yeast, 
+
+[Kobold Baker]
+
+
 [Dragon]
 Level: 9
 Areas: Mountains

@@ -89,6 +89,8 @@
     <Compile Include="Forms\DialogRoomItem.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Monster\LootItem.vb" />
+    <Compile Include="Monster\Monster.vb" />
     <Compile Include="Room\Floor.vb" />
     <Compile Include="Room\Inn.vb" />
     <Compile Include="Forms\Main.vb">
@@ -118,8 +120,8 @@
     </Compile>
     <Compile Include="Room\Room.vb" />
     <Compile Include="Room\RoomItem.vb" />
-    <Compile Include="xy.vb" />
-    <Compile Include="xyContainer.vb" />
+    <Compile Include="Room\xy.vb" />
+    <Compile Include="Room\xyContainer.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\DialogPicker.resx">

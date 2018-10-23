@@ -1,7 +1,18 @@
+[Steak]
+Steak
+Herb
+Oil
+
 [Sweetbreads]
 Oil
 Offals
 Herb
+
+[Sausages]
+Offals
+Steak
+Herb
+Egg
 
 [Omelette]
 Egg
