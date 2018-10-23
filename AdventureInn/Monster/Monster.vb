@@ -1,19 +1,38 @@
 ﻿Public Class Monster
-    Public Shared Function Generate(ByVal targetName As String) As Monster
-        Dim rawdata As List(Of String) = IO.ImportSquareBracketSelect(IO.sbMonsters, targetName)
-        If rawdata Is Nothing Then Return Nothing
+    Public Shared AllMonsters As Dictionary(Of String, Monster) = AllMonstersPopulate
+    Private Shared Function AllMonstersPopulate() As Dictionary(Of String, Monster)
+        Dim total As New Dictionary(Of String, Monster)
+        Dim allRawData As Dictionary(Of String, List(Of String)) = IO.ImportSquareBracketList(IO.sbMonsters)
+        For Each key In allRawData.Keys
+            Dim rawdata As List(Of String) = allRawData(key)
+            total.Add(key, Generate(key, rawdata))
+        Next
+        Return total
+    End Function
+    Public Sub New()
+        Drops(0) = Drop1
+        Drops(1) = Drop2
+        Drops(2) = Drop3
+        Drops(3) = Drop4
+        Drops(4) = Drop5
+    End Sub
+    Public Shared Function Generate(ByVal targetName As String, Optional ByVal rawData As List(Of String) = Nothing) As Monster
+        If rawData Is Nothing Then
+            rawData = IO.ImportSquareBracketSelect(IO.sbMonsters, targetName)
+            If rawdata Is Nothing Then Return Nothing
+        End If
 
         Dim m As New Monster
         With m
-            .Name = targetName
+            ._Name = targetName
             For Each l In rawdata
                 Dim rawsplit As String() = l.Split(":")
                 Dim header As String = rawsplit(0).Trim
                 Dim entry As String = rawsplit(1).Trim
 
                 Select Case header
-                    Case "Level" : .Level = Convert.ToInt32(entry)
-                    Case "Areas" : .Areas = CommaStringToList(entry)
+                    Case "Level" : ._Level = Convert.ToInt32(entry)
+                    Case "Area" : ._Area = entry
                     Case "Drop1" : .Drop1.Add(CommaStringToPair(entry))
                     Case "Drop2" : .Drop2.Add(CommaStringToPair(entry))
                     Case "Drop3" : .Drop3.Add(CommaStringToPair(entry))
@@ -21,12 +40,6 @@
                     Case "Drop5" : .Drop5.Add(CommaStringToPair(entry))
                 End Select
             Next
-
-            .Drops(0) = .Drop1
-            .Drops(1) = .Drop2
-            .Drops(2) = .Drop3
-            .Drops(3) = .Drop4
-            .Drops(4) = .Drop5
         End With
         Return m
     End Function
@@ -38,9 +51,24 @@
         Return New Pair(Of String, Integer)(key, value)
     End Function
 
-    Private Name As String
-    Private Level As Integer
-    Private Areas As New List(Of String)
+    Private _Name As String
+    Public ReadOnly Property Name As String
+        Get
+            Return _Name
+        End Get
+    End Property
+    Private _Level As Integer
+    Public ReadOnly Property Level As Integer
+        Get
+            Return _Level
+        End Get
+    End Property
+    Private _Area As String
+    Public ReadOnly Property Area As String
+        Get
+            Return _Area
+        End Get
+    End Property
     Private Drops(4) As List(Of Pair(Of String, Integer))
     Private Drop1 As New List(Of Pair(Of String, Integer))
     Private Drop2 As New List(Of Pair(Of String, Integer))

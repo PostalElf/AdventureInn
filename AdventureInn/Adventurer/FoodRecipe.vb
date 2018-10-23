@@ -1,18 +1,20 @@
 ﻿Public Class FoodRecipe
     Inherits Food
-    Public Requirements As New List(Of String)
-    Private iRequired As New List(Of String)
-    Private iFilled As New List(Of String)
-    Private Ingredients As New List(Of FoodIngredient)
-    Public ReadOnly Property Completed As Boolean
-        Get
-            If iRequired.Count = 0 Then Return True Else Return False
-        End Get
-    End Property
-
-    Public Overloads Shared Function Generate(ByVal targetName As String) As FoodRecipe
-        Dim rawData As List(Of String) = IO.ImportSquareBracketSelect(IO.sbRecipes, targetName)
-        If rawData Is Nothing Then Return Nothing
+    Public Shared AllFoodRecipes As Dictionary(Of String, FoodRecipe) = AllFoodRecipesPopulate
+    Private Shared Function AllFoodRecipesPopulate() As Dictionary(Of String, FoodRecipe)
+        Dim total As New Dictionary(Of String, FoodRecipe)
+        Dim allRawData As Dictionary(Of String, List(Of String)) = IO.ImportSquareBracketList(IO.sbRecipes)
+        For Each key In allRawData.Keys
+            Dim rawdata As List(Of String) = allRawData(key)
+            total.Add(key, Generate(key, rawdata))
+        Next
+        Return total
+    End Function
+    Public Overloads Shared Function Generate(ByVal targetName As String, Optional ByVal rawdata As List(Of String) = Nothing) As FoodRecipe
+        If rawdata Is Nothing Then
+            rawdata = IO.ImportSquareBracketSelect(IO.sbRecipes, targetName)
+            If rawData Is Nothing Then Return Nothing
+        End If
 
         Dim fr As New FoodRecipe
         With fr
@@ -24,6 +26,17 @@
         End With
         Return fr
     End Function
+
+    Public Requirements As New List(Of String)
+    Private iRequired As New List(Of String)
+    Private iFilled As New List(Of String)
+    Private Ingredients As New List(Of FoodIngredient)
+    Public ReadOnly Property Completed As Boolean
+        Get
+            If iRequired.Count = 0 Then Return True Else Return False
+        End Get
+    End Property
+
     Public Function Add(ByVal fi As FoodIngredient) As String
         If iRequired.Contains(fi.IngredientType) = False Then Return "Ingredient type '" & fi.IngredientType & "' not required."
 
@@ -58,16 +71,5 @@
         Dim total As New List(Of FoodIngredient)(Ingredients)
         Ingredients.Clear()
         Return total
-    End Function
-    Public Function Clone() As FoodRecipe
-        Dim fr As New FoodRecipe
-        With fr
-            .Name = Name
-            If Requirements.Count > 0 Then .Requirements.AddRange(Requirements)
-            If iRequired.Count > 0 Then .iRequired.AddRange(iRequired)
-            If iFilled.Count > 0 Then .iFilled.AddRange(iFilled)
-            If Ingredients.Count > 0 Then .Ingredients.AddRange(Ingredients)
-        End With
-        Return fr
     End Function
 End Class

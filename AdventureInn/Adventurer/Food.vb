@@ -1,9 +1,21 @@
 ﻿Public Class Food
-    Protected Name As String
+    Public Shared Function Generate(ByVal recipe As FoodRecipe) As Food
+        Dim f As New Food
+        With f
+            .Name = recipe.Name
+            .Richness = recipe.Richness
+            .Meatiness = recipe.Meatiness
+            .Exoticness = recipe.Exoticness
+            .Quality = recipe.Quality
+            .IngredientNames.AddRange(recipe.IngredientNames)
+        End With
+        Return f
+    End Function
     Public Overrides Function ToString() As String
         Return Name
     End Function
 
+    Protected Name As String
     Protected Richness As Integer
     Public ReadOnly Property TotalRichness As Pair(Of String, Integer)
         Get
@@ -69,17 +81,4 @@
             Return Name & " with " & ListToCommaString(IngredientNames, "&&")
         End Get
     End Property
-
-    Public Shared Function Generate(ByVal recipe As FoodRecipe) As Food
-        Dim f As New Food
-        With f
-            .Name = recipe.Name
-            .Richness = recipe.Richness
-            .Meatiness = recipe.Meatiness
-            .Exoticness = recipe.Exoticness
-            .Quality = recipe.Quality
-            .IngredientNames.AddRange(recipe.IngredientNames)
-        End With
-        Return f
-    End Function
 End Class

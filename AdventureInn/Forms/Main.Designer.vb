@@ -23,6 +23,7 @@ Partial Class Main
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Main))
         Me.lblFloor = New System.Windows.Forms.Label()
         Me.tt = New System.Windows.Forms.ToolTip(Me.components)
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
@@ -30,6 +31,7 @@ Partial Class Main
         Me.tbc = New System.Windows.Forms.TabControl()
         Me.tabFloor = New System.Windows.Forms.TabPage()
         Me.grpGuestsWaiting = New System.Windows.Forms.GroupBox()
+        Me.lblGuestWaitingDescription = New System.Windows.Forms.Label()
         Me.btnGuestSortRace = New System.Windows.Forms.Button()
         Me.btnGuestSortJob = New System.Windows.Forms.Button()
         Me.lblSortBy = New System.Windows.Forms.Label()
@@ -80,7 +82,6 @@ Partial Class Main
         Me.btnInventorySort = New System.Windows.Forms.Button()
         Me.lstInventory = New System.Windows.Forms.ListBox()
         Me.tabGuests = New System.Windows.Forms.TabPage()
-        Me.lblGuestWaitingDescription = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -175,6 +176,13 @@ Partial Class Main
         Me.grpGuestsWaiting.TabIndex = 18
         Me.grpGuestsWaiting.TabStop = False
         Me.grpGuestsWaiting.Text = "Guests Waiting"
+        '
+        'lblGuestWaitingDescription
+        '
+        Me.lblGuestWaitingDescription.Location = New System.Drawing.Point(266, 19)
+        Me.lblGuestWaitingDescription.Name = "lblGuestWaitingDescription"
+        Me.lblGuestWaitingDescription.Size = New System.Drawing.Size(224, 138)
+        Me.lblGuestWaitingDescription.TabIndex = 22
         '
         'btnGuestSortRace
         '
@@ -339,14 +347,14 @@ Partial Class Main
         Me.grpFood.Controls.Add(Me.lstFoodIngredients)
         Me.grpFood.Location = New System.Drawing.Point(265, 14)
         Me.grpFood.Name = "grpFood"
-        Me.grpFood.Size = New System.Drawing.Size(253, 272)
+        Me.grpFood.Size = New System.Drawing.Size(253, 211)
         Me.grpFood.TabIndex = 2
         Me.grpFood.TabStop = False
         Me.grpFood.Text = "Inventory"
         '
         'btnMenuToFood
         '
-        Me.btnMenuToFood.Location = New System.Drawing.Point(9, 206)
+        Me.btnMenuToFood.Location = New System.Drawing.Point(9, 137)
         Me.btnMenuToFood.Name = "btnMenuToFood"
         Me.btnMenuToFood.Size = New System.Drawing.Size(26, 23)
         Me.btnMenuToFood.TabIndex = 19
@@ -355,7 +363,7 @@ Partial Class Main
         '
         'btnFoodToMenu
         '
-        Me.btnFoodToMenu.Location = New System.Drawing.Point(9, 177)
+        Me.btnFoodToMenu.Location = New System.Drawing.Point(9, 108)
         Me.btnFoodToMenu.Name = "btnFoodToMenu"
         Me.btnFoodToMenu.Size = New System.Drawing.Size(26, 23)
         Me.btnFoodToMenu.TabIndex = 18
@@ -365,9 +373,9 @@ Partial Class Main
         'lstFood
         '
         Me.lstFood.FormattingEnabled = True
-        Me.lstFood.Location = New System.Drawing.Point(43, 145)
+        Me.lstFood.Location = New System.Drawing.Point(41, 108)
         Me.lstFood.Name = "lstFood"
-        Me.lstFood.Size = New System.Drawing.Size(204, 121)
+        Me.lstFood.Size = New System.Drawing.Size(204, 95)
         Me.lstFood.TabIndex = 2
         '
         'lstFoodIngredients
@@ -375,7 +383,7 @@ Partial Class Main
         Me.lstFoodIngredients.FormattingEnabled = True
         Me.lstFoodIngredients.Location = New System.Drawing.Point(6, 19)
         Me.lstFoodIngredients.Name = "lstFoodIngredients"
-        Me.lstFoodIngredients.Size = New System.Drawing.Size(241, 121)
+        Me.lstFoodIngredients.Size = New System.Drawing.Size(241, 82)
         Me.lstFoodIngredients.TabIndex = 1
         '
         'grpKitchen
@@ -385,9 +393,9 @@ Partial Class Main
         Me.grpKitchen.Controls.Add(Me.lblKitchen)
         Me.grpKitchen.Controls.Add(Me.btnCook)
         Me.grpKitchen.Controls.Add(Me.cmbKitchen)
-        Me.grpKitchen.Location = New System.Drawing.Point(8, 292)
+        Me.grpKitchen.Location = New System.Drawing.Point(8, 231)
         Me.grpKitchen.Name = "grpKitchen"
-        Me.grpKitchen.Size = New System.Drawing.Size(510, 210)
+        Me.grpKitchen.Size = New System.Drawing.Size(510, 188)
         Me.grpKitchen.TabIndex = 1
         Me.grpKitchen.TabStop = False
         Me.grpKitchen.Text = "Kitchen"
@@ -501,7 +509,7 @@ Partial Class Main
         '
         'btnCookReset
         '
-        Me.btnCookReset.Location = New System.Drawing.Point(394, 173)
+        Me.btnCookReset.Location = New System.Drawing.Point(397, 159)
         Me.btnCookReset.Name = "btnCookReset"
         Me.btnCookReset.Size = New System.Drawing.Size(47, 23)
         Me.btnCookReset.TabIndex = 15
@@ -512,12 +520,12 @@ Partial Class Main
         '
         Me.lblKitchen.Location = New System.Drawing.Point(11, 51)
         Me.lblKitchen.Name = "lblKitchen"
-        Me.lblKitchen.Size = New System.Drawing.Size(210, 149)
+        Me.lblKitchen.Size = New System.Drawing.Size(210, 131)
         Me.lblKitchen.TabIndex = 14
         '
         'btnCook
         '
-        Me.btnCook.Location = New System.Drawing.Point(447, 173)
+        Me.btnCook.Location = New System.Drawing.Point(450, 159)
         Me.btnCook.Name = "btnCook"
         Me.btnCook.Size = New System.Drawing.Size(47, 23)
         Me.btnCook.TabIndex = 4
@@ -538,7 +546,7 @@ Partial Class Main
         '
         Me.grpMenu.Location = New System.Drawing.Point(8, 14)
         Me.grpMenu.Name = "grpMenu"
-        Me.grpMenu.Size = New System.Drawing.Size(247, 272)
+        Me.grpMenu.Size = New System.Drawing.Size(247, 211)
         Me.grpMenu.TabIndex = 0
         Me.grpMenu.TabStop = False
         Me.grpMenu.Text = "Today's Menu"
@@ -660,13 +668,6 @@ Partial Class Main
         Me.tabGuests.Text = "Guests"
         Me.tabGuests.UseVisualStyleBackColor = True
         '
-        'lblGuestWaitingDescription
-        '
-        Me.lblGuestWaitingDescription.Location = New System.Drawing.Point(266, 19)
-        Me.lblGuestWaitingDescription.Name = "lblGuestWaitingDescription"
-        Me.lblGuestWaitingDescription.Size = New System.Drawing.Size(224, 138)
-        Me.lblGuestWaitingDescription.TabIndex = 22
-        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -675,10 +676,11 @@ Partial Class Main
         Me.Controls.Add(Me.tbc)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.MaximizeBox = False
         Me.Name = "Main"
-        Me.Text = "Room"
+        Me.Text = "AdventurInn"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         Me.tbc.ResumeLayout(False)

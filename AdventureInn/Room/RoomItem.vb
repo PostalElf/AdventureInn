@@ -1,8 +1,20 @@
 ﻿Public Class RoomItem
     Implements xy, IComparable
-    Public Shared Function Generate(ByVal targetName As String) As RoomItem
-        Dim rawdata As List(Of String) = IO.ImportSquareBracketSelect(IO.sbRooms, targetName)
-        If rawdata Is Nothing Then Return Nothing
+    Public Shared AllRoomItems As Dictionary(Of String, RoomItem) = AllRoomItemsPopulate()
+    Private Shared Function AllRoomItemsPopulate() As Dictionary(Of String, RoomItem)
+        Dim total As New Dictionary(Of String, RoomItem)
+        Dim allRawData As Dictionary(Of String, List(Of String)) = IO.ImportSquareBracketList(IO.sbRooms)
+        For Each key In allRawData.Keys
+            Dim rawdata As List(Of String) = allRawData(key)
+            total.Add(key, Generate(key, rawdata))
+        Next
+        Return total
+    End Function
+    Public Shared Function Generate(ByVal targetName As String, Optional ByVal rawdata As List(Of String) = Nothing) As RoomItem
+        If rawdata Is Nothing Then
+            rawdata = IO.ImportSquareBracketSelect(IO.sbRooms, targetName)
+            If rawdata Is Nothing Then Return Nothing
+        End If
 
         Dim ri As New RoomItem
         For Each line In rawdata
@@ -38,10 +50,6 @@
     Public Overrides Function ToString() As String
         Return Name
     End Function
-    Public Function CompareTo(ByVal obj As Object) As Integer Implements IComparable.CompareTo
-        Dim ri As RoomItem = CType(obj, RoomItem)
-        Return String.Compare(Me.Name, ri.Name)
-    End Function
 
     Private _Name As String
     Public ReadOnly Property Name As String
@@ -73,6 +81,10 @@
             Return _Height
         End Get
     End Property
+    Public Function CompareTo(ByVal obj As Object) As Integer Implements IComparable.CompareTo
+        Dim ri As RoomItem = CType(obj, RoomItem)
+        Return String.Compare(Me.Name, ri.Name)
+    End Function
     Private Property InitialX As Integer Implements xy.InitialX
     Private Property InitialY As Integer Implements xy.InitialY
 

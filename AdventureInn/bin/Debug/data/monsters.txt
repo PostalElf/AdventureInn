@@ -1,6 +1,6 @@
 [Mad Cow]
 Level: 0
-Areas: Farmlands
+Area: Farmlands
 Drop1: Beef Flank, 95
 Drop1: Beef Sirloin, 5
 Drop2: Cow Milk, 50
@@ -10,7 +10,7 @@ Drop3: Beef Offals, 20
 
 [Enraged Chicken]
 Level: 0
-Areas: Farmlands
+Area: Farmlands
 Drop1: Chicken Breast, 50
 Drop1: Chicken Thigh, 50
 Drop2: Chicken Breast, 50
@@ -19,7 +19,7 @@ Drop3: Chicken Egg, 50
 
 [Giant Rat]
 Level: 0
-Areas: Farmlands
+Area: Farmlands
 Drop1: Rat Meat, 50
 Drop1: Rat Offals, 50
 Drop2: Rat Meat, 50
@@ -28,7 +28,7 @@ Drop3: Rat Milk, 20
 
 [Animated Shrub]
 Level: 0
-Areas: Farmlands
+Area: Farmlands
 Drop1: Garden Greens, 95
 Drop1: Mint, 5
 Drop2: Garden Greens, 95
@@ -37,14 +37,14 @@ Drop3: Pine Oil, 10
 
 [Maize Golem]
 Level: 0
-Areas: Farmlands
+Area: Farmlands
 Drop1: Corn, 100
 Drop2: Corn, 95
 Drop2: Corn Oil, 5
 
 [Goblin Thief]
 Level: 1
-Areas: Forest
+Area: Forest
 Drop1: Chicken Egg, 50
 Drop1: Salad Greens, 50
 Drop2: Chicken Egg, 50
@@ -53,7 +53,7 @@ Drop3: Muskgrass, 20
 
 [Goblin Thug]
 Level: 1
-Areas: Forest
+Area: Forest
 Drop1: Wolf Flank, 25
 Drop1: Strangleweed, 25
 Drop1: Strangleweed Root, 25
@@ -64,7 +64,7 @@ Drop2: Chicken Egg, 50
 
 [Kommon Kobold]
 Level: 1
-Areas: Forest
+Area: Forest
 Drop1: Cow Milk, 50
 Drop1: Pine Oil, 50
 Drop2: Mint, 25
@@ -73,28 +73,49 @@ Drop2: Kobold Egg, 10
 
 [Flour Elemental]
 Level: 1
-Areas: Forest
-Drop1: Flour, 50
-Drop1: Yeast, 25
-Drop1: 
-Drop2: Flour, 100
-Drop3: Yeast, 
+Area: Forest
+Drop1: Bread Dough, 100
+Drop2: Bread Dough, 50
+Drop3: Bread Dough, 25
 
 [Kobold Baker]
+Level: 1
+Area: Forest
+Drop1: Bread Dough, 50
+Drop1: Oil, 50
+Drop2: Bread Dough, 50
+Drop2: Rotshrub, 50
 
+[Gorgon]
+Level: 4
+Area: Ruins
+Drop1: Gorgon Hide, 50
+Drop1: Gorgon Flank, 50
+Drop2: Gorgon Milk, 25
+Drop2: Gorgon Horn, 25
+
+[Manticore]
+Level: 5
+Area: Ruins
+Drop1: Manticore Egg, 25
+Drop1: Manticore Oil, 75
+Drop2: Manticore Hide, 50
+Drop2: Manticore Oil, 50
+
+[Hydra]
+Level: 6
+Area: Ruins
+Drop1: Hydra Hide, 50
+Drop1: Hydra Oil, 50
+Drop2: Hydra Teeth, 25
+Drop2: Hydra Hide, 25
 
 [Dragon]
 Level: 9
-Areas: Mountains
+Area: Mountains
 Drop1: Dragon's Egg, 15
 Drop1: Dragon's Tail, 45
 Drop2: Dragonscales, 50
 Drop2: Dragonhide, 50
 
-
-[Gorgon]
-
-[Manticore]
-
-[Hydra]
 

@@ -121,6 +121,12 @@ Meatiness: 1
 Exoticness: 1
 Quality: 1
 
+[Bread Dough]
+Type: Dough
+Meatiness: -1
+Exoticness: -1
+Quality: 0
+
 [Wolf Flank]
 Type: Steak
 Meatiness: 2
@@ -163,27 +169,27 @@ Meatiness: -1
 Exoticness: 2
 Quality: 0
 
-[Dragon's Egg]
+[Dragon Egg]
 Type: Egg
 Richness: 5
 Meatiness: 1
 Exoticness: 5
 Quality: 5
 
-[Manticore's Egg]
+[Manticore Egg]
 Type: Egg
 Richness: 4
 Meatiness: 1
 Exoticness: 4
 Quality: 4
 
-[Gorgon's Milk]
+[Gorgon Milk]
 Type: Milk
 Richness: 2
 Exoticness: 2
 Quality: 1
 
-[Gorgon's Butter]
+[Gorgon Butter]
 Type: Butter
 Richness: 1
 Exoticness: 1

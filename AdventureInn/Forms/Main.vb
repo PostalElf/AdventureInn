@@ -25,10 +25,10 @@
             .InventoryRoomItems.Add(RoomItem.Generate("Four-Poster Bed"))
             .Gold = 20000
 
-            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Dragon's Egg"))
-            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Manticore's Egg"))
-            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Gorgon's Milk"))
-            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Gorgon's Butter"))
+            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Dragon Egg"))
+            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Manticore Egg"))
+            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Gorgon Milk"))
+            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Gorgon Butter"))
         End With
     End Sub
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -304,12 +304,10 @@
         GuestsRefresh()
     End Sub
 
-    Private AllRoomItems As New Dictionary(Of String, RoomItem)
     Private Sub WorkbenchBuild()
-        Dim rawData As List(Of String) = IO.ImportSquareBracketHeaders(IO.sbRooms)
-        For Each l In rawData
-            AllRoomItems.Add(l, RoomItem.Generate(l))
-            cmbWorkbench.Items.Add(l)
+        For Each riName In RoomItem.AllRoomItems.Keys
+            Dim ri As RoomItem = RoomItem.AllRoomItems(riName)
+            cmbWorkbench.Items.Add(ri)
         Next
     End Sub
     Private Sub WorkbenchRefresh()
@@ -328,8 +326,8 @@
         WorkbenchRefresh()
     End Sub
     Private Sub cmbWorkbench_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbWorkbench.SelectedIndexChanged
-        Dim roomItem As RoomItem = AllRoomItems(cmbWorkbench.SelectedItem.ToString)
-        DescribeItem(roomItem, lblWorkbenchDescription)
+        Dim ri As RoomItem = RoomItem.AllRoomItems(cmbWorkbench.SelectedItem.ToString)
+        DescribeItem(ri, lblWorkbenchDescription)
     End Sub
     Private Sub btnBuild_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBuild.Click
         If cmbWorkbench.SelectedItem Is Nothing Then Exit Sub
@@ -346,16 +344,12 @@
         Return Nothing
     End Function
 
-    Private AllKitchenRecipes As New Dictionary(Of String, FoodRecipe)
     Private ActiveRecipe As FoodRecipe = Nothing
     Private KitchenLbls(4) As Label
     Private KitchenTxts(4) As Label
     Private Sub KitchenBuild()
-        'populate AllKitchenRecipes
-        Dim rawData As List(Of String) = IO.ImportSquareBracketHeaders(IO.sbRecipes)
-        For Each l In rawData
-            AllKitchenRecipes.Add(l, FoodRecipe.Generate(l))
-            cmbKitchen.Items.Add(l)
+        For Each r In FoodRecipe.AllFoodRecipes.Keys
+            cmbKitchen.Items.Add(r)
         Next
 
         'setup KitchenLbls and KitchenTxts
@@ -392,8 +386,8 @@
             KitchenRefresh()
             RecipeReset()
         Else
-            Dim fr As FoodRecipe = AllKitchenRecipes(cmbKitchen.SelectedItem.ToString)
-            ActiveRecipe = fr.Clone
+            Dim fr As FoodRecipe = FoodRecipe.Generate(cmbKitchen.SelectedItem.ToString)
+            ActiveRecipe = fr
             RecipeShow()
         End If
     End Sub
