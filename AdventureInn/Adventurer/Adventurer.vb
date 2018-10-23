@@ -351,19 +351,19 @@
         End Get
     End Property
 
-    Public Class AdventurerSort_ByName
+    Public Class SortByName
         Implements IComparer(Of Adventurer)
         Public Function Compare(ByVal x As Adventurer, ByVal y As Adventurer) As Integer Implements System.Collections.Generic.IComparer(Of Adventurer).Compare
             Return String.Compare(x.Name, y.Name)
         End Function
     End Class
-    Public Class AdventurerSort_ByJob
+    Public Class SortByJob
         Implements IComparer(Of Adventurer)
         Public Function Compare(ByVal x As Adventurer, ByVal y As Adventurer) As Integer Implements System.Collections.Generic.IComparer(Of Adventurer).Compare
             Return String.Compare(x.Job.ToString, y.Job.ToString)
         End Function
     End Class
-    Public Class AdventurerSort_ByRace
+    Public Class SortByRace
         Implements IComparer(Of Adventurer)
         Public Function Compare(ByVal x As Adventurer, ByVal y As Adventurer) As Integer Implements System.Collections.Generic.IComparer(Of Adventurer).Compare
             Return String.Compare(x.Race.ToString, y.Race.ToString)

@@ -16,22 +16,23 @@
             .Add(floor2)
 
             For n = 1 To 10
-                .WaitingGuests.Add(Adventurer.Generate)
+                .Add(Adventurer.Generate)
             Next
 
-            .InventoryRoomItems.Add(RoomItem.Generate("Straw Bed"))
-            .InventoryRoomItems.Add(RoomItem.Generate("Study Table"))
-            .InventoryRoomItems.Add(RoomItem.Generate("Study Table"))
-            .InventoryRoomItems.Add(RoomItem.Generate("Four-Poster Bed"))
+            .Add(RoomItem.Generate("Straw Bed"))
+            .Add(RoomItem.Generate("Study Table"))
+            .Add(RoomItem.Generate("Study Table"))
+            .Add(RoomItem.Generate("Four-Poster Bed"))
             .Gold = 20000
 
-            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Dragon Egg"))
-            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Manticore Egg"))
-            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Gorgon Milk"))
-            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Gorgon Butter"))
-            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Cow Milk"))
-            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Cow Milk"))
-            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Beef Offals"))
+            .Add(FoodIngredient.Generate("Dragon Egg"))
+            .Add(FoodIngredient.Generate("Manticore Egg"))
+            .Add(FoodIngredient.Generate("Gorgon Milk"))
+            .Add(FoodIngredient.Generate("Gorgon Butter"))
+            .Add(FoodIngredient.Generate("Cow Milk"))
+            .Add(FoodIngredient.Generate("Cow Milk"))
+            .Add(FoodIngredient.Generate("Beef Offals"))
+            .Add(FoodIngredient.Generate("Muskgrass"))
         End With
     End Sub
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -48,6 +49,7 @@
         KitchenRefresh()
     End Sub
 
+#Region "Floor Management"
     Private CurrentFloor As Floor
     Private FloorPanels(,) As Panel
     Private Sub FloorBuild()
@@ -294,19 +296,38 @@
         CurrentInn.WaitingGuests.Add(guest)
         lstGuestsWaiting.Items.Add(guest)
     End Sub
-    Private Sub btnGuestSortName_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuestSortName.Click
-        CurrentInn.WaitingGuests.Sort(New Adventurer.AdventurerSort_ByName)
-        GuestsRefresh()
-    End Sub
-    Private Sub btnGuestSortJob_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuestSortJob.Click
-        CurrentInn.WaitingGuests.Sort(New Adventurer.AdventurerSort_ByJob)
-        GuestsRefresh()
-    End Sub
-    Private Sub btnGuestSortRace_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnGuestSortRace.Click
-        CurrentInn.WaitingGuests.Sort(New Adventurer.AdventurerSort_ByRace)
-        GuestsRefresh()
-    End Sub
 
+    Private Sub lstGuests_Click(ByVal sender As ListBox, ByVal e As MouseEventArgs) Handles lstGuestsWaiting.MouseDown, lstGuestsRoomed.MouseDown
+        If e.Button = Windows.Forms.MouseButtons.Right Then
+            Dim choices As New List(Of String) From {"Sort by Race", "Sort by Job", "Sort by Name"}
+            Dim dp As New DialogPicker
+            dp.MainList = choices
+            If dp.ShowDialog = Windows.Forms.DialogResult.OK Then
+                Dim choice As String = dp.Result
+                dp.Close()
+
+                Dim sortList As List(Of Adventurer)
+                If sender.Equals(lstGuestsWaiting) Then
+                    sortList = CurrentInn.WaitingGuests
+                ElseIf sender.Equals(lstGuestsRoomed) Then
+                    If CurrentRoom Is Nothing Then Exit Sub
+                    sortList = CurrentRoom.Guests
+                Else
+                    Throw New Exception
+                End If
+
+                Select Case choice
+                    Case "Sort by Race" : sortList.Sort(New Adventurer.SortByRace)
+                    Case "Sort by Job" : sortList.Sort(New Adventurer.SortByJob)
+                    Case "Sort by Name" : sortList.Sort(New Adventurer.SortByName)
+                End Select
+                GuestsRefresh()
+            End If
+        End If
+    End Sub
+#End Region
+
+#Region "Inventory"
     Private Sub WorkbenchBuild()
         For Each riName In RoomItem.AllRoomItems.Keys
             Dim ri As RoomItem = RoomItem.AllRoomItems(riName)
@@ -346,6 +367,7 @@
         WorkbenchRefresh()
         Return Nothing
     End Function
+#End Region
 
 #Region "Kitchen"
     Private ActiveRecipe As FoodRecipe = Nothing
@@ -611,6 +633,45 @@
 
         MenuIndex += 1
     End Sub
-#End Region
 
+    Private Sub lstFood_Click(ByVal sender As ListBox, ByVal e As MouseEventArgs) Handles lstFood.MouseDown, lstFoodIngredients.MouseDown
+        If e.Button = Windows.Forms.MouseButtons.Right Then
+            Dim choices As New List(Of String) From {"Sort by Name", "Sort by Quality", "Sort by Meat/Veg", "Sort by Exotic/Common", "Sort by Rich/Plain"}
+            If sender.Equals(lstFoodIngredients) Then choices.Add("Sort by Type")
+
+            Dim dp As New DialogPicker
+            dp.MainList = choices
+            If dp.ShowDialog = Windows.Forms.DialogResult.OK Then
+                Dim choice As String = dp.Result
+                dp.Close()
+
+                If sender.Equals(lstFood) Then
+                    Dim comparer = Nothing
+                    Select Case choice
+                        Case "Sort by Name" : comparer = New Food.SortByName
+                        Case "Sort by Quality" : comparer = New Food.SortByQuality
+                        Case "Sort by Meat/Veg" : comparer = New Food.SortByMeatiness
+                        Case "Sort by Exotic/Common" : comparer = New Food.SortByExoticness
+                        Case "Sort by Rich/Plain" : comparer = New Food.SortByRichness
+                    End Select
+                    CurrentInn.InventoryFood.Sort(comparer)
+                ElseIf sender.Equals(lstFoodIngredients) Then
+                    Dim comparer = Nothing
+                    Select Case choice
+                        Case "Sort by Name" : comparer = New FoodIngredient.SortByName
+                        Case "Sort by Quality" : comparer = New FoodIngredient.SortByQuality
+                        Case "Sort by Meat/Veg" : comparer = New FoodIngredient.SortByMeatiness
+                        Case "Sort by Exotic/Common" : comparer = New FoodIngredient.SortByExoticness
+                        Case "Sort by Rich/Plain" : comparer = New FoodIngredient.SortByRichness
+                        Case "Sort by Type" : comparer = New FoodIngredient.SortByType
+                    End Select
+                    CurrentInn.InventoryFoodIngredients.Sort(comparer)
+                Else
+                    Throw New Exception
+                End If
+                KitchenRefresh()
+            End If
+        End If
+    End Sub
+#End Region
 End Class

@@ -1,8 +1,8 @@
 ﻿Public Class FoodRecipe
     Inherits Food
-    Public Shared AllFoodRecipes As Dictionary(Of String, FoodRecipe) = AllFoodRecipesPopulate
-    Private Shared Function AllFoodRecipesPopulate() As Dictionary(Of String, FoodRecipe)
-        Dim total As New Dictionary(Of String, FoodRecipe)
+    Public Shared AllFoodRecipes As SortedDictionary(Of String, FoodRecipe) = AllFoodRecipesPopulate()
+    Private Shared Function AllFoodRecipesPopulate() As SortedDictionary(Of String, FoodRecipe)
+        Dim total As New SortedDictionary(Of String, FoodRecipe)
         Dim allRawData As Dictionary(Of String, List(Of String)) = IO.ImportSquareBracketList(IO.sbRecipes)
         For Each key In allRawData.Keys
             Dim rawdata As List(Of String) = allRawData(key)

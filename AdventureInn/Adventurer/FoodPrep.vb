@@ -1,8 +1,8 @@
 ﻿Public Class FoodPrep
-    Public Shared AllFoodPreps As Dictionary(Of String, FoodPrep) = AllFoodPrepsPopulate()
-    Private Shared Function AllFoodPrepsPopulate() As Dictionary(Of String, FoodPrep)
-        Dim total As New Dictionary(Of String, FoodPrep)
-        Dim allRawData As Dictionary(Of String, List(Of String)) = IO.ImportSquareBracketList(IO.sbprep)
+    Public Shared AllFoodPreps As SortedDictionary(Of String, FoodPrep) = AllFoodPrepsPopulate()
+    Private Shared Function AllFoodPrepsPopulate() As SortedDictionary(Of String, FoodPrep)
+        Dim total As New SortedDictionary(Of String, FoodPrep)
+        Dim allRawData As Dictionary(Of String, List(Of String)) = IO.ImportSquareBracketList(IO.sbPrep)
         For Each key In allRawData.Keys
             Dim rawdata As List(Of String) = allRawData(key)
             total.Add(key, Generate(key, rawdata))

@@ -81,4 +81,59 @@
             Return Name & " with " & ListToCommaString(IngredientNames, "&&")
         End Get
     End Property
+
+    Public Class SortByName
+        Implements IComparer(Of Food)
+        Public Function Compare(ByVal x As Food, ByVal y As Food) As Integer Implements System.Collections.Generic.IComparer(Of Food).Compare
+            Return String.Compare(x.Name, y.Name)
+        End Function
+    End Class
+    Public Class SortByRichness
+        Implements IComparer(Of Food)
+        Public Function Compare(ByVal x As Food, ByVal y As Food) As Integer Implements System.Collections.Generic.IComparer(Of Food).Compare
+            If x.Richness < y.Richness Then
+                Return 1
+            ElseIf x.Richness > y.Richness Then
+                Return -1
+            Else
+                Return 0
+            End If
+        End Function
+    End Class
+    Public Class SortByMeatiness
+        Implements IComparer(Of Food)
+        Public Function Compare(ByVal x As Food, ByVal y As Food) As Integer Implements System.Collections.Generic.IComparer(Of Food).Compare
+            If x.Meatiness < y.Meatiness Then
+                Return 1
+            ElseIf x.Meatiness > y.Meatiness Then
+                Return -1
+            Else
+                Return 0
+            End If
+        End Function
+    End Class
+    Public Class SortByExoticness
+        Implements IComparer(Of Food)
+        Public Function Compare(ByVal x As Food, ByVal y As Food) As Integer Implements System.Collections.Generic.IComparer(Of Food).Compare
+            If x.Exoticness < y.Exoticness Then
+                Return 1
+            ElseIf x.Exoticness > y.Exoticness Then
+                Return -1
+            Else
+                Return 0
+            End If
+        End Function
+    End Class
+    Public Class SortByQuality
+        Implements IComparer(Of Food)
+        Public Function Compare(ByVal x As Food, ByVal y As Food) As Integer Implements System.Collections.Generic.IComparer(Of Food).Compare
+            If x.Quality < y.Quality Then
+                Return 1
+            ElseIf x.Quality > y.Quality Then
+                Return -1
+            Else
+                Return 0
+            End If
+        End Function
+    End Class
 End Class

@@ -1,7 +1,7 @@
 ﻿Public Class FoodIngredient
-    Public Shared AllFoodIngredients As Dictionary(Of String, FoodIngredient) = AllFoodIngredientsPopulate()
-    Private Shared Function AllFoodIngredientsPopulate() As Dictionary(Of String, FoodIngredient)
-        Dim total As New Dictionary(Of String, FoodIngredient)
+    Public Shared AllFoodIngredients As SortedDictionary(Of String, FoodIngredient) = AllFoodIngredientsPopulate()
+    Private Shared Function AllFoodIngredientsPopulate() As SortedDictionary(Of String, FoodIngredient)
+        Dim total As New SortedDictionary(Of String, FoodIngredient)
         Dim allRawData As Dictionary(Of String, List(Of String)) = IO.ImportSquareBracketList(IO.sbIngredients)
         For Each key In allRawData.Keys
             Dim rawdata As List(Of String) = allRawData(key)
@@ -57,4 +57,65 @@
             Return total
         End Get
     End Property
+
+    Public Class SortByName
+        Implements IComparer(Of FoodIngredient)
+        Public Function Compare(ByVal x As FoodIngredient, ByVal y As FoodIngredient) As Integer Implements System.Collections.Generic.IComparer(Of FoodIngredient).Compare
+            Return String.Compare(x.Name, y.Name)
+        End Function
+    End Class
+    Public Class SortByType
+        Implements IComparer(Of FoodIngredient)
+        Public Function Compare(ByVal x As FoodIngredient, ByVal y As FoodIngredient) As Integer Implements System.Collections.Generic.IComparer(Of FoodIngredient).Compare
+            Return String.Compare(x.IngredientType, y.IngredientType)
+        End Function
+    End Class
+    Public Class SortByRichness
+        Implements IComparer(Of FoodIngredient)
+        Public Function Compare(ByVal x As FoodIngredient, ByVal y As FoodIngredient) As Integer Implements System.Collections.Generic.IComparer(Of FoodIngredient).Compare
+            If x.Richness < y.Richness Then
+                Return 1
+            ElseIf x.Richness > y.Richness Then
+                Return -1
+            Else
+                Return 0
+            End If
+        End Function
+    End Class
+    Public Class SortByMeatiness
+        Implements IComparer(Of FoodIngredient)
+        Public Function Compare(ByVal x As FoodIngredient, ByVal y As FoodIngredient) As Integer Implements System.Collections.Generic.IComparer(Of FoodIngredient).Compare
+            If x.Meatiness < y.Meatiness Then
+                Return 1
+            ElseIf x.Meatiness > y.Meatiness Then
+                Return -1
+            Else
+                Return 0
+            End If
+        End Function
+    End Class
+    Public Class SortByExoticness
+        Implements IComparer(Of FoodIngredient)
+        Public Function Compare(ByVal x As FoodIngredient, ByVal y As FoodIngredient) As Integer Implements System.Collections.Generic.IComparer(Of FoodIngredient).Compare
+            If x.Exoticness < y.Exoticness Then
+                Return 1
+            ElseIf x.Exoticness > y.Exoticness Then
+                Return -1
+            Else
+                Return 0
+            End If
+        End Function
+    End Class
+    Public Class SortByQuality
+        Implements IComparer(Of FoodIngredient)
+        Public Function Compare(ByVal x As FoodIngredient, ByVal y As FoodIngredient) As Integer Implements System.Collections.Generic.IComparer(Of FoodIngredient).Compare
+            If x.Quality < y.Quality Then
+                Return 1
+            ElseIf x.Quality > y.Quality Then
+                Return -1
+            Else
+                Return 0
+            End If
+        End Function
+    End Class
 End Class
