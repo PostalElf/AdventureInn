@@ -1,14 +1,19 @@
 ﻿Public Class FoodIngredient
-    Public Name As String
-    Public IngredientType As String
-    Public Richness As Integer
-    Public Meatiness As Integer
-    Public Exoticness As Integer
-    Public Quality As Integer
-
-    Public Shared Function Generate(ByVal targetName As String)
-        Dim rawdata As List(Of String) = IO.ImportSquareBracketSelect(IO.sbIngredients, targetName)
-        If rawdata Is Nothing Then Return Nothing
+    Public Shared AllFoodIngredients As Dictionary(Of String, FoodIngredient) = AllFoodIngredientsPopulate()
+    Private Shared Function AllFoodIngredientsPopulate() As Dictionary(Of String, FoodIngredient)
+        Dim total As New Dictionary(Of String, FoodIngredient)
+        Dim allRawData As Dictionary(Of String, List(Of String)) = IO.ImportSquareBracketList(IO.sbIngredients)
+        For Each key In allRawData.Keys
+            Dim rawdata As List(Of String) = allRawData(key)
+            total.Add(key, Generate(key, rawdata))
+        Next
+        Return total
+    End Function
+    Public Shared Function Generate(ByVal targetName As String, Optional ByVal rawdata As List(Of String) = Nothing)
+        If rawdata Is Nothing Then
+            rawdata = IO.ImportSquareBracketSelect(IO.sbIngredients, targetName)
+            If rawdata Is Nothing Then Return Nothing
+        End If
 
         Dim fi As New FoodIngredient
         With fi
@@ -35,6 +40,13 @@
     Public Overrides Function ToString() As String
         Return Name
     End Function
+
+    Public Name As String
+    Public IngredientType As String
+    Public Richness As Integer
+    Public Meatiness As Integer
+    Public Exoticness As Integer
+    Public Quality As Integer
     Public ReadOnly Property AttributesDescription As String
         Get
             Dim total As String = ""
