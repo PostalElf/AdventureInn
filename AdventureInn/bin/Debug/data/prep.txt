@@ -1,0 +1,36 @@
+[Beef Sausages]
+Beef Flank
+Beef Offals
+<Herb>
+
+[Cow Butter]
+Cow Milk
+
+[Cow Cheese]
+Beef Offals
+Cow Milk
+
+[Rat Sausages]
+Rat Meat
+Rat Offals
+<Herb>
+
+[Rat Butter]
+Rat Milk
+
+[Rat Cheese]
+Rat Offals
+Rat Milk
+
+[Corn Oil]
+Corn
+Corn
+
+[Wolf Sausages]
+Wolf Flank
+Wolf Offals
+
+[Wolf Cheese]
+Wolf Offals
+Wolf Milk
+

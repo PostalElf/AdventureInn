@@ -48,6 +48,16 @@ Partial Class Main
         Me.pnlFloor = New System.Windows.Forms.Panel()
         Me.numFloor = New System.Windows.Forms.NumericUpDown()
         Me.tabFood = New System.Windows.Forms.TabPage()
+        Me.grpCountertop = New System.Windows.Forms.GroupBox()
+        Me.txtCountertopIngredient3 = New System.Windows.Forms.Label()
+        Me.txtCountertopIngredient2 = New System.Windows.Forms.Label()
+        Me.txtCountertopIngredient1 = New System.Windows.Forms.Label()
+        Me.lblCountertopIngredient3 = New System.Windows.Forms.Label()
+        Me.lblCountertopIngredient2 = New System.Windows.Forms.Label()
+        Me.lblCountertopIngredient1 = New System.Windows.Forms.Label()
+        Me.btnCountertopReset = New System.Windows.Forms.Button()
+        Me.btnCountertopPrep = New System.Windows.Forms.Button()
+        Me.cmbCountertop = New System.Windows.Forms.ComboBox()
         Me.grpFood = New System.Windows.Forms.GroupBox()
         Me.btnMenuToFood = New System.Windows.Forms.Button()
         Me.btnFoodToMenu = New System.Windows.Forms.Button()
@@ -65,9 +75,9 @@ Partial Class Main
         Me.lblIngredient3 = New System.Windows.Forms.Label()
         Me.lblIngredient2 = New System.Windows.Forms.Label()
         Me.lblIngredient1 = New System.Windows.Forms.Label()
-        Me.btnCookReset = New System.Windows.Forms.Button()
+        Me.btnKitchenReset = New System.Windows.Forms.Button()
         Me.lblKitchen = New System.Windows.Forms.Label()
-        Me.btnCook = New System.Windows.Forms.Button()
+        Me.btnKitchenCook = New System.Windows.Forms.Button()
         Me.cmbKitchen = New System.Windows.Forms.ComboBox()
         Me.grpMenu = New System.Windows.Forms.GroupBox()
         Me.tabInventory = New System.Windows.Forms.TabPage()
@@ -90,6 +100,7 @@ Partial Class Main
         Me.grpFloorplan.SuspendLayout()
         CType(Me.numFloor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.tabFood.SuspendLayout()
+        Me.grpCountertop.SuspendLayout()
         Me.grpFood.SuspendLayout()
         Me.grpKitchen.SuspendLayout()
         Me.pnlIngredients.SuspendLayout()
@@ -143,7 +154,7 @@ Partial Class Main
         Me.tbc.Multiline = True
         Me.tbc.Name = "tbc"
         Me.tbc.SelectedIndex = 0
-        Me.tbc.Size = New System.Drawing.Size(536, 544)
+        Me.tbc.Size = New System.Drawing.Size(536, 531)
         Me.tbc.SizeMode = System.Windows.Forms.TabSizeMode.Fixed
         Me.tbc.TabIndex = 5
         Me.tbc.TabStop = False
@@ -157,7 +168,7 @@ Partial Class Main
         Me.tabFloor.Location = New System.Drawing.Point(4, 22)
         Me.tabFloor.Name = "tabFloor"
         Me.tabFloor.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabFloor.Size = New System.Drawing.Size(528, 518)
+        Me.tabFloor.Size = New System.Drawing.Size(528, 505)
         Me.tabFloor.TabIndex = 0
         Me.tabFloor.Text = "Floor"
         '
@@ -329,15 +340,118 @@ Partial Class Main
         '
         'tabFood
         '
+        Me.tabFood.Controls.Add(Me.grpCountertop)
         Me.tabFood.Controls.Add(Me.grpFood)
         Me.tabFood.Controls.Add(Me.grpKitchen)
         Me.tabFood.Controls.Add(Me.grpMenu)
         Me.tabFood.Location = New System.Drawing.Point(4, 22)
         Me.tabFood.Name = "tabFood"
-        Me.tabFood.Size = New System.Drawing.Size(528, 518)
+        Me.tabFood.Size = New System.Drawing.Size(528, 505)
         Me.tabFood.TabIndex = 2
         Me.tabFood.Text = "Food"
         Me.tabFood.UseVisualStyleBackColor = True
+        '
+        'grpCountertop
+        '
+        Me.grpCountertop.Controls.Add(Me.txtCountertopIngredient3)
+        Me.grpCountertop.Controls.Add(Me.txtCountertopIngredient2)
+        Me.grpCountertop.Controls.Add(Me.txtCountertopIngredient1)
+        Me.grpCountertop.Controls.Add(Me.lblCountertopIngredient3)
+        Me.grpCountertop.Controls.Add(Me.lblCountertopIngredient2)
+        Me.grpCountertop.Controls.Add(Me.lblCountertopIngredient1)
+        Me.grpCountertop.Controls.Add(Me.btnCountertopReset)
+        Me.grpCountertop.Controls.Add(Me.btnCountertopPrep)
+        Me.grpCountertop.Controls.Add(Me.cmbCountertop)
+        Me.grpCountertop.Location = New System.Drawing.Point(8, 405)
+        Me.grpCountertop.Name = "grpCountertop"
+        Me.grpCountertop.Size = New System.Drawing.Size(510, 96)
+        Me.grpCountertop.TabIndex = 3
+        Me.grpCountertop.TabStop = False
+        Me.grpCountertop.Text = "Countertop"
+        '
+        'txtCountertopIngredient3
+        '
+        Me.txtCountertopIngredient3.BackColor = System.Drawing.Color.Silver
+        Me.txtCountertopIngredient3.Location = New System.Drawing.Point(348, 68)
+        Me.txtCountertopIngredient3.Name = "txtCountertopIngredient3"
+        Me.txtCountertopIngredient3.Size = New System.Drawing.Size(146, 16)
+        Me.txtCountertopIngredient3.TabIndex = 34
+        Me.txtCountertopIngredient3.Text = "-"
+        '
+        'txtCountertopIngredient2
+        '
+        Me.txtCountertopIngredient2.BackColor = System.Drawing.Color.Silver
+        Me.txtCountertopIngredient2.Location = New System.Drawing.Point(348, 42)
+        Me.txtCountertopIngredient2.Name = "txtCountertopIngredient2"
+        Me.txtCountertopIngredient2.Size = New System.Drawing.Size(146, 16)
+        Me.txtCountertopIngredient2.TabIndex = 33
+        Me.txtCountertopIngredient2.Text = "-"
+        '
+        'txtCountertopIngredient1
+        '
+        Me.txtCountertopIngredient1.BackColor = System.Drawing.Color.Silver
+        Me.txtCountertopIngredient1.Location = New System.Drawing.Point(348, 16)
+        Me.txtCountertopIngredient1.Name = "txtCountertopIngredient1"
+        Me.txtCountertopIngredient1.Size = New System.Drawing.Size(146, 16)
+        Me.txtCountertopIngredient1.TabIndex = 32
+        Me.txtCountertopIngredient1.Text = "-"
+        '
+        'lblCountertopIngredient3
+        '
+        Me.lblCountertopIngredient3.Location = New System.Drawing.Point(254, 68)
+        Me.lblCountertopIngredient3.Name = "lblCountertopIngredient3"
+        Me.lblCountertopIngredient3.Size = New System.Drawing.Size(88, 16)
+        Me.lblCountertopIngredient3.TabIndex = 31
+        Me.lblCountertopIngredient3.Text = "Ingredient:"
+        Me.lblCountertopIngredient3.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'lblCountertopIngredient2
+        '
+        Me.lblCountertopIngredient2.Location = New System.Drawing.Point(254, 42)
+        Me.lblCountertopIngredient2.Name = "lblCountertopIngredient2"
+        Me.lblCountertopIngredient2.Size = New System.Drawing.Size(88, 16)
+        Me.lblCountertopIngredient2.TabIndex = 30
+        Me.lblCountertopIngredient2.Text = "Ingredient:"
+        Me.lblCountertopIngredient2.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'lblCountertopIngredient1
+        '
+        Me.lblCountertopIngredient1.Location = New System.Drawing.Point(254, 16)
+        Me.lblCountertopIngredient1.Name = "lblCountertopIngredient1"
+        Me.lblCountertopIngredient1.Size = New System.Drawing.Size(88, 16)
+        Me.lblCountertopIngredient1.TabIndex = 29
+        Me.lblCountertopIngredient1.Text = "Ingredient:"
+        Me.lblCountertopIngredient1.TextAlign = System.Drawing.ContentAlignment.TopRight
+        '
+        'btnCountertopReset
+        '
+        Me.btnCountertopReset.Location = New System.Drawing.Point(121, 46)
+        Me.btnCountertopReset.Name = "btnCountertopReset"
+        Me.btnCountertopReset.Size = New System.Drawing.Size(47, 23)
+        Me.btnCountertopReset.TabIndex = 17
+        Me.btnCountertopReset.Text = "Reset"
+        Me.btnCountertopReset.UseVisualStyleBackColor = True
+        Me.btnCountertopReset.Visible = False
+        '
+        'btnCountertopPrep
+        '
+        Me.btnCountertopPrep.Location = New System.Drawing.Point(174, 46)
+        Me.btnCountertopPrep.Name = "btnCountertopPrep"
+        Me.btnCountertopPrep.Size = New System.Drawing.Size(47, 23)
+        Me.btnCountertopPrep.TabIndex = 16
+        Me.btnCountertopPrep.Text = "Prep"
+        Me.btnCountertopPrep.UseVisualStyleBackColor = True
+        Me.btnCountertopPrep.Visible = False
+        '
+        'cmbCountertop
+        '
+        Me.cmbCountertop.BackColor = System.Drawing.Color.White
+        Me.cmbCountertop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbCountertop.FormattingEnabled = True
+        Me.cmbCountertop.Location = New System.Drawing.Point(6, 19)
+        Me.cmbCountertop.Name = "cmbCountertop"
+        Me.cmbCountertop.Size = New System.Drawing.Size(215, 21)
+        Me.cmbCountertop.TabIndex = 3
         '
         'grpFood
         '
@@ -389,13 +503,13 @@ Partial Class Main
         'grpKitchen
         '
         Me.grpKitchen.Controls.Add(Me.pnlIngredients)
-        Me.grpKitchen.Controls.Add(Me.btnCookReset)
+        Me.grpKitchen.Controls.Add(Me.btnKitchenReset)
         Me.grpKitchen.Controls.Add(Me.lblKitchen)
-        Me.grpKitchen.Controls.Add(Me.btnCook)
+        Me.grpKitchen.Controls.Add(Me.btnKitchenCook)
         Me.grpKitchen.Controls.Add(Me.cmbKitchen)
         Me.grpKitchen.Location = New System.Drawing.Point(8, 231)
         Me.grpKitchen.Name = "grpKitchen"
-        Me.grpKitchen.Size = New System.Drawing.Size(510, 188)
+        Me.grpKitchen.Size = New System.Drawing.Size(510, 165)
         Me.grpKitchen.TabIndex = 1
         Me.grpKitchen.TabStop = False
         Me.grpKitchen.Text = "Kitchen"
@@ -507,30 +621,32 @@ Partial Class Main
         Me.lblIngredient1.Text = "Ingredient:"
         Me.lblIngredient1.TextAlign = System.Drawing.ContentAlignment.TopRight
         '
-        'btnCookReset
+        'btnKitchenReset
         '
-        Me.btnCookReset.Location = New System.Drawing.Point(397, 159)
-        Me.btnCookReset.Name = "btnCookReset"
-        Me.btnCookReset.Size = New System.Drawing.Size(47, 23)
-        Me.btnCookReset.TabIndex = 15
-        Me.btnCookReset.Text = "Reset"
-        Me.btnCookReset.UseVisualStyleBackColor = True
+        Me.btnKitchenReset.Location = New System.Drawing.Point(121, 46)
+        Me.btnKitchenReset.Name = "btnKitchenReset"
+        Me.btnKitchenReset.Size = New System.Drawing.Size(47, 23)
+        Me.btnKitchenReset.TabIndex = 15
+        Me.btnKitchenReset.Text = "Reset"
+        Me.btnKitchenReset.UseVisualStyleBackColor = True
+        Me.btnKitchenReset.Visible = False
         '
         'lblKitchen
         '
-        Me.lblKitchen.Location = New System.Drawing.Point(11, 51)
+        Me.lblKitchen.Location = New System.Drawing.Point(11, 77)
         Me.lblKitchen.Name = "lblKitchen"
-        Me.lblKitchen.Size = New System.Drawing.Size(210, 131)
+        Me.lblKitchen.Size = New System.Drawing.Size(210, 78)
         Me.lblKitchen.TabIndex = 14
         '
-        'btnCook
+        'btnKitchenCook
         '
-        Me.btnCook.Location = New System.Drawing.Point(450, 159)
-        Me.btnCook.Name = "btnCook"
-        Me.btnCook.Size = New System.Drawing.Size(47, 23)
-        Me.btnCook.TabIndex = 4
-        Me.btnCook.Text = "Cook"
-        Me.btnCook.UseVisualStyleBackColor = True
+        Me.btnKitchenCook.Location = New System.Drawing.Point(174, 46)
+        Me.btnKitchenCook.Name = "btnKitchenCook"
+        Me.btnKitchenCook.Size = New System.Drawing.Size(47, 23)
+        Me.btnKitchenCook.TabIndex = 4
+        Me.btnKitchenCook.Text = "Cook"
+        Me.btnKitchenCook.UseVisualStyleBackColor = True
+        Me.btnKitchenCook.Visible = False
         '
         'cmbKitchen
         '
@@ -560,7 +676,7 @@ Partial Class Main
         Me.tabInventory.Location = New System.Drawing.Point(4, 22)
         Me.tabInventory.Name = "tabInventory"
         Me.tabInventory.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabInventory.Size = New System.Drawing.Size(528, 518)
+        Me.tabInventory.Size = New System.Drawing.Size(528, 505)
         Me.tabInventory.TabIndex = 1
         Me.tabInventory.Text = "Inventory"
         '
@@ -663,7 +779,7 @@ Partial Class Main
         '
         Me.tabGuests.Location = New System.Drawing.Point(4, 22)
         Me.tabGuests.Name = "tabGuests"
-        Me.tabGuests.Size = New System.Drawing.Size(528, 518)
+        Me.tabGuests.Size = New System.Drawing.Size(528, 505)
         Me.tabGuests.TabIndex = 3
         Me.tabGuests.Text = "Guests"
         Me.tabGuests.UseVisualStyleBackColor = True
@@ -672,7 +788,7 @@ Partial Class Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(534, 580)
+        Me.ClientSize = New System.Drawing.Size(534, 562)
         Me.Controls.Add(Me.tbc)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -693,6 +809,7 @@ Partial Class Main
         Me.grpFloorplan.PerformLayout()
         CType(Me.numFloor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.tabFood.ResumeLayout(False)
+        Me.grpCountertop.ResumeLayout(False)
         Me.grpFood.ResumeLayout(False)
         Me.grpKitchen.ResumeLayout(False)
         Me.pnlIngredients.ResumeLayout(False)
@@ -730,10 +847,10 @@ Partial Class Main
     Friend WithEvents tabFood As System.Windows.Forms.TabPage
     Friend WithEvents grpMenu As System.Windows.Forms.GroupBox
     Friend WithEvents grpKitchen As System.Windows.Forms.GroupBox
-    Friend WithEvents btnCook As System.Windows.Forms.Button
+    Friend WithEvents btnKitchenCook As System.Windows.Forms.Button
     Friend WithEvents cmbKitchen As System.Windows.Forms.ComboBox
     Friend WithEvents lblKitchen As System.Windows.Forms.Label
-    Friend WithEvents btnCookReset As System.Windows.Forms.Button
+    Friend WithEvents btnKitchenReset As System.Windows.Forms.Button
     Friend WithEvents lblIngredient1 As System.Windows.Forms.Label
     Friend WithEvents lblIngredient5 As System.Windows.Forms.Label
     Friend WithEvents lblIngredient4 As System.Windows.Forms.Label
@@ -762,5 +879,15 @@ Partial Class Main
     Friend WithEvents lblSortBy As System.Windows.Forms.Label
     Friend WithEvents btnGuestSortName As System.Windows.Forms.Button
     Friend WithEvents lblGuestWaitingDescription As System.Windows.Forms.Label
+    Friend WithEvents grpCountertop As System.Windows.Forms.GroupBox
+    Friend WithEvents txtCountertopIngredient3 As System.Windows.Forms.Label
+    Friend WithEvents txtCountertopIngredient2 As System.Windows.Forms.Label
+    Friend WithEvents txtCountertopIngredient1 As System.Windows.Forms.Label
+    Friend WithEvents lblCountertopIngredient3 As System.Windows.Forms.Label
+    Friend WithEvents lblCountertopIngredient2 As System.Windows.Forms.Label
+    Friend WithEvents lblCountertopIngredient1 As System.Windows.Forms.Label
+    Friend WithEvents btnCountertopReset As System.Windows.Forms.Button
+    Friend WithEvents btnCountertopPrep As System.Windows.Forms.Button
+    Friend WithEvents cmbCountertop As System.Windows.Forms.ComboBox
 
 End Class

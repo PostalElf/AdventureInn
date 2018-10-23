@@ -28,9 +28,9 @@
     End Function
 
     Public Requirements As New List(Of String)
-    Private iRequired As New List(Of String)
-    Private iFilled As New List(Of String)
-    Private Ingredients As New List(Of FoodIngredient)
+    Protected iRequired As New List(Of String)
+    Protected iFilled As New List(Of String)
+    Protected Ingredients As New List(Of FoodIngredient)
     Public ReadOnly Property Completed As Boolean
         Get
             If iRequired.Count = 0 Then Return True Else Return False

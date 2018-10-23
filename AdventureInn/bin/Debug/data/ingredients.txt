@@ -19,9 +19,28 @@ Meatiness: 2
 Exoticness: -2
 Quality: -1
 
+[Beef Sausages]
+Type: Sausages
+Richness: 0
+Meatiness: 2
+Exoticness: -2
+Quality: -1
+
 [Cow Milk]
 Type: Milk
 Meatiness: 0
+Exoticness: -2
+Quality: 0
+
+[Cow Butter]
+Type: Butter
+Meatiness: 0
+Exoticness: -2
+Quality: 0
+
+[Cow Cheese]
+Type: Cheese
+Meatiness: -1
 Exoticness: -2
 Quality: 0
 
@@ -60,10 +79,31 @@ Meatiness: 1
 Exoticness: 3
 Quality: -1
 
+[Rat Sausages]
+Type: Sausages
+Richness: 0
+Meatiness: 1
+Exoticness: 3
+Quality: -1
+
 [Rat Milk]
 Type: Milk
 Richness: 0
 Meatiness: 1
+Exoticness: 3
+Quality: -1
+
+[Rat Butter]
+Type: Butter
+Richness: 0
+Meatiness: 1
+Exoticness: 3
+Quality: -1
+
+[Rat Cheese]
+Type: Cheese
+Richness: 0
+Meatiness: -1
 Exoticness: 3
 Quality: -1
 
@@ -139,9 +179,21 @@ Meatiness: 2
 Exoticness: 2
 Quality: 0
 
+[Wolf Sausages]
+Type: Sausages
+Meatiness: 3
+Exoticness: 2
+Quality: 0
+
 [Wolf Milk]
 Type: Milk
 Meatiness: 1
+Exoticness: 2
+Quality: 1
+
+[Wolf Cheese]
+Type: Cheese
+Meatiness: -1
 Exoticness: 2
 Quality: 1
 

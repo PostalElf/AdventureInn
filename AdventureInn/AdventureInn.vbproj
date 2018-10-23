@@ -75,6 +75,7 @@
     <Compile Include="Adventurer\Adventurer.vb" />
     <Compile Include="Adventurer\Food.vb" />
     <Compile Include="Adventurer\FoodIngredient.vb" />
+    <Compile Include="Adventurer\FoodPrep.vb" />
     <Compile Include="Adventurer\FoodRecipe.vb" />
     <Compile Include="Dev\Pair.vb" />
     <Compile Include="Forms\DialogPicker.Designer.vb">

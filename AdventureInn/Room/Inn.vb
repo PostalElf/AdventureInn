@@ -15,9 +15,6 @@
             Return Floors.Count
         End Get
     End Property
-    Public Sub Add(ByVal floor As Floor)
-        Floors.Add(floor)
-    End Sub
 
     Public InventoryRoomItems As New List(Of RoomItem)
     Public InventoryFoodIngredients As New List(Of FoodIngredient)
@@ -25,4 +22,20 @@
     Public Gold As Integer
 
     Public WaitingGuests As New List(Of Adventurer)
+
+    Public Sub Add(ByVal floor As Floor)
+        Floors.Add(floor)
+    End Sub
+    Public Sub Add(ByVal ri As RoomItem)
+        InventoryRoomItems.Add(ri)
+    End Sub
+    Public Sub Add(ByVal fi As FoodIngredient)
+        InventoryFoodIngredients.Add(fi)
+    End Sub
+    Public Sub Add(ByVal f As Food)
+        InventoryFood.Add(f)
+    End Sub
+    Public Sub Add(ByVal adventurer As Adventurer)
+        WaitingGuests.Add(adventurer)
+    End Sub
 End Class

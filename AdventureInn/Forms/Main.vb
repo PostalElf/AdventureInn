@@ -29,6 +29,9 @@
             .InventoryFoodIngredients.Add(FoodIngredient.Generate("Manticore Egg"))
             .InventoryFoodIngredients.Add(FoodIngredient.Generate("Gorgon Milk"))
             .InventoryFoodIngredients.Add(FoodIngredient.Generate("Gorgon Butter"))
+            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Cow Milk"))
+            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Cow Milk"))
+            .InventoryFoodIngredients.Add(FoodIngredient.Generate("Beef Offals"))
         End With
     End Sub
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -344,15 +347,14 @@
         Return Nothing
     End Function
 
+#Region "Kitchen"
     Private ActiveRecipe As FoodRecipe = Nothing
     Private KitchenLbls(4) As Label
     Private KitchenTxts(4) As Label
     Private Sub KitchenBuild()
         For Each r In FoodRecipe.AllFoodRecipes.Keys
-            cmbKitchen.Items.Add(r)
+            cmbKitchen.Items.Add(FoodRecipe.AllFoodRecipes(r))
         Next
-
-        'setup KitchenLbls and KitchenTxts
         KitchenLbls(0) = lblIngredient1
         KitchenLbls(1) = lblIngredient2
         KitchenLbls(2) = lblIngredient3
@@ -364,10 +366,27 @@
         KitchenTxts(3) = txtIngredient4
         KitchenTxts(4) = txtIngredient5
         For n = 0 To 4
-            AddHandler KitchenTxts(n).Click, AddressOf txtIngredient_Click
+            KitchenTxts(n).Visible = False
+            KitchenLbls(n).Visible = False
+            AddHandler KitchenTxts(n).Click, AddressOf txtKitchenIngredient_Click
         Next
+        cmbKitchen.SelectedIndex = -1
 
-        RecipeReset()
+        For Each p In FoodPrep.AllFoodPreps.Keys
+            cmbCountertop.Items.Add(FoodPrep.AllFoodPreps(p))
+        Next
+        CountertopLbls(0) = lblCountertopIngredient1
+        CountertopLbls(1) = lblCountertopIngredient2
+        CountertopLbls(2) = lblCountertopIngredient3
+        CountertopTxts(0) = txtCountertopIngredient1
+        CountertopTxts(1) = txtCountertopIngredient2
+        CountertopTxts(2) = txtCountertopIngredient3
+        For n = 0 To 2
+            CountertopLbls(n).Visible = False
+            CountertopTxts(n).Visible = False
+            AddHandler CountertopTxts(n).Click, AddressOf txtCountertopIngredient_Click
+        Next
+        cmbCountertop.SelectedIndex = -1
     End Sub
     Private Sub KitchenRefresh()
         lstFoodIngredients.Items.Clear()
@@ -380,53 +399,58 @@
         Next
         lblKitchen.Text = ""
     End Sub
-    Private Sub cmbKitchen_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbKitchen.SelectedIndexChanged
-        If cmbKitchen.SelectedIndex = -1 Then
-            ActiveRecipe = Nothing
+    Private Sub RecipeReset()
+        lblKitchen.Text = Nothing
+        btnKitchenCook.Enabled = False
+        btnKitchenCook.Visible = False
+        btnKitchenReset.Visible = False
+        For n = 0 To 4
+            KitchenLbls(n).Visible = False
+            KitchenLbls(n).Text = "Ingredient:"
+            KitchenTxts(n).Visible = False
+            KitchenTxts(n).Text = Nothing
+            KitchenTxts(n).Tag = Nothing
+        Next
+
+        'clear former activerecipe
+        If ActiveRecipe Is Nothing = False Then
+            For Each fi In ActiveRecipe.Clear
+                CurrentInn.InventoryFoodIngredients.Add(fi)
+            Next
             KitchenRefresh()
-            RecipeReset()
-        Else
-            Dim fr As FoodRecipe = FoodRecipe.Generate(cmbKitchen.SelectedItem.ToString)
-            ActiveRecipe = fr
-            RecipeShow()
         End If
     End Sub
-    Private Sub RecipeShow()
-        If ActiveRecipe Is Nothing Then Exit Sub
-
+    Private Sub RecipeUpdate()
+        lblKitchen.Text = ActiveRecipe.AttributesDescription
+        btnKitchenCook.Enabled = ActiveRecipe.Completed
+    End Sub
+    Private Sub cmbKitchen_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbKitchen.SelectedIndexChanged
         RecipeReset()
+
+        If cmbKitchen.SelectedIndex = -1 Then ActiveRecipe = Nothing : Exit Sub
+
+        ActiveRecipe = FoodRecipe.Generate(cmbKitchen.SelectedItem.ToString)
+        btnKitchenCook.Visible = True
+        btnKitchenReset.Visible = True
         For n = 0 To ActiveRecipe.Requirements.Count - 1
             KitchenLbls(n).Visible = True
             KitchenLbls(n).Text = ActiveRecipe.Requirements(n) & ":"
             KitchenTxts(n).Visible = True
-            KitchenTxts(n).Enabled = True
+            KitchenTxts(n).Text = Nothing
             KitchenTxts(n).Tag = ActiveRecipe.Requirements(n)
         Next
-        btnCook.Visible = True
-        btnCook.Enabled = False
-        btnCookReset.Visible = True
-
         RecipeUpdate()
     End Sub
-    Private Sub RecipeUpdate()
-        If ActiveRecipe Is Nothing Then Exit Sub
-
-        With ActiveRecipe
-            lblKitchen.Text = .AttributesDescription
-            btnCook.Enabled = .Completed
-        End With
+    Private Sub btnKitchenReset_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnKitchenReset.Click
+        cmbKitchen.SelectedIndex = -1
     End Sub
-    Private Sub RecipeReset()
-        For n = 0 To 4
-            KitchenLbls(n).Visible = False
-            KitchenTxts(n).Text = ""
-            KitchenTxts(n).Visible = False
-            KitchenTxts(n).Tag = Nothing
-        Next
-        btnCook.Visible = False
-        btnCookReset.Visible = False
+    Private Sub btnKitchenCook_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnKitchenCook.Click
+        CurrentInn.Add(Food.Generate(ActiveRecipe))
+        ActiveRecipe = Nothing
+        cmbKitchen.SelectedIndex = -1
+        KitchenRefresh()
     End Sub
-    Private Sub txtIngredient_Click(ByVal sender As Label, ByVal e As System.EventArgs)
+    Private Sub txtKitchenIngredient_Click(ByVal sender As Label, ByVal e As System.EventArgs)
         Dim ingredientType As String = sender.Tag
         Dim ingredients As New List(Of FoodIngredient)
         For Each i In CurrentInn.InventoryFoodIngredients
@@ -454,24 +478,93 @@
         sender.Enabled = False
         RecipeUpdate()
     End Sub
-    Private Sub btnCookReset_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCookReset.Click
-        For Each fi In ActiveRecipe.Clear
-            CurrentInn.InventoryFoodIngredients.Add(fi)
-        Next
 
-        For n = 0 To 4
-            KitchenTxts(n).Tag = Nothing
-            KitchenTxts(n).Text = Nothing
-            KitchenTxts(n).Enabled = True
+    Private ActivePrep As FoodPrep = Nothing
+    Private CountertopLbls(2) As Label
+    Private CountertopTxts(2) As Label
+    Private Sub CountertopReset()
+        For n = 0 To 2
+            CountertopLbls(n).Visible = False
+            CountertopLbls(n).Text = "Ingredient:"
+            CountertopTxts(n).Visible = False
+            CountertopTxts(n).Text = Nothing
+            CountertopTxts(n).Tag = Nothing
         Next
+        btnCountertopReset.Visible = False
+        btnCountertopPrep.Visible = False
 
+        If ActivePrep Is Nothing = False Then
+            For Each fi In ActivePrep.Clear
+                CurrentInn.InventoryFoodIngredients.Add(fi)
+            Next
+            KitchenRefresh()
+        End If
+    End Sub
+    Private Sub CountertopUpdate()
+        btnCountertopPrep.Enabled = ActivePrep.Completed
+    End Sub
+    Private Sub cmbCountertop_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbCountertop.SelectedIndexChanged
+        CountertopReset()
+
+        If cmbCountertop.SelectedIndex = -1 Then ActivePrep = Nothing : Exit Sub
+
+        ActivePrep = FoodPrep.Generate(cmbCountertop.SelectedItem.ToString)
+        btnCountertopReset.Visible = True
+        btnCountertopPrep.Visible = True
+        For n = 0 To ActivePrep.Requirements.Count - 1
+            CountertopLbls(n).Visible = True
+            CountertopLbls(n).Text = ActivePrep.Requirements(n) & ":"
+            CountertopTxts(n).Visible = True
+            CountertopTxts(n).Tag = ActivePrep.Requirements(n)
+        Next
+        CountertopUpdate()
+    End Sub
+    Private Sub btnCountertopReset_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCountertopReset.Click
+        cmbCountertop.SelectedIndex = -1
+    End Sub
+    Private Sub btnCountertopPrep_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCountertopPrep.Click
+        CurrentInn.Add(FoodIngredient.Generate(ActivePrep.Name))
+        ActivePrep = Nothing
+        cmbCountertop.SelectedIndex = -1
         KitchenRefresh()
     End Sub
-    Private Sub btnCook_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCook.Click
-        Dim f As Food = Food.Generate(ActiveRecipe)
-        CurrentInn.InventoryFood.Add(f)
+    Private Sub txtCountertopIngredient_Click(ByVal sender As Label, ByVal e As System.EventArgs)
+        Dim ingredientType As String = sender.Tag
+        Dim ingredients As New List(Of FoodIngredient)
+        If ingredientType.StartsWith("<") AndAlso ingredientType.EndsWith(">") Then
+            'select by ingredient type
+            ingredientType = ingredientType.Replace("<", "")
+            ingredientType = ingredientType.Replace(">", "")
+            For Each i In CurrentInn.InventoryFoodIngredients
+                If i.IngredientType = ingredientType Then ingredients.Add(i)
+            Next
+        Else
+            'select by specific ingredient
+            For Each i In CurrentInn.InventoryFoodIngredients
+                If i.Name = ingredientType Then ingredients.Add(i) : Exit For
+            Next
+        End If
 
-        cmbKitchen.SelectedIndex = -1
+        If ingredients.Count = 0 Then
+            MsgBox("You have no valid ingredients!", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "No valid ingredients")
+            Exit Sub
+        End If
+
+        Dim fi As FoodIngredient
+        If ingredients.Count = 1 Then
+            fi = ingredients(0)
+        Else
+            Dim dp As New DialogPicker
+            dp.MainList = ingredients
+            If dp.ShowDialog = Windows.Forms.DialogResult.OK Then fi = dp.Result Else Exit Sub
+        End If
+        lstFoodIngredients.Items.Remove(fi)
+
+        CurrentInn.InventoryFoodIngredients.Remove(fi)
+        ActivePrep.Add(fi)
+        sender.Text = fi.Name
+        sender.Enabled = False
+        CountertopUpdate()
     End Sub
 
     Private MenuLbls(4) As Label
@@ -518,4 +611,6 @@
 
         MenuIndex += 1
     End Sub
+#End Region
+
 End Class
