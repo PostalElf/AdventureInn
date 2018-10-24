@@ -72,13 +72,15 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adventurer\Adventure.vb" />
+    <Compile Include="Encounter\Adventure.vb" />
     <Compile Include="Adventurer\Adventurer.vb" />
+    <Compile Include="Encounter\Encounter.vb" />
     <Compile Include="Adventurer\Food.vb" />
     <Compile Include="Adventurer\FoodIngredient.vb" />
     <Compile Include="Adventurer\FoodPrep.vb" />
     <Compile Include="Adventurer\FoodRecipe.vb" />
     <Compile Include="Dev\Pair.vb" />
+    <Compile Include="Encounter\Trap.vb" />
     <Compile Include="Forms\DialogPicker.Designer.vb">
       <DependentUpon>DialogPicker.vb</DependentUpon>
     </Compile>
@@ -91,8 +93,8 @@
     <Compile Include="Forms\DialogRoomItem.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Monster\LootItem.vb" />
-    <Compile Include="Monster\Monster.vb" />
+    <Compile Include="Encounter\LootItem.vb" />
+    <Compile Include="Encounter\Monster.vb" />
     <Compile Include="Room\Floor.vb" />
     <Compile Include="Room\Inn.vb" />
     <Compile Include="Forms\Main.vb">
