@@ -18,6 +18,8 @@
 
     Public InventoryRoomItems As New List(Of RoomItem)
     Public InventoryFoodIngredients As New List(Of FoodIngredient)
+    Public InventoryFoodRecipes As New List(Of FoodRecipe)
+    Public InventoryFoodPreps As New List(Of FoodPrep)
     Public InventoryFood As New List(Of Food)
     Public Gold As Integer
 
@@ -31,6 +33,14 @@
     End Sub
     Public Sub Add(ByVal fi As FoodIngredient)
         InventoryFoodIngredients.Add(fi)
+    End Sub
+    Public Sub Add(ByVal fr As FoodRecipe)
+        InventoryFoodRecipes.Add(fr)
+        InventoryFoodRecipes.Sort(New FoodRecipe.SortByName)
+    End Sub
+    Public Sub Add(ByVal fp As FoodPrep)
+        InventoryFoodPreps.Add(fp)
+        InventoryFoodPreps.Sort(New FoodPrep.sortbyname)
     End Sub
     Public Sub Add(ByVal f As Food)
         InventoryFood.Add(f)

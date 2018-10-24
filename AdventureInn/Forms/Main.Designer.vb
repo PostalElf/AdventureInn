@@ -87,7 +87,9 @@ Partial Class Main
         Me.lblInventoryDescription = New System.Windows.Forms.Label()
         Me.btnInventorySort = New System.Windows.Forms.Button()
         Me.lstInventory = New System.Windows.Forms.ListBox()
-        Me.tabGuests = New System.Windows.Forms.TabPage()
+        Me.tabStorefront = New System.Windows.Forms.TabPage()
+        Me.grpSaleFoodIngredients = New System.Windows.Forms.GroupBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -104,6 +106,7 @@ Partial Class Main
         Me.grpGold.SuspendLayout()
         Me.grpWorkbench.SuspendLayout()
         Me.grpRoomItems.SuspendLayout()
+        Me.tabStorefront.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblFloor
@@ -145,7 +148,7 @@ Partial Class Main
         Me.tbc.Controls.Add(Me.tabFloor)
         Me.tbc.Controls.Add(Me.tabFood)
         Me.tbc.Controls.Add(Me.tabInventory)
-        Me.tbc.Controls.Add(Me.tabGuests)
+        Me.tbc.Controls.Add(Me.tabStorefront)
         Me.tbc.Location = New System.Drawing.Point(0, 29)
         Me.tbc.Multiline = True
         Me.tbc.Name = "tbc"
@@ -175,14 +178,14 @@ Partial Class Main
         Me.grpGuestsWaiting.Controls.Add(Me.btnWaitingToRoom)
         Me.grpGuestsWaiting.Location = New System.Drawing.Point(8, 230)
         Me.grpGuestsWaiting.Name = "grpGuestsWaiting"
-        Me.grpGuestsWaiting.Size = New System.Drawing.Size(421, 268)
+        Me.grpGuestsWaiting.Size = New System.Drawing.Size(456, 268)
         Me.grpGuestsWaiting.TabIndex = 18
         Me.grpGuestsWaiting.TabStop = False
         Me.grpGuestsWaiting.Text = "Guests Waiting"
         '
         'lblGuestWaitingDescription
         '
-        Me.lblGuestWaitingDescription.Location = New System.Drawing.Point(186, 19)
+        Me.lblGuestWaitingDescription.Location = New System.Drawing.Point(222, 19)
         Me.lblGuestWaitingDescription.Name = "lblGuestWaitingDescription"
         Me.lblGuestWaitingDescription.Size = New System.Drawing.Size(228, 138)
         Me.lblGuestWaitingDescription.TabIndex = 22
@@ -192,12 +195,12 @@ Partial Class Main
         Me.lstGuestsWaiting.FormattingEnabled = True
         Me.lstGuestsWaiting.Location = New System.Drawing.Point(6, 19)
         Me.lstGuestsWaiting.Name = "lstGuestsWaiting"
-        Me.lstGuestsWaiting.Size = New System.Drawing.Size(172, 212)
+        Me.lstGuestsWaiting.Size = New System.Drawing.Size(210, 212)
         Me.lstGuestsWaiting.TabIndex = 15
         '
         'btnWaitingToRoom
         '
-        Me.btnWaitingToRoom.Location = New System.Drawing.Point(107, 234)
+        Me.btnWaitingToRoom.Location = New System.Drawing.Point(146, 234)
         Me.btnWaitingToRoom.Margin = New System.Windows.Forms.Padding(0)
         Me.btnWaitingToRoom.Name = "btnWaitingToRoom"
         Me.btnWaitingToRoom.Size = New System.Drawing.Size(70, 23)
@@ -633,7 +636,7 @@ Partial Class Main
         'grpGold
         '
         Me.grpGold.Controls.Add(Me.lblGold)
-        Me.grpGold.Location = New System.Drawing.Point(400, 6)
+        Me.grpGold.Location = New System.Drawing.Point(247, 6)
         Me.grpGold.Name = "grpGold"
         Me.grpGold.Size = New System.Drawing.Size(118, 71)
         Me.grpGold.TabIndex = 3
@@ -725,14 +728,34 @@ Partial Class Main
         Me.lstInventory.Size = New System.Drawing.Size(210, 108)
         Me.lstInventory.TabIndex = 0
         '
-        'tabGuests
+        'tabStorefront
         '
-        Me.tabGuests.Location = New System.Drawing.Point(4, 22)
-        Me.tabGuests.Name = "tabGuests"
-        Me.tabGuests.Size = New System.Drawing.Size(525, 524)
-        Me.tabGuests.TabIndex = 3
-        Me.tabGuests.Text = "Guests"
-        Me.tabGuests.UseVisualStyleBackColor = True
+        Me.tabStorefront.Controls.Add(Me.GroupBox1)
+        Me.tabStorefront.Controls.Add(Me.grpSaleFoodIngredients)
+        Me.tabStorefront.Location = New System.Drawing.Point(4, 22)
+        Me.tabStorefront.Name = "tabStorefront"
+        Me.tabStorefront.Size = New System.Drawing.Size(525, 524)
+        Me.tabStorefront.TabIndex = 3
+        Me.tabStorefront.Text = "Storefront"
+        Me.tabStorefront.UseVisualStyleBackColor = True
+        '
+        'grpSaleFoodIngredients
+        '
+        Me.grpSaleFoodIngredients.Location = New System.Drawing.Point(9, 6)
+        Me.grpSaleFoodIngredients.Name = "grpSaleFoodIngredients"
+        Me.grpSaleFoodIngredients.Size = New System.Drawing.Size(245, 196)
+        Me.grpSaleFoodIngredients.TabIndex = 0
+        Me.grpSaleFoodIngredients.TabStop = False
+        Me.grpSaleFoodIngredients.Text = "Ingredients"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Location = New System.Drawing.Point(268, 6)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(245, 196)
+        Me.GroupBox1.TabIndex = 1
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Ingredients"
         '
         'Main
         '
@@ -766,6 +789,7 @@ Partial Class Main
         Me.grpGold.ResumeLayout(False)
         Me.grpWorkbench.ResumeLayout(False)
         Me.grpRoomItems.ResumeLayout(False)
+        Me.tabStorefront.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -814,7 +838,7 @@ Partial Class Main
     Friend WithEvents txtIngredient3 As System.Windows.Forms.Label
     Friend WithEvents txtIngredient2 As System.Windows.Forms.Label
     Friend WithEvents txtIngredient1 As System.Windows.Forms.Label
-    Friend WithEvents tabGuests As System.Windows.Forms.TabPage
+    Friend WithEvents tabStorefront As System.Windows.Forms.TabPage
     Friend WithEvents btnRoomToWaiting As System.Windows.Forms.Button
     Friend WithEvents btnWaitingToRoom As System.Windows.Forms.Button
     Friend WithEvents lstGuestsWaiting As System.Windows.Forms.ListBox
@@ -834,5 +858,7 @@ Partial Class Main
     Friend WithEvents btnCountertopReset As System.Windows.Forms.Button
     Friend WithEvents btnCountertopPrep As System.Windows.Forms.Button
     Friend WithEvents cmbCountertop As System.Windows.Forms.ComboBox
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents grpSaleFoodIngredients As System.Windows.Forms.GroupBox
 
 End Class

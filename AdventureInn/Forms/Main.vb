@@ -25,6 +25,7 @@
             .Add(RoomItem.Generate("Four-Poster Bed"))
             .Gold = 20000
 
+            .Add(FoodRecipe.Generate("Omelette"))
             .Add(FoodIngredient.Generate("Dragon Egg"))
             .Add(FoodIngredient.Generate("Manticore Egg"))
             .Add(FoodIngredient.Generate("Gorgon Milk"))
@@ -374,8 +375,8 @@
     Private KitchenLbls(4) As Label
     Private KitchenTxts(4) As Label
     Private Sub KitchenBuild()
-        For Each r In FoodRecipe.AllFoodRecipes.Keys
-            cmbKitchen.Items.Add(FoodRecipe.AllFoodRecipes(r))
+        For Each r In CurrentInn.InventoryFoodRecipes
+            cmbKitchen.Items.Add(r.ToString)
         Next
         KitchenLbls(0) = lblIngredient1
         KitchenLbls(1) = lblIngredient2
@@ -394,8 +395,8 @@
         Next
         cmbKitchen.SelectedIndex = -1
 
-        For Each p In FoodPrep.AllFoodPreps.Keys
-            cmbCountertop.Items.Add(FoodPrep.AllFoodPreps(p))
+        For Each p In CurrentInn.InventoryFoodPreps
+            cmbCountertop.Items.Add(p.Name)
         Next
         CountertopLbls(0) = lblCountertopIngredient1
         CountertopLbls(1) = lblCountertopIngredient2

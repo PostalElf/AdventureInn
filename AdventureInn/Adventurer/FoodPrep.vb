@@ -78,4 +78,11 @@
         Ingredients.Clear()
         Return total
     End Function
+
+    Public Class SortByName
+        Implements IComparer(Of FoodPrep)
+        Public Function Compare(ByVal x As FoodPrep, ByVal y As FoodPrep) As Integer Implements System.Collections.Generic.IComparer(Of FoodPrep).Compare
+            Return String.Compare(x.Name, y.Name)
+        End Function
+    End Class
 End Class
