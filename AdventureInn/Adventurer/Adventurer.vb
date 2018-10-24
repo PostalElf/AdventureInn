@@ -383,4 +383,5 @@ Public Enum Job
     Fighter
     Mage
     Rogue
+    Monster
 End Enum

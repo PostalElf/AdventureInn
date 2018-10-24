@@ -1,0 +1,55 @@
+[Haunted Barn]
+Area: Farmlands
+Level: 0
+Job: Cleric
+
+[Estranged Shadows]
+Area: Farmlands
+Level: 1
+Job: Cleric
+
+[Stray Sheep]
+Area: Farmlands
+Level: 0
+Job: Fighter
+
+[Runaway Horse]
+Area: Farmlands
+Level: 1
+Job: Fighter
+
+[Malfunctioning Scarecrow]
+Area: Farmlands
+Level: 0
+Job: Mage
+
+[Old Fertility Wards]
+Area: Farmlands
+Level: 1
+Job: Mage
+
+[Locked Farm Gate]
+Area: Farmlands
+Level: 0
+Job: Rogue
+
+[Family Heirloom]
+Area: Farmlands
+Level: 1
+Job: Rogue
+
+[Restless Cemetery]
+
+[Fallen Cart]
+
+[Enchanted Crossroads]
+
+[Suspicious Chest]
+
+[Angry Zombie Horde]
+
+[Wide Chasm]
+
+[Arcane Wards]
+
+[Secret Passageway]
