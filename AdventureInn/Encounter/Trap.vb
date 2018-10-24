@@ -1,5 +1,5 @@
 ﻿Public Class Trap
-    Implements Encounter
+    Inherits Encounter
     Private Shared AllTraps As Dictionary(Of String, List(Of Trap)) = AllTrapsPopulate()
     Private Shared Function AllTrapsPopulate() As Dictionary(Of String, List(Of Trap))
         Dim all As New List(Of Trap)
@@ -16,14 +16,7 @@
         Next
         Return total
     End Function
-    Public Sub New()
-        Drops(0) = Drop1
-        Drops(1) = Drop2
-        Drops(2) = Drop3
-        Drops(3) = Drop4
-        Drops(4) = Drop5
-    End Sub
-    Public Shared Function Generate(ByVal pArea As String) As Trap
+    Public Overloads Shared Function Generate(ByVal pArea As String) As Trap
         If AllTraps.Keys.Contains(pArea) = False Then Return Nothing
 
         Dim trapName As String = ""
@@ -45,73 +38,7 @@
         End If
 
         Dim trap As New Trap
-        With trap
-            For Each l In rawdata
-                Dim rawsplit As String() = l.Split(":")
-                Dim header As String = rawsplit(0).Trim
-                Dim entry As String = rawsplit(1).Trim
-
-                ._Name = targetName
-                Select Case header
-                    Case "Area" : .Area = entry
-                    Case "Level" : ._Level = Convert.ToInt32(entry)
-                    Case "Job" : ._Job = StringToEnum(Of Job)(entry)
-                    Case "Drop1" : .Drop1.Add(CommaStringToPair(entry))
-                    Case "Drop2" : .Drop2.Add(CommaStringToPair(entry))
-                    Case "Drop3" : .Drop3.Add(CommaStringToPair(entry))
-                    Case "Drop4" : .Drop4.Add(CommaStringToPair(entry))
-                    Case "Drop5" : .Drop5.Add(CommaStringToPair(entry))
-                End Select
-            Next
-        End With
+        trap.Generate(targetName, rawdata)
         Return trap
-    End Function
-    Private Shared Function CommaStringToPair(ByVal entry As String) As Pair(Of String, Integer)
-        Dim rawsplit As String() = entry.Split(",")
-        Dim key As String = rawsplit(0).Trim
-        Dim value As Integer = Convert.ToInt32(rawsplit(1).Trim)
-
-        Return New Pair(Of String, Integer)(key, value)
-    End Function
-
-    Private _Name As String
-    Public ReadOnly Property Name As String Implements Encounter.Name
-        Get
-            Return _Name
-        End Get
-    End Property
-    Private _Job As Job
-    Public ReadOnly Property Job As Job Implements Encounter.Job
-        Get
-            Return _Job
-        End Get
-    End Property
-    Private _Level As Integer
-    Public ReadOnly Property Level As Integer Implements Encounter.Level
-        Get
-            Return _Level
-        End Get
-    End Property
-    Private Area As String
-
-    Private Drops(4) As List(Of Pair(Of String, Integer))
-    Private Drop1 As New List(Of Pair(Of String, Integer))
-    Private Drop2 As New List(Of Pair(Of String, Integer))
-    Private Drop3 As New List(Of Pair(Of String, Integer))
-    Private Drop4 As New List(Of Pair(Of String, Integer))
-    Private Drop5 As New List(Of Pair(Of String, Integer))
-    Public Function GetLoot() As List(Of String) Implements Encounter.GetLoot
-        Dim total As New List(Of String)
-        For n = 0 To 4
-            If Drops(n).Count = 0 Then Exit For
-
-            Dim roll As Integer = Rng.Next(1, 101)
-            Dim currentCount As Integer = 0
-            For Each entry In Drops(n)
-                currentCount += entry.Value
-                If roll <= currentCount Then total.Add(entry.Key) : Exit For
-            Next
-        Next
-        Return total
     End Function
 End Class
