@@ -64,18 +64,20 @@
     Private Drop3 As New List(Of Pair(Of String, Integer))
     Private Drop4 As New List(Of Pair(Of String, Integer))
     Private Drop5 As New List(Of Pair(Of String, Integer))
-    Public Function GetLoot() As List(Of String)
+    Public Function CheckEncounter(ByVal party As Party) As List(Of String)
         Dim total As New List(Of String)
-        For n = 0 To 4
-            If Drops(n).Count = 0 Then Exit For
+        If party.CheckEncounter(Job, Level) = True Then
+            For n = 0 To 4
+                If Drops(n).Count = 0 Then Exit For
 
-            Dim roll As Integer = Rng.Next(1, 101)
-            Dim currentCount As Integer = 0
-            For Each entry In Drops(n)
-                currentCount += entry.Value
-                If roll <= currentCount Then total.Add(entry.Key) : Exit For
+                Dim roll As Integer = Rng.Next(1, 101)
+                Dim currentCount As Integer = 0
+                For Each entry In Drops(n)
+                    currentCount += entry.Value
+                    If roll <= currentCount Then total.Add(entry.Key) : Exit For
+                Next
             Next
-        Next
+        End If
         Return total
     End Function
 End Class

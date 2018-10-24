@@ -40,6 +40,18 @@
 
     Private Race As Race
     Private Job As Job
+    Private Level As Integer
+    Public Function CheckEncounter(ByVal pJob As Job, ByVal pLevel As Integer) As Boolean
+        If pJob = AdventurerInn.Job.Monster OrElse pJob = Job Then
+            Dim levelDifference As Integer = pLevel - Level
+            If levelDifference < 0 Then levelDifference = 0
+            Dim difficulty As Integer = 95 - (levelDifference * 10)
+            If Rng.Next(1, 101) <= difficulty Then Return True Else Return False
+        Else
+            Return False
+        End If
+    End Function
+
     Private Function GetStarRating(ByRef stars As Integer) As String
         Dim total As String = ""
         If stars < 0 Then stars = 0

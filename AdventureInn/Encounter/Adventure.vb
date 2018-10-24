@@ -18,15 +18,15 @@
         Return a
     End Function
 
-    Const PartyMaxSize As Integer = 4
-    Private Party As New List(Of Adventurer)
-    Public Function Add(ByVal adventurer As Adventurer) As String
-        If Party.Count + 1 > PartyMaxSize Then Return "No space in party."
-
-        Party.Add(adventurer)
-        Return Nothing
-    End Function
-
     Private Area As String
     Private Encounters As New Queue(Of Encounter)
+    Public Function CheckEncounters(ByVal party As Party) As List(Of String)
+        Dim totalLoot As New List(Of String)
+        While Encounters.Count > 0
+            Dim encounter As Encounter = Encounters.Dequeue
+            Dim loot As List(Of String) = encounter.CheckEncounter(party)
+            If loot.Count > 0 Then totalLoot.AddRange(loot)
+        End While
+        Return totalLoot
+    End Function
 End Class
