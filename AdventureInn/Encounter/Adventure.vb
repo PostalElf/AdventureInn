@@ -20,13 +20,17 @@
 
     Private Area As String
     Private Encounters As New Queue(Of Encounter)
-    Public Function CheckEncounters(ByVal party As Party) As List(Of String)
+    Public Function CheckEncounters(ByVal party As Party) As Pair(Of List(Of String), List(Of String))
+        Dim totalReports As New List(Of String)
         Dim totalLoot As New List(Of String)
         While Encounters.Count > 0
             Dim encounter As Encounter = Encounters.Dequeue
-            Dim loot As List(Of String) = encounter.CheckEncounter(party)
+            Dim encounterResult As Pair(Of String, List(Of String)) = encounter.CheckEncounter(party)
+            Dim report As String = encounterResult.Key
+            If report <> "" Then totalReports.Add(report)
+            Dim loot As List(Of String) = encounterResult.Value
             If loot.Count > 0 Then totalLoot.AddRange(loot)
         End While
-        Return totalLoot
+        Return New Pair(Of List(Of String), List(Of String))(totalReports, totalLoot)
     End Function
 End Class

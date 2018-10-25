@@ -675,4 +675,22 @@
         End If
     End Sub
 #End Region
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Dim adventure As Adventure = adventure.Generate("Farmlands")
+        Dim party As New Party
+        For n = 0 To 3
+            party.Add(Adventurer.Generate)
+        Next
+        Dim adventureResult As Pair(Of List(Of String), List(Of String)) = adventure.CheckEncounters(party)
+        Dim reports As List(Of String) = adventureResult.Key
+        Dim loot As List(Of String) = adventureResult.Value
+
+        Dim totalReport As String = ""
+        For Each rep In reports
+            totalReport &= rep & vbCrLf
+        Next
+        totalReport &= vbCrLf & "Total Loot: " & ListToCommaString(loot)
+        MsgBox(totalReport)
+    End Sub
 End Class

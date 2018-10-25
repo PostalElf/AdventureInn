@@ -2,20 +2,25 @@
     Public Shared Function Generate() As Adventurer
         Dim adventurer As New Adventurer
         With adventurer
-            .Race = Rng.Next(0, 4)
-            .Job = Rng.Next(0, 4)
-            ._Name = GenerateName(.Race)
+            ._Race = Rng.Next(0, 4)
+            ._Job = Rng.Next(0, 4)
+            ._Name = GenerateName(._Race)
         End With
         Return adventurer
     End Function
     Public Overrides Function ToString() As String
-        Return Name & " the " & Race.ToString & " " & Job.ToString
+        Return Name & " the " & _Race.ToString & " " & _Job.ToString
     End Function
 
     Private _Name As String
     Public ReadOnly Property Name As String
         Get
             Return _Name
+        End Get
+    End Property
+    Public ReadOnly Property Pronoun As String
+        Get
+            Return "him"
         End Get
     End Property
     Private Shared GeneratedNames As New List(Of String)
@@ -38,12 +43,27 @@
         Return name
     End Function
 
-    Private Race As Race
-    Private Job As Job
-    Private Level As Integer
+    Private _Race As Race
+    Public ReadOnly Property Race As Race
+        Get
+            Return _Race
+        End Get
+    End Property
+    Private _Job As Job
+    Public ReadOnly Property Job As Job
+        Get
+            Return _Job
+        End Get
+    End Property
+    Private _Level As Integer
+    Public ReadOnly Property Level As Integer
+        Get
+            Return _Level
+        End Get
+    End Property
     Public Function CheckEncounter(ByVal pJob As Job, ByVal pLevel As Integer) As Boolean
-        If pJob = AdventurerInn.Job.Monster OrElse pJob = Job Then
-            Dim levelDifference As Integer = pLevel - Level
+        If pJob = AdventurerInn.Job.Monster OrElse pJob = _Job Then
+            Dim levelDifference As Integer = pLevel - _Level
             If levelDifference < 0 Then levelDifference = 0
             Dim difficulty As Integer = 95 - (levelDifference * 10)
             If Rng.Next(1, 101) <= difficulty Then Return True Else Return False
@@ -69,7 +89,7 @@
             Dim privacy, opulence, restfulness, alignment, niche As String
             Dim alignValue As Integer = 0
 
-            Select Case Race
+            Select Case _Race
                 Case AdventurerInn.Race.Human
                     privacy = "Private"
                     opulence = "Tasteful"
@@ -89,7 +109,7 @@
                 Case Else : Throw New Exception
             End Select
 
-            Select Case Job
+            Select Case _Job
                 Case AdventurerInn.Job.Cleric
                     restfulness = "Restful"
                     niche = "Faith"
@@ -122,8 +142,8 @@
     Public ReadOnly Property RoomPreferenceDescription As String
         Get
             Dim total As String = ""
-            total &= Race.ToString & "s like " & RoomPreferences(0) & " and " & RoomPreferences(1) & " rooms." & vbCrLf
-            total &= Job.ToString & "s like " & RoomPreferences(2) & " rooms with " & RoomPreferences(4) & "." & vbCrLf
+            total &= _Race.ToString & "s like " & RoomPreferences(0) & " and " & RoomPreferences(1) & " rooms." & vbCrLf
+            total &= _Job.ToString & "s like " & RoomPreferences(2) & " rooms with " & RoomPreferences(4) & "." & vbCrLf
             total &= RoomPreferences(3) & " characters like " & RoomPreferences(3) & " things."
             Return total
         End Get
@@ -240,14 +260,14 @@
     Private ReadOnly Property FoodPreferences As String()
         Get
             Dim richness, meatiness, exoticness As String
-            Select Case Race
+            Select Case _Race
                 Case AdventurerInn.Race.Human : richness = "Plain"
                 Case AdventurerInn.Race.Dwarf : richness = "Rich"
                 Case AdventurerInn.Race.Elf : richness = "Plain"
                 Case AdventurerInn.Race.Halfling : richness = "Rich"
                 Case Else : Throw New Exception
             End Select
-            Select Case Job
+            Select Case _Job
                 Case AdventurerInn.Job.Cleric
                     meatiness = "Vegetarian"
                     exoticness = "Common"
@@ -372,13 +392,13 @@
     Public Class SortByJob
         Implements IComparer(Of Adventurer)
         Public Function Compare(ByVal x As Adventurer, ByVal y As Adventurer) As Integer Implements System.Collections.Generic.IComparer(Of Adventurer).Compare
-            Return String.Compare(x.Job.ToString, y.Job.ToString)
+            Return String.Compare(x._Job.ToString, y._Job.ToString)
         End Function
     End Class
     Public Class SortByRace
         Implements IComparer(Of Adventurer)
         Public Function Compare(ByVal x As Adventurer, ByVal y As Adventurer) As Integer Implements System.Collections.Generic.IComparer(Of Adventurer).Compare
-            Return String.Compare(x.Race.ToString, y.Race.ToString)
+            Return String.Compare(x._Race.ToString, y._Race.ToString)
         End Function
     End Class
 End Class

@@ -2,41 +2,57 @@
 Area: Farmlands
 Level: 0
 Job: Cleric
+Success: <adventurer> exorcises the restless spirit haunting the barn and finds <loot>.
+Failure: <adventurer> cannot rid the barn of the restless spirit.
 
 [Estranged Shadows]
 Area: Farmlands
 Level: 1
 Job: Cleric
+Success: <adventurer> banishes the shadows in the farmhouse. The grateful farmers reward the party with <loot>.
+Failure: <adventurer> is overwhelmed by the farmhouse shadows!
 
 [Stray Sheep]
 Area: Farmlands
 Level: 0
 Job: Fighter
+Success: <adventurer> manages to corral all the stray sheep. Bemused farmers pays the party <loot>.
+Failure: <adventurer> is unable to find all the stray sheep before sundown.
 
 [Runaway Horse]
 Area: Farmlands
 Level: 1
 Job: Fighter
+Success: <adventurer> finds and tames the runaway horse in record time. The grateful farmsteader pays the party <loot>.
+Failure: The horse is faster than <adventurer>, and the party walks away sweatier but no richer.
 
 [Malfunctioning Scarecrow]
 Area: Farmlands
 Level: 0
 Job: Mage
+Success: <adventurer> reanimates the scarecrow successfully, and is given <loot> as a reward.
+Failure: <adventurer>'s spells fails to reanimate the scarecrow.
 
 [Old Fertility Wards]
 Area: Farmlands
 Level: 1
 Job: Mage
+Success: <adventurer> touches up the old fertility wards. Thankful farmers pay the party <loot>.
+Failure: <adventurer> is utterly befuddled by the fertility wards.
 
 [Locked Farm Gate]
 Area: Farmlands
 Level: 0
 Job: Rogue
+Success: <adventurer> fixes the locked farm gate. The farmsteader gives the party some <loot> lying around as a reward.
+Failure: <adventurer> tries for half an hour before giving up on locked farm gate.
 
 [Family Heirloom]
 Area: Farmlands
 Level: 1
 Job: Rogue
+Success: <adventurer> spies <loot> lying around and grabs it while the farmsteader is making some tea.
+Failure: <adventurer> is caught trying to steal from the farmsteader, and the party is chased out of the house.
 
 [Restless Cemetery]
 

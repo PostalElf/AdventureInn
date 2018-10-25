@@ -37,12 +37,12 @@ Module Common
         Next
         Return total
     End Function
-    Public Function ListToCommaString(ByVal str As List(Of String), Optional ByVal lastConjunction As String = "") As String
+    Public Function ListToCommaString(ByVal str As List(Of String), Optional ByVal lastConjunction As String = ", ") As String
         Dim total As String = ""
         For n = 0 To str.Count - 1
             total &= str(n)
             If n = str.Count - 2 Then
-                If lastConjunction <> "" Then total &= " " & lastConjunction & " "
+                total &= lastConjunction
             ElseIf n <> str.Count - 1 Then
                 total &= ", "
             End If

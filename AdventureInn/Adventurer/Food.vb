@@ -78,7 +78,7 @@
     End Property
     Public ReadOnly Property FullName As String
         Get
-            Return Name & " with " & ListToCommaString(IngredientNames, "&&")
+            Return Name & " with " & ListToCommaString(IngredientNames, " && ")
         End Get
     End Property
 

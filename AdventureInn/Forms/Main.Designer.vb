@@ -88,8 +88,9 @@ Partial Class Main
         Me.btnInventorySort = New System.Windows.Forms.Button()
         Me.lstInventory = New System.Windows.Forms.ListBox()
         Me.tabStorefront = New System.Windows.Forms.TabPage()
-        Me.grpSaleFoodIngredients = New System.Windows.Forms.GroupBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.grpSaleFoodIngredients = New System.Windows.Forms.GroupBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -161,6 +162,7 @@ Partial Class Main
         'tabFloor
         '
         Me.tabFloor.BackColor = System.Drawing.SystemColors.Window
+        Me.tabFloor.Controls.Add(Me.Button1)
         Me.tabFloor.Controls.Add(Me.grpGuestsWaiting)
         Me.tabFloor.Controls.Add(Me.grpRoom)
         Me.tabFloor.Controls.Add(Me.grpFloorplan)
@@ -739,6 +741,15 @@ Partial Class Main
         Me.tabStorefront.Text = "Storefront"
         Me.tabStorefront.UseVisualStyleBackColor = True
         '
+        'GroupBox1
+        '
+        Me.GroupBox1.Location = New System.Drawing.Point(268, 6)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(245, 196)
+        Me.GroupBox1.TabIndex = 1
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Ingredients"
+        '
         'grpSaleFoodIngredients
         '
         Me.grpSaleFoodIngredients.Location = New System.Drawing.Point(9, 6)
@@ -748,14 +759,14 @@ Partial Class Main
         Me.grpSaleFoodIngredients.TabStop = False
         Me.grpSaleFoodIngredients.Text = "Ingredients"
         '
-        'GroupBox1
+        'Button1
         '
-        Me.GroupBox1.Location = New System.Drawing.Point(268, 6)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(245, 196)
-        Me.GroupBox1.TabIndex = 1
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Ingredients"
+        Me.Button1.Location = New System.Drawing.Point(487, 275)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 23)
+        Me.Button1.TabIndex = 19
+        Me.Button1.Text = "Button1"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'Main
         '
@@ -860,5 +871,6 @@ Partial Class Main
     Friend WithEvents cmbCountertop As System.Windows.Forms.ComboBox
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents grpSaleFoodIngredients As System.Windows.Forms.GroupBox
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 
 End Class

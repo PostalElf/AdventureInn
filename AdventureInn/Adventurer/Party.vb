@@ -7,19 +7,32 @@
         Adventurers.Add(adventurer)
         Return Nothing
     End Function
-    Public Function CheckEncounter(ByVal job As Job, ByVal level As Integer) As Boolean
-        Dim successes As Integer = 0
-        For Each a In Adventurers
-            If a.CheckEncounter(job, level) = True Then successes += 1
-        Next
-
-        'traps only require one success but only one adventurer can work on it
-        'monsters require two successes but all adventurers can work on it
+    Public Function CheckEncounter(ByVal job As Job, ByVal level As Integer, ByVal encounter As Encounter) As Pair(Of Adventurer, Boolean)
         If job = AdventurerInn.Job.Monster Then
-            If successes >= 2 Then Return True
+            Dim successes As Integer = 0
+            For Each a In Adventurers
+                If a.CheckEncounter(job, level) = True Then successes += 1
+            Next
+            Dim success As Boolean = False
+            If successes >= 2 Then success = True
+            Return New Pair(Of Adventurer, Boolean)(GetRandom(Adventurers), success)
         Else
-            If successes >= 1 Then Return True
+            Dim adventurer As Adventurer = GetBestFit(job, level)
+            If adventurer Is Nothing Then adventurer = GetRandom(Adventurers)
+            Return New Pair(Of Adventurer, Boolean)(adventurer, adventurer.CheckEncounter(job, level))
         End If
-        Return False
+    End Function
+    Private Function GetBestFit(ByVal job As Job, ByVal level As Integer) As Adventurer
+        Dim bestfit As Adventurer = Nothing
+        Dim highestLevel As Integer = -1
+        For Each adv In Adventurers
+            If adv.job = job Then
+                If adv.level > highestLevel Then
+                    bestfit = adv
+                    highestLevel = adv.level
+                End If
+            End If
+        Next
+        Return bestfit
     End Function
 End Class
