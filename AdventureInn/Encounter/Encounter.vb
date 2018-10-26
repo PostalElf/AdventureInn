@@ -74,7 +74,7 @@
     Private ReadOnly Property FailureString As String
         Get
             If TypeOf Me Is Monster Then
-                Return "The party was shamefully forced to flee from the " & Name & "."
+                Return "The party is shamefully forced to flee from the " & Name & "."
             Else
                 Return _FailureString
             End If

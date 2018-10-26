@@ -24,6 +24,17 @@
     Public Gold As Integer
 
     Public WaitingGuests As New List(Of Adventurer)
+    Public ReadOnly Property RoomedGuests As List(Of Adventurer)
+        Get
+            Dim total As New List(Of Adventurer)
+            For Each f In Floors
+                For Each r In f.Rooms
+                    If r.Guests.Count > 0 Then total.AddRange(r.Guests)
+                Next
+            Next
+            Return total
+        End Get
+    End Property
 
     Public Sub Add(ByVal floor As Floor)
         Floors.Add(floor)

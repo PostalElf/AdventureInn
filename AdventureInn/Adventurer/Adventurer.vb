@@ -142,9 +142,9 @@
     Public ReadOnly Property RoomPreferenceDescription As String
         Get
             Dim total As String = ""
-            total &= _Race.ToString & "s like " & RoomPreferences(0) & " and " & RoomPreferences(1) & " rooms." & vbCrLf
-            total &= _Job.ToString & "s like " & RoomPreferences(2) & " rooms with " & RoomPreferences(4) & "." & vbCrLf
-            total &= RoomPreferences(3) & " characters like " & RoomPreferences(3) & " things."
+            total &= "- " & _Race.ToString & "s like " & RoomPreferences(0) & " and " & RoomPreferences(1) & " rooms." & vbCrLf
+            total &= "- " & _Job.ToString & "s like " & RoomPreferences(2) & " rooms that are full of " & RoomPreferences(4) & "." & vbCrLf
+            total &= "- " & RoomPreferences(3) & " characters like " & RoomPreferences(3) & " things."
             Return total
         End Get
     End Property

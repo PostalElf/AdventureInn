@@ -26,6 +26,9 @@
             .Gold = 20000
 
             .Add(FoodRecipe.Generate("Omelette"))
+            .Add(FoodPrep.Generate("Cow Cheese"))
+            .Add(FoodPrep.Generate("Beef Sausages"))
+            .Add(FoodIngredient.Generate("Beef Flank"))
             .Add(FoodIngredient.Generate("Dragon Egg"))
             .Add(FoodIngredient.Generate("Manticore Egg"))
             .Add(FoodIngredient.Generate("Gorgon Milk"))
@@ -450,7 +453,11 @@
     Private Sub cmbKitchen_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbKitchen.SelectedIndexChanged
         RecipeReset()
 
-        If cmbKitchen.SelectedIndex = -1 Then ActiveRecipe = Nothing : Exit Sub
+        If cmbKitchen.SelectedIndex = -1 Then
+            If ActiveRecipe Is Nothing = False Then CurrentInn.InventoryFoodIngredients.AddRange(ActiveRecipe.Clear)
+            ActiveRecipe = Nothing
+            Exit Sub
+        End If
 
         ActiveRecipe = FoodRecipe.Generate(cmbKitchen.SelectedItem.ToString)
         btnKitchenCook.Visible = True
@@ -529,7 +536,11 @@
     Private Sub cmbCountertop_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbCountertop.SelectedIndexChanged
         CountertopReset()
 
-        If cmbCountertop.SelectedIndex = -1 Then ActivePrep = Nothing : Exit Sub
+        If cmbCountertop.SelectedIndex = -1 Then
+            If ActivePrep Is Nothing = False Then CurrentInn.InventoryFoodIngredients.AddRange(ActivePrep.Clear)
+            ActivePrep = Nothing
+            Exit Sub
+        End If
 
         ActivePrep = FoodPrep.Generate(cmbCountertop.SelectedItem.ToString)
         btnCountertopReset.Visible = True
@@ -676,21 +687,8 @@
     End Sub
 #End Region
 
-    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        Dim adventure As Adventure = adventure.Generate("Farmlands")
-        Dim party As New Party
-        For n = 0 To 3
-            party.Add(Adventurer.Generate)
-        Next
-        Dim adventureResult As Pair(Of List(Of String), List(Of String)) = adventure.CheckEncounters(party)
-        Dim reports As List(Of String) = adventureResult.Key
-        Dim loot As List(Of String) = adventureResult.Value
+#Region "Party"
 
-        Dim totalReport As String = ""
-        For Each rep In reports
-            totalReport &= rep & vbCrLf
-        Next
-        totalReport &= vbCrLf & "Total Loot: " & ListToCommaString(loot)
-        MsgBox(totalReport)
-    End Sub
+#End Region
+
 End Class

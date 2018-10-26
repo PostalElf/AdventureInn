@@ -48,11 +48,13 @@
     Public Function Add(ByVal fi As FoodIngredient) As String
         Dim n As String = fi.Name
         If iRequired.Contains(n) = False Then
-            n = "<" & n & ">"
+            n = "<" & fi.IngredientType & ">"
             If iRequired.Contains(n) = False Then Return "Ingredient not required."
+            iRequired.Remove(n)
+        Else
+            iRequired.Remove(n)
         End If
 
-        iRequired.Remove(n)
         iFilled.Add(n)
         Ingredients.Add(fi)
 
