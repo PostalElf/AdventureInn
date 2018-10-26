@@ -15,10 +15,6 @@
             Dim floor2 As New Floor
             .Add(floor2)
 
-            For n = 1 To 10
-                .Add(Adventurer.Generate)
-            Next
-
             .Add(RoomItem.Generate("Straw Bed"))
             .Add(RoomItem.Generate("Study Table"))
             .Add(RoomItem.Generate("Study Table"))

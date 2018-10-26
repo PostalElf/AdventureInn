@@ -1,4 +1,14 @@
 ﻿Public Class Inn
+    Public Sub New()
+        For n = 1 To RecurringGuestNumber
+            RecurringGuests.Add(Adventurer.Generate)
+        Next
+        Dim allGuests As New List(Of Adventurer)(RecurringGuests)
+        For n = 1 To 10
+            WaitingGuests.Add(GrabRandom(allGuests))
+        Next
+    End Sub
+
     Private Floors As New List(Of Floor)
     Default Public Property Index(ByVal i As Integer) As Floor
         Get
@@ -45,15 +55,17 @@
             Return total
         End Get
     End Property
+    Const RecurringGuestNumber As Integer = 20
+    Private RecurringGuests As New List(Of Adventurer)
 
     Public Menu As New List(Of Food)
     Private Function GetBestFood(ByVal adv As Adventurer) As Food
-        If InventoryFood.Count = 0 Then Return Nothing
-        If InventoryFood.Count = 1 Then Return InventoryFood(0)
+        If Menu.Count = 0 Then Return Nothing
+        If Menu.Count = 1 Then Return Menu(0)
 
         Dim highestStars As Integer = -1
         Dim bestFood As Food = Nothing
-        For Each f In InventoryFood
+        For Each f In Menu
             Dim stars As Integer = adv.FoodSatisfaction(f).Value
             If stars > highestStars Then
                 highestStars = -1
@@ -105,10 +117,15 @@
 
         Menu.Clear()
 
-        WaitingGuests.Clear()
-        For n = 1 To 10
+        'repopulate guest list
+        While RecurringGuests.Count < RecurringGuestNumber
             Dim g As Adventurer = Adventurer.Generate
-            WaitingGuests.Add(g)
+            RecurringGuests.Add(g)
+        End While
+        WaitingGuests.Clear()
+        Dim allGuests As New List(Of Adventurer)(RecurringGuests)
+        For n = 1 To 10
+            WaitingGuests.Add(GrabRandom(allGuests))
         Next
     End Sub
 End Class
