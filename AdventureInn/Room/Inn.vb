@@ -45,6 +45,8 @@
             Return total
         End Get
     End Property
+    Public ExitingGuests As New Dictionary(Of Adventurer, Pair(Of String, Integer))
+    Public ExitingParties As New List(Of Party)
 
     Public Sub Add(ByVal floor As Floor)
         Floors.Add(floor)
@@ -68,5 +70,24 @@
     End Sub
     Public Sub Add(ByVal adventurer As Adventurer)
         WaitingGuests.Add(adventurer)
+    End Sub
+
+    Public Sub EndNight()
+        ExitingGuests.Clear()
+        For Each Floor In Floors
+            For Each Room In Floor.Rooms
+                For Each guest In Room.Guests
+                    Dim guestSatisfaction As Pair(Of String, Integer) = guest.RoomSatisfaction(Room)
+                    ExitingGuests.Add(guest, guestSatisfaction)
+                Next
+                Room.Guests.Clear()
+            Next
+        Next
+
+        WaitingGuests.Clear()
+        For n = 1 To 10
+            Dim g As Adventurer = Adventurer.Generate
+            WaitingGuests.Add(g)
+        Next
     End Sub
 End Class

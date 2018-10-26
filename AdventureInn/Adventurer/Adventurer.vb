@@ -104,7 +104,7 @@
                     alignValue -= 1
                 Case AdventurerInn.Race.Halfling
                     privacy = "Communal"
-                    opulence = "Opulent"
+                    opulence = "Tasteful"
                     alignValue -= 1
                 Case Else : Throw New Exception
             End Select

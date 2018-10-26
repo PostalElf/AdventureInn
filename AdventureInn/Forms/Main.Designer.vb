@@ -77,8 +77,6 @@ Partial Class Main
         Me.cmbKitchen = New System.Windows.Forms.ComboBox()
         Me.grpMenu = New System.Windows.Forms.GroupBox()
         Me.tabInventory = New System.Windows.Forms.TabPage()
-        Me.grpGold = New System.Windows.Forms.GroupBox()
-        Me.lblGold = New System.Windows.Forms.Label()
         Me.grpWorkbench = New System.Windows.Forms.GroupBox()
         Me.btnBuild = New System.Windows.Forms.Button()
         Me.cmbWorkbench = New System.Windows.Forms.ComboBox()
@@ -97,7 +95,11 @@ Partial Class Main
         Me.tabStorefront = New System.Windows.Forms.TabPage()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.grpSaleFoodIngredients = New System.Windows.Forms.GroupBox()
+        Me.grpGold = New System.Windows.Forms.GroupBox()
+        Me.lblGold = New System.Windows.Forms.Label()
         Me.btnEndNight = New System.Windows.Forms.Button()
+        Me.grpWhelp = New System.Windows.Forms.GroupBox()
+        Me.lblWhelp = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -111,12 +113,13 @@ Partial Class Main
         Me.grpKitchen.SuspendLayout()
         Me.pnlIngredients.SuspendLayout()
         Me.tabInventory.SuspendLayout()
-        Me.grpGold.SuspendLayout()
         Me.grpWorkbench.SuspendLayout()
         Me.grpRoomItems.SuspendLayout()
         Me.tabBounty.SuspendLayout()
         Me.grpParty.SuspendLayout()
         Me.tabStorefront.SuspendLayout()
+        Me.grpGold.SuspendLayout()
+        Me.grpWhelp.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblFloor
@@ -643,27 +646,6 @@ Partial Class Main
         Me.tabInventory.TabIndex = 1
         Me.tabInventory.Text = "Inventory"
         '
-        'grpGold
-        '
-        Me.grpGold.Controls.Add(Me.lblGold)
-        Me.grpGold.Location = New System.Drawing.Point(349, 585)
-        Me.grpGold.Name = "grpGold"
-        Me.grpGold.Size = New System.Drawing.Size(118, 53)
-        Me.grpGold.TabIndex = 3
-        Me.grpGold.TabStop = False
-        Me.grpGold.Text = "Gold"
-        '
-        'lblGold
-        '
-        Me.lblGold.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.lblGold.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblGold.Location = New System.Drawing.Point(8, 18)
-        Me.lblGold.Name = "lblGold"
-        Me.lblGold.Size = New System.Drawing.Size(99, 24)
-        Me.lblGold.TabIndex = 4
-        Me.lblGold.Text = "0"
-        Me.lblGold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'grpWorkbench
         '
         Me.grpWorkbench.Controls.Add(Me.btnBuild)
@@ -740,12 +722,13 @@ Partial Class Main
         '
         'tabBounty
         '
+        Me.tabBounty.Controls.Add(Me.grpWhelp)
         Me.tabBounty.Controls.Add(Me.grpParty)
         Me.tabBounty.Location = New System.Drawing.Point(4, 22)
         Me.tabBounty.Name = "tabBounty"
         Me.tabBounty.Size = New System.Drawing.Size(525, 524)
         Me.tabBounty.TabIndex = 4
-        Me.tabBounty.Text = "Bounty Board"
+        Me.tabBounty.Text = "Common Room"
         Me.tabBounty.UseVisualStyleBackColor = True
         '
         'grpParty
@@ -757,7 +740,7 @@ Partial Class Main
         Me.grpParty.Controls.Add(Me.lstAdventurers)
         Me.grpParty.Location = New System.Drawing.Point(8, 3)
         Me.grpParty.Name = "grpParty"
-        Me.grpParty.Size = New System.Drawing.Size(508, 144)
+        Me.grpParty.Size = New System.Drawing.Size(508, 138)
         Me.grpParty.TabIndex = 17
         Me.grpParty.TabStop = False
         Me.grpParty.Text = "Form Party"
@@ -834,6 +817,27 @@ Partial Class Main
         Me.grpSaleFoodIngredients.TabStop = False
         Me.grpSaleFoodIngredients.Text = "Ingredients"
         '
+        'grpGold
+        '
+        Me.grpGold.Controls.Add(Me.lblGold)
+        Me.grpGold.Location = New System.Drawing.Point(349, 585)
+        Me.grpGold.Name = "grpGold"
+        Me.grpGold.Size = New System.Drawing.Size(118, 53)
+        Me.grpGold.TabIndex = 3
+        Me.grpGold.TabStop = False
+        Me.grpGold.Text = "Gold"
+        '
+        'lblGold
+        '
+        Me.lblGold.Anchor = System.Windows.Forms.AnchorStyles.Top
+        Me.lblGold.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblGold.Location = New System.Drawing.Point(8, 18)
+        Me.lblGold.Name = "lblGold"
+        Me.lblGold.Size = New System.Drawing.Size(99, 24)
+        Me.lblGold.TabIndex = 4
+        Me.lblGold.Text = "0"
+        Me.lblGold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
         'btnEndNight
         '
         Me.btnEndNight.BackgroundImage = CType(resources.GetObject("btnEndNight.BackgroundImage"), System.Drawing.Image)
@@ -844,6 +848,23 @@ Partial Class Main
         Me.btnEndNight.Size = New System.Drawing.Size(50, 50)
         Me.btnEndNight.TabIndex = 19
         Me.btnEndNight.UseVisualStyleBackColor = True
+        '
+        'grpWhelp
+        '
+        Me.grpWhelp.Controls.Add(Me.lblWhelp)
+        Me.grpWhelp.Location = New System.Drawing.Point(8, 147)
+        Me.grpWhelp.Name = "grpWhelp"
+        Me.grpWhelp.Size = New System.Drawing.Size(232, 135)
+        Me.grpWhelp.TabIndex = 18
+        Me.grpWhelp.TabStop = False
+        Me.grpWhelp.Text = "Whelp Review"
+        '
+        'lblWhelp
+        '
+        Me.lblWhelp.Location = New System.Drawing.Point(6, 16)
+        Me.lblWhelp.Name = "lblWhelp"
+        Me.lblWhelp.Size = New System.Drawing.Size(220, 109)
+        Me.lblWhelp.TabIndex = 23
         '
         'Main
         '
@@ -876,12 +897,13 @@ Partial Class Main
         Me.grpKitchen.ResumeLayout(False)
         Me.pnlIngredients.ResumeLayout(False)
         Me.tabInventory.ResumeLayout(False)
-        Me.grpGold.ResumeLayout(False)
         Me.grpWorkbench.ResumeLayout(False)
         Me.grpRoomItems.ResumeLayout(False)
         Me.tabBounty.ResumeLayout(False)
         Me.grpParty.ResumeLayout(False)
         Me.tabStorefront.ResumeLayout(False)
+        Me.grpGold.ResumeLayout(False)
+        Me.grpWhelp.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -960,5 +982,7 @@ Partial Class Main
     Friend WithEvents lstParty As System.Windows.Forms.ListBox
     Friend WithEvents btnFormParty As System.Windows.Forms.Button
     Friend WithEvents btnEndNight As System.Windows.Forms.Button
+    Friend WithEvents grpWhelp As System.Windows.Forms.GroupBox
+    Friend WithEvents lblWhelp As System.Windows.Forms.Label
 
 End Class

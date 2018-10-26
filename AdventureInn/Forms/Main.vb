@@ -55,6 +55,12 @@
     Private Sub RefreshGold() Handles CurrentInn.GoldChange
         lblGold.Text = CurrentInn.Gold.ToString("N0")
     End Sub
+    Private Sub btnEndNight_Click(ByVal sender As Button, ByVal e As System.EventArgs) Handles btnEndNight.Click
+        CurrentInn.EndNight()
+        FloorRefresh()
+        GuestsRefresh()
+        KitchenRefresh()
+    End Sub
 
 #Region "Floor Management"
     Private CurrentFloor As Floor
@@ -220,6 +226,11 @@
         lstGuestsWaiting.Items.Clear()
         For Each g In CurrentInn.WaitingGuests
             lstGuestsWaiting.Items.Add(g)
+        Next
+
+        lstAdventurers.Items.Clear()
+        For Each g In CurrentInn.ExitingGuests.Keys
+            lstAdventurers.Items.Add(g)
         Next
     End Sub
     Private Sub RoomPanelClick(ByVal sender As Panel, ByVal e As MouseEventArgs)
@@ -690,10 +701,17 @@
 #End Region
 
 #Region "Party"
+    Private Sub lstAdventurers_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstAdventurers.SelectedIndexChanged
+        Dim a As Adventurer = lstAdventurers.SelectedItem
+        If a Is Nothing Then lblWhelp.Text = "" : Exit Sub
+
+        Dim review As String = CurrentInn.ExitingGuests(a).Key
+        lblWhelp.Text = review
+    End Sub
     Private Sub btnAdventurerToParty_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdventurerToParty.Click
         Dim a As Adventurer = lstAdventurers.SelectedItem
         If a Is Nothing Then Exit Sub
-        If lstParty.Items.Count + 1 > Party.maxsize Then Exit Sub
+        If lstParty.Items.Count + 1 > Party.MaxSize Then Exit Sub
 
         lstAdventurers.Items.Remove(a)
         lstParty.Items.Add(a)
@@ -711,9 +729,10 @@
         Dim party As New Party
         For Each a As Adventurer In lstParty.Items
             party.Add(a)
+            lstParty.Items.Remove(a)
         Next
         party.Name = InputBox("What is the party's name?", "Name Party")
+        CurrentInn.ExitingParties.Add(party)
     End Sub
 #End Region
-
 End Class
