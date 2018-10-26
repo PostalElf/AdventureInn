@@ -60,6 +60,7 @@ Partial Class Main
         Me.lstFood = New System.Windows.Forms.ListBox()
         Me.lstFoodIngredients = New System.Windows.Forms.ListBox()
         Me.grpKitchen = New System.Windows.Forms.GroupBox()
+        Me.chkKitchenAutopick = New System.Windows.Forms.CheckBox()
         Me.pnlIngredients = New System.Windows.Forms.Panel()
         Me.txtIngredient5 = New System.Windows.Forms.Label()
         Me.txtIngredient4 = New System.Windows.Forms.Label()
@@ -87,6 +88,7 @@ Partial Class Main
         Me.lstInventory = New System.Windows.Forms.ListBox()
         Me.tabBounty = New System.Windows.Forms.TabPage()
         Me.grpWhelp = New System.Windows.Forms.GroupBox()
+        Me.lblWhelpFood = New System.Windows.Forms.Label()
         Me.lblWhelpRoom = New System.Windows.Forms.Label()
         Me.grpParty = New System.Windows.Forms.GroupBox()
         Me.btnFormParty = New System.Windows.Forms.Button()
@@ -100,7 +102,6 @@ Partial Class Main
         Me.grpGold = New System.Windows.Forms.GroupBox()
         Me.lblGold = New System.Windows.Forms.Label()
         Me.btnEndNight = New System.Windows.Forms.Button()
-        Me.lblWhelpFood = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -393,7 +394,7 @@ Partial Class Main
         '
         'btnCountertopReset
         '
-        Me.btnCountertopReset.Location = New System.Drawing.Point(121, 46)
+        Me.btnCountertopReset.Location = New System.Drawing.Point(129, 46)
         Me.btnCountertopReset.Name = "btnCountertopReset"
         Me.btnCountertopReset.Size = New System.Drawing.Size(47, 23)
         Me.btnCountertopReset.TabIndex = 17
@@ -403,7 +404,7 @@ Partial Class Main
         '
         'btnCountertopPrep
         '
-        Me.btnCountertopPrep.Location = New System.Drawing.Point(174, 46)
+        Me.btnCountertopPrep.Location = New System.Drawing.Point(182, 46)
         Me.btnCountertopPrep.Name = "btnCountertopPrep"
         Me.btnCountertopPrep.Size = New System.Drawing.Size(47, 23)
         Me.btnCountertopPrep.TabIndex = 16
@@ -418,7 +419,7 @@ Partial Class Main
         Me.cmbCountertop.FormattingEnabled = True
         Me.cmbCountertop.Location = New System.Drawing.Point(6, 19)
         Me.cmbCountertop.Name = "cmbCountertop"
-        Me.cmbCountertop.Size = New System.Drawing.Size(215, 21)
+        Me.cmbCountertop.Size = New System.Drawing.Size(223, 21)
         Me.cmbCountertop.TabIndex = 3
         '
         'grpFood
@@ -470,6 +471,7 @@ Partial Class Main
         '
         'grpKitchen
         '
+        Me.grpKitchen.Controls.Add(Me.chkKitchenAutopick)
         Me.grpKitchen.Controls.Add(Me.pnlIngredients)
         Me.grpKitchen.Controls.Add(Me.btnKitchenReset)
         Me.grpKitchen.Controls.Add(Me.lblKitchen)
@@ -481,6 +483,17 @@ Partial Class Main
         Me.grpKitchen.TabIndex = 1
         Me.grpKitchen.TabStop = False
         Me.grpKitchen.Text = "Kitchen"
+        '
+        'chkKitchenAutopick
+        '
+        Me.chkKitchenAutopick.AutoSize = True
+        Me.chkKitchenAutopick.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkKitchenAutopick.Location = New System.Drawing.Point(6, 50)
+        Me.chkKitchenAutopick.Name = "chkKitchenAutopick"
+        Me.chkKitchenAutopick.Size = New System.Drawing.Size(109, 16)
+        Me.chkKitchenAutopick.TabIndex = 27
+        Me.chkKitchenAutopick.Text = "Autopick Ingredients"
+        Me.chkKitchenAutopick.UseVisualStyleBackColor = True
         '
         'pnlIngredients
         '
@@ -591,7 +604,7 @@ Partial Class Main
         '
         'btnKitchenReset
         '
-        Me.btnKitchenReset.Location = New System.Drawing.Point(121, 46)
+        Me.btnKitchenReset.Location = New System.Drawing.Point(129, 46)
         Me.btnKitchenReset.Name = "btnKitchenReset"
         Me.btnKitchenReset.Size = New System.Drawing.Size(47, 23)
         Me.btnKitchenReset.TabIndex = 15
@@ -608,7 +621,7 @@ Partial Class Main
         '
         'btnKitchenCook
         '
-        Me.btnKitchenCook.Location = New System.Drawing.Point(174, 46)
+        Me.btnKitchenCook.Location = New System.Drawing.Point(182, 46)
         Me.btnKitchenCook.Name = "btnKitchenCook"
         Me.btnKitchenCook.Size = New System.Drawing.Size(47, 23)
         Me.btnKitchenCook.TabIndex = 4
@@ -623,7 +636,7 @@ Partial Class Main
         Me.cmbKitchen.FormattingEnabled = True
         Me.cmbKitchen.Location = New System.Drawing.Point(6, 19)
         Me.cmbKitchen.Name = "cmbKitchen"
-        Me.cmbKitchen.Size = New System.Drawing.Size(215, 21)
+        Me.cmbKitchen.Size = New System.Drawing.Size(223, 21)
         Me.cmbKitchen.TabIndex = 2
         '
         'grpMenu
@@ -742,6 +755,13 @@ Partial Class Main
         Me.grpWhelp.TabIndex = 18
         Me.grpWhelp.TabStop = False
         Me.grpWhelp.Text = "Whelp Review"
+        '
+        'lblWhelpFood
+        '
+        Me.lblWhelpFood.Location = New System.Drawing.Point(235, 16)
+        Me.lblWhelpFood.Name = "lblWhelpFood"
+        Me.lblWhelpFood.Size = New System.Drawing.Size(220, 109)
+        Me.lblWhelpFood.TabIndex = 24
         '
         'lblWhelpRoom
         '
@@ -868,13 +888,6 @@ Partial Class Main
         Me.btnEndNight.TabIndex = 19
         Me.btnEndNight.UseVisualStyleBackColor = True
         '
-        'lblWhelpFood
-        '
-        Me.lblWhelpFood.Location = New System.Drawing.Point(235, 16)
-        Me.lblWhelpFood.Name = "lblWhelpFood"
-        Me.lblWhelpFood.Size = New System.Drawing.Size(220, 109)
-        Me.lblWhelpFood.TabIndex = 24
-        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -904,6 +917,7 @@ Partial Class Main
         Me.grpCountertop.ResumeLayout(False)
         Me.grpFood.ResumeLayout(False)
         Me.grpKitchen.ResumeLayout(False)
+        Me.grpKitchen.PerformLayout()
         Me.pnlIngredients.ResumeLayout(False)
         Me.tabInventory.ResumeLayout(False)
         Me.grpWorkbench.ResumeLayout(False)
@@ -994,5 +1008,6 @@ Partial Class Main
     Friend WithEvents grpWhelp As System.Windows.Forms.GroupBox
     Friend WithEvents lblWhelpRoom As System.Windows.Forms.Label
     Friend WithEvents lblWhelpFood As System.Windows.Forms.Label
+    Friend WithEvents chkKitchenAutopick As System.Windows.Forms.CheckBox
 
 End Class

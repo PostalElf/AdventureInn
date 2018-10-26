@@ -506,9 +506,13 @@
         If ingredients.Count = 1 Then
             fi = ingredients(0)
         Else
-            Dim dp As New DialogPicker
-            dp.MainList = ingredients
-            If dp.ShowDialog = Windows.Forms.DialogResult.OK Then fi = dp.Result Else Exit Sub
+            If chkKitchenAutopick.Checked = True Then
+                fi = KitchenAutopick(ingredients)
+            Else
+                Dim dp As New DialogPicker
+                dp.MainList = ingredients
+                If dp.ShowDialog = Windows.Forms.DialogResult.OK Then fi = dp.Result Else Exit Sub
+            End If
         End If
         lstFoodIngredients.Items.Remove(fi)
 
@@ -518,6 +522,42 @@
         sender.Enabled = False
         RecipeUpdate()
     End Sub
+    Private Sub chkKitchenAutopick_CheckedChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles chkKitchenAutopick.CheckedChanged
+        If chkKitchenAutopick.Checked = True Then
+            Dim options As New List(Of String) From {"Best Quality", "Most Rich", "Most Plain", "Most Meaty", "Most Veggy", "Most Exotic", "Most Common", "Random"}
+            Dim dp As New DialogPicker
+            dp.MainList = options
+            If dp.ShowDialog = Windows.Forms.DialogResult.OK Then
+                chkKitchenAutopick.Tag = dp.Result
+                dp.Close()
+            End If
+        Else
+            chkKitchenAutopick.Tag = Nothing
+        End If
+    End Sub
+    Private Function KitchenAutopick(ByVal ingredients As List(Of FoodIngredient)) As FoodIngredient
+        If chkKitchenAutopick.Tag = "Random" Then Return GetRandom(ingredients)
+
+        Dim bestIngredient As FoodIngredient = Nothing
+        Dim bestValue As Integer = Int32.MinValue
+        For Each fi In ingredients
+            Dim value As Integer
+            Select Case chkKitchenAutopick.Tag
+                Case "Best Quality" : value = fi.Quality
+                Case "Most Rich" : value = fi.Richness
+                Case "Most Plain" : value = fi.Richness * -1
+                Case "Most Meaty" : value = fi.Meatiness
+                Case "Most Veggy" : value = fi.Meatiness * -1
+                Case "Most Exotic" : value = fi.Exoticness
+                Case "Most Common" : value = fi.Exoticness * -1
+            End Select
+            If value > bestValue Then
+                bestIngredient = fi
+                bestValue = value
+            End If
+        Next
+        Return bestIngredient
+    End Function
 
     Private ActivePrep As FoodPrep = Nothing
     Private CountertopLbls(2) As Label
