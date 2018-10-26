@@ -17,10 +17,10 @@
     End Property
 
     Public InventoryRoomItems As New List(Of RoomItem)
+    Public InventoryFood As New List(Of Food)
     Public InventoryFoodIngredients As New List(Of FoodIngredient)
     Public InventoryFoodRecipes As New List(Of FoodRecipe)
     Public InventoryFoodPreps As New List(Of FoodPrep)
-    Public InventoryFood As New List(Of Food)
     Private _Gold As Integer
     Public Property Gold As Integer
         Get
@@ -45,7 +45,25 @@
             Return total
         End Get
     End Property
-    Public ExitingGuests As New Dictionary(Of Adventurer, Pair(Of String, Integer))
+
+    Public Menu As New List(Of Food)
+    Private Function GetBestFood(ByVal adv As Adventurer) As Food
+        If InventoryFood.Count = 0 Then Return Nothing
+        If InventoryFood.Count = 1 Then Return InventoryFood(0)
+
+        Dim highestStars As Integer = -1
+        Dim bestFood As Food = Nothing
+        For Each f In InventoryFood
+            Dim stars As Integer = adv.FoodSatisfaction(f).Value
+            If stars > highestStars Then
+                highestStars = -1
+                bestFood = f
+            End If
+        Next
+        Return bestFood
+    End Function
+    Public GuestsFoodSatisfaction As New Dictionary(Of Adventurer, Pair(Of String, Integer))
+    Public GuestsRoomSatisfaction As New Dictionary(Of Adventurer, Pair(Of String, Integer))
     Public ExitingParties As New List(Of Party)
 
     Public Sub Add(ByVal floor As Floor)
@@ -73,16 +91,19 @@
     End Sub
 
     Public Sub EndNight()
-        ExitingGuests.Clear()
+        GuestsFoodSatisfaction.Clear()
+        GuestsRoomSatisfaction.Clear()
         For Each Floor In Floors
             For Each Room In Floor.Rooms
                 For Each guest In Room.Guests
-                    Dim guestSatisfaction As Pair(Of String, Integer) = guest.RoomSatisfaction(Room)
-                    ExitingGuests.Add(guest, guestSatisfaction)
+                    GuestsRoomSatisfaction.Add(guest, guest.RoomSatisfaction(Room))
+                    GuestsFoodSatisfaction.Add(guest, guest.FoodSatisfaction(GetBestFood(guest)))
                 Next
                 Room.Guests.Clear()
             Next
         Next
+
+        Menu.Clear()
 
         WaitingGuests.Clear()
         For n = 1 To 10

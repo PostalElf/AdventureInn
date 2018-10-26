@@ -60,6 +60,7 @@
         FloorRefresh()
         GuestsRefresh()
         KitchenRefresh()
+        MenuRefresh()
     End Sub
 
 #Region "Floor Management"
@@ -229,7 +230,7 @@
         Next
 
         lstAdventurers.Items.Clear()
-        For Each g In CurrentInn.ExitingGuests.Keys
+        For Each g In CurrentInn.GuestsRoomSatisfaction.Keys
             lstAdventurers.Items.Add(g)
         Next
     End Sub
@@ -614,49 +615,48 @@
         CountertopUpdate()
     End Sub
 
-    Private MenuLbls(4) As Label
-    Private MenuItems(4) As Food
-    Private MenuIndex As Integer = 0
     Private Sub btnFoodToMenu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFoodToMenu.Click
-        If MenuIndex = 4 Then Exit Sub
         Dim f As Food = lstFood.SelectedItem
         If f Is Nothing Then Exit Sub
+        If CurrentInn.Menu.Count + 1 > 5 Then Exit Sub
 
-        lstFood.Items.Remove(f)
-        AddMenuItem(f)
+        CurrentInn.InventoryFood.Remove(f)
+        CurrentInn.Menu.Add(f)
+        MenuRefresh()
     End Sub
     Private Sub btnMenuToFood_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMenuToFood.Click
-        For n = 0 To 4
-            If MenuItems(n) Is Nothing = False Then
-                grpMenu.Controls.Remove(MenuLbls(n))
-                MenuLbls(n) = Nothing
-                CurrentInn.InventoryFood.Add(MenuItems(n))
-                lstFood.Items.Add(MenuItems(n))
-                MenuItems(n) = Nothing
-            Else
-                Exit For
-            End If
+        For Each f In CurrentInn.Menu
+            CurrentInn.Add(f)
         Next
-        MenuIndex = 0
+        CurrentInn.Menu.Clear()
+        MenuRefresh()
     End Sub
-    Private Sub AddMenuItem(ByVal f As Food)
-        Const lblWidth As Integer = 230
-        Const lblHeight As Integer = 33
-        Const lblStartX As Integer = 8
-        Const lblStartY As Integer = 26
+    Private Sub MenuRefresh()
+        grpMenu.Controls.Clear()
 
-        Dim lbl As New Label
-        With lbl
-            .AutoSize = False
-            .Size = New Size(lblWidth, lblHeight)
-            .Location = New Point(lblStartX, lblStartY + (lblHeight * MenuIndex))
-            .Text = f.FullName
-        End With
-        MenuLbls(MenuIndex) = lbl
-        MenuItems(MenuIndex) = f
-        grpMenu.Controls.Add(lbl)
+        Dim MenuIndex As Integer = 0
+        For Each f In CurrentInn.Menu
+            Const lblWidth As Integer = 230
+            Const lblHeight As Integer = 33
+            Const lblStartX As Integer = 8
+            Const lblStartY As Integer = 26
 
-        MenuIndex += 1
+            Dim lbl As New Label
+            With lbl
+                .AutoSize = False
+                .Size = New Size(lblWidth, lblHeight)
+                .Location = New Point(lblStartX, lblStartY + (lblHeight * MenuIndex))
+                .Text = f.FullName
+            End With
+            grpMenu.Controls.Add(lbl)
+
+            MenuIndex += 1
+        Next
+
+        lstFood.Items.Clear()
+        For Each f In CurrentInn.InventoryFood
+            lstFood.Items.Add(f)
+        Next
     End Sub
 
     Private Sub lstFood_Click(ByVal sender As ListBox, ByVal e As MouseEventArgs) Handles lstFood.MouseDown, lstFoodIngredients.MouseDown
@@ -703,10 +703,12 @@
 #Region "Party"
     Private Sub lstAdventurers_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstAdventurers.SelectedIndexChanged
         Dim a As Adventurer = lstAdventurers.SelectedItem
-        If a Is Nothing Then lblWhelp.Text = "" : Exit Sub
+        If a Is Nothing Then lblWhelpRoom.Text = "" : Exit Sub
 
-        Dim review As String = CurrentInn.ExitingGuests(a).Key
-        lblWhelp.Text = review
+        Dim review As String = CurrentInn.GuestsRoomSatisfaction(a).Key
+        lblWhelpRoom.Text = review
+        review = CurrentInn.GuestsFoodSatisfaction(a).Key
+        lblWhelpFood.Text = review
     End Sub
     Private Sub btnAdventurerToParty_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdventurerToParty.Click
         Dim a As Adventurer = lstAdventurers.SelectedItem

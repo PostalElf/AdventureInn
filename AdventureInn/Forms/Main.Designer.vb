@@ -86,6 +86,8 @@ Partial Class Main
         Me.btnInventorySort = New System.Windows.Forms.Button()
         Me.lstInventory = New System.Windows.Forms.ListBox()
         Me.tabBounty = New System.Windows.Forms.TabPage()
+        Me.grpWhelp = New System.Windows.Forms.GroupBox()
+        Me.lblWhelpRoom = New System.Windows.Forms.Label()
         Me.grpParty = New System.Windows.Forms.GroupBox()
         Me.btnFormParty = New System.Windows.Forms.Button()
         Me.btnPartyToAdventurer = New System.Windows.Forms.Button()
@@ -98,8 +100,7 @@ Partial Class Main
         Me.grpGold = New System.Windows.Forms.GroupBox()
         Me.lblGold = New System.Windows.Forms.Label()
         Me.btnEndNight = New System.Windows.Forms.Button()
-        Me.grpWhelp = New System.Windows.Forms.GroupBox()
-        Me.lblWhelp = New System.Windows.Forms.Label()
+        Me.lblWhelpFood = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -116,10 +117,10 @@ Partial Class Main
         Me.grpWorkbench.SuspendLayout()
         Me.grpRoomItems.SuspendLayout()
         Me.tabBounty.SuspendLayout()
+        Me.grpWhelp.SuspendLayout()
         Me.grpParty.SuspendLayout()
         Me.tabStorefront.SuspendLayout()
         Me.grpGold.SuspendLayout()
-        Me.grpWhelp.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblFloor
@@ -731,6 +732,24 @@ Partial Class Main
         Me.tabBounty.Text = "Common Room"
         Me.tabBounty.UseVisualStyleBackColor = True
         '
+        'grpWhelp
+        '
+        Me.grpWhelp.Controls.Add(Me.lblWhelpFood)
+        Me.grpWhelp.Controls.Add(Me.lblWhelpRoom)
+        Me.grpWhelp.Location = New System.Drawing.Point(8, 147)
+        Me.grpWhelp.Name = "grpWhelp"
+        Me.grpWhelp.Size = New System.Drawing.Size(465, 135)
+        Me.grpWhelp.TabIndex = 18
+        Me.grpWhelp.TabStop = False
+        Me.grpWhelp.Text = "Whelp Review"
+        '
+        'lblWhelpRoom
+        '
+        Me.lblWhelpRoom.Location = New System.Drawing.Point(6, 16)
+        Me.lblWhelpRoom.Name = "lblWhelpRoom"
+        Me.lblWhelpRoom.Size = New System.Drawing.Size(220, 109)
+        Me.lblWhelpRoom.TabIndex = 23
+        '
         'grpParty
         '
         Me.grpParty.Controls.Add(Me.btnFormParty)
@@ -849,22 +868,12 @@ Partial Class Main
         Me.btnEndNight.TabIndex = 19
         Me.btnEndNight.UseVisualStyleBackColor = True
         '
-        'grpWhelp
+        'lblWhelpFood
         '
-        Me.grpWhelp.Controls.Add(Me.lblWhelp)
-        Me.grpWhelp.Location = New System.Drawing.Point(8, 147)
-        Me.grpWhelp.Name = "grpWhelp"
-        Me.grpWhelp.Size = New System.Drawing.Size(232, 135)
-        Me.grpWhelp.TabIndex = 18
-        Me.grpWhelp.TabStop = False
-        Me.grpWhelp.Text = "Whelp Review"
-        '
-        'lblWhelp
-        '
-        Me.lblWhelp.Location = New System.Drawing.Point(6, 16)
-        Me.lblWhelp.Name = "lblWhelp"
-        Me.lblWhelp.Size = New System.Drawing.Size(220, 109)
-        Me.lblWhelp.TabIndex = 23
+        Me.lblWhelpFood.Location = New System.Drawing.Point(235, 16)
+        Me.lblWhelpFood.Name = "lblWhelpFood"
+        Me.lblWhelpFood.Size = New System.Drawing.Size(220, 109)
+        Me.lblWhelpFood.TabIndex = 24
         '
         'Main
         '
@@ -900,10 +909,10 @@ Partial Class Main
         Me.grpWorkbench.ResumeLayout(False)
         Me.grpRoomItems.ResumeLayout(False)
         Me.tabBounty.ResumeLayout(False)
+        Me.grpWhelp.ResumeLayout(False)
         Me.grpParty.ResumeLayout(False)
         Me.tabStorefront.ResumeLayout(False)
         Me.grpGold.ResumeLayout(False)
-        Me.grpWhelp.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -983,6 +992,7 @@ Partial Class Main
     Friend WithEvents btnFormParty As System.Windows.Forms.Button
     Friend WithEvents btnEndNight As System.Windows.Forms.Button
     Friend WithEvents grpWhelp As System.Windows.Forms.GroupBox
-    Friend WithEvents lblWhelp As System.Windows.Forms.Label
+    Friend WithEvents lblWhelpRoom As System.Windows.Forms.Label
+    Friend WithEvents lblWhelpFood As System.Windows.Forms.Label
 
 End Class

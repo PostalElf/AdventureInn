@@ -287,6 +287,8 @@
     End Property
     Public ReadOnly Property FoodSatisfaction(ByVal food As Food) As Pair(Of String, Integer)
         Get
+            If food Is Nothing Then Return New Pair(Of String, Integer)("""Dining hall was out of food.""" & vbCrLf & vbCrLf & "Rating: " & GetStarRating(0), 0)
+
             Dim stars As Integer = 0
             Dim likedLast As Boolean
             Dim total As String = """"
