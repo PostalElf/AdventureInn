@@ -87,16 +87,17 @@ Partial Class Main
         Me.lblInventoryDescription = New System.Windows.Forms.Label()
         Me.btnInventorySort = New System.Windows.Forms.Button()
         Me.lstInventory = New System.Windows.Forms.ListBox()
+        Me.tabBounty = New System.Windows.Forms.TabPage()
+        Me.grpParty = New System.Windows.Forms.GroupBox()
+        Me.btnFormParty = New System.Windows.Forms.Button()
+        Me.btnPartyToAdventurer = New System.Windows.Forms.Button()
+        Me.btnAdventurerToParty = New System.Windows.Forms.Button()
+        Me.lstParty = New System.Windows.Forms.ListBox()
+        Me.lstAdventurers = New System.Windows.Forms.ListBox()
         Me.tabStorefront = New System.Windows.Forms.TabPage()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.grpSaleFoodIngredients = New System.Windows.Forms.GroupBox()
-        Me.tabBounty = New System.Windows.Forms.TabPage()
-        Me.lstAdventurers = New System.Windows.Forms.ListBox()
-        Me.grpParty = New System.Windows.Forms.GroupBox()
-        Me.lstParty = New System.Windows.Forms.ListBox()
-        Me.btnAdventurerToParty = New System.Windows.Forms.Button()
-        Me.btnPartyToAdventurer = New System.Windows.Forms.Button()
-        Me.btnFormParty = New System.Windows.Forms.Button()
+        Me.btnEndNight = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -113,9 +114,9 @@ Partial Class Main
         Me.grpGold.SuspendLayout()
         Me.grpWorkbench.SuspendLayout()
         Me.grpRoomItems.SuspendLayout()
-        Me.tabStorefront.SuspendLayout()
         Me.tabBounty.SuspendLayout()
         Me.grpParty.SuspendLayout()
+        Me.tabStorefront.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblFloor
@@ -633,7 +634,6 @@ Partial Class Main
         'tabInventory
         '
         Me.tabInventory.BackColor = System.Drawing.SystemColors.Window
-        Me.tabInventory.Controls.Add(Me.grpGold)
         Me.tabInventory.Controls.Add(Me.grpWorkbench)
         Me.tabInventory.Controls.Add(Me.grpRoomItems)
         Me.tabInventory.Location = New System.Drawing.Point(4, 22)
@@ -646,9 +646,9 @@ Partial Class Main
         'grpGold
         '
         Me.grpGold.Controls.Add(Me.lblGold)
-        Me.grpGold.Location = New System.Drawing.Point(247, 6)
+        Me.grpGold.Location = New System.Drawing.Point(349, 585)
         Me.grpGold.Name = "grpGold"
-        Me.grpGold.Size = New System.Drawing.Size(118, 71)
+        Me.grpGold.Size = New System.Drawing.Size(118, 53)
         Me.grpGold.TabIndex = 3
         Me.grpGold.TabStop = False
         Me.grpGold.Text = "Gold"
@@ -657,9 +657,9 @@ Partial Class Main
         '
         Me.lblGold.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.lblGold.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblGold.Location = New System.Drawing.Point(8, 23)
+        Me.lblGold.Location = New System.Drawing.Point(8, 18)
         Me.lblGold.Name = "lblGold"
-        Me.lblGold.Size = New System.Drawing.Size(99, 33)
+        Me.lblGold.Size = New System.Drawing.Size(99, 24)
         Me.lblGold.TabIndex = 4
         Me.lblGold.Text = "0"
         Me.lblGold.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -738,6 +738,73 @@ Partial Class Main
         Me.lstInventory.Size = New System.Drawing.Size(210, 108)
         Me.lstInventory.TabIndex = 0
         '
+        'tabBounty
+        '
+        Me.tabBounty.Controls.Add(Me.grpParty)
+        Me.tabBounty.Location = New System.Drawing.Point(4, 22)
+        Me.tabBounty.Name = "tabBounty"
+        Me.tabBounty.Size = New System.Drawing.Size(525, 524)
+        Me.tabBounty.TabIndex = 4
+        Me.tabBounty.Text = "Bounty Board"
+        Me.tabBounty.UseVisualStyleBackColor = True
+        '
+        'grpParty
+        '
+        Me.grpParty.Controls.Add(Me.btnFormParty)
+        Me.grpParty.Controls.Add(Me.btnPartyToAdventurer)
+        Me.grpParty.Controls.Add(Me.btnAdventurerToParty)
+        Me.grpParty.Controls.Add(Me.lstParty)
+        Me.grpParty.Controls.Add(Me.lstAdventurers)
+        Me.grpParty.Location = New System.Drawing.Point(8, 3)
+        Me.grpParty.Name = "grpParty"
+        Me.grpParty.Size = New System.Drawing.Size(508, 144)
+        Me.grpParty.TabIndex = 17
+        Me.grpParty.TabStop = False
+        Me.grpParty.Text = "Form Party"
+        '
+        'btnFormParty
+        '
+        Me.btnFormParty.Location = New System.Drawing.Point(414, 107)
+        Me.btnFormParty.Name = "btnFormParty"
+        Me.btnFormParty.Size = New System.Drawing.Size(88, 23)
+        Me.btnFormParty.TabIndex = 20
+        Me.btnFormParty.Text = "Form Party"
+        Me.btnFormParty.UseVisualStyleBackColor = True
+        '
+        'btnPartyToAdventurer
+        '
+        Me.btnPartyToAdventurer.Location = New System.Drawing.Point(238, 65)
+        Me.btnPartyToAdventurer.Name = "btnPartyToAdventurer"
+        Me.btnPartyToAdventurer.Size = New System.Drawing.Size(32, 23)
+        Me.btnPartyToAdventurer.TabIndex = 19
+        Me.btnPartyToAdventurer.Text = "<-"
+        Me.btnPartyToAdventurer.UseVisualStyleBackColor = True
+        '
+        'btnAdventurerToParty
+        '
+        Me.btnAdventurerToParty.Location = New System.Drawing.Point(238, 36)
+        Me.btnAdventurerToParty.Name = "btnAdventurerToParty"
+        Me.btnAdventurerToParty.Size = New System.Drawing.Size(32, 23)
+        Me.btnAdventurerToParty.TabIndex = 18
+        Me.btnAdventurerToParty.Text = "->"
+        Me.btnAdventurerToParty.UseVisualStyleBackColor = True
+        '
+        'lstParty
+        '
+        Me.lstParty.FormattingEnabled = True
+        Me.lstParty.Location = New System.Drawing.Point(276, 19)
+        Me.lstParty.Name = "lstParty"
+        Me.lstParty.Size = New System.Drawing.Size(226, 82)
+        Me.lstParty.TabIndex = 17
+        '
+        'lstAdventurers
+        '
+        Me.lstAdventurers.FormattingEnabled = True
+        Me.lstAdventurers.Location = New System.Drawing.Point(6, 19)
+        Me.lstAdventurers.Name = "lstAdventurers"
+        Me.lstAdventurers.Size = New System.Drawing.Size(226, 108)
+        Me.lstAdventurers.TabIndex = 16
+        '
         'tabStorefront
         '
         Me.tabStorefront.Controls.Add(Me.GroupBox1)
@@ -767,78 +834,24 @@ Partial Class Main
         Me.grpSaleFoodIngredients.TabStop = False
         Me.grpSaleFoodIngredients.Text = "Ingredients"
         '
-        'tabBounty
+        'btnEndNight
         '
-        Me.tabBounty.Controls.Add(Me.grpParty)
-        Me.tabBounty.Location = New System.Drawing.Point(4, 22)
-        Me.tabBounty.Name = "tabBounty"
-        Me.tabBounty.Size = New System.Drawing.Size(525, 524)
-        Me.tabBounty.TabIndex = 4
-        Me.tabBounty.Text = "Bounty Board"
-        Me.tabBounty.UseVisualStyleBackColor = True
-        '
-        'lstAdventurers
-        '
-        Me.lstAdventurers.FormattingEnabled = True
-        Me.lstAdventurers.Location = New System.Drawing.Point(6, 19)
-        Me.lstAdventurers.Name = "lstAdventurers"
-        Me.lstAdventurers.Size = New System.Drawing.Size(226, 108)
-        Me.lstAdventurers.TabIndex = 16
-        '
-        'grpParty
-        '
-        Me.grpParty.Controls.Add(Me.btnFormParty)
-        Me.grpParty.Controls.Add(Me.btnPartyToAdventurer)
-        Me.grpParty.Controls.Add(Me.btnAdventurerToParty)
-        Me.grpParty.Controls.Add(Me.lstParty)
-        Me.grpParty.Controls.Add(Me.lstAdventurers)
-        Me.grpParty.Location = New System.Drawing.Point(8, 3)
-        Me.grpParty.Name = "grpParty"
-        Me.grpParty.Size = New System.Drawing.Size(508, 144)
-        Me.grpParty.TabIndex = 17
-        Me.grpParty.TabStop = False
-        Me.grpParty.Text = "Form Party"
-        '
-        'lstParty
-        '
-        Me.lstParty.FormattingEnabled = True
-        Me.lstParty.Location = New System.Drawing.Point(276, 19)
-        Me.lstParty.Name = "lstParty"
-        Me.lstParty.Size = New System.Drawing.Size(226, 82)
-        Me.lstParty.TabIndex = 17
-        '
-        'btnAdventurerToParty
-        '
-        Me.btnAdventurerToParty.Location = New System.Drawing.Point(238, 36)
-        Me.btnAdventurerToParty.Name = "btnAdventurerToParty"
-        Me.btnAdventurerToParty.Size = New System.Drawing.Size(32, 23)
-        Me.btnAdventurerToParty.TabIndex = 18
-        Me.btnAdventurerToParty.Text = "->"
-        Me.btnAdventurerToParty.UseVisualStyleBackColor = True
-        '
-        'btnPartyToAdventurer
-        '
-        Me.btnPartyToAdventurer.Location = New System.Drawing.Point(238, 65)
-        Me.btnPartyToAdventurer.Name = "btnPartyToAdventurer"
-        Me.btnPartyToAdventurer.Size = New System.Drawing.Size(32, 23)
-        Me.btnPartyToAdventurer.TabIndex = 19
-        Me.btnPartyToAdventurer.Text = "<-"
-        Me.btnPartyToAdventurer.UseVisualStyleBackColor = True
-        '
-        'btnFormParty
-        '
-        Me.btnFormParty.Location = New System.Drawing.Point(414, 107)
-        Me.btnFormParty.Name = "btnFormParty"
-        Me.btnFormParty.Size = New System.Drawing.Size(88, 23)
-        Me.btnFormParty.TabIndex = 20
-        Me.btnFormParty.Text = "Form Party"
-        Me.btnFormParty.UseVisualStyleBackColor = True
+        Me.btnEndNight.BackgroundImage = CType(resources.GetObject("btnEndNight.BackgroundImage"), System.Drawing.Image)
+        Me.btnEndNight.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btnEndNight.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnEndNight.Location = New System.Drawing.Point(479, 585)
+        Me.btnEndNight.Name = "btnEndNight"
+        Me.btnEndNight.Size = New System.Drawing.Size(50, 50)
+        Me.btnEndNight.TabIndex = 19
+        Me.btnEndNight.UseVisualStyleBackColor = True
         '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(532, 580)
+        Me.ClientSize = New System.Drawing.Size(532, 642)
+        Me.Controls.Add(Me.grpGold)
+        Me.Controls.Add(Me.btnEndNight)
         Me.Controls.Add(Me.tbc)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -866,9 +879,9 @@ Partial Class Main
         Me.grpGold.ResumeLayout(False)
         Me.grpWorkbench.ResumeLayout(False)
         Me.grpRoomItems.ResumeLayout(False)
-        Me.tabStorefront.ResumeLayout(False)
         Me.tabBounty.ResumeLayout(False)
         Me.grpParty.ResumeLayout(False)
+        Me.tabStorefront.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -946,5 +959,6 @@ Partial Class Main
     Friend WithEvents btnAdventurerToParty As System.Windows.Forms.Button
     Friend WithEvents lstParty As System.Windows.Forms.ListBox
     Friend WithEvents btnFormParty As System.Windows.Forms.Button
+    Friend WithEvents btnEndNight As System.Windows.Forms.Button
 
 End Class

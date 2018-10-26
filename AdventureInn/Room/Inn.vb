@@ -21,7 +21,17 @@
     Public InventoryFoodRecipes As New List(Of FoodRecipe)
     Public InventoryFoodPreps As New List(Of FoodPrep)
     Public InventoryFood As New List(Of Food)
-    Public Gold As Integer
+    Private _Gold As Integer
+    Public Property Gold As Integer
+        Get
+            Return _Gold
+        End Get
+        Set(ByVal value As Integer)
+            _Gold = value
+            RaiseEvent GoldChange()
+        End Set
+    End Property
+    Public Event GoldChange()
 
     Public WaitingGuests As New List(Of Adventurer)
     Public ReadOnly Property RoomedGuests As List(Of Adventurer)

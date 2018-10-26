@@ -1,5 +1,7 @@
 ﻿Public Class Party
-    Private Const MaxSize As Integer = 4
+    Public Name As String
+
+    Public Const MaxSize As Integer = 4
     Private Adventurers As New List(Of Adventurer)
     Public Function Add(ByVal adventurer As Adventurer) As String
         If Adventurers.Count + 1 > MaxSize Then Return "Party is full."

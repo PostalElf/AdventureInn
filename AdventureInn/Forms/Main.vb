@@ -1,5 +1,5 @@
 ﻿Public Class Main
-    Private CurrentInn As New Inn
+    Private WithEvents CurrentInn As New Inn
     Public Sub New()
         ' This call is required by the designer.
         InitializeComponent()
@@ -51,6 +51,9 @@
         WorkbenchRefresh()
         KitchenBuild()
         KitchenRefresh()
+    End Sub
+    Private Sub RefreshGold() Handles CurrentInn.GoldChange
+        lblGold.Text = CurrentInn.Gold.ToString("N0")
     End Sub
 
 #Region "Floor Management"
@@ -343,7 +346,6 @@
         For Each i In CurrentInn.InventoryRoomItems
             lstInventory.Items.Add(i)
         Next
-        lblGold.Text = CurrentInn.Gold.ToString("N")
     End Sub
     Private Sub lstInventory_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstInventory.SelectedIndexChanged
         If lstInventory.SelectedItem Is Nothing Then Exit Sub
@@ -688,7 +690,30 @@
 #End Region
 
 #Region "Party"
+    Private Sub btnAdventurerToParty_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdventurerToParty.Click
+        Dim a As Adventurer = lstAdventurers.SelectedItem
+        If a Is Nothing Then Exit Sub
+        If lstParty.Items.Count + 1 > Party.maxsize Then Exit Sub
 
+        lstAdventurers.Items.Remove(a)
+        lstParty.Items.Add(a)
+    End Sub
+    Private Sub btnPartyToAdventurer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnPartyToAdventurer.Click
+        Dim a As Adventurer = lstParty.SelectedItem
+        If a Is Nothing Then Exit Sub
+
+        lstParty.Items.Remove(a)
+        lstAdventurers.Items.Add(a)
+    End Sub
+    Private Sub btnFormParty_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFormParty.Click
+        If lstParty.Items.Count = 0 Then Exit Sub
+
+        Dim party As New Party
+        For Each a As Adventurer In lstParty.Items
+            party.Add(a)
+        Next
+        party.Name = InputBox("What is the party's name?", "Name Party")
+    End Sub
 #End Region
 
 End Class
