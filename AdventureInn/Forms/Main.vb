@@ -57,6 +57,8 @@
         GuestsRefresh()
         KitchenRefresh()
         MenuRefresh()
+
+        tbc.SelectTab(tabExit)
     End Sub
 
 #Region "Floor Management"
@@ -739,7 +741,7 @@
 #Region "Party"
     Private Sub lstAdventurers_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstAdventurers.SelectedIndexChanged
         Dim a As Adventurer = lstAdventurers.SelectedItem
-        If a Is Nothing Then lblWhelpRoom.Text = "" : Exit Sub
+        If a Is Nothing Then lblWhelpRoom.Text = "" : lblWhelpFood.Text = "" : Exit Sub
 
         Dim review As String = CurrentInn.GuestsRoomSatisfaction(a).Key
         lblWhelpRoom.Text = review
@@ -765,7 +767,8 @@
         If lstParty.Items.Count = 0 Then Exit Sub
 
         Dim party As New Party
-        For Each a As Adventurer In lstParty.Items
+        For n = 0 To lstParty.Items.Count - 1
+            Dim a As Adventurer = lstParty.Items(0)
             party.Add(a)
             lstParty.Items.Remove(a)
         Next

@@ -86,7 +86,7 @@ Partial Class Main
         Me.lblInventoryDescription = New System.Windows.Forms.Label()
         Me.btnInventorySort = New System.Windows.Forms.Button()
         Me.lstInventory = New System.Windows.Forms.ListBox()
-        Me.tabBounty = New System.Windows.Forms.TabPage()
+        Me.tabExit = New System.Windows.Forms.TabPage()
         Me.grpWhelp = New System.Windows.Forms.GroupBox()
         Me.lblWhelpFood = New System.Windows.Forms.Label()
         Me.lblWhelpRoom = New System.Windows.Forms.Label()
@@ -97,7 +97,7 @@ Partial Class Main
         Me.lstParty = New System.Windows.Forms.ListBox()
         Me.lstAdventurers = New System.Windows.Forms.ListBox()
         Me.tabStorefront = New System.Windows.Forms.TabPage()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.grpSaleRecipes = New System.Windows.Forms.GroupBox()
         Me.grpSaleFoodIngredients = New System.Windows.Forms.GroupBox()
         Me.grpGold = New System.Windows.Forms.GroupBox()
         Me.lblGold = New System.Windows.Forms.Label()
@@ -117,7 +117,7 @@ Partial Class Main
         Me.tabInventory.SuspendLayout()
         Me.grpWorkbench.SuspendLayout()
         Me.grpRoomItems.SuspendLayout()
-        Me.tabBounty.SuspendLayout()
+        Me.tabExit.SuspendLayout()
         Me.grpWhelp.SuspendLayout()
         Me.grpParty.SuspendLayout()
         Me.tabStorefront.SuspendLayout()
@@ -163,7 +163,7 @@ Partial Class Main
         Me.tbc.Controls.Add(Me.tabFloor)
         Me.tbc.Controls.Add(Me.tabFood)
         Me.tbc.Controls.Add(Me.tabInventory)
-        Me.tbc.Controls.Add(Me.tabBounty)
+        Me.tbc.Controls.Add(Me.tabExit)
         Me.tbc.Controls.Add(Me.tabStorefront)
         Me.tbc.Location = New System.Drawing.Point(0, 29)
         Me.tbc.Multiline = True
@@ -658,14 +658,14 @@ Partial Class Main
         Me.tabInventory.Padding = New System.Windows.Forms.Padding(3)
         Me.tabInventory.Size = New System.Drawing.Size(525, 524)
         Me.tabInventory.TabIndex = 1
-        Me.tabInventory.Text = "Inventory"
+        Me.tabInventory.Text = "Workshop"
         '
         'grpWorkbench
         '
         Me.grpWorkbench.Controls.Add(Me.btnBuild)
         Me.grpWorkbench.Controls.Add(Me.cmbWorkbench)
         Me.grpWorkbench.Controls.Add(Me.lblWorkbenchDescription)
-        Me.grpWorkbench.Location = New System.Drawing.Point(247, 120)
+        Me.grpWorkbench.Location = New System.Drawing.Point(239, 6)
         Me.grpWorkbench.Name = "grpWorkbench"
         Me.grpWorkbench.Size = New System.Drawing.Size(224, 207)
         Me.grpWorkbench.TabIndex = 2
@@ -734,16 +734,16 @@ Partial Class Main
         Me.lstInventory.Size = New System.Drawing.Size(210, 108)
         Me.lstInventory.TabIndex = 0
         '
-        'tabBounty
+        'tabExit
         '
-        Me.tabBounty.Controls.Add(Me.grpWhelp)
-        Me.tabBounty.Controls.Add(Me.grpParty)
-        Me.tabBounty.Location = New System.Drawing.Point(4, 22)
-        Me.tabBounty.Name = "tabBounty"
-        Me.tabBounty.Size = New System.Drawing.Size(525, 524)
-        Me.tabBounty.TabIndex = 4
-        Me.tabBounty.Text = "Common Room"
-        Me.tabBounty.UseVisualStyleBackColor = True
+        Me.tabExit.Controls.Add(Me.grpWhelp)
+        Me.tabExit.Controls.Add(Me.grpParty)
+        Me.tabExit.Location = New System.Drawing.Point(4, 22)
+        Me.tabExit.Name = "tabExit"
+        Me.tabExit.Size = New System.Drawing.Size(525, 524)
+        Me.tabExit.TabIndex = 4
+        Me.tabExit.Text = "Common Room"
+        Me.tabExit.UseVisualStyleBackColor = True
         '
         'grpWhelp
         '
@@ -829,7 +829,7 @@ Partial Class Main
         '
         'tabStorefront
         '
-        Me.tabStorefront.Controls.Add(Me.GroupBox1)
+        Me.tabStorefront.Controls.Add(Me.grpSaleRecipes)
         Me.tabStorefront.Controls.Add(Me.grpSaleFoodIngredients)
         Me.tabStorefront.Location = New System.Drawing.Point(4, 22)
         Me.tabStorefront.Name = "tabStorefront"
@@ -838,14 +838,14 @@ Partial Class Main
         Me.tabStorefront.Text = "Storefront"
         Me.tabStorefront.UseVisualStyleBackColor = True
         '
-        'GroupBox1
+        'grpSaleRecipes
         '
-        Me.GroupBox1.Location = New System.Drawing.Point(268, 6)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(245, 196)
-        Me.GroupBox1.TabIndex = 1
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Ingredients"
+        Me.grpSaleRecipes.Location = New System.Drawing.Point(268, 6)
+        Me.grpSaleRecipes.Name = "grpSaleRecipes"
+        Me.grpSaleRecipes.Size = New System.Drawing.Size(245, 196)
+        Me.grpSaleRecipes.TabIndex = 1
+        Me.grpSaleRecipes.TabStop = False
+        Me.grpSaleRecipes.Text = "Recipes"
         '
         'grpSaleFoodIngredients
         '
@@ -922,7 +922,7 @@ Partial Class Main
         Me.tabInventory.ResumeLayout(False)
         Me.grpWorkbench.ResumeLayout(False)
         Me.grpRoomItems.ResumeLayout(False)
-        Me.tabBounty.ResumeLayout(False)
+        Me.tabExit.ResumeLayout(False)
         Me.grpWhelp.ResumeLayout(False)
         Me.grpParty.ResumeLayout(False)
         Me.tabStorefront.ResumeLayout(False)
@@ -995,9 +995,9 @@ Partial Class Main
     Friend WithEvents btnCountertopReset As System.Windows.Forms.Button
     Friend WithEvents btnCountertopPrep As System.Windows.Forms.Button
     Friend WithEvents cmbCountertop As System.Windows.Forms.ComboBox
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents grpSaleRecipes As System.Windows.Forms.GroupBox
     Friend WithEvents grpSaleFoodIngredients As System.Windows.Forms.GroupBox
-    Friend WithEvents tabBounty As System.Windows.Forms.TabPage
+    Friend WithEvents tabExit As System.Windows.Forms.TabPage
     Friend WithEvents grpParty As System.Windows.Forms.GroupBox
     Friend WithEvents lstAdventurers As System.Windows.Forms.ListBox
     Friend WithEvents btnPartyToAdventurer As System.Windows.Forms.Button
