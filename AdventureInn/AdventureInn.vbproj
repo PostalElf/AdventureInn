@@ -76,12 +76,15 @@
     <Compile Include="Encounter\Adventure.vb" />
     <Compile Include="Adventurer\Adventurer.vb" />
     <Compile Include="Encounter\Encounter.vb" />
-    <Compile Include="Food\Food.vb" />
-    <Compile Include="Food\FoodIngredient.vb" />
-    <Compile Include="Food\FoodPrep.vb" />
-    <Compile Include="Food\FoodRecipe.vb" />
+    <Compile Include="FoodDrinkEntertainmentService\Drink.vb" />
+    <Compile Include="FoodDrinkEntertainmentService\Entertainment.vb" />
+    <Compile Include="FoodDrinkEntertainmentService\Food.vb" />
+    <Compile Include="FoodDrinkEntertainmentService\FoodIngredient.vb" />
+    <Compile Include="FoodDrinkEntertainmentService\FoodPrep.vb" />
+    <Compile Include="FoodDrinkEntertainmentService\FoodRecipe.vb" />
     <Compile Include="Dev\Pair.vb" />
     <Compile Include="Encounter\Trap.vb" />
+    <Compile Include="FoodDrinkEntertainmentService\Service.vb" />
     <Compile Include="Forms\DialogPicker.Designer.vb">
       <DependentUpon>DialogPicker.vb</DependentUpon>
     </Compile>

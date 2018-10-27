@@ -74,8 +74,20 @@
         Next
         Return bestFood
     End Function
-    Public GuestsFoodSatisfaction As New Dictionary(Of Adventurer, Pair(Of String, Integer))
+    Private Function GetBestDrink(ByVal adv As Adventurer) As Drink
+
+    End Function
+    Private Function GetBestEntertainment(ByVal adv As Adventurer) As Entertainment
+
+    End Function
+    Private Function GetBestService(ByVal adv As Adventurer) As Service
+
+    End Function
     Public GuestsRoomSatisfaction As New Dictionary(Of Adventurer, Pair(Of String, Integer))
+    Public GuestsFoodSatisfaction As New Dictionary(Of Adventurer, Pair(Of String, Integer))
+    Public GuestsDrinkSatisfaction As New Dictionary(Of Adventurer, Pair(Of String, Integer))
+    Public GuestsEntertainmentSatisfaction As New Dictionary(Of Adventurer, Pair(Of String, Integer))
+    Public GuestsServiceSatisfaction As New Dictionary(Of Adventurer, Pair(Of String, Integer))
     Public ExitingParties As New List(Of Party)
 
     Public Sub Add(ByVal floor As Floor)
@@ -93,7 +105,7 @@
     End Sub
     Public Sub Add(ByVal fp As FoodPrep)
         InventoryFoodPreps.Add(fp)
-        InventoryFoodPreps.Sort(New FoodPrep.sortbyname)
+        InventoryFoodPreps.Sort(New FoodPrep.SortByName)
     End Sub
     Public Sub Add(ByVal f As Food)
         InventoryFood.Add(f)
@@ -108,8 +120,13 @@
         For Each Floor In Floors
             For Each Room In Floor.Rooms
                 For Each guest In Room.Guests
+                    Dim food As Food = GetBestFood(guest)
+                    Dim drink As Drink = GetBestDrink(guest)
+
                     GuestsRoomSatisfaction.Add(guest, guest.RoomSatisfaction(Room))
-                    GuestsFoodSatisfaction.Add(guest, guest.FoodSatisfaction(GetBestFood(guest)))
+                    GuestsFoodSatisfaction.Add(guest, guest.FoodSatisfaction(food))
+                    GuestsDrinkSatisfaction.Add(guest, guest.DrinkSatisfaction(drink, food))
+                    GuestsEntertainmentSatisfaction.Add(guest, guest.EntertainmentSatisfaction(GetBestEntertainment(guest)))
                 Next
                 Room.Guests.Clear()
             Next

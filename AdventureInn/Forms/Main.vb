@@ -51,7 +51,7 @@
     Private Sub RefreshGold() Handles CurrentInn.GoldChange
         lblGold.Text = CurrentInn.Gold.ToString("N0")
     End Sub
-    Private Sub btnEndNight_Click(ByVal sender As Button, ByVal e As System.EventArgs) Handles btnEndNight.Click
+    Private Sub btnEndNight_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEndNight.Click
         CurrentInn.EndNight()
         FloorRefresh()
         GuestsRefresh()
@@ -741,12 +741,20 @@
 #Region "Party"
     Private Sub lstAdventurers_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstAdventurers.SelectedIndexChanged
         Dim a As Adventurer = lstAdventurers.SelectedItem
-        If a Is Nothing Then lblWhelpRoom.Text = "" : lblWhelpFood.Text = "" : Exit Sub
+        If a Is Nothing Then
+            lblWhelpRoom.Text = ""
+            lblWhelpFood.Text = ""
+            lblWhelpDrink.Text = ""
+            lblWhelpEntertainment.Text = ""
+            lblWhelpWhat.Text = ""
+            lblWhelpOverall.Text = ""
+            Exit Sub
+        End If
 
-        Dim review As String = CurrentInn.GuestsRoomSatisfaction(a).Key
-        lblWhelpRoom.Text = review
-        review = CurrentInn.GuestsFoodSatisfaction(a).Key
-        lblWhelpFood.Text = review
+        lblWhelpRoom.Text = CurrentInn.GuestsRoomSatisfaction(a).Key
+        lblWhelpFood.Text = CurrentInn.GuestsFoodSatisfaction(a).Key
+        lblWhelpDrink.Text = CurrentInn.GuestsDrinkSatisfaction(a).Key
+        lblWhelpEntertainment.Text = CurrentInn.GuestsEntertainmentSatisfaction(a).Key
     End Sub
     Private Sub btnAdventurerToParty_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdventurerToParty.Click
         Dim a As Adventurer = lstAdventurers.SelectedItem
@@ -776,4 +784,5 @@
         CurrentInn.ExitingParties.Add(party)
     End Sub
 #End Region
+
 End Class

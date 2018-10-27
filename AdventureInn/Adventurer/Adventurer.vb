@@ -5,6 +5,10 @@
             ._Race = Rng.Next(0, 4)
             ._Job = Rng.Next(0, 4)
             ._Name = GenerateName(._Race)
+
+            If .Race = AdventurerInn.Race.Dwarf OrElse .Race = AdventurerInn.Race.Human Then ._Alignment += 1 Else ._Alignment -= 1
+            If .Job = AdventurerInn.Job.Cleric OrElse .Job = AdventurerInn.Job.Fighter Then ._Alignment += 1 Else ._Alignment -= 1
+
         End With
         Return adventurer
     End Function
@@ -61,6 +65,17 @@
             Return _Level
         End Get
     End Property
+    Private _Alignment As Integer
+    Public ReadOnly Property Alignment As String
+        Get
+            Select Case _Alignment
+                Case Is < 0 : Alignment = "Chaotic"
+                Case Is > 0 : Alignment = "Lawful"
+                Case 0 : Alignment = "Neutral"
+                Case Else : Throw New Exception
+            End Select
+        End Get
+    End Property
     Public Function CheckEncounter(ByVal pJob As Job, ByVal pLevel As Integer) As Boolean
         If pJob = AdventurerInn.Job.Monster OrElse pJob = _Job Then
             Dim levelDifference As Integer = pLevel - _Level
@@ -84,61 +99,6 @@
         Next
         Return total
     End Function
-    Private ReadOnly Property RoomPreferences As String()
-        Get
-            Dim privacy, opulence, restfulness, alignment, niche As String
-            Dim alignValue As Integer = 0
-
-            Select Case _Race
-                Case AdventurerInn.Race.Human
-                    privacy = "Private"
-                    opulence = "Tasteful"
-                    alignValue += 1
-                Case AdventurerInn.Race.Dwarf
-                    privacy = "Communal"
-                    opulence = "Opulent"
-                    alignValue += 1
-                Case AdventurerInn.Race.Elf
-                    privacy = "Private"
-                    opulence = "Opulent"
-                    alignValue -= 1
-                Case AdventurerInn.Race.Halfling
-                    privacy = "Communal"
-                    opulence = "Tasteful"
-                    alignValue -= 1
-                Case Else : Throw New Exception
-            End Select
-
-            Select Case _Job
-                Case AdventurerInn.Job.Cleric
-                    restfulness = "Restful"
-                    niche = "Faith"
-                    alignValue += 1
-                Case AdventurerInn.Job.Fighter
-                    restfulness = "Exciting"
-                    niche = "Strength"
-                    alignValue += 1
-                Case AdventurerInn.Job.Mage
-                    restfulness = "Restful"
-                    niche = "Focus"
-                    alignValue -= 1
-                Case AdventurerInn.Job.Rogue
-                    restfulness = "Exciting"
-                    niche = "Curiosity"
-                    alignValue -= 1
-                Case Else : Throw New Exception
-            End Select
-
-            Select Case alignValue
-                Case Is < 0 : alignment = "Chaotic"
-                Case Is > 0 : alignment = "Lawful"
-                Case 0 : alignment = "Neutral"
-                Case Else : Throw New Exception
-            End Select
-
-            Return {privacy, opulence, restfulness, alignment, niche}
-        End Get
-    End Property
     Public ReadOnly Property RoomPreferenceDescription As String
         Get
             Dim total As String = ""
@@ -146,6 +106,47 @@
             total &= "- " & _Job.ToString & "s like " & RoomPreferences(2) & " rooms that are full of " & RoomPreferences(4) & "." & vbCrLf
             total &= "- " & RoomPreferences(3) & " characters like " & RoomPreferences(3) & " things."
             Return total
+        End Get
+    End Property
+    Private ReadOnly Property RoomPreferences As String()
+        Get
+            Dim privacy, opulence, restfulness, align, niche As String
+
+            Select Case _Race
+                Case AdventurerInn.Race.Human
+                    privacy = "Private"
+                    opulence = "Tasteful"
+                Case AdventurerInn.Race.Dwarf
+                    privacy = "Communal"
+                    opulence = "Opulent"
+                Case AdventurerInn.Race.Elf
+                    privacy = "Private"
+                    opulence = "Opulent"
+                Case AdventurerInn.Race.Halfling
+                    privacy = "Communal"
+                    opulence = "Tasteful"
+                Case Else : Throw New Exception
+            End Select
+
+            Select Case _Job
+                Case AdventurerInn.Job.Cleric
+                    restfulness = "Restful"
+                    niche = "Faith"
+                Case AdventurerInn.Job.Fighter
+                    restfulness = "Exciting"
+                    niche = "Strength"
+                Case AdventurerInn.Job.Mage
+                    restfulness = "Restful"
+                    niche = "Focus"
+                Case AdventurerInn.Job.Rogue
+                    restfulness = "Exciting"
+                    niche = "Curiosity"
+                Case Else : Throw New Exception
+            End Select
+
+            align = Alignment
+
+            Return {privacy, opulence, restfulness, align, niche}
         End Get
     End Property
     Public ReadOnly Property RoomSatisfaction(ByVal room As Room) As Pair(Of String, Integer)
@@ -382,6 +383,114 @@
             total &= """" & vbCrLf & vbCrLf
             total &= "Rating: " & GetStarRating(stars)
             Return New Pair(Of String, Integer)(total, stars)
+        End Get
+    End Property
+    Private ReadOnly Property DrinkPreferences As String()
+        Get
+            Dim alcoholType, fanciness As String
+            Select Case _Race
+                Case AdventurerInn.Race.Dwarf : alcoholType = "Beer"
+                Case AdventurerInn.Race.Elf : alcoholType = "Wine"
+                Case AdventurerInn.Race.Halfling : alcoholType = "Beer"
+                Case AdventurerInn.Race.Human : alcoholType = "Wine"
+                Case Else : Throw New Exception
+            End Select
+            Select Case _Job
+                Case AdventurerInn.Job.Cleric : fanciness = "Simple"
+                Case AdventurerInn.Job.Fighter : fanciness = "Simple"
+                Case AdventurerInn.Job.Mage : fanciness = "Fancy"
+                Case AdventurerInn.Job.Rogue : fanciness = "Fancy"
+                Case Else : Throw New Exception
+            End Select
+            Return {alcoholType, fanciness}
+        End Get
+    End Property
+    Public ReadOnly Property DrinkSatisfaction(ByVal drink As Drink, ByVal food As Food) As Pair(Of String, Integer)
+        Get
+            If drink Is Nothing Then Return New Pair(Of String, Integer)("""Bar was shamefully unstocked.""" & vbCrLf & vbCrLf & "Rating: " & GetStarRating(0), 0)
+
+            Dim pref As String() = DrinkPreferences
+            Dim stars As Integer = 0
+            Dim total As String = """"
+            Dim likedLast As Boolean = False
+            If pref(0) = drink.Fanciness Then
+                Select Case drink.Fanciness
+                    Case "Fancy" : total &= drink.Name & " was deliciously decadent "
+                    Case "Simple" : total &= drink.Name & " was neat and appetising "
+                End Select
+                stars += 1
+                likedLast = True
+            Else
+                Select Case drink.Fanciness
+                    Case "Fancy" : total &= drink.Name & " was unnecessarily complicated "
+                    Case "Simple" : total &= drink.Name & " was utterly boring "
+                End Select
+                likedLast = False
+            End If
+
+            If pref(1) = drink.Alcoholism OrElse drink.Alcoholism = "Spirit" Then
+                stars += 2
+                If likedLast = True Then total &= "as a " Else total &= "for a "
+                total &= drink.Alcoholism.ToLower & ". "
+                likedLast = True
+            Else
+                If likedLast = True Then total &= "for a " Else total &= "as a "
+                total &= drink.Alcoholism.ToLower & ". "
+                likedLast = False
+            End If
+
+            Dim foodMatch As Boolean = False
+            Select Case food.TotalExoticness.Key
+                Case "Exotic" : If drink.subtype = "Red" OrElse drink.subtype = "Ale" OrElse drink.subtype = "Rum" Then foodMatch = True
+                Case "Common" : If drink.Subtype = "White" OrElse drink.Subtype = "Lager" OrElse drink.Subtype = "Whisky" Then foodMatch = True
+            End Select
+            If foodMatch = True Then
+                If likedLast = True Then total &= "It " Else total &= "However, it "
+                total &= "paired very well with the food. "
+                likedLast = True
+                stars += 1
+            Else
+                If likedLast = True Then total &= "However, it " Else total &= "It "
+                total &= "did not go well with the food at all. "
+                likedLast = False
+            End If
+
+            If Alignment = drink.Alignment Then
+                Select Case drink.Alignment
+                    Case "Chaotic" : total &= "I also enjoyed the hint of chaos in the drink, "
+                    Case "Neutral" : total &= "I also enjoyed the "
+                    Case "Lawful"
+                End Select
+                stars += 1
+                likedLast = True
+            Else
+                Select Case drink.Alignment
+                    Case "Chaotic"
+                    Case "Neutral"
+                    Case "Lawful"
+                End Select
+                likedLast = False
+            End If
+        End Get
+    End Property
+    Private ReadOnly Property EntertainmentPreferences As String()
+        Get
+
+        End Get
+    End Property
+    Public ReadOnly Property EntertainmentSatisfaction(ByVal entertainment As entertainment) As Pair(Of String, Integer)
+        Get
+
+        End Get
+    End Property
+    Private ReadOnly Property ServicePreferences As String()
+        Get
+
+        End Get
+    End Property
+    Public ReadOnly Property ServiceSatisfaction(ByVal service As Service) As Pair(Of String, Integer)
+        Get
+
         End Get
     End Property
 

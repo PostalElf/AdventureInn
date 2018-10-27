@@ -102,6 +102,10 @@ Partial Class Main
         Me.grpGold = New System.Windows.Forms.GroupBox()
         Me.lblGold = New System.Windows.Forms.Label()
         Me.btnEndNight = New System.Windows.Forms.Button()
+        Me.lblWhelpDrink = New System.Windows.Forms.Label()
+        Me.lblWhelpOverall = New System.Windows.Forms.Label()
+        Me.lblWhelpWhat = New System.Windows.Forms.Label()
+        Me.lblWhelpEntertainment = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -747,27 +751,31 @@ Partial Class Main
         '
         'grpWhelp
         '
+        Me.grpWhelp.Controls.Add(Me.lblWhelpOverall)
+        Me.grpWhelp.Controls.Add(Me.lblWhelpWhat)
+        Me.grpWhelp.Controls.Add(Me.lblWhelpEntertainment)
+        Me.grpWhelp.Controls.Add(Me.lblWhelpDrink)
         Me.grpWhelp.Controls.Add(Me.lblWhelpFood)
         Me.grpWhelp.Controls.Add(Me.lblWhelpRoom)
         Me.grpWhelp.Location = New System.Drawing.Point(8, 147)
         Me.grpWhelp.Name = "grpWhelp"
-        Me.grpWhelp.Size = New System.Drawing.Size(465, 135)
+        Me.grpWhelp.Size = New System.Drawing.Size(508, 254)
         Me.grpWhelp.TabIndex = 18
         Me.grpWhelp.TabStop = False
         Me.grpWhelp.Text = "Whelp Review"
         '
         'lblWhelpFood
         '
-        Me.lblWhelpFood.Location = New System.Drawing.Point(235, 16)
+        Me.lblWhelpFood.Location = New System.Drawing.Point(174, 17)
         Me.lblWhelpFood.Name = "lblWhelpFood"
-        Me.lblWhelpFood.Size = New System.Drawing.Size(220, 109)
+        Me.lblWhelpFood.Size = New System.Drawing.Size(157, 109)
         Me.lblWhelpFood.TabIndex = 24
         '
         'lblWhelpRoom
         '
-        Me.lblWhelpRoom.Location = New System.Drawing.Point(6, 16)
+        Me.lblWhelpRoom.Location = New System.Drawing.Point(11, 17)
         Me.lblWhelpRoom.Name = "lblWhelpRoom"
-        Me.lblWhelpRoom.Size = New System.Drawing.Size(220, 109)
+        Me.lblWhelpRoom.Size = New System.Drawing.Size(157, 109)
         Me.lblWhelpRoom.TabIndex = 23
         '
         'grpParty
@@ -887,6 +895,34 @@ Partial Class Main
         Me.btnEndNight.Size = New System.Drawing.Size(50, 50)
         Me.btnEndNight.TabIndex = 19
         Me.btnEndNight.UseVisualStyleBackColor = True
+        '
+        'lblWhelpDrink
+        '
+        Me.lblWhelpDrink.Location = New System.Drawing.Point(337, 17)
+        Me.lblWhelpDrink.Name = "lblWhelpDrink"
+        Me.lblWhelpDrink.Size = New System.Drawing.Size(157, 109)
+        Me.lblWhelpDrink.TabIndex = 25
+        '
+        'lblWhelpOverall
+        '
+        Me.lblWhelpOverall.Location = New System.Drawing.Point(337, 133)
+        Me.lblWhelpOverall.Name = "lblWhelpOverall"
+        Me.lblWhelpOverall.Size = New System.Drawing.Size(157, 109)
+        Me.lblWhelpOverall.TabIndex = 28
+        '
+        'lblWhelpWhat
+        '
+        Me.lblWhelpWhat.Location = New System.Drawing.Point(174, 133)
+        Me.lblWhelpWhat.Name = "lblWhelpWhat"
+        Me.lblWhelpWhat.Size = New System.Drawing.Size(157, 109)
+        Me.lblWhelpWhat.TabIndex = 27
+        '
+        'lblWhelpEntertainment
+        '
+        Me.lblWhelpEntertainment.Location = New System.Drawing.Point(11, 133)
+        Me.lblWhelpEntertainment.Name = "lblWhelpEntertainment"
+        Me.lblWhelpEntertainment.Size = New System.Drawing.Size(157, 109)
+        Me.lblWhelpEntertainment.TabIndex = 26
         '
         'Main
         '
@@ -1009,5 +1045,9 @@ Partial Class Main
     Friend WithEvents lblWhelpRoom As System.Windows.Forms.Label
     Friend WithEvents lblWhelpFood As System.Windows.Forms.Label
     Friend WithEvents chkKitchenAutopick As System.Windows.Forms.CheckBox
+    Friend WithEvents lblWhelpDrink As System.Windows.Forms.Label
+    Friend WithEvents lblWhelpOverall As System.Windows.Forms.Label
+    Friend WithEvents lblWhelpWhat As System.Windows.Forms.Label
+    Friend WithEvents lblWhelpEntertainment As System.Windows.Forms.Label
 
 End Class
