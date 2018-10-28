@@ -656,24 +656,24 @@
     Private Sub btnFoodToMenu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFoodToMenu.Click
         Dim f As Food = lstFood.SelectedItem
         If f Is Nothing Then Exit Sub
-        If CurrentInn.Menu.Count + 1 > 5 Then Exit Sub
+        If CurrentInn.MenuFood.Count + 1 > 5 Then Exit Sub
 
         CurrentInn.InventoryFood.Remove(f)
-        CurrentInn.Menu.Add(f)
+        CurrentInn.MenuFood.Add(f)
         MenuRefresh()
     End Sub
     Private Sub btnMenuToFood_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMenuToFood.Click
-        For Each f In CurrentInn.Menu
+        For Each f In CurrentInn.MenuFood
             CurrentInn.Add(f)
         Next
-        CurrentInn.Menu.Clear()
+        CurrentInn.MenuFood.Clear()
         MenuRefresh()
     End Sub
     Private Sub MenuRefresh()
         grpMenu.Controls.Clear()
 
         Dim MenuIndex As Integer = 0
-        For Each f In CurrentInn.Menu
+        For Each f In CurrentInn.MenuFood
             Const lblWidth As Integer = 230
             Const lblHeight As Integer = 33
             Const lblStartX As Integer = 8

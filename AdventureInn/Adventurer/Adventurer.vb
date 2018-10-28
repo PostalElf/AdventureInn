@@ -440,16 +440,22 @@
             End If
 
             Dim foodMatch As Boolean = False
-            Select Case food.TotalExoticness.Key
-                Case "Exotic" : If drink.subtype = "Red" OrElse drink.subtype = "Ale" OrElse drink.subtype = "Rum" Then foodMatch = True
-                Case "Common" : If drink.Subtype = "White" OrElse drink.Subtype = "Lager" OrElse drink.Subtype = "Whisky" Then foodMatch = True
-            End Select
+            If food Is Nothing = False Then
+                Select Case food.TotalExoticness.Key
+                    Case "Exotic" : If drink.Subtype = "Red" OrElse drink.Subtype = "Ale" OrElse drink.Subtype = "Rum" Then foodMatch = True
+                    Case "Common" : If drink.Subtype = "White" OrElse drink.Subtype = "Lager" OrElse drink.Subtype = "Whisky" Then foodMatch = True
+                End Select
+            Else
+                If likedLast = False Then total &= "I could also " Else total &= "But I could "
+                total &= "have done with some food to go with the drink."
+                likedLast = False
+            End If
             If foodMatch = True Then
                 If likedLast = True Then total &= "It " Else total &= "However, it "
                 total &= "paired very well with the food. "
                 likedLast = True
                 stars += 1
-            Else
+            ElseIf foodMatch = False Then
                 If likedLast = True Then total &= "However, it " Else total &= "It "
                 total &= "did not go well with the food at all. "
                 likedLast = False
@@ -457,20 +463,26 @@
 
             If Alignment = drink.Alignment Then
                 Select Case drink.Alignment
-                    Case "Chaotic" : total &= "I also enjoyed the hint of chaos in the drink, "
-                    Case "Neutral" : total &= "I also enjoyed the "
-                    Case "Lawful"
+                    Case "Chaotic" : total &= "I also enjoyed the riot of colour in the drink, "
+                    Case "Neutral" : total &= "I also enjoyed the water served on the side, "
+                    Case "Lawful" : total &= "I also enjoyed the orderly presentation of the drink, "
                 End Select
                 stars += 1
                 likedLast = True
             Else
                 Select Case drink.Alignment
-                    Case "Chaotic"
-                    Case "Neutral"
-                    Case "Lawful"
+                    Case "Chaotic" : total &= "I did not care for the mess, "
+                    Case "Neutral" : total &= "I did not care for the blandness, "
+                    Case "Lawful" : total &= "I did not care for the lack of colour, "
                 End Select
                 likedLast = False
             End If
+
+            'TODO: bartender
+
+            total &= """" & vbCrLf & vbCrLf
+            total &= "Rating: " & GetStarRating(stars)
+            Return New Pair(Of String, Integer)(stars, stars)
         End Get
     End Property
     Private ReadOnly Property EntertainmentPreferences As String()

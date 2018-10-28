@@ -58,14 +58,15 @@
     Const RecurringGuestNumber As Integer = 20
     Private RecurringGuests As New List(Of Adventurer)
 
-    Public Menu As New List(Of Food)
+    Public MenuFood As New List(Of Food)
+    Public MenuDrink As New List(Of Drink)
     Private Function GetBestFood(ByVal adv As Adventurer) As Food
-        If Menu.Count = 0 Then Return Nothing
-        If Menu.Count = 1 Then Return Menu(0)
+        If MenuFood.Count = 0 Then Return Nothing
+        If MenuFood.Count = 1 Then Return MenuFood(0)
 
         Dim highestStars As Integer = -1
         Dim bestFood As Food = Nothing
-        For Each f In Menu
+        For Each f In MenuFood
             Dim stars As Integer = adv.FoodSatisfaction(f).Value
             If stars > highestStars Then
                 highestStars = -1
@@ -74,8 +75,20 @@
         Next
         Return bestFood
     End Function
-    Private Function GetBestDrink(ByVal adv As Adventurer) As Drink
+    Private Function GetBestDrink(ByVal adv As Adventurer, ByVal food As Food) As Drink
+        If MenuDrink.Count = 0 Then Return Nothing
+        If MenuDrink.Count = 1 Then Return MenuDrink(1)
 
+        Dim highestStars As Integer = -1
+        Dim best As Drink = Nothing
+        For Each d In MenuDrink
+            Dim stars As Integer = adv.DrinkSatisfaction(d, food).Value
+            If stars > highestStars Then
+                highestStars = -1
+                best = d
+            End If
+        Next
+        Return best
     End Function
     Private Function GetBestEntertainment(ByVal adv As Adventurer) As Entertainment
 
@@ -121,18 +134,20 @@
             For Each Room In Floor.Rooms
                 For Each guest In Room.Guests
                     Dim food As Food = GetBestFood(guest)
-                    Dim drink As Drink = GetBestDrink(guest)
+                    Dim drink As Drink = GetBestDrink(guest, food)
 
                     GuestsRoomSatisfaction.Add(guest, guest.RoomSatisfaction(Room))
                     GuestsFoodSatisfaction.Add(guest, guest.FoodSatisfaction(food))
                     GuestsDrinkSatisfaction.Add(guest, guest.DrinkSatisfaction(drink, food))
                     GuestsEntertainmentSatisfaction.Add(guest, guest.EntertainmentSatisfaction(GetBestEntertainment(guest)))
+                    GuestsServiceSatisfaction.Add(guest, guest.ServiceSatisfaction(GetBestService(guest)))
                 Next
                 Room.Guests.Clear()
             Next
         Next
 
-        Menu.Clear()
+        MenuFood.Clear()
+        MenuDrink.Clear()
 
         'repopulate guest list
         While RecurringGuests.Count < RecurringGuestNumber
