@@ -1,4 +1,4 @@
-﻿Public Class Room
+﻿Public MustInherit Class Room
     Inherits xyContainer
     Private Size As RoomSize
     Public Sub New(ByVal _size As RoomSize)
