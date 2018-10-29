@@ -99,6 +99,8 @@
     </Compile>
     <Compile Include="Encounter\LootItem.vb" />
     <Compile Include="Encounter\Monster.vb" />
+    <Compile Include="Room\RoomBar.vb" />
+    <Compile Include="Room\RoomBed.vb" />
     <Compile Include="Room\Floor.vb" />
     <Compile Include="Room\Inn.vb" />
     <Compile Include="Forms\Main.vb">

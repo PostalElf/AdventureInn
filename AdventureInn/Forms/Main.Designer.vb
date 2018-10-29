@@ -76,8 +76,8 @@ Partial Class Main
         Me.lblKitchen = New System.Windows.Forms.Label()
         Me.btnKitchenCook = New System.Windows.Forms.Button()
         Me.cmbKitchen = New System.Windows.Forms.ComboBox()
-        Me.grpMenu = New System.Windows.Forms.GroupBox()
-        Me.tabInventory = New System.Windows.Forms.TabPage()
+        Me.grpFoodMenu = New System.Windows.Forms.GroupBox()
+        Me.tabWorkshop = New System.Windows.Forms.TabPage()
         Me.grpWorkbench = New System.Windows.Forms.GroupBox()
         Me.btnBuild = New System.Windows.Forms.Button()
         Me.cmbWorkbench = New System.Windows.Forms.ComboBox()
@@ -88,6 +88,10 @@ Partial Class Main
         Me.lstInventory = New System.Windows.Forms.ListBox()
         Me.tabExit = New System.Windows.Forms.TabPage()
         Me.grpWhelp = New System.Windows.Forms.GroupBox()
+        Me.lblWhelpOverall = New System.Windows.Forms.Label()
+        Me.lblWhelpWhat = New System.Windows.Forms.Label()
+        Me.lblWhelpEntertainment = New System.Windows.Forms.Label()
+        Me.lblWhelpDrink = New System.Windows.Forms.Label()
         Me.lblWhelpFood = New System.Windows.Forms.Label()
         Me.lblWhelpRoom = New System.Windows.Forms.Label()
         Me.grpParty = New System.Windows.Forms.GroupBox()
@@ -102,10 +106,13 @@ Partial Class Main
         Me.grpGold = New System.Windows.Forms.GroupBox()
         Me.lblGold = New System.Windows.Forms.Label()
         Me.btnEndNight = New System.Windows.Forms.Button()
-        Me.lblWhelpDrink = New System.Windows.Forms.Label()
-        Me.lblWhelpOverall = New System.Windows.Forms.Label()
-        Me.lblWhelpWhat = New System.Windows.Forms.Label()
-        Me.lblWhelpEntertainment = New System.Windows.Forms.Label()
+        Me.tabKitchen = New System.Windows.Forms.TabPage()
+        Me.tabInventory = New System.Windows.Forms.TabPage()
+        Me.grpDrinkMenu = New System.Windows.Forms.GroupBox()
+        Me.grpDrinks = New System.Windows.Forms.GroupBox()
+        Me.lstDrinks = New System.Windows.Forms.ListBox()
+        Me.btnMenuToDrink = New System.Windows.Forms.Button()
+        Me.btnDrinkToMenu = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -118,7 +125,7 @@ Partial Class Main
         Me.grpFood.SuspendLayout()
         Me.grpKitchen.SuspendLayout()
         Me.pnlIngredients.SuspendLayout()
-        Me.tabInventory.SuspendLayout()
+        Me.tabWorkshop.SuspendLayout()
         Me.grpWorkbench.SuspendLayout()
         Me.grpRoomItems.SuspendLayout()
         Me.tabExit.SuspendLayout()
@@ -126,6 +133,9 @@ Partial Class Main
         Me.grpParty.SuspendLayout()
         Me.tabStorefront.SuspendLayout()
         Me.grpGold.SuspendLayout()
+        Me.tabKitchen.SuspendLayout()
+        Me.tabInventory.SuspendLayout()
+        Me.grpDrinks.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblFloor
@@ -166,9 +176,11 @@ Partial Class Main
         '
         Me.tbc.Controls.Add(Me.tabFloor)
         Me.tbc.Controls.Add(Me.tabFood)
-        Me.tbc.Controls.Add(Me.tabInventory)
+        Me.tbc.Controls.Add(Me.tabKitchen)
+        Me.tbc.Controls.Add(Me.tabWorkshop)
         Me.tbc.Controls.Add(Me.tabExit)
         Me.tbc.Controls.Add(Me.tabStorefront)
+        Me.tbc.Controls.Add(Me.tabInventory)
         Me.tbc.Location = New System.Drawing.Point(0, 29)
         Me.tbc.Multiline = True
         Me.tbc.Name = "tbc"
@@ -184,10 +196,10 @@ Partial Class Main
         Me.tabFloor.Controls.Add(Me.grpGuestsWaiting)
         Me.tabFloor.Controls.Add(Me.grpRoom)
         Me.tabFloor.Controls.Add(Me.grpFloorplan)
-        Me.tabFloor.Location = New System.Drawing.Point(4, 22)
+        Me.tabFloor.Location = New System.Drawing.Point(4, 40)
         Me.tabFloor.Name = "tabFloor"
         Me.tabFloor.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabFloor.Size = New System.Drawing.Size(525, 524)
+        Me.tabFloor.Size = New System.Drawing.Size(525, 506)
         Me.tabFloor.TabIndex = 0
         Me.tabFloor.Text = "Floor"
         '
@@ -313,15 +325,19 @@ Partial Class Main
         '
         'tabFood
         '
-        Me.tabFood.Controls.Add(Me.grpCountertop)
+        Me.tabFood.Controls.Add(Me.btnMenuToDrink)
+        Me.tabFood.Controls.Add(Me.btnDrinkToMenu)
+        Me.tabFood.Controls.Add(Me.grpDrinks)
+        Me.tabFood.Controls.Add(Me.grpDrinkMenu)
+        Me.tabFood.Controls.Add(Me.btnMenuToFood)
         Me.tabFood.Controls.Add(Me.grpFood)
-        Me.tabFood.Controls.Add(Me.grpKitchen)
-        Me.tabFood.Controls.Add(Me.grpMenu)
-        Me.tabFood.Location = New System.Drawing.Point(4, 22)
+        Me.tabFood.Controls.Add(Me.btnFoodToMenu)
+        Me.tabFood.Controls.Add(Me.grpFoodMenu)
+        Me.tabFood.Location = New System.Drawing.Point(4, 40)
         Me.tabFood.Name = "tabFood"
-        Me.tabFood.Size = New System.Drawing.Size(525, 524)
+        Me.tabFood.Size = New System.Drawing.Size(525, 506)
         Me.tabFood.TabIndex = 2
-        Me.tabFood.Text = "Food"
+        Me.tabFood.Text = "Barroom"
         Me.tabFood.UseVisualStyleBackColor = True
         '
         'grpCountertop
@@ -335,7 +351,7 @@ Partial Class Main
         Me.grpCountertop.Controls.Add(Me.btnCountertopReset)
         Me.grpCountertop.Controls.Add(Me.btnCountertopPrep)
         Me.grpCountertop.Controls.Add(Me.cmbCountertop)
-        Me.grpCountertop.Location = New System.Drawing.Point(8, 424)
+        Me.grpCountertop.Location = New System.Drawing.Point(8, 179)
         Me.grpCountertop.Name = "grpCountertop"
         Me.grpCountertop.Size = New System.Drawing.Size(510, 96)
         Me.grpCountertop.TabIndex = 3
@@ -428,20 +444,17 @@ Partial Class Main
         '
         'grpFood
         '
-        Me.grpFood.Controls.Add(Me.btnMenuToFood)
-        Me.grpFood.Controls.Add(Me.btnFoodToMenu)
         Me.grpFood.Controls.Add(Me.lstFood)
-        Me.grpFood.Controls.Add(Me.lstFoodIngredients)
-        Me.grpFood.Location = New System.Drawing.Point(265, 14)
+        Me.grpFood.Location = New System.Drawing.Point(282, 14)
         Me.grpFood.Name = "grpFood"
-        Me.grpFood.Size = New System.Drawing.Size(253, 236)
+        Me.grpFood.Size = New System.Drawing.Size(235, 126)
         Me.grpFood.TabIndex = 2
         Me.grpFood.TabStop = False
-        Me.grpFood.Text = "Inventory"
+        Me.grpFood.Text = "Food"
         '
         'btnMenuToFood
         '
-        Me.btnMenuToFood.Location = New System.Drawing.Point(9, 137)
+        Me.btnMenuToFood.Location = New System.Drawing.Point(250, 79)
         Me.btnMenuToFood.Name = "btnMenuToFood"
         Me.btnMenuToFood.Size = New System.Drawing.Size(26, 23)
         Me.btnMenuToFood.TabIndex = 19
@@ -450,7 +463,7 @@ Partial Class Main
         '
         'btnFoodToMenu
         '
-        Me.btnFoodToMenu.Location = New System.Drawing.Point(9, 108)
+        Me.btnFoodToMenu.Location = New System.Drawing.Point(250, 50)
         Me.btnFoodToMenu.Name = "btnFoodToMenu"
         Me.btnFoodToMenu.Size = New System.Drawing.Size(26, 23)
         Me.btnFoodToMenu.TabIndex = 18
@@ -460,15 +473,15 @@ Partial Class Main
         'lstFood
         '
         Me.lstFood.FormattingEnabled = True
-        Me.lstFood.Location = New System.Drawing.Point(42, 108)
+        Me.lstFood.Location = New System.Drawing.Point(6, 19)
         Me.lstFood.Name = "lstFood"
-        Me.lstFood.Size = New System.Drawing.Size(203, 121)
+        Me.lstFood.Size = New System.Drawing.Size(223, 95)
         Me.lstFood.TabIndex = 2
         '
         'lstFoodIngredients
         '
         Me.lstFoodIngredients.FormattingEnabled = True
-        Me.lstFoodIngredients.Location = New System.Drawing.Point(9, 19)
+        Me.lstFoodIngredients.Location = New System.Drawing.Point(8, 16)
         Me.lstFoodIngredients.Name = "lstFoodIngredients"
         Me.lstFoodIngredients.Size = New System.Drawing.Size(235, 82)
         Me.lstFoodIngredients.TabIndex = 1
@@ -481,7 +494,7 @@ Partial Class Main
         Me.grpKitchen.Controls.Add(Me.lblKitchen)
         Me.grpKitchen.Controls.Add(Me.btnKitchenCook)
         Me.grpKitchen.Controls.Add(Me.cmbKitchen)
-        Me.grpKitchen.Location = New System.Drawing.Point(8, 250)
+        Me.grpKitchen.Location = New System.Drawing.Point(8, 5)
         Me.grpKitchen.Name = "grpKitchen"
         Me.grpKitchen.Size = New System.Drawing.Size(510, 165)
         Me.grpKitchen.TabIndex = 1
@@ -643,26 +656,26 @@ Partial Class Main
         Me.cmbKitchen.Size = New System.Drawing.Size(223, 21)
         Me.cmbKitchen.TabIndex = 2
         '
-        'grpMenu
+        'grpFoodMenu
         '
-        Me.grpMenu.Location = New System.Drawing.Point(8, 14)
-        Me.grpMenu.Name = "grpMenu"
-        Me.grpMenu.Size = New System.Drawing.Size(247, 211)
-        Me.grpMenu.TabIndex = 0
-        Me.grpMenu.TabStop = False
-        Me.grpMenu.Text = "Today's Menu"
+        Me.grpFoodMenu.Location = New System.Drawing.Point(8, 14)
+        Me.grpFoodMenu.Name = "grpFoodMenu"
+        Me.grpFoodMenu.Size = New System.Drawing.Size(236, 126)
+        Me.grpFoodMenu.TabIndex = 0
+        Me.grpFoodMenu.TabStop = False
+        Me.grpFoodMenu.Text = "Today's Menu"
         '
-        'tabInventory
+        'tabWorkshop
         '
-        Me.tabInventory.BackColor = System.Drawing.SystemColors.Window
-        Me.tabInventory.Controls.Add(Me.grpWorkbench)
-        Me.tabInventory.Controls.Add(Me.grpRoomItems)
-        Me.tabInventory.Location = New System.Drawing.Point(4, 22)
-        Me.tabInventory.Name = "tabInventory"
-        Me.tabInventory.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabInventory.Size = New System.Drawing.Size(525, 524)
-        Me.tabInventory.TabIndex = 1
-        Me.tabInventory.Text = "Workshop"
+        Me.tabWorkshop.BackColor = System.Drawing.SystemColors.Window
+        Me.tabWorkshop.Controls.Add(Me.grpWorkbench)
+        Me.tabWorkshop.Controls.Add(Me.grpRoomItems)
+        Me.tabWorkshop.Location = New System.Drawing.Point(4, 40)
+        Me.tabWorkshop.Name = "tabWorkshop"
+        Me.tabWorkshop.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabWorkshop.Size = New System.Drawing.Size(525, 506)
+        Me.tabWorkshop.TabIndex = 1
+        Me.tabWorkshop.Text = "Workshop"
         '
         'grpWorkbench
         '
@@ -742,11 +755,11 @@ Partial Class Main
         '
         Me.tabExit.Controls.Add(Me.grpWhelp)
         Me.tabExit.Controls.Add(Me.grpParty)
-        Me.tabExit.Location = New System.Drawing.Point(4, 22)
+        Me.tabExit.Location = New System.Drawing.Point(4, 40)
         Me.tabExit.Name = "tabExit"
-        Me.tabExit.Size = New System.Drawing.Size(525, 524)
+        Me.tabExit.Size = New System.Drawing.Size(525, 506)
         Me.tabExit.TabIndex = 4
-        Me.tabExit.Text = "Common Room"
+        Me.tabExit.Text = "Front Door"
         Me.tabExit.UseVisualStyleBackColor = True
         '
         'grpWhelp
@@ -763,6 +776,34 @@ Partial Class Main
         Me.grpWhelp.TabIndex = 18
         Me.grpWhelp.TabStop = False
         Me.grpWhelp.Text = "Whelp Review"
+        '
+        'lblWhelpOverall
+        '
+        Me.lblWhelpOverall.Location = New System.Drawing.Point(337, 133)
+        Me.lblWhelpOverall.Name = "lblWhelpOverall"
+        Me.lblWhelpOverall.Size = New System.Drawing.Size(157, 109)
+        Me.lblWhelpOverall.TabIndex = 28
+        '
+        'lblWhelpWhat
+        '
+        Me.lblWhelpWhat.Location = New System.Drawing.Point(174, 133)
+        Me.lblWhelpWhat.Name = "lblWhelpWhat"
+        Me.lblWhelpWhat.Size = New System.Drawing.Size(157, 109)
+        Me.lblWhelpWhat.TabIndex = 27
+        '
+        'lblWhelpEntertainment
+        '
+        Me.lblWhelpEntertainment.Location = New System.Drawing.Point(11, 133)
+        Me.lblWhelpEntertainment.Name = "lblWhelpEntertainment"
+        Me.lblWhelpEntertainment.Size = New System.Drawing.Size(157, 109)
+        Me.lblWhelpEntertainment.TabIndex = 26
+        '
+        'lblWhelpDrink
+        '
+        Me.lblWhelpDrink.Location = New System.Drawing.Point(337, 17)
+        Me.lblWhelpDrink.Name = "lblWhelpDrink"
+        Me.lblWhelpDrink.Size = New System.Drawing.Size(157, 109)
+        Me.lblWhelpDrink.TabIndex = 25
         '
         'lblWhelpFood
         '
@@ -839,9 +880,9 @@ Partial Class Main
         '
         Me.tabStorefront.Controls.Add(Me.grpSaleRecipes)
         Me.tabStorefront.Controls.Add(Me.grpSaleFoodIngredients)
-        Me.tabStorefront.Location = New System.Drawing.Point(4, 22)
+        Me.tabStorefront.Location = New System.Drawing.Point(4, 40)
         Me.tabStorefront.Name = "tabStorefront"
-        Me.tabStorefront.Size = New System.Drawing.Size(525, 524)
+        Me.tabStorefront.Size = New System.Drawing.Size(525, 506)
         Me.tabStorefront.TabIndex = 3
         Me.tabStorefront.Text = "Storefront"
         Me.tabStorefront.UseVisualStyleBackColor = True
@@ -896,33 +937,71 @@ Partial Class Main
         Me.btnEndNight.TabIndex = 19
         Me.btnEndNight.UseVisualStyleBackColor = True
         '
-        'lblWhelpDrink
+        'tabKitchen
         '
-        Me.lblWhelpDrink.Location = New System.Drawing.Point(337, 17)
-        Me.lblWhelpDrink.Name = "lblWhelpDrink"
-        Me.lblWhelpDrink.Size = New System.Drawing.Size(157, 109)
-        Me.lblWhelpDrink.TabIndex = 25
+        Me.tabKitchen.Controls.Add(Me.grpCountertop)
+        Me.tabKitchen.Controls.Add(Me.grpKitchen)
+        Me.tabKitchen.Location = New System.Drawing.Point(4, 40)
+        Me.tabKitchen.Name = "tabKitchen"
+        Me.tabKitchen.Size = New System.Drawing.Size(525, 506)
+        Me.tabKitchen.TabIndex = 5
+        Me.tabKitchen.Text = "Kitchen Bar"
+        Me.tabKitchen.UseVisualStyleBackColor = True
         '
-        'lblWhelpOverall
+        'tabInventory
         '
-        Me.lblWhelpOverall.Location = New System.Drawing.Point(337, 133)
-        Me.lblWhelpOverall.Name = "lblWhelpOverall"
-        Me.lblWhelpOverall.Size = New System.Drawing.Size(157, 109)
-        Me.lblWhelpOverall.TabIndex = 28
+        Me.tabInventory.Controls.Add(Me.lstFoodIngredients)
+        Me.tabInventory.Location = New System.Drawing.Point(4, 40)
+        Me.tabInventory.Name = "tabInventory"
+        Me.tabInventory.Size = New System.Drawing.Size(525, 506)
+        Me.tabInventory.TabIndex = 6
+        Me.tabInventory.Text = "Inventory"
+        Me.tabInventory.UseVisualStyleBackColor = True
         '
-        'lblWhelpWhat
+        'grpDrinkMenu
         '
-        Me.lblWhelpWhat.Location = New System.Drawing.Point(174, 133)
-        Me.lblWhelpWhat.Name = "lblWhelpWhat"
-        Me.lblWhelpWhat.Size = New System.Drawing.Size(157, 109)
-        Me.lblWhelpWhat.TabIndex = 27
+        Me.grpDrinkMenu.Location = New System.Drawing.Point(8, 146)
+        Me.grpDrinkMenu.Name = "grpDrinkMenu"
+        Me.grpDrinkMenu.Size = New System.Drawing.Size(236, 126)
+        Me.grpDrinkMenu.TabIndex = 20
+        Me.grpDrinkMenu.TabStop = False
+        Me.grpDrinkMenu.Text = "Today's Drinks"
         '
-        'lblWhelpEntertainment
+        'grpDrinks
         '
-        Me.lblWhelpEntertainment.Location = New System.Drawing.Point(11, 133)
-        Me.lblWhelpEntertainment.Name = "lblWhelpEntertainment"
-        Me.lblWhelpEntertainment.Size = New System.Drawing.Size(157, 109)
-        Me.lblWhelpEntertainment.TabIndex = 26
+        Me.grpDrinks.Controls.Add(Me.lstDrinks)
+        Me.grpDrinks.Location = New System.Drawing.Point(282, 146)
+        Me.grpDrinks.Name = "grpDrinks"
+        Me.grpDrinks.Size = New System.Drawing.Size(235, 126)
+        Me.grpDrinks.TabIndex = 21
+        Me.grpDrinks.TabStop = False
+        Me.grpDrinks.Text = "Drinks"
+        '
+        'lstDrinks
+        '
+        Me.lstDrinks.FormattingEnabled = True
+        Me.lstDrinks.Location = New System.Drawing.Point(6, 19)
+        Me.lstDrinks.Name = "lstDrinks"
+        Me.lstDrinks.Size = New System.Drawing.Size(223, 95)
+        Me.lstDrinks.TabIndex = 2
+        '
+        'btnMenuToDrink
+        '
+        Me.btnMenuToDrink.Location = New System.Drawing.Point(250, 215)
+        Me.btnMenuToDrink.Name = "btnMenuToDrink"
+        Me.btnMenuToDrink.Size = New System.Drawing.Size(26, 23)
+        Me.btnMenuToDrink.TabIndex = 23
+        Me.btnMenuToDrink.Text = "->"
+        Me.btnMenuToDrink.UseVisualStyleBackColor = True
+        '
+        'btnDrinkToMenu
+        '
+        Me.btnDrinkToMenu.Location = New System.Drawing.Point(250, 186)
+        Me.btnDrinkToMenu.Name = "btnDrinkToMenu"
+        Me.btnDrinkToMenu.Size = New System.Drawing.Size(26, 23)
+        Me.btnDrinkToMenu.TabIndex = 22
+        Me.btnDrinkToMenu.Text = "<-"
+        Me.btnDrinkToMenu.UseVisualStyleBackColor = True
         '
         'Main
         '
@@ -955,7 +1034,7 @@ Partial Class Main
         Me.grpKitchen.ResumeLayout(False)
         Me.grpKitchen.PerformLayout()
         Me.pnlIngredients.ResumeLayout(False)
-        Me.tabInventory.ResumeLayout(False)
+        Me.tabWorkshop.ResumeLayout(False)
         Me.grpWorkbench.ResumeLayout(False)
         Me.grpRoomItems.ResumeLayout(False)
         Me.tabExit.ResumeLayout(False)
@@ -963,6 +1042,9 @@ Partial Class Main
         Me.grpParty.ResumeLayout(False)
         Me.tabStorefront.ResumeLayout(False)
         Me.grpGold.ResumeLayout(False)
+        Me.tabKitchen.ResumeLayout(False)
+        Me.tabInventory.ResumeLayout(False)
+        Me.grpDrinks.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -974,7 +1056,7 @@ Partial Class Main
     Friend WithEvents tbc As System.Windows.Forms.TabControl
     Friend WithEvents tabFloor As System.Windows.Forms.TabPage
     Friend WithEvents numFloor As System.Windows.Forms.NumericUpDown
-    Friend WithEvents tabInventory As System.Windows.Forms.TabPage
+    Friend WithEvents tabWorkshop As System.Windows.Forms.TabPage
     Friend WithEvents grpFloorplan As System.Windows.Forms.GroupBox
     Friend WithEvents pnlFloor As System.Windows.Forms.Panel
     Friend WithEvents grpRoom As System.Windows.Forms.GroupBox
@@ -991,7 +1073,7 @@ Partial Class Main
     Friend WithEvents lblInventoryDescription As System.Windows.Forms.Label
     Friend WithEvents lblWorkbenchDescription As System.Windows.Forms.Label
     Friend WithEvents tabFood As System.Windows.Forms.TabPage
-    Friend WithEvents grpMenu As System.Windows.Forms.GroupBox
+    Friend WithEvents grpFoodMenu As System.Windows.Forms.GroupBox
     Friend WithEvents grpKitchen As System.Windows.Forms.GroupBox
     Friend WithEvents btnKitchenCook As System.Windows.Forms.Button
     Friend WithEvents cmbKitchen As System.Windows.Forms.ComboBox
@@ -1049,5 +1131,12 @@ Partial Class Main
     Friend WithEvents lblWhelpOverall As System.Windows.Forms.Label
     Friend WithEvents lblWhelpWhat As System.Windows.Forms.Label
     Friend WithEvents lblWhelpEntertainment As System.Windows.Forms.Label
+    Friend WithEvents tabKitchen As System.Windows.Forms.TabPage
+    Friend WithEvents tabInventory As System.Windows.Forms.TabPage
+    Friend WithEvents grpDrinkMenu As System.Windows.Forms.GroupBox
+    Friend WithEvents btnMenuToDrink As System.Windows.Forms.Button
+    Friend WithEvents btnDrinkToMenu As System.Windows.Forms.Button
+    Friend WithEvents grpDrinks As System.Windows.Forms.GroupBox
+    Friend WithEvents lstDrinks As System.Windows.Forms.ListBox
 
 End Class

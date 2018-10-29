@@ -56,7 +56,7 @@
         FloorRefresh()
         GuestsRefresh()
         KitchenRefresh()
-        MenuRefresh()
+        MenuFoodRefresh()
 
         tbc.SelectTab(tabExit)
     End Sub
@@ -202,24 +202,28 @@
     End Sub
     Private Sub RoomLabelRefresh()
         lblGuestRoomedDescription.Text = ""
-        With CurrentRoom
-            lblGuestRoomedDescription.Text &= "Privacy: " & .TotalPrivacy.Key & vbCrLf
-            lblGuestRoomedDescription.Text &= "Furnishing: " & .TotalFurnishing.Key & vbCrLf
-            lblGuestRoomedDescription.Text &= "Aesthetics: " & .TotalOpulence.Key & vbCrLf
-            lblGuestRoomedDescription.Text &= "Quietness: " & .TotalRestfulness.Key & vbCrLf
-            lblGuestRoomedDescription.Text &= "Niche: " & .TotalNiche.Key & vbCrLf
-            lblGuestRoomedDescription.Text &= "Alignment: " & .TotalAlignment.Key & vbCrLf
-            If .GuestCapacity <= 0 Then
-                lblGuestRoomedDescription.Text &= vbCrLf & "WARNING! A room must have at least one bed to receive guests. You want guests. Fix this."
-            End If
-        End With
+        If TypeOf CurrentRoom Is RoomBed Then
+            With CType(CurrentRoom, RoomBed)
+                lblGuestRoomedDescription.Text &= "Privacy: " & .TotalPrivacy.Key & vbCrLf
+                lblGuestRoomedDescription.Text &= "Furnishing: " & .TotalFurnishing.Key & vbCrLf
+                lblGuestRoomedDescription.Text &= "Aesthetics: " & .TotalOpulence.Key & vbCrLf
+                lblGuestRoomedDescription.Text &= "Quietness: " & .TotalRestfulness.Key & vbCrLf
+                lblGuestRoomedDescription.Text &= "Niche: " & .TotalNiche.Key & vbCrLf
+                lblGuestRoomedDescription.Text &= "Alignment: " & .TotalAlignment.Key & vbCrLf
+                If .GuestCapacity <= 0 Then
+                    lblGuestRoomedDescription.Text &= vbCrLf & "WARNING! A room must have at least one bed to receive guests. You want guests. Fix this."
+                End If
+            End With
+        End If
     End Sub
     Private Sub GuestsRefresh()
         lstGuestsRoomed.Items.Clear()
         If CurrentRoom Is Nothing = False Then
-            For Each g In CurrentRoom.Guests
-                lstGuestsRoomed.Items.Add(g)
-            Next
+            If TypeOf CurrentRoom Is RoomBed Then
+                For Each g In CType(CurrentRoom, RoomBed).Guests
+                    lstGuestsRoomed.Items.Add(g)
+                Next
+            End If
         End If
 
         lstGuestsWaiting.Items.Clear()
@@ -293,10 +297,11 @@
     End Sub
     Private Sub btnWaitingToRoom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnWaitingToRoom.Click
         If CurrentRoom Is Nothing Then Exit Sub
+        If TypeOf CurrentRoom Is RoomBed = False Then Exit Sub
         If lstGuestsWaiting.SelectedIndex = -1 Then Exit Sub
 
         Dim guest As Adventurer = lstGuestsWaiting.SelectedItem
-        Dim errorstring As String = CurrentRoom.Add(guest)
+        Dim errorstring As String = CType(CurrentRoom, RoomBed).Add(guest)
         If errorstring <> "" Then MsgBox(errorstring, MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Error") : Exit Sub
         lstGuestsRoomed.Items.Add(guest)
         CurrentInn.WaitingGuests.Remove(guest)
@@ -328,7 +333,8 @@
                     sortList = CurrentInn.WaitingGuests
                 ElseIf sender.Equals(lstGuestsRoomed) Then
                     If CurrentRoom Is Nothing Then Exit Sub
-                    sortList = CurrentRoom.Guests
+                    If TypeOf CurrentRoom Is RoomBed = False Then Exit Sub
+                    sortList = CType(CurrentRoom, RoomBed).Guests
                 Else
                     Throw New Exception
                 End If
@@ -385,7 +391,7 @@
     End Function
 #End Region
 
-#Region "Kitchen"
+#Region "Food"
     Private ActiveRecipe As FoodRecipe = Nothing
     Private KitchenLbls(4) As Label
     Private KitchenTxts(4) As Label
@@ -660,24 +666,24 @@
 
         CurrentInn.InventoryFood.Remove(f)
         CurrentInn.MenuFood.Add(f)
-        MenuRefresh()
+        MenuFoodRefresh()
     End Sub
     Private Sub btnMenuToFood_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMenuToFood.Click
         For Each f In CurrentInn.MenuFood
             CurrentInn.Add(f)
         Next
         CurrentInn.MenuFood.Clear()
-        MenuRefresh()
+        MenuFoodRefresh()
     End Sub
-    Private Sub MenuRefresh()
-        grpMenu.Controls.Clear()
+    Private Sub MenuFoodRefresh()
+        grpFoodMenu.Controls.Clear()
 
         Dim MenuIndex As Integer = 0
         For Each f In CurrentInn.MenuFood
-            Const lblWidth As Integer = 230
-            Const lblHeight As Integer = 33
-            Const lblStartX As Integer = 8
-            Const lblStartY As Integer = 26
+            Const lblWidth As Integer = 224
+            Const lblHeight As Integer = 30
+            Const lblStartX As Integer = 6
+            Const lblStartY As Integer = 24
 
             Dim lbl As New Label
             With lbl
@@ -686,7 +692,7 @@
                 .Location = New Point(lblStartX, lblStartY + (lblHeight * MenuIndex))
                 .Text = f.FullName
             End With
-            grpMenu.Controls.Add(lbl)
+            grpFoodMenu.Controls.Add(lbl)
 
             MenuIndex += 1
         Next
@@ -738,6 +744,36 @@
     End Sub
 #End Region
 
+#Region "Drinks"
+    Private Sub MenuDrinkRefresh()
+        grpDrinkMenu.Controls.Clear()
+
+        Dim MenuIndex As Integer = 0
+        For Each d In CurrentInn.MenuDrink
+            Const lblWidth As Integer = 224
+            Const lblHeight As Integer = 30
+            Const lblStartX As Integer = 6
+            Const lblStartY As Integer = 24
+
+            Dim lbl As New Label
+            With lbl
+                .AutoSize = False
+                .Size = New Size(lblWidth, lblHeight)
+                .Location = New Point(lblStartX, lblStartY + (lblHeight * MenuIndex))
+                .Text = d.Name
+            End With
+            grpDrinkMenu.Controls.Add(lbl)
+
+            MenuIndex += 1
+        Next
+
+        lstDrinks.Items.Clear()
+        For Each d In CurrentInn.InventoryDrinks
+            lstDrinks.Items.Add(d)
+        Next
+    End Sub
+#End Region
+
 #Region "Party"
     Private Sub lstAdventurers_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lstAdventurers.SelectedIndexChanged
         Dim a As Adventurer = lstAdventurers.SelectedItem
@@ -784,5 +820,4 @@
         CurrentInn.ExitingParties.Add(party)
     End Sub
 #End Region
-
 End Class

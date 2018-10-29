@@ -149,7 +149,7 @@
             Return {privacy, opulence, restfulness, align, niche}
         End Get
     End Property
-    Public ReadOnly Property RoomSatisfaction(ByVal room As Room) As Pair(Of String, Integer)
+    Public ReadOnly Property RoomSatisfaction(ByVal room As RoomBed) As Pair(Of String, Integer)
         Get
             Dim stars As Integer = 0
             Dim likedLast As Boolean
@@ -405,7 +405,7 @@
             Return {alcoholType, fanciness}
         End Get
     End Property
-    Public ReadOnly Property DrinkSatisfaction(ByVal drink As Drink, ByVal food As Food) As Pair(Of String, Integer)
+    Public ReadOnly Property DrinkSatisfaction(ByVal drink As Drink, ByVal food As Food, ByVal bar As Room) As Pair(Of String, Integer)
         Get
             If drink Is Nothing Then Return New Pair(Of String, Integer)("""Bar was shamefully unstocked.""" & vbCrLf & vbCrLf & "Rating: " & GetStarRating(0), 0)
 
@@ -461,8 +461,8 @@
                 likedLast = False
             End If
 
-            If Alignment = drink.Alignment Then
-                Select Case drink.Alignment
+            If Alignment = bar.TotalAlignment.Key Then
+                Select Case bar.TotalAlignment.Key
                     Case "Chaotic" : total &= "I also enjoyed the riot of colour in the drink, "
                     Case "Neutral" : total &= "I also enjoyed the water served on the side, "
                     Case "Lawful" : total &= "I also enjoyed the orderly presentation of the drink, "
@@ -470,7 +470,7 @@
                 stars += 1
                 likedLast = True
             Else
-                Select Case drink.Alignment
+                Select Case bar.TotalAlignment.Key
                     Case "Chaotic" : total &= "I did not care for the mess, "
                     Case "Neutral" : total &= "I did not care for the blandness, "
                     Case "Lawful" : total &= "I did not care for the lack of colour, "

@@ -31,6 +31,7 @@
     Public InventoryFoodIngredients As New List(Of FoodIngredient)
     Public InventoryFoodRecipes As New List(Of FoodRecipe)
     Public InventoryFoodPreps As New List(Of FoodPrep)
+    Public InventoryDrinks As New List(Of Drink)
     Private _Gold As Integer
     Public Property Gold As Integer
         Get
@@ -49,7 +50,10 @@
             Dim total As New List(Of Adventurer)
             For Each f In Floors
                 For Each r In f.Rooms
-                    If r.Guests.Count > 0 Then total.AddRange(r.Guests)
+                    If TypeOf r Is RoomBed Then
+                        Dim b As RoomBed = CType(r, RoomBed)
+                        If b.Guests.Count > 0 Then total.AddRange(b.Guests)
+                    End If
                 Next
             Next
             Return total
@@ -75,14 +79,14 @@
         Next
         Return bestFood
     End Function
-    Private Function GetBestDrink(ByVal adv As Adventurer, ByVal food As Food) As Drink
+    Private Function GetBestDrink(ByVal adv As Adventurer, ByVal food As Food, ByVal bar As Room) As Drink
         If MenuDrink.Count = 0 Then Return Nothing
         If MenuDrink.Count = 1 Then Return MenuDrink(1)
 
         Dim highestStars As Integer = -1
         Dim best As Drink = Nothing
         For Each d In MenuDrink
-            Dim stars As Integer = adv.DrinkSatisfaction(d, food).Value
+            Dim stars As Integer = adv.DrinkSatisfaction(d, food, bar).Value
             If stars > highestStars Then
                 highestStars = -1
                 best = d
@@ -127,22 +131,35 @@
         WaitingGuests.Add(adventurer)
     End Sub
 
+    Private ReadOnly Property Bar As Room
+        Get
+            For Each f In Floors
+                For Each r In f.Rooms
+                    If TypeOf r Is RoomBar Then Return r
+                Next
+            Next
+            Return Nothing
+        End Get
+    End Property
     Public Sub EndNight()
         GuestsFoodSatisfaction.Clear()
         GuestsRoomSatisfaction.Clear()
         For Each Floor In Floors
             For Each Room In Floor.Rooms
-                For Each guest In Room.Guests
-                    Dim food As Food = GetBestFood(guest)
-                    Dim drink As Drink = GetBestDrink(guest, food)
+                If TypeOf Room Is RoomBed Then
+                    Dim bedroom As RoomBed = CType(Room, RoomBed)
+                    For Each guest In bedroom.Guests
+                        Dim food As Food = GetBestFood(guest)
+                        Dim drink As Drink = GetBestDrink(guest, food, Bar)
 
-                    GuestsRoomSatisfaction.Add(guest, guest.RoomSatisfaction(Room))
-                    GuestsFoodSatisfaction.Add(guest, guest.FoodSatisfaction(food))
-                    GuestsDrinkSatisfaction.Add(guest, guest.DrinkSatisfaction(drink, food))
-                    GuestsEntertainmentSatisfaction.Add(guest, guest.EntertainmentSatisfaction(GetBestEntertainment(guest)))
-                    GuestsServiceSatisfaction.Add(guest, guest.ServiceSatisfaction(GetBestService(guest)))
-                Next
-                Room.Guests.Clear()
+                        GuestsRoomSatisfaction.Add(guest, guest.RoomSatisfaction(bedroom))
+                        GuestsFoodSatisfaction.Add(guest, guest.FoodSatisfaction(food))
+                        GuestsDrinkSatisfaction.Add(guest, guest.DrinkSatisfaction(drink, food, Bar))
+                        GuestsEntertainmentSatisfaction.Add(guest, guest.EntertainmentSatisfaction(GetBestEntertainment(guest)))
+                        GuestsServiceSatisfaction.Add(guest, guest.ServiceSatisfaction(GetBestService(guest)))
+                    Next
+                    bedroom.Guests.Clear()
+                End If
             Next
         Next
 

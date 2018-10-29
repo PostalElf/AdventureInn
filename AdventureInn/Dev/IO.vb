@@ -7,6 +7,7 @@ Public Class IO
     Public Const sbIngredients As String = "data/ingredients.txt"
     Public Const sbPrep As String = "data/prep.txt"
     Public Const sbRecipes As String = "data/recipes.txt"
+    Public Const sbDrinks As String = "data/drinks.txt"
     Public Const txElfNames As String = "data/elfnames.txt"
     Public Const txDwarfNames As String = "data/dwarfnames.txt"
     Public Const txHumanNames As String = "data/humannames.txt"

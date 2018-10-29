@@ -1,0 +1,59 @@
+[Bloody Baroness]
+Fancy
+Beer
+Lager
+
+[Hairless Bear]
+Fancy
+Beer
+Ale
+
+[Hillcleaver's 110]
+Simple
+Beer
+Lager
+
+[Strongarm Stout]
+Simple
+Beer
+Ale
+
+['23 Primordial Ooze]
+Fancy
+Wine
+Red
+
+[116 Thunder in a Bottle]
+Fancy
+Wine
+White
+
+[Opal Varnish]
+Simple
+Wine
+Red
+
+[Axe Polish]
+Simple
+Wine
+White
+
+[Bottled Moonlight]
+Fancy
+Spirit
+Whisky
+
+[Artisan's Drum]
+Fancy
+Spirit
+Rum
+
+[Blind Brothers' '46]
+Simple
+Spirit
+Whisky
+
+[Frayed Ends]
+Simple
+Spirit
+Rum
