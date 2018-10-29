@@ -91,10 +91,10 @@
         Return best
     End Function
     Private Function GetBestEntertainment(ByVal adv As Adventurer) As Entertainment
-
+        Return Nothing
     End Function
     Private Function GetBestService(ByVal adv As Adventurer) As Service
-
+        Return Nothing
     End Function
     Public GuestsRoomSatisfaction As New Dictionary(Of Adventurer, Pair(Of String, Integer))
     Public GuestsFoodSatisfaction As New Dictionary(Of Adventurer, Pair(Of String, Integer))

@@ -487,22 +487,22 @@
     End Property
     Private ReadOnly Property EntertainmentPreferences As String()
         Get
-
+            Return Nothing
         End Get
     End Property
     Public ReadOnly Property EntertainmentSatisfaction(ByVal entertainment As entertainment) As Pair(Of String, Integer)
         Get
-
+            Return Nothing
         End Get
     End Property
     Private ReadOnly Property ServicePreferences As String()
         Get
-
+            Return Nothing
         End Get
     End Property
     Public ReadOnly Property ServiceSatisfaction(ByVal service As Service) As Pair(Of String, Integer)
         Get
-
+            Return Nothing
         End Get
     End Property
 
