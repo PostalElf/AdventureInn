@@ -107,6 +107,10 @@
     Public GuestsServiceSatisfaction As New Dictionary(Of Adventurer, Pair(Of String, Integer))
     Public ExitingParties As New List(Of Party)
 
+    Public SaleFoodIngredients As New List(Of FoodIngredient)
+    Public SaleFoodRecipe As New List(Of FoodRecipe)
+    Public SaleDrink As New List(Of Drink)
+
     Public Sub Add(ByVal floor As Floor)
         Floors.Add(floor)
     End Sub
@@ -126,6 +130,9 @@
     End Sub
     Public Sub Add(ByVal f As Food)
         InventoryFood.Add(f)
+    End Sub
+    Public Sub Add(ByVal d As Drink)
+        InventoryDrinks.Add(d)
     End Sub
     Public Sub Add(ByVal adventurer As Adventurer)
         WaitingGuests.Add(adventurer)
@@ -175,6 +182,16 @@
         Dim allGuests As New List(Of Adventurer)(RecurringGuests)
         For n = 1 To 10
             WaitingGuests.Add(GrabRandom(allGuests))
+        Next
+
+        'repopulate storefront
+        SaleFoodIngredients.Clear()
+        SaleFoodRecipe.Clear()
+        SaleDrink.Clear()
+        For n = 1 To 10
+            Dim roll As Integer = Rng.Next(Drink.AllDrinks.Count)
+            Dim drinkName As String = Drink.AllDrinks.Keys(roll)
+            SaleDrink.Add(Drink.Generate(drinkName))
         Next
     End Sub
 End Class

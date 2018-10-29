@@ -9,8 +9,10 @@
     End Sub
     Private Sub SetupInn()
         With CurrentInn
+            .EndNight()
+
             Dim floor1 As New Floor
-            floor1.Add(New Room(RoomSize.Large), 1, 1)
+            floor1.Add(New RoomBed(RoomSize.Large), 1, 1)
             .Add(floor1)
             Dim floor2 As New Floor
             .Add(floor2)
@@ -58,6 +60,7 @@
         KitchenRefresh()
         MenuFoodRefresh()
 
+        RefreshSaleDrinks()
         tbc.SelectTab(tabExit)
     End Sub
 
@@ -134,7 +137,7 @@
         If dri.ShowDialog = Windows.Forms.DialogResult.OK Then
             Dim roomSize As RoomSize = dri.RoomSize
             dri.Close()
-            Dim errorString As String = CurrentFloor.Add(New Room(roomSize), x, y)
+            Dim errorString As String = CurrentFloor.Add(New RoomBed(roomSize), x, y)
             If errorString <> "" Then MsgBox(errorString, MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "Error") : Exit Sub
             FloorRefresh()
         End If
@@ -662,7 +665,7 @@
     Private Sub btnFoodToMenu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFoodToMenu.Click
         Dim f As Food = lstFood.SelectedItem
         If f Is Nothing Then Exit Sub
-        If CurrentInn.MenuFood.Count + 1 > 5 Then Exit Sub
+        If CurrentInn.MenuFood.Count + 1 > 3 Then Exit Sub
 
         CurrentInn.InventoryFood.Remove(f)
         CurrentInn.MenuFood.Add(f)
@@ -745,6 +748,22 @@
 #End Region
 
 #Region "Drinks"
+    Private Sub btnDrinkToMenu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDrinkToMenu.Click
+        Dim d As Drink = lstDrinks.SelectedItem
+        If d Is Nothing Then Exit Sub
+        If CurrentInn.MenuDrink.Count + 1 > 3 Then Exit Sub
+
+        CurrentInn.InventoryDrinks.Remove(d)
+        CurrentInn.MenuDrink.Add(d)
+        MenuDrinkRefresh()
+    End Sub
+    Private Sub btnMenuToDrink_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnMenuToDrink.Click
+        For Each d In CurrentInn.MenuDrink
+            CurrentInn.Add(d)
+        Next
+        CurrentInn.MenuDrink.Clear()
+        MenuDrinkRefresh()
+    End Sub
     Private Sub MenuDrinkRefresh()
         grpDrinkMenu.Controls.Clear()
 
@@ -770,6 +789,42 @@
         lstDrinks.Items.Clear()
         For Each d In CurrentInn.InventoryDrinks
             lstDrinks.Items.Add(d)
+        Next
+    End Sub
+
+    Private Sub lstDrinks_Click(ByVal sender As System.Object, ByVal e As MouseEventArgs) Handles lstDrinks.MouseDown
+        If e.Button = Windows.Forms.MouseButtons.Right Then
+            Dim choices As New List(Of String) From {"Sort by Name", "Sort by Fancy/Simple", "Sort by Beer/Wine/Spirits", "Sort by Specialisation"}
+
+            Dim dp As New DialogPicker
+            dp.MainList = choices
+            If dp.ShowDialog = Windows.Forms.DialogResult.OK Then
+                Dim choice As String = dp.Result
+                dp.Close()
+
+                If sender.Equals(lstDrinks) Then
+                    Dim comparer = Nothing
+                    Select Case choice
+                        Case "Sort by Name" : comparer = New Drink.SortByName
+                        Case "Sort by Fancy/Simple" : comparer = New Drink.SortByFanciness
+                        Case "Sort by Beer/Wine/Spirits" : comparer = New Drink.SortByAlcoholism
+                        Case "Sort by Specialisation" : comparer = New Drink.SortBySubtype
+                    End Select
+                    CurrentInn.InventoryFood.Sort(comparer)
+                Else
+                    Throw New Exception
+                End If
+                MenuDrinkRefresh()
+            End If
+        End If
+    End Sub
+#End Region
+
+#Region "Sales"
+    Private Sub RefreshSaleDrinks()
+        cmbSaleDrinks.Items.Clear()
+        For Each d In CurrentInn.SaleDrink
+            cmbSaleDrinks.Items.Add(d)
         Next
     End Sub
 #End Region
