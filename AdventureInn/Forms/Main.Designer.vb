@@ -94,7 +94,7 @@ Partial Class Main
         Me.tabExit = New System.Windows.Forms.TabPage()
         Me.grpWhelp = New System.Windows.Forms.GroupBox()
         Me.lblWhelpOverall = New System.Windows.Forms.Label()
-        Me.lblWhelpWhat = New System.Windows.Forms.Label()
+        Me.lblWhelpService = New System.Windows.Forms.Label()
         Me.lblWhelpEntertainment = New System.Windows.Forms.Label()
         Me.lblWhelpDrink = New System.Windows.Forms.Label()
         Me.lblWhelpFood = New System.Windows.Forms.Label()
@@ -106,6 +106,10 @@ Partial Class Main
         Me.lstParty = New System.Windows.Forms.ListBox()
         Me.lstAdventurers = New System.Windows.Forms.ListBox()
         Me.tabStorefront = New System.Windows.Forms.TabPage()
+        Me.grpSaleDrinks = New System.Windows.Forms.GroupBox()
+        Me.lblSaleDrinks = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.cmbSaleDrinks = New System.Windows.Forms.ComboBox()
         Me.grpSaleRecipes = New System.Windows.Forms.GroupBox()
         Me.grpSaleFoodIngredients = New System.Windows.Forms.GroupBox()
         Me.tabInventory = New System.Windows.Forms.TabPage()
@@ -113,10 +117,6 @@ Partial Class Main
         Me.grpGold = New System.Windows.Forms.GroupBox()
         Me.lblGold = New System.Windows.Forms.Label()
         Me.btnEndNight = New System.Windows.Forms.Button()
-        Me.grpSaleDrinks = New System.Windows.Forms.GroupBox()
-        Me.cmbSaleDrinks = New System.Windows.Forms.ComboBox()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.lblSaleDrinks = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.tbc.SuspendLayout()
         Me.tabFloor.SuspendLayout()
@@ -138,9 +138,9 @@ Partial Class Main
         Me.grpWhelp.SuspendLayout()
         Me.grpParty.SuspendLayout()
         Me.tabStorefront.SuspendLayout()
+        Me.grpSaleDrinks.SuspendLayout()
         Me.tabInventory.SuspendLayout()
         Me.grpGold.SuspendLayout()
-        Me.grpSaleDrinks.SuspendLayout()
         Me.SuspendLayout()
         '
         'lblFloor
@@ -818,7 +818,7 @@ Partial Class Main
         'grpWhelp
         '
         Me.grpWhelp.Controls.Add(Me.lblWhelpOverall)
-        Me.grpWhelp.Controls.Add(Me.lblWhelpWhat)
+        Me.grpWhelp.Controls.Add(Me.lblWhelpService)
         Me.grpWhelp.Controls.Add(Me.lblWhelpEntertainment)
         Me.grpWhelp.Controls.Add(Me.lblWhelpDrink)
         Me.grpWhelp.Controls.Add(Me.lblWhelpFood)
@@ -832,20 +832,23 @@ Partial Class Main
         '
         'lblWhelpOverall
         '
+        Me.lblWhelpOverall.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblWhelpOverall.Location = New System.Drawing.Point(337, 133)
         Me.lblWhelpOverall.Name = "lblWhelpOverall"
         Me.lblWhelpOverall.Size = New System.Drawing.Size(157, 109)
         Me.lblWhelpOverall.TabIndex = 28
         '
-        'lblWhelpWhat
+        'lblWhelpService
         '
-        Me.lblWhelpWhat.Location = New System.Drawing.Point(174, 133)
-        Me.lblWhelpWhat.Name = "lblWhelpWhat"
-        Me.lblWhelpWhat.Size = New System.Drawing.Size(157, 109)
-        Me.lblWhelpWhat.TabIndex = 27
+        Me.lblWhelpService.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblWhelpService.Location = New System.Drawing.Point(174, 133)
+        Me.lblWhelpService.Name = "lblWhelpService"
+        Me.lblWhelpService.Size = New System.Drawing.Size(157, 109)
+        Me.lblWhelpService.TabIndex = 27
         '
         'lblWhelpEntertainment
         '
+        Me.lblWhelpEntertainment.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblWhelpEntertainment.Location = New System.Drawing.Point(11, 133)
         Me.lblWhelpEntertainment.Name = "lblWhelpEntertainment"
         Me.lblWhelpEntertainment.Size = New System.Drawing.Size(157, 109)
@@ -853,6 +856,7 @@ Partial Class Main
         '
         'lblWhelpDrink
         '
+        Me.lblWhelpDrink.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblWhelpDrink.Location = New System.Drawing.Point(337, 17)
         Me.lblWhelpDrink.Name = "lblWhelpDrink"
         Me.lblWhelpDrink.Size = New System.Drawing.Size(157, 109)
@@ -860,6 +864,7 @@ Partial Class Main
         '
         'lblWhelpFood
         '
+        Me.lblWhelpFood.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblWhelpFood.Location = New System.Drawing.Point(174, 17)
         Me.lblWhelpFood.Name = "lblWhelpFood"
         Me.lblWhelpFood.Size = New System.Drawing.Size(157, 109)
@@ -867,6 +872,7 @@ Partial Class Main
         '
         'lblWhelpRoom
         '
+        Me.lblWhelpRoom.Font = New System.Drawing.Font("Microsoft Sans Serif", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblWhelpRoom.Location = New System.Drawing.Point(11, 17)
         Me.lblWhelpRoom.Name = "lblWhelpRoom"
         Me.lblWhelpRoom.Size = New System.Drawing.Size(157, 109)
@@ -941,6 +947,44 @@ Partial Class Main
         Me.tabStorefront.Text = "Storefront"
         Me.tabStorefront.UseVisualStyleBackColor = True
         '
+        'grpSaleDrinks
+        '
+        Me.grpSaleDrinks.Controls.Add(Me.lblSaleDrinks)
+        Me.grpSaleDrinks.Controls.Add(Me.Button1)
+        Me.grpSaleDrinks.Controls.Add(Me.cmbSaleDrinks)
+        Me.grpSaleDrinks.Location = New System.Drawing.Point(9, 118)
+        Me.grpSaleDrinks.Name = "grpSaleDrinks"
+        Me.grpSaleDrinks.Size = New System.Drawing.Size(245, 106)
+        Me.grpSaleDrinks.TabIndex = 2
+        Me.grpSaleDrinks.TabStop = False
+        Me.grpSaleDrinks.Text = "Drinks"
+        '
+        'lblSaleDrinks
+        '
+        Me.lblSaleDrinks.Location = New System.Drawing.Point(6, 49)
+        Me.lblSaleDrinks.Name = "lblSaleDrinks"
+        Me.lblSaleDrinks.Size = New System.Drawing.Size(233, 47)
+        Me.lblSaleDrinks.TabIndex = 14
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(201, 19)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(38, 23)
+        Me.Button1.TabIndex = 3
+        Me.Button1.Text = "Buy"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'cmbSaleDrinks
+        '
+        Me.cmbSaleDrinks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbSaleDrinks.FormattingEnabled = True
+        Me.cmbSaleDrinks.Location = New System.Drawing.Point(6, 19)
+        Me.cmbSaleDrinks.Name = "cmbSaleDrinks"
+        Me.cmbSaleDrinks.Size = New System.Drawing.Size(189, 21)
+        Me.cmbSaleDrinks.Sorted = True
+        Me.cmbSaleDrinks.TabIndex = 3
+        '
         'grpSaleRecipes
         '
         Me.grpSaleRecipes.Location = New System.Drawing.Point(268, 6)
@@ -1009,44 +1053,6 @@ Partial Class Main
         Me.btnEndNight.TabIndex = 19
         Me.btnEndNight.UseVisualStyleBackColor = True
         '
-        'grpSaleDrinks
-        '
-        Me.grpSaleDrinks.Controls.Add(Me.lblSaleDrinks)
-        Me.grpSaleDrinks.Controls.Add(Me.Button1)
-        Me.grpSaleDrinks.Controls.Add(Me.cmbSaleDrinks)
-        Me.grpSaleDrinks.Location = New System.Drawing.Point(9, 118)
-        Me.grpSaleDrinks.Name = "grpSaleDrinks"
-        Me.grpSaleDrinks.Size = New System.Drawing.Size(245, 106)
-        Me.grpSaleDrinks.TabIndex = 2
-        Me.grpSaleDrinks.TabStop = False
-        Me.grpSaleDrinks.Text = "Drinks"
-        '
-        'cmbSaleDrinks
-        '
-        Me.cmbSaleDrinks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbSaleDrinks.FormattingEnabled = True
-        Me.cmbSaleDrinks.Location = New System.Drawing.Point(6, 19)
-        Me.cmbSaleDrinks.Name = "cmbSaleDrinks"
-        Me.cmbSaleDrinks.Size = New System.Drawing.Size(189, 21)
-        Me.cmbSaleDrinks.Sorted = True
-        Me.cmbSaleDrinks.TabIndex = 3
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(201, 19)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(38, 23)
-        Me.Button1.TabIndex = 3
-        Me.Button1.Text = "Buy"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'lblSaleDrinks
-        '
-        Me.lblSaleDrinks.Location = New System.Drawing.Point(6, 49)
-        Me.lblSaleDrinks.Name = "lblSaleDrinks"
-        Me.lblSaleDrinks.Size = New System.Drawing.Size(233, 47)
-        Me.lblSaleDrinks.TabIndex = 14
-        '
         'Main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1087,9 +1093,9 @@ Partial Class Main
         Me.grpWhelp.ResumeLayout(False)
         Me.grpParty.ResumeLayout(False)
         Me.tabStorefront.ResumeLayout(False)
+        Me.grpSaleDrinks.ResumeLayout(False)
         Me.tabInventory.ResumeLayout(False)
         Me.grpGold.ResumeLayout(False)
-        Me.grpSaleDrinks.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1174,7 +1180,7 @@ Partial Class Main
     Friend WithEvents chkKitchenAutopick As System.Windows.Forms.CheckBox
     Friend WithEvents lblWhelpDrink As System.Windows.Forms.Label
     Friend WithEvents lblWhelpOverall As System.Windows.Forms.Label
-    Friend WithEvents lblWhelpWhat As System.Windows.Forms.Label
+    Friend WithEvents lblWhelpService As System.Windows.Forms.Label
     Friend WithEvents lblWhelpEntertainment As System.Windows.Forms.Label
     Friend WithEvents tabKitchen As System.Windows.Forms.TabPage
     Friend WithEvents tabInventory As System.Windows.Forms.TabPage

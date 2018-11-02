@@ -837,7 +837,7 @@
             lblWhelpFood.Text = ""
             lblWhelpDrink.Text = ""
             lblWhelpEntertainment.Text = ""
-            lblWhelpWhat.Text = ""
+            lblWhelpService.Text = ""
             lblWhelpOverall.Text = ""
             Exit Sub
         End If
@@ -845,7 +845,8 @@
         lblWhelpRoom.Text = CurrentInn.GuestsRoomSatisfaction(a).Key
         lblWhelpFood.Text = CurrentInn.GuestsFoodSatisfaction(a).Key
         lblWhelpDrink.Text = CurrentInn.GuestsDrinkSatisfaction(a).Key
-        lblWhelpEntertainment.Text = CurrentInn.GuestsEntertainmentSatisfaction(a).Key
+        'lblWhelpEntertainment.Text = CurrentInn.GuestsEntertainmentSatisfaction(a).Key
+        'lblwhelpservice.text = CurrentInn.GuestsServiceSatisfaction(a).Key
     End Sub
     Private Sub btnAdventurerToParty_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAdventurerToParty.Click
         Dim a As Adventurer = lstAdventurers.SelectedItem
