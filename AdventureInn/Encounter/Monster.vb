@@ -1,6 +1,6 @@
 ﻿Public Class Monster
     Inherits Encounter
-    Private Shared AllMonsters As Dictionary(Of String, List(Of Monster)) = AllMonstersPopulate()
+    Public Shared AllMonsters As Dictionary(Of String, List(Of Monster)) = AllMonstersPopulate()
     Private Shared Function AllMonstersPopulate() As Dictionary(Of String, List(Of Monster))
         Dim all As New List(Of Monster)
         Dim allRawData As Dictionary(Of String, List(Of String)) = IO.ImportSquareBracketList(IO.sbMonsters)

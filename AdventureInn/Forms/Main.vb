@@ -49,6 +49,7 @@
         WorkbenchRefresh()
         KitchenBuild()
         KitchenRefresh()
+        FrontDoorBuild()
     End Sub
     Private Sub RefreshGold() Handles CurrentInn.GoldChange
         lblGold.Text = CurrentInn.Gold.ToString("N0")
@@ -292,7 +293,7 @@
         If guest Is Nothing Then
             lblGuestWaitingDescription.Text = ""
         Else
-            lblGuestWaitingDescription.Text = guest.roompreferencedescription
+            lblGuestWaitingDescription.Text = guest.RoomPreferenceDescription
         End If
     End Sub
     Private Sub lblDescription_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lblGuestRoomedDescription.Click
@@ -312,10 +313,11 @@
     End Sub
     Private Sub btnRoomToWaiting_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRoomToWaiting.Click
         If CurrentRoom Is Nothing Then Exit Sub
+        If TypeOf CurrentRoom Is RoomBed = False Then Exit Sub
         If lstGuestsRoomed.SelectedIndex = -1 Then Exit Sub
 
         Dim guest As Adventurer = lstGuestsRoomed.SelectedItem
-        Dim errorstring As String = CurrentRoom.Remove(guest)
+        Dim errorstring As String = CType(CurrentRoom, RoomBed).Remove(guest)
         If errorstring <> "" Then MsgBox(errorstring, MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation, "Error") : Exit Sub
         lstGuestsRoomed.Items.Remove(guest)
         CurrentInn.WaitingGuests.Add(guest)
@@ -350,6 +352,12 @@
                 GuestsRefresh()
             End If
         End If
+    End Sub
+    Private Sub lstGuestsWaiting_MouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lstGuestsWaiting.MouseDoubleClick
+        btnWaitingToRoom_Click(btnWaitingToRoom, e)
+    End Sub
+    Private Sub lstGuestsRoomed_MouseDoubleClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles lstGuestsRoomed.MouseDoubleClick
+        btnRoomToWaiting_Click(btnRoomToWaiting, e)
     End Sub
 #End Region
 
@@ -873,7 +881,33 @@
             lstParty.Items.Remove(a)
         Next
         party.Name = InputBox("What is the party's name?", "Name Party")
-        CurrentInn.ExitingParties.Add(party)
+        lstParties.Items.Add(party)
+    End Sub
+    Private Sub cmbArea_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbArea.SelectedIndexChanged
+        If cmbArea.SelectedIndex = -1 Then Exit Sub
+        If AdventureAreas.ContainsKey(cmbArea.SelectedItem) = False Then Exit Sub
+
+        lblAreaDescription.Text = AdventureAreas(cmbArea.SelectedItem)
+    End Sub
+
+    Private AdventureAreas As New Dictionary(Of String, String)
+    Private Sub FrontDoorBuild()
+        For Each area In Monster.AllMonsters.Keys
+            If AdventureAreas.Keys.Contains(area) = False Then
+                Dim desc As String = ""
+                Select Case area
+                    Case "Farmlands" : desc = ""
+                    Case "Forest"
+                    Case "Ruins"
+                    Case "Hills"
+                    Case "Mountains"
+                End Select
+                AdventureAreas.Add(area, desc)
+                cmbArea.Items.Add(area)
+            End If
+        Next
+
+        lblAreaDescription.Text = ""
     End Sub
 #End Region
 End Class

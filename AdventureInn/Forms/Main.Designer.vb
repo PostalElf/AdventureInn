@@ -92,6 +92,12 @@ Partial Class Main
         Me.btnInventorySort = New System.Windows.Forms.Button()
         Me.lstInventory = New System.Windows.Forms.ListBox()
         Me.tabExit = New System.Windows.Forms.TabPage()
+        Me.grpBountyBoard = New System.Windows.Forms.GroupBox()
+        Me.btnBounty = New System.Windows.Forms.Button()
+        Me.lblAreaDescription = New System.Windows.Forms.Label()
+        Me.lblArea = New System.Windows.Forms.Label()
+        Me.cmbArea = New System.Windows.Forms.ComboBox()
+        Me.lstParties = New System.Windows.Forms.ListBox()
         Me.grpWhelp = New System.Windows.Forms.GroupBox()
         Me.lblWhelpOverall = New System.Windows.Forms.Label()
         Me.lblWhelpService = New System.Windows.Forms.Label()
@@ -135,6 +141,7 @@ Partial Class Main
         Me.grpWorkbench.SuspendLayout()
         Me.grpRoomItems.SuspendLayout()
         Me.tabExit.SuspendLayout()
+        Me.grpBountyBoard.SuspendLayout()
         Me.grpWhelp.SuspendLayout()
         Me.grpParty.SuspendLayout()
         Me.tabStorefront.SuspendLayout()
@@ -806,6 +813,7 @@ Partial Class Main
         '
         'tabExit
         '
+        Me.tabExit.Controls.Add(Me.grpBountyBoard)
         Me.tabExit.Controls.Add(Me.grpWhelp)
         Me.tabExit.Controls.Add(Me.grpParty)
         Me.tabExit.Location = New System.Drawing.Point(4, 40)
@@ -815,6 +823,64 @@ Partial Class Main
         Me.tabExit.Text = "Front Door"
         Me.tabExit.UseVisualStyleBackColor = True
         '
+        'grpBountyBoard
+        '
+        Me.grpBountyBoard.Controls.Add(Me.btnBounty)
+        Me.grpBountyBoard.Controls.Add(Me.lblAreaDescription)
+        Me.grpBountyBoard.Controls.Add(Me.lblArea)
+        Me.grpBountyBoard.Controls.Add(Me.cmbArea)
+        Me.grpBountyBoard.Controls.Add(Me.lstParties)
+        Me.grpBountyBoard.Location = New System.Drawing.Point(8, 380)
+        Me.grpBountyBoard.Name = "grpBountyBoard"
+        Me.grpBountyBoard.Size = New System.Drawing.Size(508, 111)
+        Me.grpBountyBoard.TabIndex = 19
+        Me.grpBountyBoard.TabStop = False
+        Me.grpBountyBoard.Text = "Bounty Board"
+        '
+        'btnBounty
+        '
+        Me.btnBounty.Location = New System.Drawing.Point(467, 78)
+        Me.btnBounty.Name = "btnBounty"
+        Me.btnBounty.Size = New System.Drawing.Size(32, 23)
+        Me.btnBounty.TabIndex = 21
+        Me.btnBounty.Text = "Go"
+        Me.btnBounty.UseVisualStyleBackColor = True
+        '
+        'lblAreaDescription
+        '
+        Me.lblAreaDescription.Location = New System.Drawing.Point(243, 48)
+        Me.lblAreaDescription.Name = "lblAreaDescription"
+        Me.lblAreaDescription.Size = New System.Drawing.Size(218, 46)
+        Me.lblAreaDescription.TabIndex = 20
+        Me.lblAreaDescription.Text = "This space intentionally left blank."
+        '
+        'lblArea
+        '
+        Me.lblArea.AutoSize = True
+        Me.lblArea.Location = New System.Drawing.Point(243, 22)
+        Me.lblArea.Name = "lblArea"
+        Me.lblArea.Size = New System.Drawing.Size(32, 13)
+        Me.lblArea.TabIndex = 19
+        Me.lblArea.Text = "Area:"
+        '
+        'cmbArea
+        '
+        Me.cmbArea.BackColor = System.Drawing.Color.White
+        Me.cmbArea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbArea.FormattingEnabled = True
+        Me.cmbArea.Location = New System.Drawing.Point(281, 19)
+        Me.cmbArea.Name = "cmbArea"
+        Me.cmbArea.Size = New System.Drawing.Size(212, 21)
+        Me.cmbArea.TabIndex = 18
+        '
+        'lstParties
+        '
+        Me.lstParties.FormattingEnabled = True
+        Me.lstParties.Location = New System.Drawing.Point(6, 19)
+        Me.lstParties.Name = "lstParties"
+        Me.lstParties.Size = New System.Drawing.Size(226, 82)
+        Me.lstParties.TabIndex = 17
+        '
         'grpWhelp
         '
         Me.grpWhelp.Controls.Add(Me.lblWhelpOverall)
@@ -823,7 +889,7 @@ Partial Class Main
         Me.grpWhelp.Controls.Add(Me.lblWhelpDrink)
         Me.grpWhelp.Controls.Add(Me.lblWhelpFood)
         Me.grpWhelp.Controls.Add(Me.lblWhelpRoom)
-        Me.grpWhelp.Location = New System.Drawing.Point(8, 147)
+        Me.grpWhelp.Location = New System.Drawing.Point(8, 3)
         Me.grpWhelp.Name = "grpWhelp"
         Me.grpWhelp.Size = New System.Drawing.Size(508, 254)
         Me.grpWhelp.TabIndex = 18
@@ -885,16 +951,16 @@ Partial Class Main
         Me.grpParty.Controls.Add(Me.btnAdventurerToParty)
         Me.grpParty.Controls.Add(Me.lstParty)
         Me.grpParty.Controls.Add(Me.lstAdventurers)
-        Me.grpParty.Location = New System.Drawing.Point(8, 3)
+        Me.grpParty.Location = New System.Drawing.Point(8, 263)
         Me.grpParty.Name = "grpParty"
-        Me.grpParty.Size = New System.Drawing.Size(508, 138)
+        Me.grpParty.Size = New System.Drawing.Size(508, 111)
         Me.grpParty.TabIndex = 17
         Me.grpParty.TabStop = False
         Me.grpParty.Text = "Form Party"
         '
         'btnFormParty
         '
-        Me.btnFormParty.Location = New System.Drawing.Point(414, 107)
+        Me.btnFormParty.Location = New System.Drawing.Point(414, 81)
         Me.btnFormParty.Name = "btnFormParty"
         Me.btnFormParty.Size = New System.Drawing.Size(88, 23)
         Me.btnFormParty.TabIndex = 20
@@ -924,7 +990,7 @@ Partial Class Main
         Me.lstParty.FormattingEnabled = True
         Me.lstParty.Location = New System.Drawing.Point(276, 19)
         Me.lstParty.Name = "lstParty"
-        Me.lstParty.Size = New System.Drawing.Size(226, 82)
+        Me.lstParty.Size = New System.Drawing.Size(226, 56)
         Me.lstParty.TabIndex = 17
         '
         'lstAdventurers
@@ -932,7 +998,7 @@ Partial Class Main
         Me.lstAdventurers.FormattingEnabled = True
         Me.lstAdventurers.Location = New System.Drawing.Point(6, 19)
         Me.lstAdventurers.Name = "lstAdventurers"
-        Me.lstAdventurers.Size = New System.Drawing.Size(226, 108)
+        Me.lstAdventurers.Size = New System.Drawing.Size(226, 82)
         Me.lstAdventurers.TabIndex = 16
         '
         'tabStorefront
@@ -1090,6 +1156,8 @@ Partial Class Main
         Me.grpWorkbench.ResumeLayout(False)
         Me.grpRoomItems.ResumeLayout(False)
         Me.tabExit.ResumeLayout(False)
+        Me.grpBountyBoard.ResumeLayout(False)
+        Me.grpBountyBoard.PerformLayout()
         Me.grpWhelp.ResumeLayout(False)
         Me.grpParty.ResumeLayout(False)
         Me.tabStorefront.ResumeLayout(False)
@@ -1193,5 +1261,11 @@ Partial Class Main
     Friend WithEvents lblSaleDrinks As System.Windows.Forms.Label
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents cmbSaleDrinks As System.Windows.Forms.ComboBox
+    Friend WithEvents grpBountyBoard As System.Windows.Forms.GroupBox
+    Friend WithEvents lblArea As System.Windows.Forms.Label
+    Friend WithEvents cmbArea As System.Windows.Forms.ComboBox
+    Friend WithEvents lstParties As System.Windows.Forms.ListBox
+    Friend WithEvents btnBounty As System.Windows.Forms.Button
+    Friend WithEvents lblAreaDescription As System.Windows.Forms.Label
 
 End Class
