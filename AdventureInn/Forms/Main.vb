@@ -896,6 +896,18 @@
 
         lblAreaDescription.Text = AdventureAreas(cmbArea.SelectedItem)
     End Sub
+    Private Sub btnBounty_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBounty.Click
+        Dim party As Party = lstParties.SelectedItem
+        Dim area As String = cmbArea.SelectedItem
+        If party Is Nothing OrElse area Is Nothing Then Exit Sub
+
+        If MsgBox("Send " & party.Name & " to the " & area & "?", MsgBoxStyle.YesNo + MsgBoxStyle.Question, "Post Bounty") = MsgBoxResult.No Then Exit Sub
+
+        Dim adventure As Adventure = adventure.Generate(area)
+        Dim results = adventure.CheckEncounters(party)
+        Dim reports As List(Of String) = results.Key
+        Dim loot As List(Of String) = results.Value
+    End Sub
 
     Private AdventureAreas As New Dictionary(Of String, String)
     Private Sub FrontDoorBuild()

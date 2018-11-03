@@ -99,6 +99,12 @@
     </Compile>
     <Compile Include="Encounter\LootItem.vb" />
     <Compile Include="Encounter\Monster.vb" />
+    <Compile Include="Forms\DialogAdventure.Designer.vb">
+      <DependentUpon>DialogAdventure.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DialogAdventure.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Room\RoomBar.vb" />
     <Compile Include="Room\RoomBed.vb" />
     <Compile Include="Room\Floor.vb" />
@@ -134,6 +140,9 @@
     <Compile Include="Room\xyContainer.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\DialogAdventure.resx">
+      <DependentUpon>DialogAdventure.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DialogPicker.resx">
       <DependentUpon>DialogPicker.vb</DependentUpon>
     </EmbeddedResource>
