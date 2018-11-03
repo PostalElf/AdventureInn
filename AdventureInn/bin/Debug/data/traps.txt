@@ -55,17 +55,253 @@ Success: <adventurer> spies <loot> lying around and grabs it while the farmstead
 Failure: <adventurer> is caught trying to steal from the farmsteader, and the party is chased out of the house.
 
 [Restless Cemetery]
+Area: Forest
+Level: 1
+Job: Cleric
+Success: The restless spirits haunting the cemetery flee from <adventurer>, and <pronoun> retrieves <loot> worth of grave goods.
+Failure: <adventurer> is forced to flee from the restless dead in the cemetery.
 
 [Fallen Cart]
+Area: Forest
+Level: 1
+Job: Fighter
+Success: <adventurer> hefts the fallen cart up, allowing <propos> party to loot <loot>.
+Failure: <adventurer> sprains <propos> back trying to lift up a cart.
 
 [Enchanted Crossroads]
+Area: Forest
+Level: 1
+Job: Mage
+Success: <adventurer> successfully navigates the enchanted crossroads. Grateful lost villagers give the party <loot>.
+Failure: <adventurer> gets turned around at the enchanted crossroads.
 
 [Suspicious Chest]
+Area: Forest
+Level: 1
+Job: Rogue
+Success: <adventurer> investigates the suspicious chest. It turns out to be full of <loot>.
+Failure: The suspicious chest turns out to be a mimic. <adventurer> flees, empty-handed.
+
+[Temple Puzzle Door]
+Area: Forest
+Level: 2
+Job: Cleric
+Success: Using <propos> knowledge of obscure religious lore, <adventurer> opens the puzzle door to reveal <loot>.
+Failure: <adventurer> has no idea how to open the forest temple's puzzle door.
+
+[Broken Bridge]
+Area: Forest
+Level: 2
+Job: Fighter
+Success: <adventurer> repairs the bridge with manly know-how, allowing the party to get to the <loot> on the other side.
+Failure: <adventurer>'s hasty bridge repair does not hold, and the party flees.
+
+[Fey Enchantment]
+Area: Forest
+Level: 2
+Job: Mage
+Success: <adventurer> navigates the fey enchantment around the woods and finds <loot>.
+Failure: <adventurer> falls asleep in a picturesque grove, the victim of some fey enchantment.
+
+[Ruined Watchtower]
+Area: Forest
+Level: 2
+Job: Rogue
+Success: <adventurer> climbs up a shaky trellis and loots the watchtower, getting <loot>.
+Failure: <adventurer> tries to explore the ruined watchtower but is stymied by a collapsed roof.
+
+[Sand-Buried Dead]
+Area: Desert
+Level: 3
+Job: Cleric
+Success: <adventurer> puts the buried skeleton to rest, but does not hesitate in taking its <loot>.
+Failure: <adventurer> is forced to flee from an angry skeleton rising from the sands.
+
+[Tomb Raiding]
+Area: Desert
+Level: 3
+Job: Fighter
+Success: Lighting a torch, <adventurer> delves into the unnamed tomb in the sands and finds <loot>.
+Failure: <adventurer> refuses to go tomb-raiding on the grounds that it 'might be full of spiders.'
+
+[Sandstorm]
+Area: Desert
+Level: 3
+Job: Mage
+Success: <adventurer> dispels the sandstorm with a cantrip, revealing <loot>.
+Failure: For all the invocations and magics at <propos> disposal, <adventurer> fails to dispel the sandstorm.
+
+[Ingenious Trap]
+Area: Desert
+Level: 3
+Job: Rogue
+Success: <adventurer> sneaks past the swinging blades, pit traps, and poison arrows, and returns with <loot>.
+Failure: <adventurer> narrowly escapes decapitation from a swinging blade trap.
+
+[Hostile Djinns]
+Area: Desert
+Level: 4
+Job: Cleric
+Success: <adventurer> pacifies the djinns of the region, and is rewarded with <loot>.
+Failure: <adventurer> tries <pronoun> best to dispel the djinns of the region, but ends up caught in a sandstorm.
+
+[Sandstone Pillar]
+Area: Desert
+Level: 4
+Job: Fighter
+Success: <adventurer> successfully climbs to the top of the sandstone pillar and lowers down <loot> to the party.
+Failure: <adventurer> tries to climb the sandstone pillar and ends up with nothing but sand in <pronoun> pants.
+
+[Tribal Dustwards]
+Area: Desert
+Level: 4
+Job: Mage
+Success: <adventurer> manages to dispel the dustwards and steal <loot> before the angry tribesmen catch up with the party.
+Failure: <adventurer> is forced to flee in the face of angry tribesmen and their surprisingly potent dustwards.
+
+[Buried Treasure]
+Area: Desert
+Level: 4
+Job: Rogue
+Success: <adventurer> spots the glint of a partially-buried ironwood chest and finds <loot> within.
+Failure: <adventurer> walks by a buried treasure chest, completely oblivious.
 
 [Angry Zombie Horde]
+Area: Ruins
+Level: 5
+Job: Cleric
+Success: <adventurer>'s faith holds, and the party walks through the zombie horde untouched to retrieve <loot>.
+Failure: <adventurer>'s faith falters, and the party is forced to flee from the angry zombie horde.
 
 [Wide Chasm]
+Area: Ruins
+Level: 5
+Job: Fighter
+Success: <adventurer> jumps across the chasm and retrieves the <loot> lying on the other side.
+Failure: <adventurer> mistimes <propos> jump and falls a short way. It's more embarassing than anything else.
 
 [Arcane Wards]
+Area: Ruins
+Level: 5
+Job: Mage
+Success: <adventurer> dispels the magical wards guarding the <loot>.
+Failure: The wards hold, and <adventurer> walks away shamefacedly.
 
 [Secret Passageway]
+Area: Ruins
+Level: 5
+Job: Rogue
+Success: <adventurer> sniffs out the secret wall hiding the <loot>.
+Failure: <adventurer> walks by a secret passageway and is none the wiser.
+
+[]
+Area: Ruins
+Level: 6
+Job: Cleric
+Success: 
+Failure: 
+
+[]
+Area: Ruins
+Level: 6
+Job: Fighter
+Success: 
+Failure: 
+
+[]
+Area: Ruins
+Level: 6
+Job: Mage
+Success: 
+Failure: 
+
+[]
+Area: Ruins
+Level: 6
+Job: Rogue
+Success: 
+Failure: 
+
+[]
+Area: Hills
+Level: 7
+Job: Cleric
+Success: 
+Failure: 
+
+[]
+Area: Hills
+Level: 7
+Job: Fighter
+Success: 
+Failure: 
+
+[]
+Area: Hills
+Level: 7
+Job: Cleric
+Success: 
+Failure: 
+
+[]
+Area: Hills
+Level: 7
+Job: Rogue
+Success: 
+Failure: 
+
+[]
+Area: Hills
+Level: 8
+Job: Cleric
+Success: 
+Failure: 
+
+[]
+Area: Hills
+Level: 8
+Job: Fighter
+Success: 
+Failure: 
+
+[]
+Area: Hills
+Level: 8
+Job: Cleric
+Success: 
+Failure: 
+
+[]
+Area: Hills
+Level: 8
+Job: Rogue
+Success: 
+Failure: 
+
+[]
+Area: Mountains
+Level: 9
+Job: Cleric
+Success: 
+Failure: 
+
+[]
+Area: Mountains
+Level: 9
+Job: Fighter
+Success: 
+Failure: 
+
+[]
+Area: Mountains
+Level: 9
+Job: Mage
+Success: 
+Failure: 
+
+[]
+Area: Mountains
+Level: 9
+Job: Rogue
+Success: 
+Failure: 

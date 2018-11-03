@@ -834,6 +834,13 @@
         For Each d In CurrentInn.SaleDrink
             cmbSaleDrinks.Items.Add(d)
         Next
+        lblSaleDrinks.Text = ""
+    End Sub
+    Private Sub cmbSaleDrinks_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbSaleDrinks.SelectedIndexChanged
+        Dim d As Drink = cmbSaleDrinks.SelectedItem
+        If d Is Nothing Then Exit Sub
+
+        lblSaleDrinks.Text = d.AttributesDescription
     End Sub
 #End Region
 
@@ -896,11 +903,12 @@
             If AdventureAreas.Keys.Contains(area) = False Then
                 Dim desc As String = ""
                 Select Case area
-                    Case "Farmlands" : desc = ""
-                    Case "Forest"
-                    Case "Ruins"
-                    Case "Hills"
-                    Case "Mountains"
+                    Case "Farmlands" : desc = "A calm, quiet place suitable for level 0 adventurers."
+                    Case "Forest" : desc = "Full of monsters appropriately scaled for level 1-2 adventurers."
+                    Case "Desert" : desc = "Endless sands with endless level 3-4 monsters."
+                    Case "Ruins" : desc = "Dark corners filled with challenges for level 5-6 adventurers."
+                    Case "Hills" : desc = "Challenging even for a party of level 7-8 adventurers."
+                    Case "Mountains" : desc = "Fame and fortune awaits here for level 9 adventurers."
                 End Select
                 AdventureAreas.Add(area, desc)
                 cmbArea.Items.Add(area)

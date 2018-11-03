@@ -88,7 +88,7 @@ Drop2: Rotshrub, 50
 
 [Gorgon]
 Level: 4
-Area: Ruins
+Area: Desert
 Drop1: Gorgon Hide, 50
 Drop1: Gorgon Flank, 50
 Drop2: Gorgon Milk, 25

@@ -27,6 +27,11 @@
             Return "him"
         End Get
     End Property
+    Public ReadOnly Property PronounPossessive As String
+        Get
+            Return "his"
+        End Get
+    End Property
     Private Shared GeneratedNames As New List(Of String)
     Private Shared Function GenerateName(ByVal race As Race) As String
         Dim sourceList As List(Of String) = Nothing

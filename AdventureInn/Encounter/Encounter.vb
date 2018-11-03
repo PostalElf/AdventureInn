@@ -112,7 +112,8 @@
     Private Function ParseReport(ByVal adv As Adventurer, ByVal loot As List(Of String), ByVal str As String) As String
         Dim total As String = str
         total = total.Replace("<adventurer>", adv.ToString)
-        total = total.Replace("<pronoun>", adv.pronoun)
+        total = total.Replace("<pronoun>", adv.Pronoun)
+        total = total.Replace("<propos>", adv.PronounPossessive)
         If loot.Count > 0 Then
             total = total.Replace("<loot>", ListToCommaString(loot, " && "))
         Else

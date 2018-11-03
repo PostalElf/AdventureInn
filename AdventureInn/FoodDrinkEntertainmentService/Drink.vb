@@ -53,6 +53,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property AttributesDescription As String
+        Get
+            Return Fanciness & " " & Alcoholism & ", " & Subtype
+        End Get
+    End Property
+
     Public Class SortByName
         Implements IComparer(Of Drink)
         Public Function Compare(ByVal x As Drink, ByVal y As Drink) As Integer Implements System.Collections.Generic.IComparer(Of Drink).Compare
