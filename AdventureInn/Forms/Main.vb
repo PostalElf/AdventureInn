@@ -906,7 +906,14 @@
         Dim adventure As Adventure = adventure.Generate(area)
         Dim results = adventure.CheckEncounters(party)
         Dim reports As List(Of String) = results.Key
-        Dim loot As List(Of String) = results.Value
+        Dim loot As List(Of LootItem) = results.Value
+        Dim da As New DialogAdventure(reports, loot)
+        da.ShowDialog()
+
+        lstParties.Items.Remove(party)
+        For Each li In loot
+            CurrentInn.Add(li)
+        Next
     End Sub
 
     Private AdventureAreas As New Dictionary(Of String, String)

@@ -137,6 +137,13 @@
     Public Sub Add(ByVal adventurer As Adventurer)
         WaitingGuests.Add(adventurer)
     End Sub
+    Public Sub Add(ByVal li As LootItem)
+        If TypeOf li Is FoodIngredient Then
+            InventoryFoodIngredients.Add(li)
+        Else
+            Throw New Exception
+        End If
+    End Sub
 
     Private ReadOnly Property Bar As Room
         Get

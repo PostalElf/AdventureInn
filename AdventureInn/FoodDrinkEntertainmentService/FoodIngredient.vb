@@ -1,4 +1,5 @@
 ﻿Public Class FoodIngredient
+    Implements LootItem
     Public Shared AllFoodIngredients As SortedDictionary(Of String, FoodIngredient) = AllFoodIngredientsPopulate()
     Private Shared Function AllFoodIngredientsPopulate() As SortedDictionary(Of String, FoodIngredient)
         Dim total As New SortedDictionary(Of String, FoodIngredient)
@@ -41,13 +42,13 @@
         Return Name
     End Function
 
-    Public Name As String
+    Public Property Name As String Implements LootItem.Name
     Public IngredientType As String
     Public Richness As Integer
     Public Meatiness As Integer
     Public Exoticness As Integer
     Public Quality As Integer
-    Public ReadOnly Property AttributesDescription As String
+    Public ReadOnly Property AttributesDescription As String Implements LootItem.AttributesDescription
         Get
             Dim total As String = ""
             total &= "Quality: " & Quality & vbCrLf

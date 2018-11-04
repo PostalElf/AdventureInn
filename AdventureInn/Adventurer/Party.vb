@@ -1,5 +1,8 @@
 ﻿Public Class Party
     Public Name As String
+    Public Overrides Function ToString() As String
+        Return Name
+    End Function
 
     Public Const MaxSize As Integer = 4
     Private Adventurers As New List(Of Adventurer)

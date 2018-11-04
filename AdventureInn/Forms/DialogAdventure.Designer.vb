@@ -23,30 +23,29 @@ Partial Class DialogAdventure
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(DialogAdventure))
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblResults = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.grpLoot = New System.Windows.Forms.GroupBox()
-        Me.lstLoot = New System.Windows.Forms.ListBox()
         Me.lblLootDescription = New System.Windows.Forms.Label()
+        Me.lstLoot = New System.Windows.Forms.ListBox()
         Me.btnOK = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.grpLoot.SuspendLayout()
         Me.SuspendLayout()
         '
-        'Label1
+        'lblResults
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(7, 11)
-        Me.Label1.MinimumSize = New System.Drawing.Size(475, 150)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(475, 150)
-        Me.Label1.TabIndex = 0
-        Me.Label1.Text = "This space intentionally left blank."
+        Me.lblResults.AutoSize = True
+        Me.lblResults.Location = New System.Drawing.Point(7, 11)
+        Me.lblResults.MinimumSize = New System.Drawing.Size(475, 150)
+        Me.lblResults.Name = "lblResults"
+        Me.lblResults.Size = New System.Drawing.Size(475, 150)
+        Me.lblResults.TabIndex = 0
         '
         'Panel1
         '
         Me.Panel1.AutoScroll = True
-        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.lblResults)
         Me.Panel1.Location = New System.Drawing.Point(12, 12)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(507, 174)
@@ -63,14 +62,6 @@ Partial Class DialogAdventure
         Me.grpLoot.TabStop = False
         Me.grpLoot.Text = "Loot"
         '
-        'lstLoot
-        '
-        Me.lstLoot.FormattingEnabled = True
-        Me.lstLoot.Location = New System.Drawing.Point(10, 19)
-        Me.lstLoot.Name = "lstLoot"
-        Me.lstLoot.Size = New System.Drawing.Size(254, 121)
-        Me.lstLoot.TabIndex = 0
-        '
         'lblLootDescription
         '
         Me.lblLootDescription.Location = New System.Drawing.Point(270, 19)
@@ -78,6 +69,14 @@ Partial Class DialogAdventure
         Me.lblLootDescription.Size = New System.Drawing.Size(176, 121)
         Me.lblLootDescription.TabIndex = 1
         Me.lblLootDescription.Text = "This space intentionally left blank."
+        '
+        'lstLoot
+        '
+        Me.lstLoot.FormattingEnabled = True
+        Me.lstLoot.Location = New System.Drawing.Point(10, 19)
+        Me.lstLoot.Name = "lstLoot"
+        Me.lstLoot.Size = New System.Drawing.Size(254, 121)
+        Me.lstLoot.TabIndex = 0
         '
         'btnOK
         '
@@ -112,7 +111,7 @@ Partial Class DialogAdventure
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lblResults As System.Windows.Forms.Label
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents grpLoot As System.Windows.Forms.GroupBox
     Friend WithEvents lblLootDescription As System.Windows.Forms.Label
