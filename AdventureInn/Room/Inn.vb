@@ -155,6 +155,28 @@
             Return Nothing
         End Get
     End Property
+    Public Sub StartNight()
+        'repopulate guest list
+        While RecurringGuests.Count < RecurringGuestNumber
+            Dim g As Adventurer = Adventurer.Generate
+            RecurringGuests.Add(g)
+        End While
+        WaitingGuests.Clear()
+        Dim allGuests As New List(Of Adventurer)(RecurringGuests)
+        For n = 1 To 10
+            WaitingGuests.Add(GrabRandom(allGuests))
+        Next
+
+        'repopulate storefront
+        SaleFoodIngredients.Clear()
+        SaleFoodRecipe.Clear()
+        SaleDrink.Clear()
+        For n = 1 To 10
+            Dim roll As Integer = Rng.Next(Drink.AllDrinks.Count)
+            Dim drinkName As String = Drink.AllDrinks.Keys(roll)
+            SaleDrink.Add(Drink.Generate(drinkName))
+        Next
+    End Sub
     Public Sub EndNight()
         GuestsFoodSatisfaction.Clear()
         GuestsRoomSatisfaction.Clear()
@@ -180,25 +202,6 @@
         MenuFood.Clear()
         MenuDrink.Clear()
 
-        'repopulate guest list
-        While RecurringGuests.Count < RecurringGuestNumber
-            Dim g As Adventurer = Adventurer.Generate
-            RecurringGuests.Add(g)
-        End While
-        WaitingGuests.Clear()
-        Dim allGuests As New List(Of Adventurer)(RecurringGuests)
-        For n = 1 To 10
-            WaitingGuests.Add(GrabRandom(allGuests))
-        Next
-
-        'repopulate storefront
-        SaleFoodIngredients.Clear()
-        SaleFoodRecipe.Clear()
-        SaleDrink.Clear()
-        For n = 1 To 10
-            Dim roll As Integer = Rng.Next(Drink.AllDrinks.Count)
-            Dim drinkName As String = Drink.AllDrinks.Keys(roll)
-            SaleDrink.Add(Drink.Generate(drinkName))
-        Next
+        StartNight()
     End Sub
 End Class

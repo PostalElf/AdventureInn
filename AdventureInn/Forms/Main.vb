@@ -35,6 +35,8 @@
             .Add(FoodIngredient.Generate("Cow Milk"))
             .Add(FoodIngredient.Generate("Beef Offals"))
             .Add(FoodIngredient.Generate("Muskgrass"))
+
+            .StartNight()
         End With
     End Sub
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -889,7 +891,7 @@
             party.Add(a)
             lstParty.Items.Remove(a)
         Next
-        party.Name = InputBox("What is the party's name?", "Name Party")
+        party.Name = InputBox("What is the party's name?", "Name Party", party.GetRandomName)
         lstParties.Items.Add(party)
     End Sub
     Private Sub cmbArea_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbArea.SelectedIndexChanged

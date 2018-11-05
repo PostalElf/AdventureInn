@@ -4,6 +4,14 @@
         Return Name
     End Function
 
+    Private Shared AllPartyNames As List(Of String) = PopulateAllPartyNames
+    Private Shared Function PopulateAllPartyNames() As List(Of String)
+        Return IO.ImportTextList(IO.txPartyNames)
+    End Function
+    Public Shared Function GetRandomName()
+        Return GetRandom(AllPartyNames)
+    End Function
+
     Public Const MaxSize As Integer = 4
     Private Adventurers As New List(Of Adventurer)
     Public Function Add(ByVal adventurer As Adventurer) As String

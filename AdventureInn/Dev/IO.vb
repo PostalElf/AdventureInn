@@ -12,6 +12,7 @@ Public Class IO
     Public Const txDwarfNames As String = "data/dwarfnames.txt"
     Public Const txHumanNames As String = "data/humannames.txt"
     Public Const txHalflingNames As String = "data/halflingnames.txt"
+    Public Const txPartyNames As String = "data/partynames.txt"
 #End Region
 
     Public Shared Function ImportTextList(ByVal pathname As String) As List(Of String)
