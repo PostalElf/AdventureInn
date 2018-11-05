@@ -361,7 +361,7 @@
     End Sub
 #End Region
 
-#Region "Inventory"
+#Region "Workbench"
     Private Sub WorkbenchBuild()
         For Each riName In RoomItem.AllRoomItems.Keys
             Dim ri As RoomItem = RoomItem.AllRoomItems(riName)
@@ -402,7 +402,7 @@
     End Function
 #End Region
 
-#Region "Food"
+#Region "Kitchen"
     Private ActiveRecipe As FoodRecipe = Nothing
     Private KitchenLbls(4) As Label
     Private KitchenTxts(4) As Label
@@ -669,7 +669,9 @@
         sender.Enabled = False
         CountertopUpdate()
     End Sub
+#End Region
 
+#Region "Food"
     Private Sub btnFoodToMenu_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnFoodToMenu.Click
         Dim f As Food = lstFood.SelectedItem
         If f Is Nothing Then Exit Sub
@@ -914,6 +916,7 @@
         For Each li In loot
             CurrentInn.Add(li)
         Next
+        KitchenRefresh()
     End Sub
 
     Private AdventureAreas As New Dictionary(Of String, String)
