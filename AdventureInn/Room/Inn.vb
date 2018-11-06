@@ -105,7 +105,6 @@
     Public GuestsDrinkSatisfaction As New Dictionary(Of Adventurer, Pair(Of String, Integer))
     Public GuestsEntertainmentSatisfaction As New Dictionary(Of Adventurer, Pair(Of String, Integer))
     Public GuestsServiceSatisfaction As New Dictionary(Of Adventurer, Pair(Of String, Integer))
-    Public ExitingParties As New List(Of Party)
 
     Public SaleFoodIngredients As New List(Of FoodIngredient)
     Public SaleFoodRecipe As New List(Of FoodRecipe)
@@ -145,7 +144,17 @@
         End If
     End Sub
 
-    Private ReadOnly Property Bar As Room
+    Public ReadOnly Property RoomDining As Room
+        Get
+            For Each f In Floors
+                For Each r In f.Rooms
+                    If TypeOf r Is roomdining Then Return r
+                Next
+            Next
+            Return Nothing
+        End Get
+    End Property
+    Public ReadOnly Property RoomBar As Room
         Get
             For Each f In Floors
                 For Each r In f.Rooms
@@ -155,7 +164,28 @@
             Return Nothing
         End Get
     End Property
-    Public Sub StartNight()
+    Public ReadOnly Property RoomEntertainment As Room
+        Get
+            For Each f In Floors
+                For Each r In f.Rooms
+                    If TypeOf r Is roomentertainment Then Return r
+                Next
+            Next
+            Return Nothing
+        End Get
+    End Property
+    Public ReadOnly Property RoomService As Room
+        Get
+            For Each f In Floors
+                For Each r In f.Rooms
+                    If TypeOf r Is Roomservice Then Return r
+                Next
+            Next
+            Return Nothing
+        End Get
+    End Property
+
+    Public Sub StartNight(ByVal world As World)
         'repopulate guest list
         While RecurringGuests.Count < RecurringGuestNumber
             Dim g As Adventurer = Adventurer.Generate
@@ -168,7 +198,21 @@
         Next
 
         'repopulate storefront
+        Dim counter As Integer = 0
         SaleFoodIngredients.Clear()
+        For Each area In world.LocationDanger.Keys
+            If world.LocationDanger(area) = 100 Then Exit Sub
+            While counter <= 10
+                Dim roll As Integer = Rng.Next(1, 101)
+                If roll > world.LocationDanger(area) Then counter = 10
+                Dim loot As LootItem = GetRandom(Of LootItem)(world.GetRandomLoot(area))
+                Select Case loot.GetType
+                    Case GetType(FoodIngredient) : SaleFoodIngredients.Add(CType(loot, FoodIngredient))
+                    Case Else : Throw New Exception
+                End Select
+                counter += 1
+            End While
+        Next
         SaleFoodRecipe.Clear()
         SaleDrink.Clear()
         For n = 1 To 10
@@ -177,7 +221,7 @@
             SaleDrink.Add(Drink.Generate(drinkName))
         Next
     End Sub
-    Public Sub EndNight()
+    Public Sub EndNight(ByVal world As World)
         GuestsFoodSatisfaction.Clear()
         GuestsRoomSatisfaction.Clear()
         For Each Floor In Floors
@@ -186,11 +230,11 @@
                     Dim bedroom As RoomBed = CType(Room, RoomBed)
                     For Each guest In bedroom.Guests
                         Dim food As Food = GetBestFood(guest)
-                        Dim drink As Drink = GetBestDrink(guest, food, Bar)
+                        Dim drink As Drink = GetBestDrink(guest, food, RoomBar)
 
                         GuestsRoomSatisfaction.Add(guest, guest.RoomSatisfaction(bedroom))
                         GuestsFoodSatisfaction.Add(guest, guest.FoodSatisfaction(food))
-                        GuestsDrinkSatisfaction.Add(guest, guest.DrinkSatisfaction(drink, food, Bar))
+                        GuestsDrinkSatisfaction.Add(guest, guest.DrinkSatisfaction(drink, food, RoomBar))
                         GuestsEntertainmentSatisfaction.Add(guest, guest.EntertainmentSatisfaction(GetBestEntertainment(guest)))
                         GuestsServiceSatisfaction.Add(guest, guest.ServiceSatisfaction(GetBestService(guest)))
                     Next
@@ -202,6 +246,6 @@
         MenuFood.Clear()
         MenuDrink.Clear()
 
-        StartNight()
+        StartNight(world)
     End Sub
 End Class

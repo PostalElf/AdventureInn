@@ -63,7 +63,8 @@
     Private ReadOnly Property SuccessString As String
         Get
             If TypeOf Me Is Monster Then
-                Dim adjectives As New List(Of String) From {"eviscerates", "destroys", "wipes out", "utterly devastates"}
+                Dim adjectives As New List(Of String) From {"eviscerates", "destroys", "wipes out", "utterly devastates", "obliterates", "traumatises", _
+                                                            "perforates", "defenestrates", "smashes"}
                 Return "The party " & GetRandom(adjectives) & " the " & Name & " and gets <loot>."
             Else
                 Return _SuccessString
@@ -87,35 +88,52 @@
     Private Drop3 As New List(Of Pair(Of String, Integer))
     Private Drop4 As New List(Of Pair(Of String, Integer))
     Private Drop5 As New List(Of Pair(Of String, Integer))
-    Public Function CheckEncounter(ByVal party As Party) As Pair(Of String, List(Of String))
-        Dim loot As New List(Of String)
+    Public Function CheckEncounter(ByVal party As Party, ByRef dangerLoss As Integer) As Pair(Of String, List(Of LootItem))
+        Dim loot As New List(Of LootItem)
         Dim report As String
         Dim encounterResult As Pair(Of Adventurer, Boolean) = party.CheckEncounter(Job, Level, Me)
         If encounterResult.Value = True Then
-            For n = 0 To 4
-                If Drops(n).Count = 0 Then Exit For
-
-                Dim roll As Integer = Rng.Next(1, 101)
-                Dim currentCount As Integer = 0
-                For Each entry In Drops(n)
-                    currentCount += entry.Value
-                    If roll <= currentCount Then loot.Add(entry.Key) : Exit For
-                Next
-            Next
+            loot = GetLoot()
             report = SuccessString
+            dangerLoss += Rng.Next(2, 5)
         Else
             report = FailureString
         End If
         report = ParseReport(encounterResult.Key, loot, report)
-        Return New Pair(Of String, List(Of String))(report, loot)
+        Return New Pair(Of String, List(Of LootItem))(report, loot)
     End Function
-    Private Function ParseReport(ByVal adv As Adventurer, ByVal loot As List(Of String), ByVal str As String) As String
+    Public Function GetLoot() As List(Of LootItem)
+        Dim loot As New List(Of String)
+        For n = 0 To 4
+            If Drops(n).Count = 0 Then Exit For
+
+            Dim roll As Integer = Rng.Next(1, 101)
+            Dim currentCount As Integer = 0
+            For Each entry In Drops(n)
+                currentCount += entry.Value
+                If roll <= currentCount Then loot.Add(entry.Key) : Exit For
+            Next
+        Next
+
+        Dim total As New List(Of LootItem)
+        For Each l In loot
+            Dim lootItem = FoodIngredient.Generate(l)
+            If lootItem Is Nothing Then Continue For
+            total.Add(lootItem)
+        Next
+        Return total
+    End Function
+    Private Function ParseReport(ByVal adv As Adventurer, ByVal loot As List(Of LootItem), ByVal str As String) As String
         Dim total As String = str
         total = total.Replace("<adventurer>", adv.ToString)
         total = total.Replace("<pronoun>", adv.Pronoun)
         total = total.Replace("<propos>", adv.PronounPossessive)
         If loot.Count > 0 Then
-            total = total.Replace("<loot>", ListToCommaString(loot, " && "))
+            Dim lootstring As New List(Of String)
+            For Each l In loot
+                lootstring.Add(l.ToString)
+            Next
+            total = total.Replace("<loot>", ListToCommaString(lootstring, " && "))
         Else
             total = total.Replace("<loot>", "nothing")
         End If

@@ -1,4 +1,5 @@
 ﻿Public Class Main
+    Private WithEvents CurrentWorld As New World
     Private WithEvents CurrentInn As New Inn
     Public Sub New()
         ' This call is required by the designer.
@@ -9,8 +10,6 @@
     End Sub
     Private Sub SetupInn()
         With CurrentInn
-            .EndNight()
-
             Dim floor1 As New Floor
             floor1.Add(New RoomBed(RoomSize.Large), 1, 1)
             .Add(floor1)
@@ -36,7 +35,7 @@
             .Add(FoodIngredient.Generate("Beef Offals"))
             .Add(FoodIngredient.Generate("Muskgrass"))
 
-            .StartNight()
+            .StartNight(CurrentWorld)
         End With
     End Sub
     Private Sub Main_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -57,7 +56,7 @@
         lblGold.Text = CurrentInn.Gold.ToString("N0")
     End Sub
     Private Sub btnEndNight_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnEndNight.Click
-        CurrentInn.EndNight()
+        CurrentInn.EndNight(CurrentWorld)
         FloorRefresh()
         GuestsRefresh()
         KitchenRefresh()
@@ -896,9 +895,10 @@
     End Sub
     Private Sub cmbArea_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cmbArea.SelectedIndexChanged
         If cmbArea.SelectedIndex = -1 Then Exit Sub
-        If AdventureAreas.ContainsKey(cmbArea.SelectedItem) = False Then Exit Sub
+        If CurrentWorld.LocationDescription.ContainsKey(cmbArea.SelectedItem) = False Then Exit Sub
 
-        lblAreaDescription.Text = AdventureAreas(cmbArea.SelectedItem)
+        lblAreaDescription.Text = CurrentWorld.LocationDescription(cmbArea.SelectedItem) & _
+                                    " Current danger: " & CurrentWorld.LocationDanger(cmbArea.SelectedItem) & "%."
     End Sub
     Private Sub btnBounty_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnBounty.Click
         Dim party As Party = lstParties.SelectedItem
@@ -908,12 +908,13 @@
         If MsgBox("Send " & party.Name & " to the " & area & "?", MsgBoxStyle.YesNo + MsgBoxStyle.Question, "Post Bounty") = MsgBoxResult.No Then Exit Sub
 
         Dim adventure As Adventure = adventure.Generate(area)
-        Dim results = adventure.CheckEncounters(party)
+        Dim results = adventure.CheckEncounters(party, CurrentWorld)
         Dim reports As List(Of String) = results.Key
         Dim loot As List(Of LootItem) = results.Value
         Dim da As New DialogAdventure(reports, loot)
         da.ShowDialog()
 
+        'add loot
         lstParties.Items.Remove(party)
         For Each li In loot
             CurrentInn.Add(li)
@@ -921,24 +922,10 @@
         KitchenRefresh()
     End Sub
 
-    Private AdventureAreas As New Dictionary(Of String, String)
     Private Sub FrontDoorBuild()
-        For Each area In Monster.AllMonsters.Keys
-            If AdventureAreas.Keys.Contains(area) = False Then
-                Dim desc As String = ""
-                Select Case area
-                    Case "Farmlands" : desc = "A calm, quiet place suitable for level 0 adventurers."
-                    Case "Forest" : desc = "Full of monsters appropriately scaled for level 1-2 adventurers."
-                    Case "Desert" : desc = "Endless sands with endless level 3-4 monsters."
-                    Case "Ruins" : desc = "Dark corners filled with challenges for level 5-6 adventurers."
-                    Case "Hills" : desc = "Challenging even for a party of level 7-8 adventurers."
-                    Case "Mountains" : desc = "Fame and fortune awaits here for level 9 adventurers."
-                End Select
-                AdventureAreas.Add(area, desc)
-                cmbArea.Items.Add(area)
-            End If
+        For Each area In CurrentWorld.LocationDanger.Keys
+            cmbArea.Items.Add(area)
         Next
-
         lblAreaDescription.Text = ""
     End Sub
 #End Region

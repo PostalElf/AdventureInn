@@ -76,6 +76,7 @@
     <Compile Include="Encounter\Adventure.vb" />
     <Compile Include="Adventurer\Adventurer.vb" />
     <Compile Include="Encounter\Encounter.vb" />
+    <Compile Include="Encounter\World.vb" />
     <Compile Include="FoodDrinkEntertainmentService\Drink.vb" />
     <Compile Include="FoodDrinkEntertainmentService\Entertainment.vb" />
     <Compile Include="FoodDrinkEntertainmentService\Food.vb" />
@@ -135,7 +136,10 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Room\Room.vb" />
+    <Compile Include="Room\RoomDining.vb" />
+    <Compile Include="Room\RoomEntertainment.vb" />
     <Compile Include="Room\RoomItem.vb" />
+    <Compile Include="Room\RoomService.vb" />
     <Compile Include="Room\xy.vb" />
     <Compile Include="Room\xyContainer.vb" />
   </ItemGroup>
