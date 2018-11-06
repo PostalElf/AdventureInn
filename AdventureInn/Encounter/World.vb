@@ -20,10 +20,14 @@
 
     Public LocationDanger As New Dictionary(Of String, Integer)
     Public LocationDescription As New Dictionary(Of String, String)
+    Private LocationLoot As New List(Of Pair(Of String, Integer))
     Public Function GetRandomLoot(ByVal area As String) As List(Of LootItem)
-        Dim monsters As List(Of Monster) = Monster.AllMonsters(area)
-        Dim m As Monster = GetRandom(monsters)
-        Dim loot As List(Of LootItem) = m.GetLoot
-        Return loot
+        If LocationLoot.Count = 0 Then
+            For Each area In LocationDescription.Keys
+                For Each m In Monster.AllMonsters(area)
+                    LocationLoot.Add(m.GetLoot)
+                Next
+            Next
+        End If
     End Function
 End Class

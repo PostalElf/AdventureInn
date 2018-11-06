@@ -24,7 +24,7 @@
         If traps.Count = 0 Then
             Return Nothing
         ElseIf traps.Count = 1 Then
-            trapName = ""
+            trapName = traps(0).Name
         Else
             Dim roll As Integer = Rng.Next(traps.Count)
             trapName = traps(roll).Name
@@ -40,5 +40,10 @@
         Dim trap As New Trap
         trap.Generate(targetName, rawdata)
         Return trap
+    End Function
+
+    Public Overrides Function GetLoot() As List(Of LootItem)
+        Dim m As Monster = Monster.Generate(Area)
+        Return m.GetLoot
     End Function
 End Class

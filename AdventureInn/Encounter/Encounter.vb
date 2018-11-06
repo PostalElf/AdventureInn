@@ -102,7 +102,7 @@
         report = ParseReport(encounterResult.Key, loot, report)
         Return New Pair(Of String, List(Of LootItem))(report, loot)
     End Function
-    Public Function GetLoot() As List(Of LootItem)
+    Public Overridable Function GetLoot() As List(Of LootItem)
         Dim loot As New List(Of String)
         For n = 0 To 4
             If Drops(n).Count = 0 Then Exit For
@@ -122,6 +122,9 @@
             total.Add(lootItem)
         Next
         Return total
+    End Function
+    Public Function GetDrops() As List(Of Pair(Of String, Integer))()
+
     End Function
     Private Function ParseReport(ByVal adv As Adventurer, ByVal loot As List(Of LootItem), ByVal str As String) As String
         Dim total As String = str
